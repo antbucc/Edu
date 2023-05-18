@@ -156,17 +156,12 @@ relationship ManyToMany {
 }
 
 
-
-relationship OneToMany {
-Fragment{source} to Fragment{targets}
-}
-
 relationship OneToMany {
 Concept{parent} to Concept{childs}
 }
 
 relationship ManyToMany {
-Module{fragments} to Fragment{modules}
+Module{ Fragment(title) } to Fragment{ Module(title) }
 }
 
 
