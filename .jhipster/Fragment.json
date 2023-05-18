@@ -1,0 +1,70 @@
+{
+  "applications": "*",
+  "changelogDate": "20230518134705",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "fragment",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Fragment",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "precondition",
+      "otherEntityRelationshipName": "fragment",
+      "relationshipName": "precondition",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "effect",
+      "otherEntityRelationshipName": "fragment",
+      "relationshipName": "effect",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "targets",
+      "relationshipName": "source",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "activity",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": true,
+      "relationshipName": "activity",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "goal",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": true,
+      "relationshipName": "goal",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "source",
+      "relationshipName": "targets",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "module",
+      "otherEntityRelationshipName": "fragments",
+      "ownerSide": false,
+      "relationshipName": "modules",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "no"
+}

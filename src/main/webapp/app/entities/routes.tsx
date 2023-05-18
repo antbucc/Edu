@@ -3,6 +3,18 @@ import { Route } from 'react-router-dom';
 
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 
+import Scenario from './scenario';
+import Module from './module';
+import Learner from './learner';
+import Educator from './educator';
+import Domain from './domain';
+import Competence from './competence';
+import Concept from './concept';
+import Activity from './activity';
+import Fragment from './fragment';
+import Precondition from './precondition';
+import Effect from './effect';
+import Goal from './goal';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -10,6 +22,18 @@ export default () => {
     <div>
       <ErrorBoundaryRoutes>
         {/* prettier-ignore */}
+        <Route path="scenario/*" element={<Scenario />} />
+        <Route path="module/*" element={<Module />} />
+        <Route path="learner/*" element={<Learner />} />
+        <Route path="educator/*" element={<Educator />} />
+        <Route path="domain/*" element={<Domain />} />
+        <Route path="competence/*" element={<Competence />} />
+        <Route path="concept/*" element={<Concept />} />
+        <Route path="activity/*" element={<Activity />} />
+        <Route path="fragment/*" element={<Fragment />} />
+        <Route path="precondition/*" element={<Precondition />} />
+        <Route path="effect/*" element={<Effect />} />
+        <Route path="goal/*" element={<Goal />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

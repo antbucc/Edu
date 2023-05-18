@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20230518134706",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "precondition",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Precondition",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "precondition",
+      "relationshipName": "fragment",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

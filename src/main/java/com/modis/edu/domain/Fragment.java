@@ -1,0 +1,310 @@
+package com.modis.edu.domain;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
+/**
+ * A Fragment.
+ */
+@Document(collection = "fragment")
+@SuppressWarnings("common-java:DuplicatedBlocks")
+public class Fragment implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
+    @Id
+    private String id;
+
+    @Field("title")
+    private String title;
+
+    @DBRef
+    @Field("precondition")
+    @JsonIgnoreProperties(value = { "fragment" }, allowSetters = true)
+    private Set<Precondition> preconditions = new HashSet<>();
+
+    @DBRef
+    @Field("effect")
+    @JsonIgnoreProperties(value = { "fragment" }, allowSetters = true)
+    private Set<Effect> effects = new HashSet<>();
+
+    @DBRef
+    @Field("source")
+    @JsonIgnoreProperties(
+        value = { "preconditions", "effects", "sources", "activities", "goals", "targets", "modules" },
+        allowSetters = true
+    )
+    private Set<Fragment> sources = new HashSet<>();
+
+    @DBRef
+    @Field("activities")
+    @JsonIgnoreProperties(value = { "concepts", "fragments" }, allowSetters = true)
+    private Set<Activity> activities = new HashSet<>();
+
+    @DBRef
+    @Field("goals")
+    @JsonIgnoreProperties(value = { "concepts", "fragments" }, allowSetters = true)
+    private Set<Goal> goals = new HashSet<>();
+
+    @DBRef
+    @Field("targets")
+    @JsonIgnoreProperties(
+        value = { "preconditions", "effects", "sources", "activities", "goals", "targets", "modules" },
+        allowSetters = true
+    )
+    private Fragment targets;
+
+    @DBRef
+    @Field("modules")
+    @JsonIgnoreProperties(value = { "scenario", "fragments" }, allowSetters = true)
+    private Set<Module> modules = new HashSet<>();
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here
+
+    public String getId() {
+        return this.id;
+    }
+
+    public Fragment id(String id) {
+        this.setId(id);
+        return this;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return this.title;
+    }
+
+    public Fragment title(String title) {
+        this.setTitle(title);
+        return this;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public Set<Precondition> getPreconditions() {
+        return this.preconditions;
+    }
+
+    public void setPreconditions(Set<Precondition> preconditions) {
+        if (this.preconditions != null) {
+            this.preconditions.forEach(i -> i.setFragment(null));
+        }
+        if (preconditions != null) {
+            preconditions.forEach(i -> i.setFragment(this));
+        }
+        this.preconditions = preconditions;
+    }
+
+    public Fragment preconditions(Set<Precondition> preconditions) {
+        this.setPreconditions(preconditions);
+        return this;
+    }
+
+    public Fragment addPrecondition(Precondition precondition) {
+        this.preconditions.add(precondition);
+        precondition.setFragment(this);
+        return this;
+    }
+
+    public Fragment removePrecondition(Precondition precondition) {
+        this.preconditions.remove(precondition);
+        precondition.setFragment(null);
+        return this;
+    }
+
+    public Set<Effect> getEffects() {
+        return this.effects;
+    }
+
+    public void setEffects(Set<Effect> effects) {
+        if (this.effects != null) {
+            this.effects.forEach(i -> i.setFragment(null));
+        }
+        if (effects != null) {
+            effects.forEach(i -> i.setFragment(this));
+        }
+        this.effects = effects;
+    }
+
+    public Fragment effects(Set<Effect> effects) {
+        this.setEffects(effects);
+        return this;
+    }
+
+    public Fragment addEffect(Effect effect) {
+        this.effects.add(effect);
+        effect.setFragment(this);
+        return this;
+    }
+
+    public Fragment removeEffect(Effect effect) {
+        this.effects.remove(effect);
+        effect.setFragment(null);
+        return this;
+    }
+
+    public Set<Fragment> getSources() {
+        return this.sources;
+    }
+
+    public void setSources(Set<Fragment> fragments) {
+        if (this.sources != null) {
+            this.sources.forEach(i -> i.setTargets(null));
+        }
+        if (fragments != null) {
+            fragments.forEach(i -> i.setTargets(this));
+        }
+        this.sources = fragments;
+    }
+
+    public Fragment sources(Set<Fragment> fragments) {
+        this.setSources(fragments);
+        return this;
+    }
+
+    public Fragment addSource(Fragment fragment) {
+        this.sources.add(fragment);
+        fragment.setTargets(this);
+        return this;
+    }
+
+    public Fragment removeSource(Fragment fragment) {
+        this.sources.remove(fragment);
+        fragment.setTargets(null);
+        return this;
+    }
+
+    public Set<Activity> getActivities() {
+        return this.activities;
+    }
+
+    public void setActivities(Set<Activity> activities) {
+        this.activities = activities;
+    }
+
+    public Fragment activities(Set<Activity> activities) {
+        this.setActivities(activities);
+        return this;
+    }
+
+    public Fragment addActivity(Activity activity) {
+        this.activities.add(activity);
+        activity.getFragments().add(this);
+        return this;
+    }
+
+    public Fragment removeActivity(Activity activity) {
+        this.activities.remove(activity);
+        activity.getFragments().remove(this);
+        return this;
+    }
+
+    public Set<Goal> getGoals() {
+        return this.goals;
+    }
+
+    public void setGoals(Set<Goal> goals) {
+        this.goals = goals;
+    }
+
+    public Fragment goals(Set<Goal> goals) {
+        this.setGoals(goals);
+        return this;
+    }
+
+    public Fragment addGoal(Goal goal) {
+        this.goals.add(goal);
+        goal.getFragments().add(this);
+        return this;
+    }
+
+    public Fragment removeGoal(Goal goal) {
+        this.goals.remove(goal);
+        goal.getFragments().remove(this);
+        return this;
+    }
+
+    public Fragment getTargets() {
+        return this.targets;
+    }
+
+    public void setTargets(Fragment fragment) {
+        this.targets = fragment;
+    }
+
+    public Fragment targets(Fragment fragment) {
+        this.setTargets(fragment);
+        return this;
+    }
+
+    public Set<Module> getModules() {
+        return this.modules;
+    }
+
+    public void setModules(Set<Module> modules) {
+        if (this.modules != null) {
+            this.modules.forEach(i -> i.removeFragments(this));
+        }
+        if (modules != null) {
+            modules.forEach(i -> i.addFragments(this));
+        }
+        this.modules = modules;
+    }
+
+    public Fragment modules(Set<Module> modules) {
+        this.setModules(modules);
+        return this;
+    }
+
+    public Fragment addModules(Module module) {
+        this.modules.add(module);
+        module.getFragments().add(this);
+        return this;
+    }
+
+    public Fragment removeModules(Module module) {
+        this.modules.remove(module);
+        module.getFragments().remove(this);
+        return this;
+    }
+
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (!(o instanceof Fragment)) {
+            return false;
+        }
+        return id != null && id.equals(((Fragment) o).id);
+    }
+
+    @Override
+    public int hashCode() {
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        return getClass().hashCode();
+    }
+
+    // prettier-ignore
+    @Override
+    public String toString() {
+        return "Fragment{" +
+            "id=" + getId() +
+            ", title='" + getTitle() + "'" +
+            "}";
+    }
+}

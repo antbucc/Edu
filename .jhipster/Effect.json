@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20230518134707",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "effect",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Effect",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "effect",
+      "relationshipName": "fragment",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
