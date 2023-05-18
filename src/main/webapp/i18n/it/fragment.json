@@ -21,11 +21,9 @@
       "title": "Title",
       "precondition": "Precondition",
       "effect": "Effect",
-      "source": "Source",
       "activity": "Activity",
       "goal": "Goal",
-      "targets": "Targets",
-      "modules": "Modules"
+      "module": "Module"
     }
   }
 }

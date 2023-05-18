@@ -159,9 +159,9 @@ export const ModuleUpdate = () => {
                   : null}
               </ValidatedField>
               <ValidatedField
-                label={translate('eduApp.module.fragments')}
-                id="module-fragments"
-                data-cy="fragments"
+                label={translate('eduApp.module.fragment')}
+                id="module-fragment"
+                data-cy="fragment"
                 type="select"
                 multiple
                 name="fragments"
@@ -170,7 +170,7 @@ export const ModuleUpdate = () => {
                 {fragments
                   ? fragments.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.title}
                       </option>
                     ))
                   : null}

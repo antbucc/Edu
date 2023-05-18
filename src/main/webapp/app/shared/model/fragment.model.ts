@@ -9,10 +9,8 @@ export interface IFragment {
   title?: string | null;
   preconditions?: IPrecondition[] | null;
   effects?: IEffect[] | null;
-  sources?: IFragment[] | null;
   activities?: IActivity[] | null;
   goals?: IGoal[] | null;
-  targets?: IFragment | null;
   modules?: IModule[] | null;
 }
 

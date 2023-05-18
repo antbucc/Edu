@@ -35,14 +35,6 @@ public class Fragment implements Serializable {
     private Set<Effect> effects = new HashSet<>();
 
     @DBRef
-    @Field("source")
-    @JsonIgnoreProperties(
-        value = { "preconditions", "effects", "sources", "activities", "goals", "targets", "modules" },
-        allowSetters = true
-    )
-    private Set<Fragment> sources = new HashSet<>();
-
-    @DBRef
     @Field("activities")
     @JsonIgnoreProperties(value = { "concepts", "fragments" }, allowSetters = true)
     private Set<Activity> activities = new HashSet<>();
@@ -51,14 +43,6 @@ public class Fragment implements Serializable {
     @Field("goals")
     @JsonIgnoreProperties(value = { "concepts", "fragments" }, allowSetters = true)
     private Set<Goal> goals = new HashSet<>();
-
-    @DBRef
-    @Field("targets")
-    @JsonIgnoreProperties(
-        value = { "preconditions", "effects", "sources", "activities", "goals", "targets", "modules" },
-        allowSetters = true
-    )
-    private Fragment targets;
 
     @DBRef
     @Field("modules")
@@ -155,37 +139,6 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public Set<Fragment> getSources() {
-        return this.sources;
-    }
-
-    public void setSources(Set<Fragment> fragments) {
-        if (this.sources != null) {
-            this.sources.forEach(i -> i.setTargets(null));
-        }
-        if (fragments != null) {
-            fragments.forEach(i -> i.setTargets(this));
-        }
-        this.sources = fragments;
-    }
-
-    public Fragment sources(Set<Fragment> fragments) {
-        this.setSources(fragments);
-        return this;
-    }
-
-    public Fragment addSource(Fragment fragment) {
-        this.sources.add(fragment);
-        fragment.setTargets(this);
-        return this;
-    }
-
-    public Fragment removeSource(Fragment fragment) {
-        this.sources.remove(fragment);
-        fragment.setTargets(null);
-        return this;
-    }
-
     public Set<Activity> getActivities() {
         return this.activities;
     }
@@ -236,29 +189,16 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public Fragment getTargets() {
-        return this.targets;
-    }
-
-    public void setTargets(Fragment fragment) {
-        this.targets = fragment;
-    }
-
-    public Fragment targets(Fragment fragment) {
-        this.setTargets(fragment);
-        return this;
-    }
-
     public Set<Module> getModules() {
         return this.modules;
     }
 
     public void setModules(Set<Module> modules) {
         if (this.modules != null) {
-            this.modules.forEach(i -> i.removeFragments(this));
+            this.modules.forEach(i -> i.removeFragment(this));
         }
         if (modules != null) {
-            modules.forEach(i -> i.addFragments(this));
+            modules.forEach(i -> i.addFragment(this));
         }
         this.modules = modules;
     }
@@ -268,13 +208,13 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public Fragment addModules(Module module) {
+    public Fragment addModule(Module module) {
         this.modules.add(module);
         module.getFragments().add(this);
         return this;
     }
 
-    public Fragment removeModules(Module module) {
+    public Fragment removeModule(Module module) {
         this.modules.remove(module);
         module.getFragments().remove(this);
         return this;

@@ -64,10 +64,6 @@ export const FragmentDetail = () => {
                 ))
               : null}
           </dd>
-          <dt>
-            <Translate contentKey="eduApp.fragment.targets">Targets</Translate>
-          </dt>
-          <dd>{fragmentEntity.targets ? fragmentEntity.targets.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/fragment" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

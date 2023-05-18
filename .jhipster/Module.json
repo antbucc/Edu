@@ -42,10 +42,11 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityField": "title",
       "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "modules",
+      "otherEntityRelationshipName": "module",
       "ownerSide": true,
-      "relationshipName": "fragments",
+      "relationshipName": "fragment",
       "relationshipType": "many-to-many"
     }
   ],

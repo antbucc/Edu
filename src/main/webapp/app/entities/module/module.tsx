@@ -70,7 +70,7 @@ export const Module = () => {
                   <Translate contentKey="eduApp.module.scenario">Scenario</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.module.fragments">Fragments</Translate>
+                  <Translate contentKey="eduApp.module.fragment">Fragment</Translate>
                 </th>
                 <th />
               </tr>
@@ -95,7 +95,7 @@ export const Module = () => {
                     {module.fragments
                       ? module.fragments.map((val, j) => (
                           <span key={j}>
-                            <Link to={`/fragment/${val.id}`}>{val.id}</Link>
+                            <Link to={`/fragment/${val.id}`}>{val.title}</Link>
                             {j === module.fragments.length - 1 ? '' : ', '}
                           </span>
                         ))
