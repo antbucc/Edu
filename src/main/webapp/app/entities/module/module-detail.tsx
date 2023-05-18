@@ -67,13 +67,13 @@ export const ModuleDetail = () => {
           </dt>
           <dd>{moduleEntity.scenario ? moduleEntity.scenario.title : ''}</dd>
           <dt>
-            <Translate contentKey="eduApp.module.fragments">Fragments</Translate>
+            <Translate contentKey="eduApp.module.fragment">Fragment</Translate>
           </dt>
           <dd>
             {moduleEntity.fragments
               ? moduleEntity.fragments.map((val, i) => (
                   <span key={val.id}>
-                    <a>{val.id}</a>
+                    <a>{val.title}</a>
                     {moduleEntity.fragments && i === moduleEntity.fragments.length - 1 ? '' : ', '}
                   </span>
                 ))
