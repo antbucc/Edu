@@ -1,0 +1,37 @@
+{
+  "applications": "*",
+  "changelogDate": "20230518134700",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "educator",
+  "fields": [
+    {
+      "fieldName": "firstName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "lastName",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Educator",
+  "pagination": "infinite-scroll",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "scenario",
+      "otherEntityRelationshipName": "educator",
+      "ownerSide": false,
+      "relationshipName": "scenario",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -7,6 +7,18 @@
       "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
       "entities": {
         "main": "Entities",
+        "scenario": "Scenario",
+        "module": "Module",
+        "learner": "Learner",
+        "educator": "Educator",
+        "domain": "Domain",
+        "competence": "Competence",
+        "concept": "Concept",
+        "activity": "Activity",
+        "fragment": "Fragment",
+        "precondition": "Precondition",
+        "effect": "Effect",
+        "goal": "Goal",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

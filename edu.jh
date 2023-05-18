@@ -1,0 +1,187 @@
+entity Scenario {
+	title String
+    description String
+    language Language
+}
+
+
+entity Module {
+	title String,
+	description String,
+	startDate Instant,
+	endData Instant
+    level Level
+}
+
+
+
+entity Learner {
+	
+	firstName String,
+	lastName String,
+	email String,
+	phoneNumber String
+}
+
+entity Educator {
+	firstName String,
+	lastName String,
+	email String
+}
+
+entity Domain {
+	title String
+    description String
+    city String
+}
+
+entity Competence {
+ title String
+ description String
+ type CompetenceType
+}
+
+entity Concept {
+ title String
+ description String
+}
+
+entity Activity {
+title String
+description String
+type ActivityType
+tool Tool
+difficulty Difficulty
+}
+
+entity Fragment {
+ title String 
+}
+
+entity Precondition{
+ title String
+}
+
+entity Effect{
+ title String
+}
+
+
+
+entity Goal {
+ title String
+}
+
+
+
+
+
+
+enum Tool {
+ COMPUTER, MOBILE
+}
+
+enum ActivityType {
+INDIVIDUAL, GROUP
+}
+
+
+enum Difficulty {
+LOW, MODERATE, INTERMEDIATE, HIGH, ADVANCED, PERSONALIZED
+}
+
+enum Language {
+     ENGLISH, ITALIAN
+}
+enum Level {
+     BEGINNER, INTERMEDIATE, ADVANCED
+}
+
+enum CompetenceType {
+SKILL, KNOWLEDGE, ATTITUDE
+}
+
+
+
+
+relationship OneToOne {
+   Module { Scenario(title) } to Scenario {Module(title)}
+}
+
+relationship OneToOne {
+  Scenario { Domain(title) } to Domain {Scenario(title)}
+}
+
+relationship ManyToMany {
+  Scenario { Educator(lastName) } to Educator{Scenario(title)}
+}
+
+relationship ManyToMany {
+  Scenario { Competence(title) } to Competence{Scenario(title)}
+}
+
+relationship ManyToMany {
+  Competence { Concept(title) } to Concept { Competence(title) }
+}
+
+relationship ManyToMany {
+  Scenario { Learner(lastName) } to Learner{ Scenario(title) }
+}
+
+relationship ManyToMany {
+  Fragment { Activity(title) } to Activity{ Fragment(title) }
+}
+
+relationship ManyToMany {
+  Activity { Concept(title) } to Concept{ Activity(title) }
+}
+
+
+
+relationship OneToMany {
+  Fragment { Precondition(title) } to Precondition{ Fragment(title) }
+}
+
+relationship OneToMany {
+  Fragment { Effect(title) } to Effect{ Fragment(title) }
+}
+
+
+relationship ManyToMany {
+  Fragment { Goal(title) } to Goal{ Fragment(title) }
+}
+
+relationship ManyToMany {
+  Goal { Concept(title) } to Concept{ Goal(title) }
+}
+
+
+
+relationship OneToMany {
+Fragment{source} to Fragment{targets}
+}
+
+relationship OneToMany {
+Concept{parent} to Concept{childs}
+}
+
+relationship ManyToMany {
+Module{fragments} to Fragment{modules}
+}
+
+
+
+
+
+// Set pagination options
+paginate Learner, Educator with infinite-scroll
+paginate Domain, Scenario with pagination
+
+// Use Data Transfer Objects (DTO)
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl except Fragment
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

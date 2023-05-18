@@ -1,0 +1,70 @@
+{
+  "applications": "*",
+  "changelogDate": "20230518134657",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "scenario",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "language",
+      "fieldType": "Language",
+      "fieldValues": "ENGLISH,ITALIAN"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Scenario",
+  "pagination": "pagination",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "domain",
+      "otherEntityRelationshipName": "scenario",
+      "ownerSide": true,
+      "relationshipName": "domain",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "lastName",
+      "otherEntityName": "educator",
+      "otherEntityRelationshipName": "scenario",
+      "ownerSide": true,
+      "relationshipName": "educator",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "competence",
+      "otherEntityRelationshipName": "scenario",
+      "ownerSide": true,
+      "relationshipName": "competence",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "lastName",
+      "otherEntityName": "learner",
+      "otherEntityRelationshipName": "scenario",
+      "ownerSide": true,
+      "relationshipName": "learner",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "module",
+      "otherEntityRelationshipName": "scenario",
+      "ownerSide": false,
+      "relationshipName": "module",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

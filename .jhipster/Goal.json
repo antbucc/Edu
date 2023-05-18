@@ -1,0 +1,37 @@
+{
+  "applications": "*",
+  "changelogDate": "20230518134708",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "goal",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Goal",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "concept",
+      "otherEntityRelationshipName": "goal",
+      "ownerSide": true,
+      "relationshipName": "concept",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "goal",
+      "ownerSide": false,
+      "relationshipName": "fragment",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}

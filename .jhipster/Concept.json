@@ -1,0 +1,61 @@
+{
+  "applications": "*",
+  "changelogDate": "20230518134703",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "concept",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Concept",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "concept",
+      "otherEntityRelationshipName": "childs",
+      "relationshipName": "parent",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "concept",
+      "otherEntityRelationshipName": "parent",
+      "relationshipName": "childs",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "competence",
+      "otherEntityRelationshipName": "concept",
+      "ownerSide": false,
+      "relationshipName": "competence",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "activity",
+      "otherEntityRelationshipName": "concept",
+      "ownerSide": false,
+      "relationshipName": "activity",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "goal",
+      "otherEntityRelationshipName": "concept",
+      "ownerSide": false,
+      "relationshipName": "goal",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "service": "serviceImpl"
+}
