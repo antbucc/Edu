@@ -48,7 +48,7 @@ spring:
       # it can be set to any label, branch or commit of the configuration source Git repository
   data:
     mongodb:
-      uri: mongodb+srv://bucchiarone:Edu2023!@cluster0.byuz8uh.mongodb.net/Edu
+      uri: mongodb+srv://bucchiarone:Edu202324@cluster0.byuz8uh.mongodb.net/?retryWrites=true&w=majority
   mail:
     host: localhost
     port: 25
