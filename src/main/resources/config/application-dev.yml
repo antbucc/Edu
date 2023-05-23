@@ -49,6 +49,8 @@ spring:
   data:
     mongodb:
       uri: mongodb+srv://bucchiarone:Edu202324@cluster0.byuz8uh.mongodb.net/?retryWrites=true&w=majority
+      database: Edu
+
   mail:
     host: localhost
     port: 25
