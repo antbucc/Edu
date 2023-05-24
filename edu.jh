@@ -46,7 +46,7 @@ entity Concept {
  description String
 }
 
-entity Activity {
+entity ConcreteActivity {
 title String
 description String
 type ActivityType
@@ -132,11 +132,11 @@ relationship ManyToMany {
 }
 
 relationship ManyToMany {
-  Fragment { Activity(title) } to Activity{ Fragment(title) }
+  Fragment { ConcreteActivity(title) } to ConcreteActivity{ Fragment(title) }
 }
 
 relationship ManyToMany {
-  Activity { Concept(title) } to Concept{ Activity(title) }
+  ConcreteActivity { Concept(title) } to Concept{ ConcreteActivity(title) }
 }
 
 
@@ -165,7 +165,7 @@ Module{ Fragment(title) } to Fragment{ Module(title) }
 }
 
 relationship OneToOne {
-AbstractActivity{ Fragment(title) } to Fragment{ AbstractActivity(title) }
+Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
 }
 
 relationship ManyToMany {
