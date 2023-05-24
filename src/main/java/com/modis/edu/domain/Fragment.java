@@ -25,6 +25,14 @@ public class Fragment implements Serializable {
     private String title;
 
     @DBRef
+    @Field("sequence")
+    private Sequence sequence;
+
+    @DBRef
+    @Field("set")
+    private Set set;
+
+    @DBRef
     @Field("precondition")
     @JsonIgnoreProperties(value = { "fragment" }, allowSetters = true)
     private Set<Precondition> preconditions = new HashSet<>();
@@ -38,9 +46,6 @@ public class Fragment implements Serializable {
     @Field("activities")
     @JsonIgnoreProperties(value = { "concepts", "fragments" }, allowSetters = true)
     private Set<Activity> activities = new HashSet<>();
-
-    @DBRef
-    private AbstractActivity abstractActivity;
 
     @DBRef
     @Field("modules")
@@ -73,6 +78,32 @@ public class Fragment implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Sequence getSequence() {
+        return this.sequence;
+    }
+
+    public void setSequence(Sequence sequence) {
+        this.sequence = sequence;
+    }
+
+    public Fragment sequence(Sequence sequence) {
+        this.setSequence(sequence);
+        return this;
+    }
+
+    public Set getSet() {
+        return this.set;
+    }
+
+    public void setSet(Set set) {
+        this.set = set;
+    }
+
+    public Fragment set(Set set) {
+        this.setSet(set);
+        return this;
     }
 
     public Set<Precondition> getPreconditions() {
@@ -159,25 +190,6 @@ public class Fragment implements Serializable {
     public Fragment removeActivity(Activity activity) {
         this.activities.remove(activity);
         activity.getFragments().remove(this);
-        return this;
-    }
-
-    public AbstractActivity getAbstractActivity() {
-        return this.abstractActivity;
-    }
-
-    public void setAbstractActivity(AbstractActivity abstractActivity) {
-        if (this.abstractActivity != null) {
-            this.abstractActivity.setFragment(null);
-        }
-        if (abstractActivity != null) {
-            abstractActivity.setFragment(this);
-        }
-        this.abstractActivity = abstractActivity;
-    }
-
-    public Fragment abstractActivity(AbstractActivity abstractActivity) {
-        this.setAbstractActivity(abstractActivity);
         return this;
     }
 

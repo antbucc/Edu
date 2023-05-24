@@ -29,11 +29,6 @@ public class Goal implements Serializable {
     @JsonIgnoreProperties(value = { "parents", "childs", "competences", "activities", "goals" }, allowSetters = true)
     private Set<Concept> concepts = new HashSet<>();
 
-    @DBRef
-    @Field("abstractActivities")
-    @JsonIgnoreProperties(value = { "fragment", "goals" }, allowSetters = true)
-    private Set<AbstractActivity> abstractActivities = new HashSet<>();
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public String getId() {
@@ -84,37 +79,6 @@ public class Goal implements Serializable {
     public Goal removeConcept(Concept concept) {
         this.concepts.remove(concept);
         concept.getGoals().remove(this);
-        return this;
-    }
-
-    public Set<AbstractActivity> getAbstractActivities() {
-        return this.abstractActivities;
-    }
-
-    public void setAbstractActivities(Set<AbstractActivity> abstractActivities) {
-        if (this.abstractActivities != null) {
-            this.abstractActivities.forEach(i -> i.removeGoal(this));
-        }
-        if (abstractActivities != null) {
-            abstractActivities.forEach(i -> i.addGoal(this));
-        }
-        this.abstractActivities = abstractActivities;
-    }
-
-    public Goal abstractActivities(Set<AbstractActivity> abstractActivities) {
-        this.setAbstractActivities(abstractActivities);
-        return this;
-    }
-
-    public Goal addAbstractActivity(AbstractActivity abstractActivity) {
-        this.abstractActivities.add(abstractActivity);
-        abstractActivity.getGoals().add(this);
-        return this;
-    }
-
-    public Goal removeAbstractActivity(AbstractActivity abstractActivity) {
-        this.abstractActivities.remove(abstractActivity);
-        abstractActivity.getGoals().remove(this);
         return this;
     }
 

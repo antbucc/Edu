@@ -39,6 +39,14 @@ export const FragmentDetail = () => {
           </dt>
           <dd>{fragmentEntity.title}</dd>
           <dt>
+            <Translate contentKey="eduApp.fragment.sequence">Sequence</Translate>
+          </dt>
+          <dd>{fragmentEntity.sequence ? fragmentEntity.sequence.title : ''}</dd>
+          <dt>
+            <Translate contentKey="eduApp.fragment.set">Set</Translate>
+          </dt>
+          <dd>{fragmentEntity.set ? fragmentEntity.set.title : ''}</dd>
+          <dt>
             <Translate contentKey="eduApp.fragment.activity">Activity</Translate>
           </dt>
           <dd>

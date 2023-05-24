@@ -1,0 +1,25 @@
+{
+  "eduApp": {
+    "sequence": {
+      "home": {
+        "title": "Sequences",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Sequence",
+        "createOrEditLabel": "Genera o modifica un Sequence",
+        "notFound": "No Sequences found"
+      },
+      "created": "&Egrave; stato generato un nuovo Sequence con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Sequence identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Sequence con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Sequence {{ id }}?"
+      },
+      "detail": {
+        "title": "Sequence"
+      },
+      "id": "ID",
+      "title": "Title",
+      "fragment": "Fragment"
+    }
+  }
+}
