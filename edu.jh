@@ -75,11 +75,11 @@ entity Fragment {
 title String
 }
 
-entity SetA {
+entity SetOf {
  title String
 }
 
-entity Sequence {
+entity SequenceOf {
  title String
 }
 
@@ -177,12 +177,12 @@ Module{ Fragment(title) } to Fragment{ Module(title) }
 
 
 relationship OneToOne {
-Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
+Fragment{ SequenceOf(title) } to SequenceOf{ Fragment(title) } 
 }
 
 
 relationship OneToOne {
-Fragment{ SetA(title) } to SetA{ Fragment(title) } 
+Fragment{ SetOf(title) } to SetOf{ Fragment(title) } 
 }
 
 relationship OneToOne {
