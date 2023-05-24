@@ -9,10 +9,10 @@ class SetTest {
 
     @Test
     void equalsVerifier() throws Exception {
-        TestUtil.equalsVerifier(Set.class);
-        Set set1 = new Set();
+        TestUtil.equalsVerifier(SetOf.class);
+        SetOf set1 = new SetOf();
         set1.setId("id1");
-        Set set2 = new Set();
+        SetOf set2 = new SetOf();
         set2.setId(set1.getId());
         assertThat(set1).isEqualTo(set2);
         set2.setId("id2");

@@ -1,6 +1,6 @@
 package com.modis.edu.web.rest;
 
-import com.modis.edu.domain.Set;
+import com.modis.edu.domain.SetOf;
 import com.modis.edu.repository.SetRepository;
 import com.modis.edu.service.SetService;
 import com.modis.edu.web.rest.errors.BadRequestAlertException;
@@ -19,7 +19,7 @@ import tech.jhipster.web.util.HeaderUtil;
 import tech.jhipster.web.util.ResponseUtil;
 
 /**
- * REST controller for managing {@link com.modis.edu.domain.Set}.
+ * REST controller for managing {@link com.modis.edu.domain.SetOf}.
  */
 @RestController
 @RequestMapping("/api")
@@ -45,16 +45,18 @@ public class SetResource {
      * {@code POST  /sets} : Create a new set.
      *
      * @param set the set to create.
-     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new set, or with status {@code 400 (Bad Request)} if the set has already an ID.
+     * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with
+     *         body the new set, or with status {@code 400 (Bad Request)} if the set
+     *         has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/sets")
-    public ResponseEntity<Set> createSet(@RequestBody Set set) throws URISyntaxException {
+    public ResponseEntity<SetOf> createSet(@RequestBody SetOf set) throws URISyntaxException {
         log.debug("REST request to save Set : {}", set);
         if (set.getId() != null) {
             throw new BadRequestAlertException("A new set cannot already have an ID", ENTITY_NAME, "idexists");
         }
-        Set result = setService.save(set);
+        SetOf result = setService.save(set);
         return ResponseEntity
             .created(new URI("/api/sets/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(applicationName, true, ENTITY_NAME, result.getId()))
@@ -64,15 +66,17 @@ public class SetResource {
     /**
      * {@code PUT  /sets/:id} : Updates an existing set.
      *
-     * @param id the id of the set to save.
+     * @param id  the id of the set to save.
      * @param set the set to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated set,
-     * or with status {@code 400 (Bad Request)} if the set is not valid,
-     * or with status {@code 500 (Internal Server Error)} if the set couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated set,
+     *         or with status {@code 400 (Bad Request)} if the set is not valid,
+     *         or with status {@code 500 (Internal Server Error)} if the set
+     *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/sets/{id}")
-    public ResponseEntity<Set> updateSet(@PathVariable(value = "id", required = false) final String id, @RequestBody Set set)
+    public ResponseEntity<SetOf> updateSet(@PathVariable(value = "id", required = false) final String id, @RequestBody SetOf set)
         throws URISyntaxException {
         log.debug("REST request to update Set : {}, {}", id, set);
         if (set.getId() == null) {
@@ -86,7 +90,7 @@ public class SetResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Set result = setService.update(set);
+        SetOf result = setService.update(set);
         return ResponseEntity
             .ok()
             .headers(HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, set.getId()))
@@ -94,18 +98,21 @@ public class SetResource {
     }
 
     /**
-     * {@code PATCH  /sets/:id} : Partial updates given fields of an existing set, field will ignore if it is null
+     * {@code PATCH  /sets/:id} : Partial updates given fields of an existing set,
+     * field will ignore if it is null
      *
-     * @param id the id of the set to save.
+     * @param id  the id of the set to save.
      * @param set the set to update.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the updated set,
-     * or with status {@code 400 (Bad Request)} if the set is not valid,
-     * or with status {@code 404 (Not Found)} if the set is not found,
-     * or with status {@code 500 (Internal Server Error)} if the set couldn't be updated.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the updated set,
+     *         or with status {@code 400 (Bad Request)} if the set is not valid,
+     *         or with status {@code 404 (Not Found)} if the set is not found,
+     *         or with status {@code 500 (Internal Server Error)} if the set
+     *         couldn't be updated.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/sets/{id}", consumes = { "application/json", "application/merge-patch+json" })
-    public ResponseEntity<Set> partialUpdateSet(@PathVariable(value = "id", required = false) final String id, @RequestBody Set set)
+    public ResponseEntity<SetOf> partialUpdateSet(@PathVariable(value = "id", required = false) final String id, @RequestBody SetOf set)
         throws URISyntaxException {
         log.debug("REST request to partial update Set partially : {}, {}", id, set);
         if (set.getId() == null) {
@@ -119,7 +126,7 @@ public class SetResource {
             throw new BadRequestAlertException("Entity not found", ENTITY_NAME, "idnotfound");
         }
 
-        Optional<Set> result = setService.partialUpdate(set);
+        Optional<SetOf> result = setService.partialUpdate(set);
 
         return ResponseUtil.wrapOrNotFound(result, HeaderUtil.createEntityUpdateAlert(applicationName, true, ENTITY_NAME, set.getId()));
     }
@@ -128,10 +135,11 @@ public class SetResource {
      * {@code GET  /sets} : get all the sets.
      *
      * @param filter the filter of the request.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of sets in body.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list
+     *         of sets in body.
      */
     @GetMapping("/sets")
-    public List<Set> getAllSets(@RequestParam(required = false) String filter) {
+    public List<SetOf> getAllSets(@RequestParam(required = false) String filter) {
         if ("fragment-is-null".equals(filter)) {
             log.debug("REST request to get all Sets where fragment is null");
             return setService.findAllWhereFragmentIsNull();
@@ -144,12 +152,13 @@ public class SetResource {
      * {@code GET  /sets/:id} : get the "id" set.
      *
      * @param id the id of the set to retrieve.
-     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body the set, or with status {@code 404 (Not Found)}.
+     * @return the {@link ResponseEntity} with status {@code 200 (OK)} and with body
+     *         the set, or with status {@code 404 (Not Found)}.
      */
     @GetMapping("/sets/{id}")
-    public ResponseEntity<Set> getSet(@PathVariable String id) {
+    public ResponseEntity<SetOf> getSet(@PathVariable String id) {
         log.debug("REST request to get Set : {}", id);
-        Optional<Set> set = setService.findOne(id);
+        Optional<SetOf> set = setService.findOne(id);
         return ResponseUtil.wrapOrNotFound(set);
     }
 

@@ -1,11 +1,11 @@
 package com.modis.edu.service;
 
-import com.modis.edu.domain.Set;
+import com.modis.edu.domain.SetOf;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * Service Interface for managing {@link Set}.
+ * Service Interface for managing {@link SetOf}.
  */
 public interface SetService {
     /**
@@ -14,7 +14,7 @@ public interface SetService {
      * @param set the entity to save.
      * @return the persisted entity.
      */
-    Set save(Set set);
+    SetOf save(SetOf set);
 
     /**
      * Updates a set.
@@ -22,7 +22,7 @@ public interface SetService {
      * @param set the entity to update.
      * @return the persisted entity.
      */
-    Set update(Set set);
+    SetOf update(SetOf set);
 
     /**
      * Partially updates a set.
@@ -30,20 +30,21 @@ public interface SetService {
      * @param set the entity to update partially.
      * @return the persisted entity.
      */
-    Optional<Set> partialUpdate(Set set);
+    Optional<SetOf> partialUpdate(SetOf set);
 
     /**
      * Get all the sets.
      *
      * @return the list of entities.
      */
-    List<Set> findAll();
+    List<SetOf> findAll();
+
     /**
      * Get all the Set where Fragment is {@code null}.
      *
      * @return the {@link List} of entities.
      */
-    List<Set> findAllWhereFragmentIsNull();
+    List<SetOf> findAllWhereFragmentIsNull();
 
     /**
      * Get the "id" set.
@@ -51,7 +52,7 @@ public interface SetService {
      * @param id the id of the entity.
      * @return the entity.
      */
-    Optional<Set> findOne(String id);
+    Optional<SetOf> findOne(String id);
 
     /**
      * Delete the "id" set.

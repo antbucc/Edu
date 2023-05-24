@@ -1,6 +1,6 @@
 package com.modis.edu.service.impl;
 
-import com.modis.edu.domain.Set;
+import com.modis.edu.domain.SetOf;
 import com.modis.edu.repository.SetRepository;
 import com.modis.edu.service.SetService;
 import java.util.List;
@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 /**
- * Service Implementation for managing {@link Set}.
+ * Service Implementation for managing {@link SetOf}.
  */
 @Service
 public class SetServiceImpl implements SetService {
@@ -26,19 +26,19 @@ public class SetServiceImpl implements SetService {
     }
 
     @Override
-    public Set save(Set set) {
+    public SetOf save(SetOf set) {
         log.debug("Request to save Set : {}", set);
         return setRepository.save(set);
     }
 
     @Override
-    public Set update(Set set) {
+    public SetOf update(SetOf set) {
         log.debug("Request to update Set : {}", set);
         return setRepository.save(set);
     }
 
     @Override
-    public Optional<Set> partialUpdate(Set set) {
+    public Optional<SetOf> partialUpdate(SetOf set) {
         log.debug("Request to partially update Set : {}", set);
 
         return setRepository
@@ -54,17 +54,18 @@ public class SetServiceImpl implements SetService {
     }
 
     @Override
-    public List<Set> findAll() {
+    public List<SetOf> findAll() {
         log.debug("Request to get all Sets");
         return setRepository.findAll();
     }
 
     /**
-     *  Get all the sets where Fragment is {@code null}.
-     *  @return the list of entities.
+     * Get all the sets where Fragment is {@code null}.
+     *
+     * @return the list of entities.
      */
 
-    public List<Set> findAllWhereFragmentIsNull() {
+    public List<SetOf> findAllWhereFragmentIsNull() {
         log.debug("Request to get all sets where Fragment is null");
         return StreamSupport
             .stream(setRepository.findAll().spliterator(), false)
@@ -73,7 +74,7 @@ public class SetServiceImpl implements SetService {
     }
 
     @Override
-    public Optional<Set> findOne(String id) {
+    public Optional<SetOf> findOne(String id) {
         log.debug("Request to get Set : {}", id);
         return setRepository.findById(id);
     }

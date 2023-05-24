@@ -6,7 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.modis.edu.IntegrationTest;
-import com.modis.edu.domain.Set;
+import com.modis.edu.domain.SetOf;
 import com.modis.edu.repository.SetRepository;
 import java.util.List;
 import java.util.UUID;
@@ -38,7 +38,7 @@ class SetResourceIT {
     @Autowired
     private MockMvc restSetMockMvc;
 
-    private Set set;
+    private SetOf set;
 
     /**
      * Create an entity for this test.
@@ -46,8 +46,8 @@ class SetResourceIT {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static Set createEntity() {
-        Set set = new Set().title(DEFAULT_TITLE);
+    public static SetOf createEntity() {
+        SetOf set = new SetOf().title(DEFAULT_TITLE);
         return set;
     }
 
@@ -57,8 +57,8 @@ class SetResourceIT {
      * This is a static method, as tests for other entities might also need it,
      * if they test an entity which requires the current entity.
      */
-    public static Set createUpdatedEntity() {
-        Set set = new Set().title(UPDATED_TITLE);
+    public static SetOf createUpdatedEntity() {
+        SetOf set = new SetOf().title(UPDATED_TITLE);
         return set;
     }
 
@@ -77,9 +77,9 @@ class SetResourceIT {
             .andExpect(status().isCreated());
 
         // Validate the Set in the database
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeCreate + 1);
-        Set testSet = setList.get(setList.size() - 1);
+        SetOf testSet = setList.get(setList.size() - 1);
         assertThat(testSet.getTitle()).isEqualTo(DEFAULT_TITLE);
     }
 
@@ -96,7 +96,7 @@ class SetResourceIT {
             .andExpect(status().isBadRequest());
 
         // Validate the Set in the database
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeCreate);
     }
 
@@ -142,7 +142,7 @@ class SetResourceIT {
         int databaseSizeBeforeUpdate = setRepository.findAll().size();
 
         // Update the set
-        Set updatedSet = setRepository.findById(set.getId()).get();
+        SetOf updatedSet = setRepository.findById(set.getId()).get();
         updatedSet.title(UPDATED_TITLE);
 
         restSetMockMvc
@@ -154,9 +154,9 @@ class SetResourceIT {
             .andExpect(status().isOk());
 
         // Validate the Set in the database
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeUpdate);
-        Set testSet = setList.get(setList.size() - 1);
+        SetOf testSet = setList.get(setList.size() - 1);
         assertThat(testSet.getTitle()).isEqualTo(UPDATED_TITLE);
     }
 
@@ -173,7 +173,7 @@ class SetResourceIT {
             .andExpect(status().isBadRequest());
 
         // Validate the Set in the database
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeUpdate);
     }
 
@@ -192,7 +192,7 @@ class SetResourceIT {
             .andExpect(status().isBadRequest());
 
         // Validate the Set in the database
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeUpdate);
     }
 
@@ -207,7 +207,7 @@ class SetResourceIT {
             .andExpect(status().isMethodNotAllowed());
 
         // Validate the Set in the database
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeUpdate);
     }
 
@@ -219,7 +219,7 @@ class SetResourceIT {
         int databaseSizeBeforeUpdate = setRepository.findAll().size();
 
         // Update the set using partial update
-        Set partialUpdatedSet = new Set();
+        SetOf partialUpdatedSet = new SetOf();
         partialUpdatedSet.setId(set.getId());
 
         restSetMockMvc
@@ -231,9 +231,9 @@ class SetResourceIT {
             .andExpect(status().isOk());
 
         // Validate the Set in the database
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeUpdate);
-        Set testSet = setList.get(setList.size() - 1);
+        SetOf testSet = setList.get(setList.size() - 1);
         assertThat(testSet.getTitle()).isEqualTo(DEFAULT_TITLE);
     }
 
@@ -245,7 +245,7 @@ class SetResourceIT {
         int databaseSizeBeforeUpdate = setRepository.findAll().size();
 
         // Update the set using partial update
-        Set partialUpdatedSet = new Set();
+        SetOf partialUpdatedSet = new SetOf();
         partialUpdatedSet.setId(set.getId());
 
         partialUpdatedSet.title(UPDATED_TITLE);
@@ -259,9 +259,9 @@ class SetResourceIT {
             .andExpect(status().isOk());
 
         // Validate the Set in the database
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeUpdate);
-        Set testSet = setList.get(setList.size() - 1);
+        SetOf testSet = setList.get(setList.size() - 1);
         assertThat(testSet.getTitle()).isEqualTo(UPDATED_TITLE);
     }
 
@@ -280,7 +280,7 @@ class SetResourceIT {
             .andExpect(status().isBadRequest());
 
         // Validate the Set in the database
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeUpdate);
     }
 
@@ -299,7 +299,7 @@ class SetResourceIT {
             .andExpect(status().isBadRequest());
 
         // Validate the Set in the database
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeUpdate);
     }
 
@@ -314,7 +314,7 @@ class SetResourceIT {
             .andExpect(status().isMethodNotAllowed());
 
         // Validate the Set in the database
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeUpdate);
     }
 
@@ -329,7 +329,7 @@ class SetResourceIT {
         restSetMockMvc.perform(delete(ENTITY_API_URL_ID, set.getId()).accept(MediaType.APPLICATION_JSON)).andExpect(status().isNoContent());
 
         // Validate the database contains one less item
-        List<Set> setList = setRepository.findAll();
+        List<SetOf> setList = setRepository.findAll();
         assertThat(setList).hasSize(databaseSizeBeforeDelete - 1);
     }
 }

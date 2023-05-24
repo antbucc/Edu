@@ -1,6 +1,5 @@
 package com.modis.edu.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -10,9 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Field;
 /**
  * A Set.
  */
-@Document(collection = "set")
+@Document(collection = "setof")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class Set implements Serializable {
+public class SetOf implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,7 +30,7 @@ public class Set implements Serializable {
         return this.id;
     }
 
-    public Set id(String id) {
+    public SetOf id(String id) {
         this.setId(id);
         return this;
     }
@@ -44,7 +43,7 @@ public class Set implements Serializable {
         return this.title;
     }
 
-    public Set title(String title) {
+    public SetOf title(String title) {
         this.setTitle(title);
         return this;
     }
@@ -59,35 +58,37 @@ public class Set implements Serializable {
 
     public void setFragment(Fragment fragment) {
         if (this.fragment != null) {
-            this.fragment.setSet(null);
+            this.fragment.setOf(null);
         }
         if (fragment != null) {
-            fragment.setSet(this);
+            fragment.setOf(this);
         }
         this.fragment = fragment;
     }
 
-    public Set fragment(Fragment fragment) {
+    public SetOf fragment(Fragment fragment) {
         this.setFragment(fragment);
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Set)) {
+        if (!(o instanceof SetOf)) {
             return false;
         }
-        return id != null && id.equals(((Set) o).id);
+        return id != null && id.equals(((SetOf) o).id);
     }
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -95,8 +96,8 @@ public class Set implements Serializable {
     @Override
     public String toString() {
         return "Set{" +
-            "id=" + getId() +
-            ", title='" + getTitle() + "'" +
-            "}";
+                "id=" + getId() +
+                ", title='" + getTitle() + "'" +
+                "}";
     }
 }

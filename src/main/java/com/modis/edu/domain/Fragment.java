@@ -29,8 +29,8 @@ public class Fragment implements Serializable {
     private Sequence sequence;
 
     @DBRef
-    @Field("set")
-    private Set set;
+    @Field("setof")
+    private SetOf setOf;
 
     @DBRef
     @Field("precondition")
@@ -93,16 +93,16 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public Set getSet() {
-        return this.set;
+    public SetOf getSet() {
+        return this.setOf;
     }
 
-    public void setSet(Set set) {
-        this.set = set;
+    public void setSet(SetOf setOf) {
+        this.setOf = setOf;
     }
 
-    public Fragment set(Set set) {
-        this.setSet(set);
+    public Fragment setOf(SetOf setof) {
+        this.setOf(setof);
         return this;
     }
 
@@ -224,7 +224,8 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -239,7 +240,8 @@ public class Fragment implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -247,8 +249,8 @@ public class Fragment implements Serializable {
     @Override
     public String toString() {
         return "Fragment{" +
-            "id=" + getId() +
-            ", title='" + getTitle() + "'" +
-            "}";
+                "id=" + getId() +
+                ", title='" + getTitle() + "'" +
+                "}";
     }
 }
