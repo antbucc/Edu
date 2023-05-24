@@ -15,6 +15,7 @@ entity Module {
 
 
 
+
 entity Learner {
 	
 	firstName String,
@@ -75,16 +76,21 @@ entity Fragment {
 title String
 }
 
+entity Sequence {
+title String
+}
+
 entity SetOf {
  title String
 }
 
-entity SequenceOf {
+entity Set{
  title String
 }
 
+
 entity AbstractActivity {
-title String
+ title String
 }
 
 
@@ -167,30 +173,26 @@ relationship OneToMany {
 
 
 relationship ManyToMany {
-AbstractActivity{ Goal(title) } to Goal{ AbstractActivity(title) }
-}
-
-relationship ManyToMany {
 Module{ Fragment(title) } to Fragment{ Module(title) }
 }
 
 
 
 relationship OneToOne {
-Fragment{ SequenceOf(title) } to SequenceOf{ Fragment(title) } 
-}
-
-
-relationship OneToOne {
-Fragment{ SetOf(title) } to SetOf{ Fragment(title) } 
-}
-
-relationship OneToOne {
-Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
-}
-
-relationship OneToOne {
 Fragment{ Activity(title) } to Activity{ Fragment(title) } 
+}
+
+relationship OneToOne {
+	Fragment{ SetOf(title) } to SetOf{ Fragment(title) } 
+}
+
+relationship OneToOne {
+	Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
+}
+
+
+relationship OneToOne {
+	Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
 }
 
 
