@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20230524083316",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "abstract_activity",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "AbstractActivity",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "abstractActivity",
+      "ownerSide": true,
+      "relationshipName": "fragment",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

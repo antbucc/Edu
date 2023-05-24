@@ -19,6 +19,7 @@
         "precondition": "Precondition",
         "effect": "Effect",
         "goal": "Goal",
+        "abstractActivity": "Abstract Activity",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

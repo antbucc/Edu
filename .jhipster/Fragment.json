@@ -48,6 +48,14 @@
     },
     {
       "otherEntityField": "title",
+      "otherEntityName": "abstractActivity",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": false,
+      "relationshipName": "abstractActivity",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "title",
       "otherEntityName": "module",
       "otherEntityRelationshipName": "fragment",
       "ownerSide": false,
