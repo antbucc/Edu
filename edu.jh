@@ -46,7 +46,7 @@ entity Concept {
  description String
 }
 
-entity ConcreteActivity {
+entity Activity {
 title String
 description String
 type ActivityType
@@ -72,12 +72,15 @@ entity Goal {
  title String
 }
 
-entity AbstractActivity {
- title String
+
+
+entity Sequence {
+title String
 }
 
-
-
+entity Set {
+title String
+}
 
 
 enum Tool {
@@ -132,11 +135,11 @@ relationship ManyToMany {
 }
 
 relationship ManyToMany {
-  Fragment { ConcreteActivity(title) } to ConcreteActivity{ Fragment(title) }
+  Fragment { Activity(title) } to Activity{ Fragment(title) }
 }
 
 relationship ManyToMany {
-  ConcreteActivity { Concept(title) } to Concept{ ConcreteActivity(title) }
+  Activity { Concept(title) } to Concept{ Activity(title) }
 }
 
 
@@ -164,13 +167,17 @@ relationship ManyToMany {
 Module{ Fragment(title) } to Fragment{ Module(title) }
 }
 
+
+
 relationship OneToOne {
-Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
+Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
 }
 
-relationship ManyToMany {
-AbstractActivity{ Goal(title) } to Goal{ AbstractActivity(title) }
+
+relationship OneToOne {
+Fragment{ Set(title) } to Set{ Fragment(title) } 
 }
+
 
 
 
