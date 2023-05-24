@@ -54,9 +54,6 @@ tool Tool
 difficulty Difficulty
 }
 
-entity Fragment {
- title String 
-}
 
 entity Precondition{
  title String
@@ -74,11 +71,19 @@ entity Goal {
 
 
 
-entity Sequence {
+entity Fragment {
 title String
 }
 
-entity Set {
+entity SetA {
+ title String
+}
+
+entity Sequence {
+ title String
+}
+
+entity AbstractActivity {
 title String
 }
 
@@ -134,9 +139,6 @@ relationship ManyToMany {
   Scenario { Learner(lastName) } to Learner{ Scenario(title) }
 }
 
-relationship ManyToMany {
-  Fragment { Activity(title) } to Activity{ Fragment(title) }
-}
 
 relationship ManyToMany {
   Activity { Concept(title) } to Concept{ Activity(title) }
@@ -145,11 +147,11 @@ relationship ManyToMany {
 
 
 relationship OneToMany {
-  Fragment { Precondition(title) } to Precondition{ Fragment(title) }
+ Activity { Precondition(title) } to Precondition{ Activity(title) }
 }
 
 relationship OneToMany {
-  Fragment { Effect(title) } to Effect{ Fragment(title) }
+ Activity { Effect(title) } to Effect{ Activity(title) }
 }
 
 
@@ -160,7 +162,12 @@ relationship ManyToMany {
 
 
 relationship OneToMany {
-Concept{parent} to Concept{childs}
+  Concept{parent} to Concept{childs}
+}
+
+
+relationship ManyToMany {
+AbstractActivity{ Goal(title) } to Goal{ AbstractActivity(title) }
 }
 
 relationship ManyToMany {
@@ -175,7 +182,15 @@ Fragment{ Sequence(title) } to Sequence{ Fragment(title) }
 
 
 relationship OneToOne {
-Fragment{ Set(title) } to Set{ Fragment(title) } 
+Fragment{ SetA(title) } to SetA{ Fragment(title) } 
+}
+
+relationship OneToOne {
+Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
+}
+
+relationship OneToOne {
+Fragment{ Activity(title) } to Activity{ Fragment(title) } 
 }
 
 
