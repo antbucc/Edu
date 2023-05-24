@@ -76,7 +76,13 @@ entity AbstractActivity {
  title String
 }
 
+entity Sequence {
+title String
+}
 
+entity Set {
+title String
+}
 
 
 
@@ -173,6 +179,13 @@ AbstractActivity{ Goal(title) } to Goal{ AbstractActivity(title) }
 }
 
 
+relationship OneToMany {
+Sequence{ Fragment(title) } to Fragment{ Sequence(title) } 
+}
+
+relationship OneToMany {
+Set{ Fragment(title) } to Fragment{ Set(title) } 
+}
 
 
 
