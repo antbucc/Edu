@@ -84,9 +84,6 @@ entity SetOf {
  title String
 }
 
-entity Set{
- title String
-}
 
 
 entity AbstractActivity {
