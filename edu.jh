@@ -182,26 +182,19 @@ relationship OneToOne {
 Fragment{ Activity(title) } to Activity{ Fragment(title) } 
 }
 
-relationship OneToOne {
+relationship ManyToMany {
 	Fragment{ SetOf(title) } to SetOf{ Fragment(title) } 
 }
 
-relationship OneToOne {
+relationship ManyToMany {
 	Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
 }
 
 
-relationship OneToOne {
+relationship ManyToMany {
 	Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
 }
 
-relationship OneToMany {
-	Sequence{seq} to Fragment{members} 
-}
-
-relationship OneToMany {
-	SetOf{setOf} to Fragment{members} 
-}
 
 
 
