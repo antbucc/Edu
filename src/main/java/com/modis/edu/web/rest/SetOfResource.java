@@ -9,7 +9,6 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -129,15 +128,10 @@ public class SetOfResource {
     /**
      * {@code GET  /set-ofs} : get all the setOfs.
      *
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of setOfs in body.
      */
     @GetMapping("/set-ofs")
-    public List<SetOf> getAllSetOfs(@RequestParam(required = false) String filter) {
-        if ("fragment-is-null".equals(filter)) {
-            log.debug("REST request to get all SetOfs where fragment is null");
-            return setOfService.findAllWhereFragmentIsNull();
-        }
+    public List<SetOf> getAllSetOfs() {
         log.debug("REST request to get all SetOfs");
         return setOfService.findAll();
     }

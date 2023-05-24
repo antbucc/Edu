@@ -8,11 +8,9 @@ export interface IFragment {
   id?: string;
   title?: string | null;
   activity?: IActivity | null;
-  setOf?: ISetOf | null;
-  sequence?: ISequence | null;
-  abstractActivity?: IAbstractActivity | null;
-  members?: ISequence | null;
-  members?: ISetOf | null;
+  setOfs?: ISetOf[] | null;
+  sequences?: ISequence[] | null;
+  abstractActivities?: IAbstractActivity[] | null;
   modules?: IModule[] | null;
 }
 

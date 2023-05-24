@@ -38,12 +38,6 @@ public interface AbstractActivityService {
      * @return the list of entities.
      */
     List<AbstractActivity> findAll();
-    /**
-     * Get all the AbstractActivity where Fragment is {@code null}.
-     *
-     * @return the {@link List} of entities.
-     */
-    List<AbstractActivity> findAllWhereFragmentIsNull();
 
     /**
      * Get the "id" abstractActivity.

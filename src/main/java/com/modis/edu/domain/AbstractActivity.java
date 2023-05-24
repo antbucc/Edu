@@ -2,6 +2,8 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,7 +25,9 @@ public class AbstractActivity implements Serializable {
     private String title;
 
     @DBRef
-    private Fragment fragment;
+    @Field("fragments")
+    @JsonIgnoreProperties(value = { "activity", "setOfs", "sequences", "abstractActivities", "modules" }, allowSetters = true)
+    private Set<Fragment> fragments = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -53,22 +57,34 @@ public class AbstractActivity implements Serializable {
         this.title = title;
     }
 
-    public Fragment getFragment() {
-        return this.fragment;
+    public Set<Fragment> getFragments() {
+        return this.fragments;
     }
 
-    public void setFragment(Fragment fragment) {
-        if (this.fragment != null) {
-            this.fragment.setAbstractActivity(null);
+    public void setFragments(Set<Fragment> fragments) {
+        if (this.fragments != null) {
+            this.fragments.forEach(i -> i.removeAbstractActivity(this));
         }
-        if (fragment != null) {
-            fragment.setAbstractActivity(this);
+        if (fragments != null) {
+            fragments.forEach(i -> i.addAbstractActivity(this));
         }
-        this.fragment = fragment;
+        this.fragments = fragments;
     }
 
-    public AbstractActivity fragment(Fragment fragment) {
-        this.setFragment(fragment);
+    public AbstractActivity fragments(Set<Fragment> fragments) {
+        this.setFragments(fragments);
+        return this;
+    }
+
+    public AbstractActivity addFragment(Fragment fragment) {
+        this.fragments.add(fragment);
+        fragment.getAbstractActivities().add(this);
+        return this;
+    }
+
+    public AbstractActivity removeFragment(Fragment fragment) {
+        this.fragments.remove(fragment);
+        fragment.getAbstractActivities().remove(this);
         return this;
     }
 
