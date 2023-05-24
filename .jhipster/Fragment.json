@@ -18,6 +18,22 @@
   "relationships": [
     {
       "otherEntityField": "title",
+      "otherEntityName": "sequence",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": true,
+      "relationshipName": "sequence",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "set",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": true,
+      "relationshipName": "set",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "title",
       "otherEntityName": "precondition",
       "otherEntityRelationshipName": "fragment",
       "relationshipName": "precondition",
@@ -37,14 +53,6 @@
       "ownerSide": true,
       "relationshipName": "activity",
       "relationshipType": "many-to-many"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "abstractActivity",
-      "otherEntityRelationshipName": "fragment",
-      "ownerSide": false,
-      "relationshipName": "abstractActivity",
-      "relationshipType": "one-to-one"
     },
     {
       "otherEntityField": "title",

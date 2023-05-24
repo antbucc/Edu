@@ -11,6 +11,8 @@ import precondition from 'app/entities/precondition/precondition.reducer';
 import effect from 'app/entities/effect/effect.reducer';
 import goal from 'app/entities/goal/goal.reducer';
 import abstractActivity from 'app/entities/abstract-activity/abstract-activity.reducer';
+import sequence from 'app/entities/sequence/sequence.reducer';
+import set from 'app/entities/set/set.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const entitiesReducers = {
@@ -27,6 +29,8 @@ const entitiesReducers = {
   effect,
   goal,
   abstractActivity,
+  sequence,
+  set,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
 };
 

@@ -1,0 +1,29 @@
+{
+  "applications": "*",
+  "changelogDate": "20230524094927",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "sequence",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Sequence",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "sequence",
+      "ownerSide": false,
+      "relationshipName": "fragment",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

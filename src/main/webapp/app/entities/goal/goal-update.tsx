@@ -10,8 +10,6 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IConcept } from 'app/shared/model/concept.model';
 import { getEntities as getConcepts } from 'app/entities/concept/concept.reducer';
-import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
-import { getEntities as getAbstractActivities } from 'app/entities/abstract-activity/abstract-activity.reducer';
 import { IGoal } from 'app/shared/model/goal.model';
 import { getEntity, updateEntity, createEntity, reset } from './goal.reducer';
 
@@ -24,7 +22,6 @@ export const GoalUpdate = () => {
   const isNew = id === undefined;
 
   const concepts = useAppSelector(state => state.concept.entities);
-  const abstractActivities = useAppSelector(state => state.abstractActivity.entities);
   const goalEntity = useAppSelector(state => state.goal.entity);
   const loading = useAppSelector(state => state.goal.loading);
   const updating = useAppSelector(state => state.goal.updating);
@@ -42,7 +39,6 @@ export const GoalUpdate = () => {
     }
 
     dispatch(getConcepts({}));
-    dispatch(getAbstractActivities({}));
   }, []);
 
   useEffect(() => {

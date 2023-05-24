@@ -20,6 +20,8 @@
         "effect": "Effect",
         "goal": "Goal",
         "abstractActivity": "Abstract Activity",
+        "sequence": "Sequence",
+        "set": "Set",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
