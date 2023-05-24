@@ -18,41 +18,11 @@
   "relationships": [
     {
       "otherEntityField": "title",
-      "otherEntityName": "sequence",
-      "otherEntityRelationshipName": "fragment",
-      "ownerSide": true,
-      "relationshipName": "sequence",
-      "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "set",
-      "otherEntityRelationshipName": "fragment",
-      "ownerSide": true,
-      "relationshipName": "set",
-      "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "precondition",
-      "otherEntityRelationshipName": "fragment",
-      "relationshipName": "precondition",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "effect",
-      "otherEntityRelationshipName": "fragment",
-      "relationshipName": "effect",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityField": "title",
       "otherEntityName": "activity",
       "otherEntityRelationshipName": "fragment",
       "ownerSide": true,
       "relationshipName": "activity",
-      "relationshipType": "many-to-many"
+      "relationshipType": "one-to-one"
     },
     {
       "otherEntityField": "title",

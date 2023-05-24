@@ -1,9 +1,7 @@
 package com.modis.edu.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -21,9 +19,6 @@ public class Sequence implements Serializable {
 
     @Field("title")
     private String title;
-
-    @DBRef
-    private Fragment fragment;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -51,25 +46,6 @@ public class Sequence implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public Fragment getFragment() {
-        return this.fragment;
-    }
-
-    public void setFragment(Fragment fragment) {
-        if (this.fragment != null) {
-            this.fragment.setSequence(null);
-        }
-        if (fragment != null) {
-            fragment.setSequence(this);
-        }
-        this.fragment = fragment;
-    }
-
-    public Sequence fragment(Fragment fragment) {
-        this.setFragment(fragment);
-        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

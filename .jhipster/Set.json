@@ -15,15 +15,6 @@
   "name": "Set",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "set",
-      "ownerSide": false,
-      "relationshipName": "fragment",
-      "relationshipType": "one-to-one"
-    }
-  ],
+  "relationships": [],
   "service": "serviceImpl"
 }

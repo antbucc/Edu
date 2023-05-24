@@ -55,7 +55,7 @@ export const Precondition = () => {
                   <Translate contentKey="eduApp.precondition.title">Title</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.precondition.fragment">Fragment</Translate>
+                  <Translate contentKey="eduApp.precondition.activity">Activity</Translate>
                 </th>
                 <th />
               </tr>
@@ -70,7 +70,7 @@ export const Precondition = () => {
                   </td>
                   <td>{precondition.title}</td>
                   <td>
-                    {precondition.fragment ? <Link to={`/fragment/${precondition.fragment.id}`}>{precondition.fragment.title}</Link> : ''}
+                    {precondition.activity ? <Link to={`/activity/${precondition.activity.id}`}>{precondition.activity.title}</Link> : ''}
                   </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

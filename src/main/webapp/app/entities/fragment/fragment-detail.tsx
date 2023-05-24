@@ -39,26 +39,9 @@ export const FragmentDetail = () => {
           </dt>
           <dd>{fragmentEntity.title}</dd>
           <dt>
-            <Translate contentKey="eduApp.fragment.sequence">Sequence</Translate>
-          </dt>
-          <dd>{fragmentEntity.sequence ? fragmentEntity.sequence.title : ''}</dd>
-          <dt>
-            <Translate contentKey="eduApp.fragment.set">Set</Translate>
-          </dt>
-          <dd>{fragmentEntity.set ? fragmentEntity.set.title : ''}</dd>
-          <dt>
             <Translate contentKey="eduApp.fragment.activity">Activity</Translate>
           </dt>
-          <dd>
-            {fragmentEntity.activities
-              ? fragmentEntity.activities.map((val, i) => (
-                  <span key={val.id}>
-                    <a>{val.title}</a>
-                    {fragmentEntity.activities && i === fragmentEntity.activities.length - 1 ? '' : ', '}
-                  </span>
-                ))
-              : null}
-          </dd>
+          <dd>{fragmentEntity.activity ? fragmentEntity.activity.title : ''}</dd>
         </dl>
         <Button tag={Link} to="/fragment" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
