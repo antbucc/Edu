@@ -150,9 +150,6 @@ relationship OneToMany {
 }
 
 
-relationship ManyToMany {
-  Fragment { Goal(title) } to Goal{ Fragment(title) }
-}
 
 relationship ManyToMany {
   Goal { Concept(title) } to Concept{ Goal(title) }
@@ -169,6 +166,10 @@ Module{ Fragment(title) } to Fragment{ Module(title) }
 
 relationship OneToOne {
 AbstractActivity{ Fragment(title) } to Fragment{ AbstractActivity(title) }
+}
+
+relationship ManyToMany {
+AbstractActivity{ Goal(title) } to Goal{ AbstractActivity(title) }
 }
 
 
