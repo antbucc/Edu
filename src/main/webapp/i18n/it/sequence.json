@@ -19,6 +19,7 @@
       },
       "id": "ID",
       "title": "Title",
+      "seq": "Seq",
       "fragment": "Fragment"
     }
   }

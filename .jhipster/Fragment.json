@@ -49,6 +49,18 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityName": "sequence",
+      "otherEntityRelationshipName": "seq",
+      "relationshipName": "members",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "setOf",
+      "otherEntityRelationshipName": "setOf",
+      "relationshipName": "members",
+      "relationshipType": "many-to-one"
+    },
+    {
       "otherEntityField": "title",
       "otherEntityName": "module",
       "otherEntityRelationshipName": "fragment",

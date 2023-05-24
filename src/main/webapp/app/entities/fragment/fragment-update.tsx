@@ -69,7 +69,9 @@ export const FragmentUpdate = () => {
       ...values,
       activity: activities.find(it => it.id.toString() === values.activity.toString()),
       setOf: setOfs.find(it => it.id.toString() === values.setOf.toString()),
+      members: setOfs.find(it => it.id.toString() === values.members.toString()),
       sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
+      members: sequences.find(it => it.id.toString() === values.members.toString()),
       abstractActivity: abstractActivities.find(it => it.id.toString() === values.abstractActivity.toString()),
     };
 
@@ -89,6 +91,8 @@ export const FragmentUpdate = () => {
           setOf: fragmentEntity?.setOf?.id,
           sequence: fragmentEntity?.sequence?.id,
           abstractActivity: fragmentEntity?.abstractActivity?.id,
+          members: fragmentEntity?.members?.id,
+          members: fragmentEntity?.members?.id,
         };
 
   return (
@@ -171,6 +175,38 @@ export const FragmentUpdate = () => {
                   ? abstractActivities.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                id="fragment-members"
+                name="members"
+                data-cy="members"
+                label={translate('eduApp.fragment.members')}
+                type="select"
+              >
+                <option value="" key="0" />
+                {sequences
+                  ? sequences.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                id="fragment-members"
+                name="members"
+                data-cy="members"
+                label={translate('eduApp.fragment.members')}
+                type="select"
+              >
+                <option value="" key="0" />
+                {setOfs
+                  ? setOfs.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
                       </option>
                     ))
                   : null}

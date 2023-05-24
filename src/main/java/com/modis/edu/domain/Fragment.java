@@ -41,6 +41,20 @@ public class Fragment implements Serializable {
     private AbstractActivity abstractActivity;
 
     @DBRef
+    @Field("members")
+    @DBRef
+    @Field("members")
+    @JsonIgnoreProperties(value = { "seqs", "fragment" }, allowSetters = true)
+    private Sequence members;
+
+    @DBRef
+    @Field("members")
+    @DBRef
+    @Field("members")
+    @JsonIgnoreProperties(value = { "setOfs", "fragment" }, allowSetters = true)
+    private SetOf members;
+
+    @DBRef
     @Field("modules")
     @JsonIgnoreProperties(value = { "scenario", "fragments" }, allowSetters = true)
     private Set<Module> modules = new HashSet<>();
@@ -122,6 +136,32 @@ public class Fragment implements Serializable {
 
     public Fragment abstractActivity(AbstractActivity abstractActivity) {
         this.setAbstractActivity(abstractActivity);
+        return this;
+    }
+
+    public Sequence getMembers() {
+        return this.members;
+    }
+
+    public void setMembers(Sequence sequence) {
+        this.members = sequence;
+    }
+
+    public Fragment members(Sequence sequence) {
+        this.setMembers(sequence);
+        return this;
+    }
+
+    public SetOf getMembers() {
+        return this.members;
+    }
+
+    public void setMembers(SetOf setOf) {
+        this.members = setOf;
+    }
+
+    public Fragment members(SetOf setOf) {
+        this.setMembers(setOf);
         return this;
     }
 

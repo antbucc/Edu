@@ -66,6 +66,12 @@ export const Fragment = () => {
                 <th>
                   <Translate contentKey="eduApp.fragment.abstractActivity">Abstract Activity</Translate>
                 </th>
+                <th>
+                  <Translate contentKey="eduApp.fragment.members">Members</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="eduApp.fragment.members">Members</Translate>
+                </th>
                 <th />
               </tr>
             </thead>
@@ -88,6 +94,8 @@ export const Fragment = () => {
                       ''
                     )}
                   </td>
+                  <td>{fragment.members ? <Link to={`/sequence/${fragment.members.id}`}>{fragment.members.id}</Link> : ''}</td>
+                  <td>{fragment.members ? <Link to={`/set-of/${fragment.members.id}`}>{fragment.members.id}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/fragment/${fragment.id}`} color="info" size="sm" data-cy="entityDetailsButton">
