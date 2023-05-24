@@ -1,0 +1,26 @@
+{
+  "eduApp": {
+    "abstractActivity": {
+      "home": {
+        "title": "AbstractActivities",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Abstract Activity",
+        "createOrEditLabel": "Genera o modifica un Abstract Activity",
+        "notFound": "No Abstract Activities found"
+      },
+      "created": "&Egrave; stato generato un nuovo Abstract Activity con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Abstract Activity identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Abstract Activity con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Abstract Activity {{ id }}?"
+      },
+      "detail": {
+        "title": "Abstract Activity"
+      },
+      "id": "ID",
+      "title": "Title",
+      "fragment": "Fragment",
+      "goal": "Goal"
+    }
+  }
+}

@@ -10,8 +10,8 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IActivity } from 'app/shared/model/activity.model';
 import { getEntities as getActivities } from 'app/entities/activity/activity.reducer';
-import { IGoal } from 'app/shared/model/goal.model';
-import { getEntities as getGoals } from 'app/entities/goal/goal.reducer';
+import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
+import { getEntities as getAbstractActivities } from 'app/entities/abstract-activity/abstract-activity.reducer';
 import { IModule } from 'app/shared/model/module.model';
 import { getEntities as getModules } from 'app/entities/module/module.reducer';
 import { IFragment } from 'app/shared/model/fragment.model';
@@ -26,7 +26,7 @@ export const FragmentUpdate = () => {
   const isNew = id === undefined;
 
   const activities = useAppSelector(state => state.activity.entities);
-  const goals = useAppSelector(state => state.goal.entities);
+  const abstractActivities = useAppSelector(state => state.abstractActivity.entities);
   const modules = useAppSelector(state => state.module.entities);
   const fragmentEntity = useAppSelector(state => state.fragment.entity);
   const loading = useAppSelector(state => state.fragment.loading);
@@ -45,7 +45,7 @@ export const FragmentUpdate = () => {
     }
 
     dispatch(getActivities({}));
-    dispatch(getGoals({}));
+    dispatch(getAbstractActivities({}));
     dispatch(getModules({}));
   }, []);
 
@@ -60,7 +60,6 @@ export const FragmentUpdate = () => {
       ...fragmentEntity,
       ...values,
       activities: mapIdList(values.activities),
-      goals: mapIdList(values.goals),
     };
 
     if (isNew) {
@@ -76,7 +75,6 @@ export const FragmentUpdate = () => {
       : {
           ...fragmentEntity,
           activities: fragmentEntity?.activities?.map(e => e.id.toString()),
-          goals: fragmentEntity?.goals?.map(e => e.id.toString()),
         };
 
   return (
@@ -116,23 +114,6 @@ export const FragmentUpdate = () => {
                 <option value="" key="0" />
                 {activities
                   ? activities.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField
-                label={translate('eduApp.fragment.goal')}
-                id="fragment-goal"
-                data-cy="goal"
-                type="select"
-                multiple
-                name="goals"
-              >
-                <option value="" key="0" />
-                {goals
-                  ? goals.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
                       </option>

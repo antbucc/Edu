@@ -22,7 +22,7 @@
       "precondition": "Precondition",
       "effect": "Effect",
       "activity": "Activity",
-      "goal": "Goal",
+      "abstractActivity": "Abstract Activity",
       "module": "Module"
     }
   }

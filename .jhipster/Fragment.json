@@ -40,11 +40,11 @@
     },
     {
       "otherEntityField": "title",
-      "otherEntityName": "goal",
+      "otherEntityName": "abstractActivity",
       "otherEntityRelationshipName": "fragment",
-      "ownerSide": true,
-      "relationshipName": "goal",
-      "relationshipType": "many-to-many"
+      "ownerSide": false,
+      "relationshipName": "abstractActivity",
+      "relationshipType": "one-to-one"
     },
     {
       "otherEntityField": "title",

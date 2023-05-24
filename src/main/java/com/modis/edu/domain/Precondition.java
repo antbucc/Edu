@@ -24,7 +24,7 @@ public class Precondition implements Serializable {
 
     @DBRef
     @Field("fragment")
-    @JsonIgnoreProperties(value = { "preconditions", "effects", "activities", "goals", "modules" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "preconditions", "effects", "activities", "abstractActivity", "modules" }, allowSetters = true)
     private Fragment fragment;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

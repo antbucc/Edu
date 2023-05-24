@@ -30,9 +30,9 @@ public class Goal implements Serializable {
     private Set<Concept> concepts = new HashSet<>();
 
     @DBRef
-    @Field("fragments")
-    @JsonIgnoreProperties(value = { "preconditions", "effects", "activities", "goals", "modules" }, allowSetters = true)
-    private Set<Fragment> fragments = new HashSet<>();
+    @Field("abstractActivities")
+    @JsonIgnoreProperties(value = { "fragment", "goals" }, allowSetters = true)
+    private Set<AbstractActivity> abstractActivities = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -87,34 +87,34 @@ public class Goal implements Serializable {
         return this;
     }
 
-    public Set<Fragment> getFragments() {
-        return this.fragments;
+    public Set<AbstractActivity> getAbstractActivities() {
+        return this.abstractActivities;
     }
 
-    public void setFragments(Set<Fragment> fragments) {
-        if (this.fragments != null) {
-            this.fragments.forEach(i -> i.removeGoal(this));
+    public void setAbstractActivities(Set<AbstractActivity> abstractActivities) {
+        if (this.abstractActivities != null) {
+            this.abstractActivities.forEach(i -> i.removeGoal(this));
         }
-        if (fragments != null) {
-            fragments.forEach(i -> i.addGoal(this));
+        if (abstractActivities != null) {
+            abstractActivities.forEach(i -> i.addGoal(this));
         }
-        this.fragments = fragments;
+        this.abstractActivities = abstractActivities;
     }
 
-    public Goal fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
+    public Goal abstractActivities(Set<AbstractActivity> abstractActivities) {
+        this.setAbstractActivities(abstractActivities);
         return this;
     }
 
-    public Goal addFragment(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.getGoals().add(this);
+    public Goal addAbstractActivity(AbstractActivity abstractActivity) {
+        this.abstractActivities.add(abstractActivity);
+        abstractActivity.getGoals().add(this);
         return this;
     }
 
-    public Goal removeFragment(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.getGoals().remove(this);
+    public Goal removeAbstractActivity(AbstractActivity abstractActivity) {
+        this.abstractActivities.remove(abstractActivity);
+        abstractActivity.getGoals().remove(this);
         return this;
     }
 
