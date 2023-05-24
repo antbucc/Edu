@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -134,10 +135,18 @@ public class ActivityResource {
      * {@code GET  /activities} : get all the activities.
      *
      * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of activities in body.
      */
     @GetMapping("/activities")
-    public List<Activity> getAllActivities(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<Activity> getAllActivities(
+        @RequestParam(required = false) String filter,
+        @RequestParam(required = false, defaultValue = "false") boolean eagerload
+    ) {
+        if ("fragment-is-null".equals(filter)) {
+            log.debug("REST request to get all Activitys where fragment is null");
+            return activityService.findAllWhereFragmentIsNull();
+        }
         log.debug("REST request to get all Activities");
         return activityService.findAll();
     }

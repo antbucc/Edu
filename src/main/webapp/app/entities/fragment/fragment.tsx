@@ -55,12 +55,6 @@ export const Fragment = () => {
                   <Translate contentKey="eduApp.fragment.title">Title</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.fragment.sequence">Sequence</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="eduApp.fragment.set">Set</Translate>
-                </th>
-                <th>
                   <Translate contentKey="eduApp.fragment.activity">Activity</Translate>
                 </th>
                 <th />
@@ -75,18 +69,7 @@ export const Fragment = () => {
                     </Button>
                   </td>
                   <td>{fragment.title}</td>
-                  <td>{fragment.sequence ? <Link to={`/sequence/${fragment.sequence.id}`}>{fragment.sequence.title}</Link> : ''}</td>
-                  <td>{fragment.set ? <Link to={`/set/${fragment.set.id}`}>{fragment.set.title}</Link> : ''}</td>
-                  <td>
-                    {fragment.activities
-                      ? fragment.activities.map((val, j) => (
-                          <span key={j}>
-                            <Link to={`/activity/${val.id}`}>{val.title}</Link>
-                            {j === fragment.activities.length - 1 ? '' : ', '}
-                          </span>
-                        ))
-                      : null}
-                  </td>
+                  <td>{fragment.activity ? <Link to={`/activity/${fragment.activity.id}`}>{fragment.activity.title}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/fragment/${fragment.id}`} color="info" size="sm" data-cy="entityDetailsButton">

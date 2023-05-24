@@ -2,14 +2,13 @@ package com.modis.edu.domain;
 
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * A Set.
+ * A SetOf.
  */
-@Document(collection = "setof")
+@Document(collection = "set_of")
 @SuppressWarnings("common-java:DuplicatedBlocks")
 public class SetOf implements Serializable {
 
@@ -20,9 +19,6 @@ public class SetOf implements Serializable {
 
     @Field("title")
     private String title;
-
-    @DBRef
-    private Fragment fragment;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -52,27 +48,7 @@ public class SetOf implements Serializable {
         this.title = title;
     }
 
-    public Fragment getFragment() {
-        return this.fragment;
-    }
-
-    public void setFragment(Fragment fragment) {
-        if (this.fragment != null) {
-            this.fragment.setOf(null);
-        }
-        if (fragment != null) {
-            fragment.setOf(this);
-        }
-        this.fragment = fragment;
-    }
-
-    public SetOf fragment(Fragment fragment) {
-        this.setFragment(fragment);
-        return this;
-    }
-
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
-    // setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -87,17 +63,16 @@ public class SetOf implements Serializable {
 
     @Override
     public int hashCode() {
-        // see
-        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
     // prettier-ignore
     @Override
     public String toString() {
-        return "Set{" +
-                "id=" + getId() +
-                ", title='" + getTitle() + "'" +
-                "}";
+        return "SetOf{" +
+            "id=" + getId() +
+            ", title='" + getTitle() + "'" +
+            "}";
     }
 }

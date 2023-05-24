@@ -8,8 +8,8 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { IFragment } from 'app/shared/model/fragment.model';
-import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
+import { IActivity } from 'app/shared/model/activity.model';
+import { getEntities as getActivities } from 'app/entities/activity/activity.reducer';
 import { IPrecondition } from 'app/shared/model/precondition.model';
 import { getEntity, updateEntity, createEntity, reset } from './precondition.reducer';
 
@@ -21,7 +21,7 @@ export const PreconditionUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const fragments = useAppSelector(state => state.fragment.entities);
+  const activities = useAppSelector(state => state.activity.entities);
   const preconditionEntity = useAppSelector(state => state.precondition.entity);
   const loading = useAppSelector(state => state.precondition.loading);
   const updating = useAppSelector(state => state.precondition.updating);
@@ -38,7 +38,7 @@ export const PreconditionUpdate = () => {
       dispatch(getEntity(id));
     }
 
-    dispatch(getFragments({}));
+    dispatch(getActivities({}));
   }, []);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export const PreconditionUpdate = () => {
     const entity = {
       ...preconditionEntity,
       ...values,
-      fragment: fragments.find(it => it.id.toString() === values.fragment.toString()),
+      activity: activities.find(it => it.id.toString() === values.activity.toString()),
     };
 
     if (isNew) {
@@ -66,7 +66,7 @@ export const PreconditionUpdate = () => {
       ? {}
       : {
           ...preconditionEntity,
-          fragment: preconditionEntity?.fragment?.id,
+          activity: preconditionEntity?.activity?.id,
         };
 
   return (
@@ -102,15 +102,15 @@ export const PreconditionUpdate = () => {
                 type="text"
               />
               <ValidatedField
-                id="precondition-fragment"
-                name="fragment"
-                data-cy="fragment"
-                label={translate('eduApp.precondition.fragment')}
+                id="precondition-activity"
+                name="activity"
+                data-cy="activity"
+                label={translate('eduApp.precondition.activity')}
                 type="select"
               >
                 <option value="" key="0" />
-                {fragments
-                  ? fragments.map(otherEntity => (
+                {activities
+                  ? activities.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
                       </option>

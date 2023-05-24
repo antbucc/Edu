@@ -8,8 +8,6 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { IFragment } from 'app/shared/model/fragment.model';
-import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
 import { ISet } from 'app/shared/model/set.model';
 import { getEntity, updateEntity, createEntity, reset } from './set.reducer';
 
@@ -21,7 +19,6 @@ export const SetUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const fragments = useAppSelector(state => state.fragment.entities);
   const setEntity = useAppSelector(state => state.set.entity);
   const loading = useAppSelector(state => state.set.loading);
   const updating = useAppSelector(state => state.set.updating);
@@ -37,8 +34,6 @@ export const SetUpdate = () => {
     } else {
       dispatch(getEntity(id));
     }
-
-    dispatch(getFragments({}));
   }, []);
 
   useEffect(() => {

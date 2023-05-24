@@ -25,27 +25,8 @@ public class Fragment implements Serializable {
     private String title;
 
     @DBRef
-    @Field("sequence")
-    private Sequence sequence;
-
-    @DBRef
-    @Field("setof")
-    private SetOf setOf;
-
-    @DBRef
-    @Field("precondition")
-    @JsonIgnoreProperties(value = { "fragment" }, allowSetters = true)
-    private Set<Precondition> preconditions = new HashSet<>();
-
-    @DBRef
-    @Field("effect")
-    @JsonIgnoreProperties(value = { "fragment" }, allowSetters = true)
-    private Set<Effect> effects = new HashSet<>();
-
-    @DBRef
-    @Field("activities")
-    @JsonIgnoreProperties(value = { "concepts", "fragments" }, allowSetters = true)
-    private Set<Activity> activities = new HashSet<>();
+    @Field("activity")
+    private Activity activity;
 
     @DBRef
     @Field("modules")
@@ -80,116 +61,16 @@ public class Fragment implements Serializable {
         this.title = title;
     }
 
-    public Sequence getSequence() {
-        return this.sequence;
+    public Activity getActivity() {
+        return this.activity;
     }
 
-    public void setSequence(Sequence sequence) {
-        this.sequence = sequence;
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
-    public Fragment sequence(Sequence sequence) {
-        this.setSequence(sequence);
-        return this;
-    }
-
-    public SetOf getSet() {
-        return this.setOf;
-    }
-
-    public void setSet(SetOf setOf) {
-        this.setOf = setOf;
-    }
-
-    public Fragment setOf(SetOf setof) {
-        this.setOf(setof);
-        return this;
-    }
-
-    public Set<Precondition> getPreconditions() {
-        return this.preconditions;
-    }
-
-    public void setPreconditions(Set<Precondition> preconditions) {
-        if (this.preconditions != null) {
-            this.preconditions.forEach(i -> i.setFragment(null));
-        }
-        if (preconditions != null) {
-            preconditions.forEach(i -> i.setFragment(this));
-        }
-        this.preconditions = preconditions;
-    }
-
-    public Fragment preconditions(Set<Precondition> preconditions) {
-        this.setPreconditions(preconditions);
-        return this;
-    }
-
-    public Fragment addPrecondition(Precondition precondition) {
-        this.preconditions.add(precondition);
-        precondition.setFragment(this);
-        return this;
-    }
-
-    public Fragment removePrecondition(Precondition precondition) {
-        this.preconditions.remove(precondition);
-        precondition.setFragment(null);
-        return this;
-    }
-
-    public Set<Effect> getEffects() {
-        return this.effects;
-    }
-
-    public void setEffects(Set<Effect> effects) {
-        if (this.effects != null) {
-            this.effects.forEach(i -> i.setFragment(null));
-        }
-        if (effects != null) {
-            effects.forEach(i -> i.setFragment(this));
-        }
-        this.effects = effects;
-    }
-
-    public Fragment effects(Set<Effect> effects) {
-        this.setEffects(effects);
-        return this;
-    }
-
-    public Fragment addEffect(Effect effect) {
-        this.effects.add(effect);
-        effect.setFragment(this);
-        return this;
-    }
-
-    public Fragment removeEffect(Effect effect) {
-        this.effects.remove(effect);
-        effect.setFragment(null);
-        return this;
-    }
-
-    public Set<Activity> getActivities() {
-        return this.activities;
-    }
-
-    public void setActivities(Set<Activity> activities) {
-        this.activities = activities;
-    }
-
-    public Fragment activities(Set<Activity> activities) {
-        this.setActivities(activities);
-        return this;
-    }
-
-    public Fragment addActivity(Activity activity) {
-        this.activities.add(activity);
-        activity.getFragments().add(this);
-        return this;
-    }
-
-    public Fragment removeActivity(Activity activity) {
-        this.activities.remove(activity);
-        activity.getFragments().remove(this);
+    public Fragment activity(Activity activity) {
+        this.setActivity(activity);
         return this;
     }
 
@@ -224,8 +105,7 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
-    // setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
 
     @Override
     public boolean equals(Object o) {
@@ -240,8 +120,7 @@ public class Fragment implements Serializable {
 
     @Override
     public int hashCode() {
-        // see
-        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -249,8 +128,8 @@ public class Fragment implements Serializable {
     @Override
     public String toString() {
         return "Fragment{" +
-                "id=" + getId() +
-                ", title='" + getTitle() + "'" +
-                "}";
+            "id=" + getId() +
+            ", title='" + getTitle() + "'" +
+            "}";
     }
 }

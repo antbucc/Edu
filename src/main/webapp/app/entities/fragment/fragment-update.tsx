@@ -8,10 +8,6 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { ISequence } from 'app/shared/model/sequence.model';
-import { getEntities as getSequences } from 'app/entities/sequence/sequence.reducer';
-import { ISet } from 'app/shared/model/set.model';
-import { getEntities as getSets } from 'app/entities/set/set.reducer';
 import { IActivity } from 'app/shared/model/activity.model';
 import { getEntities as getActivities } from 'app/entities/activity/activity.reducer';
 import { IModule } from 'app/shared/model/module.model';
@@ -27,8 +23,6 @@ export const FragmentUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const sequences = useAppSelector(state => state.sequence.entities);
-  const sets = useAppSelector(state => state.set.entities);
   const activities = useAppSelector(state => state.activity.entities);
   const modules = useAppSelector(state => state.module.entities);
   const fragmentEntity = useAppSelector(state => state.fragment.entity);
@@ -47,8 +41,6 @@ export const FragmentUpdate = () => {
       dispatch(getEntity(id));
     }
 
-    dispatch(getSequences({}));
-    dispatch(getSets({}));
     dispatch(getActivities({}));
     dispatch(getModules({}));
   }, []);
@@ -63,9 +55,7 @@ export const FragmentUpdate = () => {
     const entity = {
       ...fragmentEntity,
       ...values,
-      activities: mapIdList(values.activities),
-      sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
-      set: sets.find(it => it.id.toString() === values.set.toString()),
+      activity: activities.find(it => it.id.toString() === values.activity.toString()),
     };
 
     if (isNew) {
@@ -80,9 +70,7 @@ export const FragmentUpdate = () => {
       ? {}
       : {
           ...fragmentEntity,
-          sequence: fragmentEntity?.sequence?.id,
-          set: fragmentEntity?.set?.id,
-          activities: fragmentEntity?.activities?.map(e => e.id.toString()),
+          activity: fragmentEntity?.activity?.id,
         };
 
   return (
@@ -112,38 +100,11 @@ export const FragmentUpdate = () => {
               ) : null}
               <ValidatedField label={translate('eduApp.fragment.title')} id="fragment-title" name="title" data-cy="title" type="text" />
               <ValidatedField
-                id="fragment-sequence"
-                name="sequence"
-                data-cy="sequence"
-                label={translate('eduApp.fragment.sequence')}
-                type="select"
-              >
-                <option value="" key="0" />
-                {sequences
-                  ? sequences.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField id="fragment-set" name="set" data-cy="set" label={translate('eduApp.fragment.set')} type="select">
-                <option value="" key="0" />
-                {sets
-                  ? sets.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField
-                label={translate('eduApp.fragment.activity')}
                 id="fragment-activity"
+                name="activity"
                 data-cy="activity"
+                label={translate('eduApp.fragment.activity')}
                 type="select"
-                multiple
-                name="activities"
               >
                 <option value="" key="0" />
                 {activities

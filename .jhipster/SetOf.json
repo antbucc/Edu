@@ -1,0 +1,20 @@
+{
+  "applications": "*",
+  "changelogDate": "20230524154953",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "set_of",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SetOf",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [],
+  "service": "serviceImpl"
+}
