@@ -17,6 +17,12 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "members",
+      "relationshipName": "seq",
+      "relationshipType": "one-to-many"
+    },
+    {
       "otherEntityField": "title",
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "sequence",

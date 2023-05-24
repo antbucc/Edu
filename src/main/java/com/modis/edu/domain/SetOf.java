@@ -2,6 +2,8 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +23,14 @@ public class SetOf implements Serializable {
 
     @Field("title")
     private String title;
+
+    @DBRef
+    @Field("setOf")
+    @JsonIgnoreProperties(
+        value = { "activity", "setOf", "sequence", "abstractActivity", "members", "members", "modules" },
+        allowSetters = true
+    )
+    private Set<Fragment> setOfs = new HashSet<>();
 
     @DBRef
     private Fragment fragment;
@@ -51,6 +61,37 @@ public class SetOf implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Set<Fragment> getSetOfs() {
+        return this.setOfs;
+    }
+
+    public void setSetOfs(Set<Fragment> fragments) {
+        if (this.setOfs != null) {
+            this.setOfs.forEach(i -> i.setMembers(null));
+        }
+        if (fragments != null) {
+            fragments.forEach(i -> i.setMembers(this));
+        }
+        this.setOfs = fragments;
+    }
+
+    public SetOf setOfs(Set<Fragment> fragments) {
+        this.setSetOfs(fragments);
+        return this;
+    }
+
+    public SetOf addSetOf(Fragment fragment) {
+        this.setOfs.add(fragment);
+        fragment.setMembers(this);
+        return this;
+    }
+
+    public SetOf removeSetOf(Fragment fragment) {
+        this.setOfs.remove(fragment);
+        fragment.setMembers(null);
+        return this;
     }
 
     public Fragment getFragment() {
