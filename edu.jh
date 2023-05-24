@@ -72,6 +72,9 @@ entity Goal {
  title String
 }
 
+entity AbstractActivity {
+ title String
+}
 
 
 
@@ -162,6 +165,10 @@ Concept{parent} to Concept{childs}
 
 relationship ManyToMany {
 Module{ Fragment(title) } to Fragment{ Module(title) }
+}
+
+relationship OneToOne {
+AbstractActivity{ Fragment(title) } to Fragment{ AbstractActivity(title) }
 }
 
 
