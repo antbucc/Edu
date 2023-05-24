@@ -76,8 +76,13 @@ entity AbstractActivity {
  title String
 }
 
+entity Sequence {
+title String
+}
 
-
+entity Set {
+title String
+}
 
 
 enum Tool {
@@ -168,9 +173,21 @@ relationship OneToOne {
 Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
 }
 
-relationship ManyToMany {
-AbstractActivity{ Goal(title) } to Goal{ AbstractActivity(title) }
+
+relationship OneToOne {
+Fragment{ ConcreteActivity(title) } to ConcreteActivity{ Fragment(title) } 
 }
+
+
+relationship OneToOne {
+Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
+}
+
+
+relationship OneToOne {
+Fragment{ Set(title) } to Set{ Fragment(title) } 
+}
+
 
 
 
