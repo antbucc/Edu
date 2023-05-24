@@ -46,7 +46,7 @@ entity Concept {
  description String
 }
 
-entity Activity {
+entity ConcreteActivity {
 title String
 description String
 type ActivityType
@@ -54,9 +54,6 @@ tool Tool
 difficulty Difficulty
 }
 
-entity Fragment {
- title String 
-}
 
 entity Precondition{
  title String
@@ -74,11 +71,19 @@ entity Goal {
 
 
 
-entity Sequence {
+entity Fragment {
 title String
 }
 
-entity Set {
+entity SetOf {
+title String
+}
+
+entity SequenceOf {
+title String
+}
+
+entity AbstractActivity {
 title String
 }
 
@@ -134,22 +139,19 @@ relationship ManyToMany {
   Scenario { Learner(lastName) } to Learner{ Scenario(title) }
 }
 
-relationship ManyToMany {
-  Fragment { Activity(title) } to Activity{ Fragment(title) }
-}
 
 relationship ManyToMany {
-  Activity { Concept(title) } to Concept{ Activity(title) }
+  ConcreteActivity { Concept(title) } to Concept{ ConcreteActivity(title) }
 }
 
 
 
 relationship OneToMany {
-  Fragment { Precondition(title) } to Precondition{ Fragment(title) }
+  ConcreteActivity { Precondition(title) } to Precondition{ ConcreteActivity(title) }
 }
 
 relationship OneToMany {
-  Fragment { Effect(title) } to Effect{ Fragment(title) }
+ ConcreteActivity { Effect(title) } to ConcreteActivity{ Fragment(title) }
 }
 
 
@@ -163,6 +165,11 @@ relationship OneToMany {
 Concept{parent} to Concept{childs}
 }
 
+
+relationship ManyToMany {
+AbstractActivity{ Goal(title) } to Goal{ AbstractActivity(title) }
+}
+
 relationship ManyToMany {
 Module{ Fragment(title) } to Fragment{ Module(title) }
 }
@@ -170,12 +177,20 @@ Module{ Fragment(title) } to Fragment{ Module(title) }
 
 
 relationship OneToOne {
-Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
+Fragment{ SequenceOf(title) } to SequenceOf{ Fragment(title) } 
 }
 
 
 relationship OneToOne {
-Fragment{ Set(title) } to Set{ Fragment(title) } 
+Fragment{ SetOf(title) } to SetOf{ Fragment(title) } 
+}
+
+relationship OneToOne {
+Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
+}
+
+relationship OneToOne {
+Fragment{ ConcreteActivity(title) } to ConcreteActivity{ Fragment(title) } 
 }
 
 
