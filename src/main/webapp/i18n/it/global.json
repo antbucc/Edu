@@ -21,6 +21,7 @@
         "goal": "Goal",
         "abstractActivity": "Abstract Activity",
         "sequence": "Sequence",
+        "setOf": "SetOf",
         "set": "Set",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
