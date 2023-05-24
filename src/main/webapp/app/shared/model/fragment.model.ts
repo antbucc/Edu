@@ -2,6 +2,7 @@ import { IPrecondition } from 'app/shared/model/precondition.model';
 import { IEffect } from 'app/shared/model/effect.model';
 import { IActivity } from 'app/shared/model/activity.model';
 import { IGoal } from 'app/shared/model/goal.model';
+import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 import { IModule } from 'app/shared/model/module.model';
 
 export interface IFragment {
@@ -11,6 +12,7 @@ export interface IFragment {
   effects?: IEffect[] | null;
   activities?: IActivity[] | null;
   goals?: IGoal[] | null;
+  abstractActivity?: IAbstractActivity | null;
   modules?: IModule[] | null;
 }
 

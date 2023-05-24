@@ -15,6 +15,7 @@ import Fragment from './fragment';
 import Precondition from './precondition';
 import Effect from './effect';
 import Goal from './goal';
+import AbstractActivity from './abstract-activity';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -34,6 +35,7 @@ export default () => {
         <Route path="precondition/*" element={<Precondition />} />
         <Route path="effect/*" element={<Effect />} />
         <Route path="goal/*" element={<Goal />} />
+        <Route path="abstract-activity/*" element={<AbstractActivity />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>
