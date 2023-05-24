@@ -42,6 +42,19 @@ export const AbstractActivityDetail = () => {
             <Translate contentKey="eduApp.abstractActivity.fragment">Fragment</Translate>
           </dt>
           <dd>{abstractActivityEntity.fragment ? abstractActivityEntity.fragment.title : ''}</dd>
+          <dt>
+            <Translate contentKey="eduApp.abstractActivity.goal">Goal</Translate>
+          </dt>
+          <dd>
+            {abstractActivityEntity.goals
+              ? abstractActivityEntity.goals.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.title}</a>
+                    {abstractActivityEntity.goals && i === abstractActivityEntity.goals.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/abstract-activity" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

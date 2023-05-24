@@ -23,6 +23,14 @@
       "ownerSide": true,
       "relationshipName": "fragment",
       "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "goal",
+      "otherEntityRelationshipName": "abstractActivity",
+      "ownerSide": true,
+      "relationshipName": "goal",
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"

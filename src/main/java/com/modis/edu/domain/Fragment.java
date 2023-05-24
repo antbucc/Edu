@@ -40,11 +40,6 @@ public class Fragment implements Serializable {
     private Set<Activity> activities = new HashSet<>();
 
     @DBRef
-    @Field("goals")
-    @JsonIgnoreProperties(value = { "concepts", "fragments" }, allowSetters = true)
-    private Set<Goal> goals = new HashSet<>();
-
-    @DBRef
     private AbstractActivity abstractActivity;
 
     @DBRef
@@ -164,31 +159,6 @@ public class Fragment implements Serializable {
     public Fragment removeActivity(Activity activity) {
         this.activities.remove(activity);
         activity.getFragments().remove(this);
-        return this;
-    }
-
-    public Set<Goal> getGoals() {
-        return this.goals;
-    }
-
-    public void setGoals(Set<Goal> goals) {
-        this.goals = goals;
-    }
-
-    public Fragment goals(Set<Goal> goals) {
-        this.setGoals(goals);
-        return this;
-    }
-
-    public Fragment addGoal(Goal goal) {
-        this.goals.add(goal);
-        goal.getFragments().add(this);
-        return this;
-    }
-
-    public Fragment removeGoal(Goal goal) {
-        this.goals.remove(goal);
-        goal.getFragments().remove(this);
         return this;
     }
 

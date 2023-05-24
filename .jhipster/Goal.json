@@ -26,10 +26,10 @@
     },
     {
       "otherEntityField": "title",
-      "otherEntityName": "fragment",
+      "otherEntityName": "abstractActivity",
       "otherEntityRelationshipName": "goal",
       "ownerSide": false,
-      "relationshipName": "fragment",
+      "relationshipName": "abstractActivity",
       "relationshipType": "many-to-many"
     }
   ],
