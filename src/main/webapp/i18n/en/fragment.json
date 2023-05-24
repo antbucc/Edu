@@ -19,11 +19,10 @@
       },
       "id": "ID",
       "title": "Title",
-      "sequence": "Sequence",
-      "set": "Set",
-      "precondition": "Precondition",
-      "effect": "Effect",
       "activity": "Activity",
+      "setOf": "Set Of",
+      "sequence": "Sequence",
+      "abstractActivity": "Abstract Activity",
       "module": "Module"
     }
   }

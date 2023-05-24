@@ -40,14 +40,22 @@ public class Activity implements Serializable {
     private Difficulty difficulty;
 
     @DBRef
+    @Field("precondition")
+    @JsonIgnoreProperties(value = { "activity" }, allowSetters = true)
+    private Set<Precondition> preconditions = new HashSet<>();
+
+    @DBRef
+    @Field("effect")
+    @JsonIgnoreProperties(value = { "activity" }, allowSetters = true)
+    private Set<Effect> effects = new HashSet<>();
+
+    @DBRef
     @Field("concepts")
     @JsonIgnoreProperties(value = { "parents", "childs", "competences", "activities", "goals" }, allowSetters = true)
     private Set<Concept> concepts = new HashSet<>();
 
     @DBRef
-    @Field("fragments")
-    @JsonIgnoreProperties(value = { "sequence", "set", "preconditions", "effects", "activities", "modules" }, allowSetters = true)
-    private Set<Fragment> fragments = new HashSet<>();
+    private Fragment fragment;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -129,6 +137,68 @@ public class Activity implements Serializable {
         this.difficulty = difficulty;
     }
 
+    public Set<Precondition> getPreconditions() {
+        return this.preconditions;
+    }
+
+    public void setPreconditions(Set<Precondition> preconditions) {
+        if (this.preconditions != null) {
+            this.preconditions.forEach(i -> i.setActivity(null));
+        }
+        if (preconditions != null) {
+            preconditions.forEach(i -> i.setActivity(this));
+        }
+        this.preconditions = preconditions;
+    }
+
+    public Activity preconditions(Set<Precondition> preconditions) {
+        this.setPreconditions(preconditions);
+        return this;
+    }
+
+    public Activity addPrecondition(Precondition precondition) {
+        this.preconditions.add(precondition);
+        precondition.setActivity(this);
+        return this;
+    }
+
+    public Activity removePrecondition(Precondition precondition) {
+        this.preconditions.remove(precondition);
+        precondition.setActivity(null);
+        return this;
+    }
+
+    public Set<Effect> getEffects() {
+        return this.effects;
+    }
+
+    public void setEffects(Set<Effect> effects) {
+        if (this.effects != null) {
+            this.effects.forEach(i -> i.setActivity(null));
+        }
+        if (effects != null) {
+            effects.forEach(i -> i.setActivity(this));
+        }
+        this.effects = effects;
+    }
+
+    public Activity effects(Set<Effect> effects) {
+        this.setEffects(effects);
+        return this;
+    }
+
+    public Activity addEffect(Effect effect) {
+        this.effects.add(effect);
+        effect.setActivity(this);
+        return this;
+    }
+
+    public Activity removeEffect(Effect effect) {
+        this.effects.remove(effect);
+        effect.setActivity(null);
+        return this;
+    }
+
     public Set<Concept> getConcepts() {
         return this.concepts;
     }
@@ -154,34 +224,22 @@ public class Activity implements Serializable {
         return this;
     }
 
-    public Set<Fragment> getFragments() {
-        return this.fragments;
+    public Fragment getFragment() {
+        return this.fragment;
     }
 
-    public void setFragments(Set<Fragment> fragments) {
-        if (this.fragments != null) {
-            this.fragments.forEach(i -> i.removeActivity(this));
+    public void setFragment(Fragment fragment) {
+        if (this.fragment != null) {
+            this.fragment.setActivity(null);
         }
-        if (fragments != null) {
-            fragments.forEach(i -> i.addActivity(this));
+        if (fragment != null) {
+            fragment.setActivity(this);
         }
-        this.fragments = fragments;
+        this.fragment = fragment;
     }
 
-    public Activity fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
-        return this;
-    }
-
-    public Activity addFragment(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.getActivities().add(this);
-        return this;
-    }
-
-    public Activity removeFragment(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.getActivities().remove(this);
+    public Activity fragment(Fragment fragment) {
+        this.setFragment(fragment);
         return this;
     }
 

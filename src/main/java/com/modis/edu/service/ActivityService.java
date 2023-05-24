@@ -40,6 +40,12 @@ public interface ActivityService {
      * @return the list of entities.
      */
     List<Activity> findAll();
+    /**
+     * Get all the Activity where Fragment is {@code null}.
+     *
+     * @return the {@link List} of entities.
+     */
+    List<Activity> findAllWhereFragmentIsNull();
 
     /**
      * Get all the activities with eager load of many-to-many relationships.

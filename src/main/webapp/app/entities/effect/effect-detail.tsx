@@ -39,9 +39,9 @@ export const EffectDetail = () => {
           </dt>
           <dd>{effectEntity.title}</dd>
           <dt>
-            <Translate contentKey="eduApp.effect.fragment">Fragment</Translate>
+            <Translate contentKey="eduApp.effect.activity">Activity</Translate>
           </dt>
-          <dd>{effectEntity.fragment ? effectEntity.fragment.title : ''}</dd>
+          <dd>{effectEntity.activity ? effectEntity.activity.title : ''}</dd>
         </dl>
         <Button tag={Link} to="/effect" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

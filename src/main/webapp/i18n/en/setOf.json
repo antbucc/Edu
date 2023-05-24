@@ -1,0 +1,25 @@
+{
+  "eduApp": {
+    "setOf": {
+      "home": {
+        "title": "Set Ofs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Set Of",
+        "createOrEditLabel": "Create or edit a Set Of",
+        "notFound": "No Set Ofs found"
+      },
+      "created": "A new Set Of is created with identifier {{ param }}",
+      "updated": "A Set Of is updated with identifier {{ param }}",
+      "deleted": "A Set Of is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Set Of {{ id }}?"
+      },
+      "detail": {
+        "title": "Set Of"
+      },
+      "id": "ID",
+      "title": "Title",
+      "fragment": "Fragment"
+    }
+  }
+}

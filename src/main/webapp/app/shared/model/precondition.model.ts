@@ -1,9 +1,9 @@
-import { IFragment } from 'app/shared/model/fragment.model';
+import { IActivity } from 'app/shared/model/activity.model';
 
 export interface IPrecondition {
   id?: string;
   title?: string | null;
-  fragment?: IFragment | null;
+  activity?: IActivity | null;
 }
 
 export const defaultValue: Readonly<IPrecondition> = {};

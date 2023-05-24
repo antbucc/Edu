@@ -23,9 +23,9 @@ public class Effect implements Serializable {
     private String title;
 
     @DBRef
-    @Field("fragment")
-    @JsonIgnoreProperties(value = { "sequence", "set", "preconditions", "effects", "activities", "modules" }, allowSetters = true)
-    private Fragment fragment;
+    @Field("activity")
+    @JsonIgnoreProperties(value = { "preconditions", "effects", "concepts", "fragment" }, allowSetters = true)
+    private Activity activity;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -55,16 +55,16 @@ public class Effect implements Serializable {
         this.title = title;
     }
 
-    public Fragment getFragment() {
-        return this.fragment;
+    public Activity getActivity() {
+        return this.activity;
     }
 
-    public void setFragment(Fragment fragment) {
-        this.fragment = fragment;
+    public void setActivity(Activity activity) {
+        this.activity = activity;
     }
 
-    public Effect fragment(Fragment fragment) {
-        this.setFragment(fragment);
+    public Effect activity(Activity activity) {
+        this.setActivity(activity);
         return this;
     }
 
