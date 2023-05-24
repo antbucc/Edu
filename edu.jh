@@ -195,14 +195,14 @@ relationship OneToOne {
 	Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
 }
 
+
 relationship OneToMany {
-	Sequence{seq} to Fragment{members} 
+ Sequence to Fragment
 }
 
 relationship OneToMany {
-	SetOf{setOf} to Fragment{members} 
+ SetOf to Fragment
 }
-
 
 
 
