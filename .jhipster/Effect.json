@@ -18,9 +18,9 @@
   "relationships": [
     {
       "otherEntityField": "title",
-      "otherEntityName": "fragment",
+      "otherEntityName": "activity",
       "otherEntityRelationshipName": "effect",
-      "relationshipName": "fragment",
+      "relationshipName": "activity",
       "relationshipType": "many-to-one"
     }
   ],

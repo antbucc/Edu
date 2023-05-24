@@ -39,9 +39,9 @@ export const PreconditionDetail = () => {
           </dt>
           <dd>{preconditionEntity.title}</dd>
           <dt>
-            <Translate contentKey="eduApp.precondition.fragment">Fragment</Translate>
+            <Translate contentKey="eduApp.precondition.activity">Activity</Translate>
           </dt>
-          <dd>{preconditionEntity.fragment ? preconditionEntity.fragment.title : ''}</dd>
+          <dd>{preconditionEntity.activity ? preconditionEntity.activity.title : ''}</dd>
         </dl>
         <Button tag={Link} to="/precondition" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

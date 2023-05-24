@@ -23,6 +23,7 @@
         "sequence": "Sequence",
         "setOf": "SetOf",
         "set": "Set",
+        "setOf": "Set Of",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

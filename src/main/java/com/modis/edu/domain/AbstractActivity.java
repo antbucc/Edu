@@ -2,8 +2,6 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,13 +23,7 @@ public class AbstractActivity implements Serializable {
     private String title;
 
     @DBRef
-    @Field("fragment")
     private Fragment fragment;
-
-    @DBRef
-    @Field("goals")
-    @JsonIgnoreProperties(value = { "concepts" }, allowSetters = true)
-    private Set<Goal> goals = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -66,34 +58,17 @@ public class AbstractActivity implements Serializable {
     }
 
     public void setFragment(Fragment fragment) {
+        if (this.fragment != null) {
+            this.fragment.setAbstractActivity(null);
+        }
+        if (fragment != null) {
+            fragment.setAbstractActivity(this);
+        }
         this.fragment = fragment;
     }
 
     public AbstractActivity fragment(Fragment fragment) {
         this.setFragment(fragment);
-        return this;
-    }
-
-    public Set<Goal> getGoals() {
-        return this.goals;
-    }
-
-    public void setGoals(Set<Goal> goals) {
-        this.goals = goals;
-    }
-
-    public AbstractActivity goals(Set<Goal> goals) {
-        this.setGoals(goals);
-        return this;
-    }
-
-    public AbstractActivity addGoal(Goal goal) {
-        this.goals.add(goal);
-        return this;
-    }
-
-    public AbstractActivity removeGoal(Goal goal) {
-        this.goals.remove(goal);
         return this;
     }
 

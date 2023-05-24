@@ -20,17 +20,9 @@
       "otherEntityField": "title",
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "abstractActivity",
-      "ownerSide": true,
+      "ownerSide": false,
       "relationshipName": "fragment",
       "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "goal",
-      "otherEntityRelationshipName": "abstractActivity",
-      "ownerSide": true,
-      "relationshipName": "goal",
-      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"

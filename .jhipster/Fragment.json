@@ -18,6 +18,22 @@
   "relationships": [
     {
       "otherEntityField": "title",
+      "otherEntityName": "activity",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": true,
+      "relationshipName": "activity",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "setOf",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": true,
+      "relationshipName": "setOf",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "title",
       "otherEntityName": "sequence",
       "otherEntityRelationshipName": "fragment",
       "ownerSide": true,
@@ -26,33 +42,11 @@
     },
     {
       "otherEntityField": "title",
-      "otherEntityName": "set",
+      "otherEntityName": "abstractActivity",
       "otherEntityRelationshipName": "fragment",
       "ownerSide": true,
-      "relationshipName": "set",
+      "relationshipName": "abstractActivity",
       "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "precondition",
-      "otherEntityRelationshipName": "fragment",
-      "relationshipName": "precondition",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "effect",
-      "otherEntityRelationshipName": "fragment",
-      "relationshipName": "effect",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "activity",
-      "otherEntityRelationshipName": "fragment",
-      "ownerSide": true,
-      "relationshipName": "activity",
-      "relationshipType": "many-to-many"
     },
     {
       "otherEntityField": "title",

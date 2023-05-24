@@ -10,8 +10,6 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IFragment } from 'app/shared/model/fragment.model';
 import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
-import { IGoal } from 'app/shared/model/goal.model';
-import { getEntities as getGoals } from 'app/entities/goal/goal.reducer';
 import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 import { getEntity, updateEntity, createEntity, reset } from './abstract-activity.reducer';
 
@@ -24,7 +22,6 @@ export const AbstractActivityUpdate = () => {
   const isNew = id === undefined;
 
   const fragments = useAppSelector(state => state.fragment.entities);
-  const goals = useAppSelector(state => state.goal.entities);
   const abstractActivityEntity = useAppSelector(state => state.abstractActivity.entity);
   const loading = useAppSelector(state => state.abstractActivity.loading);
   const updating = useAppSelector(state => state.abstractActivity.updating);
@@ -42,7 +39,6 @@ export const AbstractActivityUpdate = () => {
     }
 
     dispatch(getFragments({}));
-    dispatch(getGoals({}));
   }, []);
 
   useEffect(() => {
@@ -55,8 +51,6 @@ export const AbstractActivityUpdate = () => {
     const entity = {
       ...abstractActivityEntity,
       ...values,
-      goals: mapIdList(values.goals),
-      fragment: fragments.find(it => it.id.toString() === values.fragment.toString()),
     };
 
     if (isNew) {
@@ -71,8 +65,6 @@ export const AbstractActivityUpdate = () => {
       ? {}
       : {
           ...abstractActivityEntity,
-          fragment: abstractActivityEntity?.fragment?.id,
-          goals: abstractActivityEntity?.goals?.map(e => e.id.toString()),
         };
 
   return (
@@ -107,39 +99,6 @@ export const AbstractActivityUpdate = () => {
                 data-cy="title"
                 type="text"
               />
-              <ValidatedField
-                id="abstract-activity-fragment"
-                name="fragment"
-                data-cy="fragment"
-                label={translate('eduApp.abstractActivity.fragment')}
-                type="select"
-              >
-                <option value="" key="0" />
-                {fragments
-                  ? fragments.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField
-                label={translate('eduApp.abstractActivity.goal')}
-                id="abstract-activity-goal"
-                data-cy="goal"
-                type="select"
-                multiple
-                name="goals"
-              >
-                <option value="" key="0" />
-                {goals
-                  ? goals.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/abstract-activity" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

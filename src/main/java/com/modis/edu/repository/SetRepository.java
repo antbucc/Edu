@@ -1,6 +1,6 @@
 package com.modis.edu.repository;
 
-import com.modis.edu.domain.SetOf;
+import com.modis.edu.domain.Set;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -10,4 +10,4 @@ import org.springframework.stereotype.Repository;
  */
 @SuppressWarnings("unused")
 @Repository
-public interface SetRepository extends MongoRepository<SetOf, String> {}
+public interface SetRepository extends MongoRepository<Set, String> {}

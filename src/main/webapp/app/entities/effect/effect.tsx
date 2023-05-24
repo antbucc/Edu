@@ -55,7 +55,7 @@ export const Effect = () => {
                   <Translate contentKey="eduApp.effect.title">Title</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.effect.fragment">Fragment</Translate>
+                  <Translate contentKey="eduApp.effect.activity">Activity</Translate>
                 </th>
                 <th />
               </tr>
@@ -69,7 +69,7 @@ export const Effect = () => {
                     </Button>
                   </td>
                   <td>{effect.title}</td>
-                  <td>{effect.fragment ? <Link to={`/fragment/${effect.fragment.id}`}>{effect.fragment.title}</Link> : ''}</td>
+                  <td>{effect.activity ? <Link to={`/activity/${effect.activity.id}`}>{effect.activity.title}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/effect/${effect.id}`} color="info" size="sm" data-cy="entityDetailsButton">

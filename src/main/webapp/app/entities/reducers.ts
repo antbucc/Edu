@@ -13,6 +13,7 @@ import goal from 'app/entities/goal/goal.reducer';
 import abstractActivity from 'app/entities/abstract-activity/abstract-activity.reducer';
 import sequence from 'app/entities/sequence/sequence.reducer';
 import set from 'app/entities/set/set.reducer';
+import setOf from 'app/entities/set-of/set-of.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const entitiesReducers = {
@@ -31,6 +32,7 @@ const entitiesReducers = {
   abstractActivity,
   sequence,
   set,
+  setOf,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
 };
 
