@@ -66,12 +66,6 @@ export const Fragment = () => {
                 <th>
                   <Translate contentKey="eduApp.fragment.abstractActivity">Abstract Activity</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="eduApp.fragment.members">Members</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="eduApp.fragment.members">Members</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -85,17 +79,36 @@ export const Fragment = () => {
                   </td>
                   <td>{fragment.title}</td>
                   <td>{fragment.activity ? <Link to={`/activity/${fragment.activity.id}`}>{fragment.activity.title}</Link> : ''}</td>
-                  <td>{fragment.setOf ? <Link to={`/set-of/${fragment.setOf.id}`}>{fragment.setOf.title}</Link> : ''}</td>
-                  <td>{fragment.sequence ? <Link to={`/sequence/${fragment.sequence.id}`}>{fragment.sequence.title}</Link> : ''}</td>
                   <td>
-                    {fragment.abstractActivity ? (
-                      <Link to={`/abstract-activity/${fragment.abstractActivity.id}`}>{fragment.abstractActivity.title}</Link>
-                    ) : (
-                      ''
-                    )}
+                    {fragment.setOfs
+                      ? fragment.setOfs.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/set-of/${val.id}`}>{val.title}</Link>
+                            {j === fragment.setOfs.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
                   </td>
-                  <td>{fragment.members ? <Link to={`/sequence/${fragment.members.id}`}>{fragment.members.id}</Link> : ''}</td>
-                  <td>{fragment.members ? <Link to={`/set-of/${fragment.members.id}`}>{fragment.members.id}</Link> : ''}</td>
+                  <td>
+                    {fragment.sequences
+                      ? fragment.sequences.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/sequence/${val.id}`}>{val.title}</Link>
+                            {j === fragment.sequences.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
+                  </td>
+                  <td>
+                    {fragment.abstractActivities
+                      ? fragment.abstractActivities.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/abstract-activity/${val.id}`}>{val.title}</Link>
+                            {j === fragment.abstractActivities.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
+                  </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/fragment/${fragment.id}`} color="info" size="sm" data-cy="entityDetailsButton">

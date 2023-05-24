@@ -30,7 +30,7 @@
       "otherEntityRelationshipName": "fragment",
       "ownerSide": true,
       "relationshipName": "setOf",
-      "relationshipType": "one-to-one"
+      "relationshipType": "many-to-many"
     },
     {
       "otherEntityField": "title",
@@ -38,7 +38,7 @@
       "otherEntityRelationshipName": "fragment",
       "ownerSide": true,
       "relationshipName": "sequence",
-      "relationshipType": "one-to-one"
+      "relationshipType": "many-to-many"
     },
     {
       "otherEntityField": "title",
@@ -46,19 +46,7 @@
       "otherEntityRelationshipName": "fragment",
       "ownerSide": true,
       "relationshipName": "abstractActivity",
-      "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityName": "sequence",
-      "otherEntityRelationshipName": "seq",
-      "relationshipName": "members",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "setOf",
-      "otherEntityRelationshipName": "setOf",
-      "relationshipName": "members",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-many"
     },
     {
       "otherEntityField": "title",

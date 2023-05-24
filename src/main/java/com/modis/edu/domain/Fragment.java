@@ -29,30 +29,19 @@ public class Fragment implements Serializable {
     private Activity activity;
 
     @DBRef
-    @Field("setOf")
-    private SetOf setOf;
+    @Field("setOfs")
+    @JsonIgnoreProperties(value = { "fragments" }, allowSetters = true)
+    private Set<SetOf> setOfs = new HashSet<>();
 
     @DBRef
-    @Field("sequence")
-    private Sequence sequence;
+    @Field("sequences")
+    @JsonIgnoreProperties(value = { "fragments" }, allowSetters = true)
+    private Set<Sequence> sequences = new HashSet<>();
 
     @DBRef
-    @Field("abstractActivity")
-    private AbstractActivity abstractActivity;
-
-    @DBRef
-    @Field("members")
-    @DBRef
-    @Field("members")
-    @JsonIgnoreProperties(value = { "seqs", "fragment" }, allowSetters = true)
-    private Sequence members;
-
-    @DBRef
-    @Field("members")
-    @DBRef
-    @Field("members")
-    @JsonIgnoreProperties(value = { "setOfs", "fragment" }, allowSetters = true)
-    private SetOf members;
+    @Field("abstractActivities")
+    @JsonIgnoreProperties(value = { "fragments" }, allowSetters = true)
+    private Set<AbstractActivity> abstractActivities = new HashSet<>();
 
     @DBRef
     @Field("modules")
@@ -100,68 +89,78 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public SetOf getSetOf() {
-        return this.setOf;
+    public Set<SetOf> getSetOfs() {
+        return this.setOfs;
     }
 
-    public void setSetOf(SetOf setOf) {
-        this.setOf = setOf;
+    public void setSetOfs(Set<SetOf> setOfs) {
+        this.setOfs = setOfs;
     }
 
-    public Fragment setOf(SetOf setOf) {
-        this.setSetOf(setOf);
+    public Fragment setOfs(Set<SetOf> setOfs) {
+        this.setSetOfs(setOfs);
         return this;
     }
 
-    public Sequence getSequence() {
-        return this.sequence;
-    }
-
-    public void setSequence(Sequence sequence) {
-        this.sequence = sequence;
-    }
-
-    public Fragment sequence(Sequence sequence) {
-        this.setSequence(sequence);
+    public Fragment addSetOf(SetOf setOf) {
+        this.setOfs.add(setOf);
+        setOf.getFragments().add(this);
         return this;
     }
 
-    public AbstractActivity getAbstractActivity() {
-        return this.abstractActivity;
-    }
-
-    public void setAbstractActivity(AbstractActivity abstractActivity) {
-        this.abstractActivity = abstractActivity;
-    }
-
-    public Fragment abstractActivity(AbstractActivity abstractActivity) {
-        this.setAbstractActivity(abstractActivity);
+    public Fragment removeSetOf(SetOf setOf) {
+        this.setOfs.remove(setOf);
+        setOf.getFragments().remove(this);
         return this;
     }
 
-    public Sequence getMembers() {
-        return this.members;
+    public Set<Sequence> getSequences() {
+        return this.sequences;
     }
 
-    public void setMembers(Sequence sequence) {
-        this.members = sequence;
+    public void setSequences(Set<Sequence> sequences) {
+        this.sequences = sequences;
     }
 
-    public Fragment members(Sequence sequence) {
-        this.setMembers(sequence);
+    public Fragment sequences(Set<Sequence> sequences) {
+        this.setSequences(sequences);
         return this;
     }
 
-    public SetOf getMembers() {
-        return this.members;
+    public Fragment addSequence(Sequence sequence) {
+        this.sequences.add(sequence);
+        sequence.getFragments().add(this);
+        return this;
     }
 
-    public void setMembers(SetOf setOf) {
-        this.members = setOf;
+    public Fragment removeSequence(Sequence sequence) {
+        this.sequences.remove(sequence);
+        sequence.getFragments().remove(this);
+        return this;
     }
 
-    public Fragment members(SetOf setOf) {
-        this.setMembers(setOf);
+    public Set<AbstractActivity> getAbstractActivities() {
+        return this.abstractActivities;
+    }
+
+    public void setAbstractActivities(Set<AbstractActivity> abstractActivities) {
+        this.abstractActivities = abstractActivities;
+    }
+
+    public Fragment abstractActivities(Set<AbstractActivity> abstractActivities) {
+        this.setAbstractActivities(abstractActivities);
+        return this;
+    }
+
+    public Fragment addAbstractActivity(AbstractActivity abstractActivity) {
+        this.abstractActivities.add(abstractActivity);
+        abstractActivity.getFragments().add(this);
+        return this;
+    }
+
+    public Fragment removeAbstractActivity(AbstractActivity abstractActivity) {
+        this.abstractActivities.remove(abstractActivity);
+        abstractActivity.getFragments().remove(this);
         return this;
     }
 

@@ -17,18 +17,12 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "members",
-      "relationshipName": "seq",
-      "relationshipType": "one-to-many"
-    },
-    {
       "otherEntityField": "title",
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "sequence",
       "ownerSide": false,
       "relationshipName": "fragment",
-      "relationshipType": "one-to-one"
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"

@@ -25,15 +25,9 @@ public class Sequence implements Serializable {
     private String title;
 
     @DBRef
-    @Field("seq")
-    @JsonIgnoreProperties(
-        value = { "activity", "setOf", "sequence", "abstractActivity", "members", "members", "modules" },
-        allowSetters = true
-    )
-    private Set<Fragment> seqs = new HashSet<>();
-
-    @DBRef
-    private Fragment fragment;
+    @Field("fragments")
+    @JsonIgnoreProperties(value = { "activity", "setOfs", "sequences", "abstractActivities", "modules" }, allowSetters = true)
+    private Set<Fragment> fragments = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -63,53 +57,34 @@ public class Sequence implements Serializable {
         this.title = title;
     }
 
-    public Set<Fragment> getSeqs() {
-        return this.seqs;
+    public Set<Fragment> getFragments() {
+        return this.fragments;
     }
 
-    public void setSeqs(Set<Fragment> fragments) {
-        if (this.seqs != null) {
-            this.seqs.forEach(i -> i.setMembers(null));
+    public void setFragments(Set<Fragment> fragments) {
+        if (this.fragments != null) {
+            this.fragments.forEach(i -> i.removeSequence(this));
         }
         if (fragments != null) {
-            fragments.forEach(i -> i.setMembers(this));
+            fragments.forEach(i -> i.addSequence(this));
         }
-        this.seqs = fragments;
+        this.fragments = fragments;
     }
 
-    public Sequence seqs(Set<Fragment> fragments) {
-        this.setSeqs(fragments);
+    public Sequence fragments(Set<Fragment> fragments) {
+        this.setFragments(fragments);
         return this;
     }
 
-    public Sequence addSeq(Fragment fragment) {
-        this.seqs.add(fragment);
-        fragment.setMembers(this);
+    public Sequence addFragment(Fragment fragment) {
+        this.fragments.add(fragment);
+        fragment.getSequences().add(this);
         return this;
     }
 
-    public Sequence removeSeq(Fragment fragment) {
-        this.seqs.remove(fragment);
-        fragment.setMembers(null);
-        return this;
-    }
-
-    public Fragment getFragment() {
-        return this.fragment;
-    }
-
-    public void setFragment(Fragment fragment) {
-        if (this.fragment != null) {
-            this.fragment.setSequence(null);
-        }
-        if (fragment != null) {
-            fragment.setSequence(this);
-        }
-        this.fragment = fragment;
-    }
-
-    public Sequence fragment(Fragment fragment) {
-        this.setFragment(fragment);
+    public Sequence removeFragment(Fragment fragment) {
+        this.fragments.remove(fragment);
+        fragment.getSequences().remove(this);
         return this;
     }
 

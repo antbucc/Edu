@@ -67,12 +67,10 @@ export const FragmentUpdate = () => {
     const entity = {
       ...fragmentEntity,
       ...values,
+      setOfs: mapIdList(values.setOfs),
+      sequences: mapIdList(values.sequences),
+      abstractActivities: mapIdList(values.abstractActivities),
       activity: activities.find(it => it.id.toString() === values.activity.toString()),
-      setOf: setOfs.find(it => it.id.toString() === values.setOf.toString()),
-      members: setOfs.find(it => it.id.toString() === values.members.toString()),
-      sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
-      members: sequences.find(it => it.id.toString() === values.members.toString()),
-      abstractActivity: abstractActivities.find(it => it.id.toString() === values.abstractActivity.toString()),
     };
 
     if (isNew) {
@@ -88,11 +86,9 @@ export const FragmentUpdate = () => {
       : {
           ...fragmentEntity,
           activity: fragmentEntity?.activity?.id,
-          setOf: fragmentEntity?.setOf?.id,
-          sequence: fragmentEntity?.sequence?.id,
-          abstractActivity: fragmentEntity?.abstractActivity?.id,
-          members: fragmentEntity?.members?.id,
-          members: fragmentEntity?.members?.id,
+          setOfs: fragmentEntity?.setOfs?.map(e => e.id.toString()),
+          sequences: fragmentEntity?.sequences?.map(e => e.id.toString()),
+          abstractActivities: fragmentEntity?.abstractActivities?.map(e => e.id.toString()),
         };
 
   return (
@@ -137,7 +133,14 @@ export const FragmentUpdate = () => {
                     ))
                   : null}
               </ValidatedField>
-              <ValidatedField id="fragment-setOf" name="setOf" data-cy="setOf" label={translate('eduApp.fragment.setOf')} type="select">
+              <ValidatedField
+                label={translate('eduApp.fragment.setOf')}
+                id="fragment-setOf"
+                data-cy="setOf"
+                type="select"
+                multiple
+                name="setOfs"
+              >
                 <option value="" key="0" />
                 {setOfs
                   ? setOfs.map(otherEntity => (
@@ -148,11 +151,12 @@ export const FragmentUpdate = () => {
                   : null}
               </ValidatedField>
               <ValidatedField
-                id="fragment-sequence"
-                name="sequence"
-                data-cy="sequence"
                 label={translate('eduApp.fragment.sequence')}
+                id="fragment-sequence"
+                data-cy="sequence"
                 type="select"
+                multiple
+                name="sequences"
               >
                 <option value="" key="0" />
                 {sequences
@@ -164,49 +168,18 @@ export const FragmentUpdate = () => {
                   : null}
               </ValidatedField>
               <ValidatedField
-                id="fragment-abstractActivity"
-                name="abstractActivity"
-                data-cy="abstractActivity"
                 label={translate('eduApp.fragment.abstractActivity')}
+                id="fragment-abstractActivity"
+                data-cy="abstractActivity"
                 type="select"
+                multiple
+                name="abstractActivities"
               >
                 <option value="" key="0" />
                 {abstractActivities
                   ? abstractActivities.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField
-                id="fragment-members"
-                name="members"
-                data-cy="members"
-                label={translate('eduApp.fragment.members')}
-                type="select"
-              >
-                <option value="" key="0" />
-                {sequences
-                  ? sequences.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField
-                id="fragment-members"
-                name="members"
-                data-cy="members"
-                label={translate('eduApp.fragment.members')}
-                type="select"
-              >
-                <option value="" key="0" />
-                {setOfs
-                  ? setOfs.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
                       </option>
                     ))
                   : null}

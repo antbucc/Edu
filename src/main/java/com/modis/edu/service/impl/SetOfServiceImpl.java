@@ -5,8 +5,6 @@ import com.modis.edu.repository.SetOfRepository;
 import com.modis.edu.service.SetOfService;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -57,19 +55,6 @@ public class SetOfServiceImpl implements SetOfService {
     public List<SetOf> findAll() {
         log.debug("Request to get all SetOfs");
         return setOfRepository.findAll();
-    }
-
-    /**
-     *  Get all the setOfs where Fragment is {@code null}.
-     *  @return the list of entities.
-     */
-
-    public List<SetOf> findAllWhereFragmentIsNull() {
-        log.debug("Request to get all setOfs where Fragment is null");
-        return StreamSupport
-            .stream(setOfRepository.findAll().spliterator(), false)
-            .filter(setOf -> setOf.getFragment() == null)
-            .collect(Collectors.toList());
     }
 
     @Override
