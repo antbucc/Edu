@@ -207,7 +207,7 @@ relationship ManyToMany {
 
 
 
-relationship OneToOne {
+relationship ManyToMany {
   Order{ Sequence(title) } to Sequence { Order(order) }
 }
 

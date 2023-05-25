@@ -72,19 +72,6 @@ public class SequenceServiceImpl implements SequenceService {
             .collect(Collectors.toList());
     }
 
-    /**
-     *  Get all the sequences where Order is {@code null}.
-     *  @return the list of entities.
-     */
-
-    public List<Sequence> findAllWhereOrderIsNull() {
-        log.debug("Request to get all sequences where Order is null");
-        return StreamSupport
-            .stream(sequenceRepository.findAll().spliterator(), false)
-            .filter(sequence -> sequence.getOrder() == null)
-            .collect(Collectors.toList());
-    }
-
     @Override
     public Optional<Sequence> findOne(String id) {
         log.debug("Request to get Sequence : {}", id);

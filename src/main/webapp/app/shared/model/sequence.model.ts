@@ -5,7 +5,7 @@ export interface ISequence {
   id?: string;
   title?: string;
   fragment?: IFragment | null;
-  order?: IOrder | null;
+  orders?: IOrder[] | null;
 }
 
 export const defaultValue: Readonly<ISequence> = {};

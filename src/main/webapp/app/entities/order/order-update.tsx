@@ -51,7 +51,7 @@ export const OrderUpdate = () => {
     const entity = {
       ...orderEntity,
       ...values,
-      sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
+      sequences: mapIdList(values.sequences),
     };
 
     if (isNew) {
@@ -66,7 +66,7 @@ export const OrderUpdate = () => {
       ? {}
       : {
           ...orderEntity,
-          sequence: orderEntity?.sequence?.id,
+          sequences: orderEntity?.sequences?.map(e => e.id.toString()),
         };
 
   return (
@@ -106,11 +106,12 @@ export const OrderUpdate = () => {
                 }}
               />
               <ValidatedField
-                id="order-sequence"
-                name="sequence"
-                data-cy="sequence"
                 label={translate('eduApp.order.sequence')}
+                id="order-sequence"
+                data-cy="sequence"
                 type="select"
+                multiple
+                name="sequences"
               >
                 <option value="" key="0" />
                 {sequences
