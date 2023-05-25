@@ -6,7 +6,7 @@
   "entityTableName": "sequence",
   "fields": [
     {
-      "fieldName": "name",
+      "fieldName": "title",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
     }
@@ -16,6 +16,14 @@
   "name": "Sequence",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "sequenceFragment",
+      "otherEntityRelationshipName": "sequence",
+      "relationshipName": "fragmemt",
+      "relationshipType": "one-to-many"
+    }
+  ],
   "service": "serviceImpl"
 }

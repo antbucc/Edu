@@ -71,7 +71,7 @@ class SequenceGatlingTest extends Simulation {
             .post("/api/sequences")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
-                "name":"SAMPLE_TEXT"
+                "title":"SAMPLE_TEXT"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_sequence_url"))).exitHereIfFailed

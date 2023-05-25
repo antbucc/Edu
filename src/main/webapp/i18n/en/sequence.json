@@ -18,7 +18,8 @@
         "title": "Sequence"
       },
       "id": "ID",
-      "name": "Name"
+      "title": "Title",
+      "fragmemt": "Fragmemt"
     }
   }
 }

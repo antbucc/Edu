@@ -19,11 +19,13 @@
   "relationships": [
     {
       "otherEntityName": "sequence",
+      "otherEntityRelationshipName": "fragmemt",
       "relationshipName": "sequence",
       "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "sequence",
       "relationshipName": "fragment",
       "relationshipType": "many-to-one"
     }

@@ -33,11 +33,11 @@ export const SequenceDetail = () => {
           </dt>
           <dd>{sequenceEntity.id}</dd>
           <dt>
-            <span id="name">
-              <Translate contentKey="eduApp.sequence.name">Name</Translate>
+            <span id="title">
+              <Translate contentKey="eduApp.sequence.title">Title</Translate>
             </span>
           </dt>
-          <dd>{sequenceEntity.name}</dd>
+          <dd>{sequenceEntity.title}</dd>
         </dl>
         <Button tag={Link} to="/sequence" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
