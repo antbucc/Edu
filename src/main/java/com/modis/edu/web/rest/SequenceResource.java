@@ -9,6 +9,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,7 +50,7 @@ public class SequenceResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/sequences")
-    public ResponseEntity<Sequence> createSequence(@RequestBody Sequence sequence) throws URISyntaxException {
+    public ResponseEntity<Sequence> createSequence(@Valid @RequestBody Sequence sequence) throws URISyntaxException {
         log.debug("REST request to save Sequence : {}", sequence);
         if (sequence.getId() != null) {
             throw new BadRequestAlertException("A new sequence cannot already have an ID", ENTITY_NAME, "idexists");
@@ -73,7 +75,7 @@ public class SequenceResource {
     @PutMapping("/sequences/{id}")
     public ResponseEntity<Sequence> updateSequence(
         @PathVariable(value = "id", required = false) final String id,
-        @RequestBody Sequence sequence
+        @Valid @RequestBody Sequence sequence
     ) throws URISyntaxException {
         log.debug("REST request to update Sequence : {}, {}", id, sequence);
         if (sequence.getId() == null) {
@@ -108,7 +110,7 @@ public class SequenceResource {
     @PatchMapping(value = "/sequences/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<Sequence> partialUpdateSequence(
         @PathVariable(value = "id", required = false) final String id,
-        @RequestBody Sequence sequence
+        @NotNull @RequestBody Sequence sequence
     ) throws URISyntaxException {
         log.debug("REST request to partial update Sequence partially : {}, {}", id, sequence);
         if (sequence.getId() == null) {

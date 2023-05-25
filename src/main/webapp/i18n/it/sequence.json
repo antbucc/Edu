@@ -18,7 +18,7 @@
         "title": "Sequence"
       },
       "id": "ID",
-      "title": "Title",
+      "name": "Name",
       "fragments": "Fragments"
     }
   }

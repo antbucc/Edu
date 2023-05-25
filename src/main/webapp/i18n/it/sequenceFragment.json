@@ -1,0 +1,26 @@
+{
+  "eduApp": {
+    "sequenceFragment": {
+      "home": {
+        "title": "SequenceFragments",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Sequence Fragment",
+        "createOrEditLabel": "Genera o modifica un Sequence Fragment",
+        "notFound": "No Sequence Fragments found"
+      },
+      "created": "&Egrave; stato generato un nuovo Sequence Fragment con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Sequence Fragment identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Sequence Fragment con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Sequence Fragment {{ id }}?"
+      },
+      "detail": {
+        "title": "Sequence Fragment"
+      },
+      "id": "ID",
+      "order": "Order",
+      "sequence": "Sequence",
+      "fragment": "Fragment"
+    }
+  }
+}

@@ -8,12 +8,14 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
+import { ISequence } from 'app/shared/model/sequence.model';
+import { getEntities as getSequences } from 'app/entities/sequence/sequence.reducer';
 import { IFragment } from 'app/shared/model/fragment.model';
 import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
-import { ISequence } from 'app/shared/model/sequence.model';
-import { getEntity, updateEntity, createEntity, reset } from './sequence.reducer';
+import { ISequenceFragment } from 'app/shared/model/sequence-fragment.model';
+import { getEntity, updateEntity, createEntity, reset } from './sequence-fragment.reducer';
 
-export const SequenceUpdate = () => {
+export const SequenceFragmentUpdate = () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -21,14 +23,15 @@ export const SequenceUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
+  const sequences = useAppSelector(state => state.sequence.entities);
   const fragments = useAppSelector(state => state.fragment.entities);
-  const sequenceEntity = useAppSelector(state => state.sequence.entity);
-  const loading = useAppSelector(state => state.sequence.loading);
-  const updating = useAppSelector(state => state.sequence.updating);
-  const updateSuccess = useAppSelector(state => state.sequence.updateSuccess);
+  const sequenceFragmentEntity = useAppSelector(state => state.sequenceFragment.entity);
+  const loading = useAppSelector(state => state.sequenceFragment.loading);
+  const updating = useAppSelector(state => state.sequenceFragment.updating);
+  const updateSuccess = useAppSelector(state => state.sequenceFragment.updateSuccess);
 
   const handleClose = () => {
-    navigate('/sequence');
+    navigate('/sequence-fragment');
   };
 
   useEffect(() => {
@@ -38,6 +41,7 @@ export const SequenceUpdate = () => {
       dispatch(getEntity(id));
     }
 
+    dispatch(getSequences({}));
     dispatch(getFragments({}));
   }, []);
 
@@ -49,9 +53,10 @@ export const SequenceUpdate = () => {
 
   const saveEntity = values => {
     const entity = {
-      ...sequenceEntity,
+      ...sequenceFragmentEntity,
       ...values,
-      fragments: mapIdList(values.fragments),
+      sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
+      fragment: fragments.find(it => it.id.toString() === values.fragment.toString()),
     };
 
     if (isNew) {
@@ -65,16 +70,17 @@ export const SequenceUpdate = () => {
     isNew
       ? {}
       : {
-          ...sequenceEntity,
-          fragments: sequenceEntity?.fragments?.map(e => e.id.toString()),
+          ...sequenceFragmentEntity,
+          sequence: sequenceFragmentEntity?.sequence?.id,
+          fragment: sequenceFragmentEntity?.fragment?.id,
         };
 
   return (
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="eduApp.sequence.home.createOrEditLabel" data-cy="SequenceCreateUpdateHeading">
-            <Translate contentKey="eduApp.sequence.home.createOrEditLabel">Create or edit a Sequence</Translate>
+          <h2 id="eduApp.sequenceFragment.home.createOrEditLabel" data-cy="SequenceFragmentCreateUpdateHeading">
+            <Translate contentKey="eduApp.sequenceFragment.home.createOrEditLabel">Create or edit a SequenceFragment</Translate>
           </h2>
         </Col>
       </Row>
@@ -89,28 +95,44 @@ export const SequenceUpdate = () => {
                   name="id"
                   required
                   readOnly
-                  id="sequence-id"
+                  id="sequence-fragment-id"
                   label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
               ) : null}
               <ValidatedField
-                label={translate('eduApp.sequence.name')}
-                id="sequence-name"
-                name="name"
-                data-cy="name"
+                label={translate('eduApp.sequenceFragment.order')}
+                id="sequence-fragment-order"
+                name="order"
+                data-cy="order"
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
+                  validate: v => isNumber(v) || translate('entity.validation.number'),
                 }}
               />
               <ValidatedField
-                label={translate('eduApp.sequence.fragments')}
-                id="sequence-fragments"
-                data-cy="fragments"
+                id="sequence-fragment-sequence"
+                name="sequence"
+                data-cy="sequence"
+                label={translate('eduApp.sequenceFragment.sequence')}
                 type="select"
-                multiple
-                name="fragments"
+              >
+                <option value="" key="0" />
+                {sequences
+                  ? sequences.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                id="sequence-fragment-fragment"
+                name="fragment"
+                data-cy="fragment"
+                label={translate('eduApp.sequenceFragment.fragment')}
+                type="select"
               >
                 <option value="" key="0" />
                 {fragments
@@ -121,7 +143,7 @@ export const SequenceUpdate = () => {
                     ))
                   : null}
               </ValidatedField>
-              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/sequence" replace color="info">
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/sequence-fragment" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
@@ -142,4 +164,4 @@ export const SequenceUpdate = () => {
   );
 };
 
-export default SequenceUpdate;
+export default SequenceFragmentUpdate;

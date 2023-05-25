@@ -2,8 +2,6 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -11,11 +9,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * A Sequence.
+ * A SequenceFragment.
  */
-@Document(collection = "sequence")
+@Document(collection = "sequence_fragment")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class Sequence implements Serializable {
+public class SequenceFragment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,13 +21,18 @@ public class Sequence implements Serializable {
     private String id;
 
     @NotNull
-    @Field("name")
-    private String name;
+    @Field("order")
+    private Integer order;
 
     @DBRef
-    @Field("fragments")
+    @Field("sequence")
+    @JsonIgnoreProperties(value = { "fragments" }, allowSetters = true)
+    private Sequence sequence;
+
+    @DBRef
+    @Field("fragment")
     @JsonIgnoreProperties(value = { "activity", "abstractActivities", "modules", "sequences", "setofs" }, allowSetters = true)
-    private Set<Fragment> fragments = new HashSet<>();
+    private Fragment fragment;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -37,7 +40,7 @@ public class Sequence implements Serializable {
         return this.id;
     }
 
-    public Sequence id(String id) {
+    public SequenceFragment id(String id) {
         this.setId(id);
         return this;
     }
@@ -46,41 +49,42 @@ public class Sequence implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return this.name;
+    public Integer getOrder() {
+        return this.order;
     }
 
-    public Sequence name(String name) {
-        this.setName(name);
+    public SequenceFragment order(Integer order) {
+        this.setOrder(order);
         return this;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 
-    public Set<Fragment> getFragments() {
-        return this.fragments;
+    public Sequence getSequence() {
+        return this.sequence;
     }
 
-    public void setFragments(Set<Fragment> fragments) {
-        this.fragments = fragments;
+    public void setSequence(Sequence sequence) {
+        this.sequence = sequence;
     }
 
-    public Sequence fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
+    public SequenceFragment sequence(Sequence sequence) {
+        this.setSequence(sequence);
         return this;
     }
 
-    public Sequence addFragments(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.getSequences().add(this);
-        return this;
+    public Fragment getFragment() {
+        return this.fragment;
     }
 
-    public Sequence removeFragments(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.getSequences().remove(this);
+    public void setFragment(Fragment fragment) {
+        this.fragment = fragment;
+    }
+
+    public SequenceFragment fragment(Fragment fragment) {
+        this.setFragment(fragment);
         return this;
     }
 
@@ -91,10 +95,10 @@ public class Sequence implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Sequence)) {
+        if (!(o instanceof SequenceFragment)) {
             return false;
         }
-        return id != null && id.equals(((Sequence) o).id);
+        return id != null && id.equals(((SequenceFragment) o).id);
     }
 
     @Override
@@ -106,9 +110,9 @@ public class Sequence implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Sequence{" +
+        return "SequenceFragment{" +
             "id=" + getId() +
-            ", name='" + getName() + "'" +
+            ", order=" + getOrder() +
             "}";
     }
 }

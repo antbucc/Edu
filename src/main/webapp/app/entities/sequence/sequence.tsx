@@ -52,7 +52,7 @@ export const Sequence = () => {
                   <Translate contentKey="eduApp.sequence.id">ID</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.sequence.title">Title</Translate>
+                  <Translate contentKey="eduApp.sequence.name">Name</Translate>
                 </th>
                 <th>
                   <Translate contentKey="eduApp.sequence.fragments">Fragments</Translate>
@@ -68,7 +68,7 @@ export const Sequence = () => {
                       {sequence.id}
                     </Button>
                   </td>
-                  <td>{sequence.title}</td>
+                  <td>{sequence.name}</td>
                   <td>
                     {sequence.fragments
                       ? sequence.fragments.map((val, j) => (

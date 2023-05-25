@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { getEntity } from './sequence.reducer';
+import { getEntity } from './sequence-fragment.reducer';
 
-export const SequenceDetail = () => {
+export const SequenceFragmentDetail = () => {
   const dispatch = useAppDispatch();
 
   const { id } = useParams<'id'>();
@@ -18,12 +18,12 @@ export const SequenceDetail = () => {
     dispatch(getEntity(id));
   }, []);
 
-  const sequenceEntity = useAppSelector(state => state.sequence.entity);
+  const sequenceFragmentEntity = useAppSelector(state => state.sequenceFragment.entity);
   return (
     <Row>
       <Col md="8">
-        <h2 data-cy="sequenceDetailsHeading">
-          <Translate contentKey="eduApp.sequence.detail.title">Sequence</Translate>
+        <h2 data-cy="sequenceFragmentDetailsHeading">
+          <Translate contentKey="eduApp.sequenceFragment.detail.title">SequenceFragment</Translate>
         </h2>
         <dl className="jh-entity-details">
           <dt>
@@ -31,35 +31,30 @@ export const SequenceDetail = () => {
               <Translate contentKey="global.field.id">ID</Translate>
             </span>
           </dt>
-          <dd>{sequenceEntity.id}</dd>
+          <dd>{sequenceFragmentEntity.id}</dd>
           <dt>
-            <span id="name">
-              <Translate contentKey="eduApp.sequence.name">Name</Translate>
+            <span id="order">
+              <Translate contentKey="eduApp.sequenceFragment.order">Order</Translate>
             </span>
           </dt>
-          <dd>{sequenceEntity.name}</dd>
+          <dd>{sequenceFragmentEntity.order}</dd>
           <dt>
-            <Translate contentKey="eduApp.sequence.fragments">Fragments</Translate>
+            <Translate contentKey="eduApp.sequenceFragment.sequence">Sequence</Translate>
           </dt>
-          <dd>
-            {sequenceEntity.fragments
-              ? sequenceEntity.fragments.map((val, i) => (
-                  <span key={val.id}>
-                    <a>{val.id}</a>
-                    {sequenceEntity.fragments && i === sequenceEntity.fragments.length - 1 ? '' : ', '}
-                  </span>
-                ))
-              : null}
-          </dd>
+          <dd>{sequenceFragmentEntity.sequence ? sequenceFragmentEntity.sequence.id : ''}</dd>
+          <dt>
+            <Translate contentKey="eduApp.sequenceFragment.fragment">Fragment</Translate>
+          </dt>
+          <dd>{sequenceFragmentEntity.fragment ? sequenceFragmentEntity.fragment.id : ''}</dd>
         </dl>
-        <Button tag={Link} to="/sequence" replace color="info" data-cy="entityDetailsBackButton">
+        <Button tag={Link} to="/sequence-fragment" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.back">Back</Translate>
           </span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/sequence/${sequenceEntity.id}/edit`} replace color="primary">
+        <Button tag={Link} to={`/sequence-fragment/${sequenceFragmentEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.edit">Edit</Translate>
@@ -70,4 +65,4 @@ export const SequenceDetail = () => {
   );
 };
 
-export default SequenceDetail;
+export default SequenceFragmentDetail;
