@@ -42,8 +42,8 @@ public class SequenceServiceImpl implements SequenceService {
         return sequenceRepository
             .findById(sequence.getId())
             .map(existingSequence -> {
-                if (sequence.getName() != null) {
-                    existingSequence.setName(sequence.getName());
+                if (sequence.getTitle() != null) {
+                    existingSequence.setTitle(sequence.getTitle());
                 }
 
                 return existingSequence;

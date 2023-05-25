@@ -34,6 +34,11 @@ public class Fragment implements Serializable {
     private Set<AbstractActivity> abstractActivities = new HashSet<>();
 
     @DBRef
+    @Field("sequence")
+    @JsonIgnoreProperties(value = { "sequence", "fragment" }, allowSetters = true)
+    private Set<SequenceFragment> sequences = new HashSet<>();
+
+    @DBRef
     @Field("modules")
     @JsonIgnoreProperties(value = { "scenario", "fragments" }, allowSetters = true)
     private Set<Module> modules = new HashSet<>();
@@ -106,6 +111,37 @@ public class Fragment implements Serializable {
     public Fragment removeAbstractActivity(AbstractActivity abstractActivity) {
         this.abstractActivities.remove(abstractActivity);
         abstractActivity.getFragments().remove(this);
+        return this;
+    }
+
+    public Set<SequenceFragment> getSequences() {
+        return this.sequences;
+    }
+
+    public void setSequences(Set<SequenceFragment> sequenceFragments) {
+        if (this.sequences != null) {
+            this.sequences.forEach(i -> i.setFragment(null));
+        }
+        if (sequenceFragments != null) {
+            sequenceFragments.forEach(i -> i.setFragment(this));
+        }
+        this.sequences = sequenceFragments;
+    }
+
+    public Fragment sequences(Set<SequenceFragment> sequenceFragments) {
+        this.setSequences(sequenceFragments);
+        return this;
+    }
+
+    public Fragment addSequence(SequenceFragment sequenceFragment) {
+        this.sequences.add(sequenceFragment);
+        sequenceFragment.setFragment(this);
+        return this;
+    }
+
+    public Fragment removeSequence(SequenceFragment sequenceFragment) {
+        this.sequences.remove(sequenceFragment);
+        sequenceFragment.setFragment(null);
         return this;
     }
 

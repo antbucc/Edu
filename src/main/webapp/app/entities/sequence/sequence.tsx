@@ -52,7 +52,7 @@ export const Sequence = () => {
                   <Translate contentKey="eduApp.sequence.id">ID</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.sequence.name">Name</Translate>
+                  <Translate contentKey="eduApp.sequence.title">Title</Translate>
                 </th>
                 <th />
               </tr>
@@ -65,7 +65,7 @@ export const Sequence = () => {
                       {sequence.id}
                     </Button>
                   </td>
-                  <td>{sequence.name}</td>
+                  <td>{sequence.title}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/sequence/${sequence.id}`} color="info" size="sm" data-cy="entityDetailsButton">

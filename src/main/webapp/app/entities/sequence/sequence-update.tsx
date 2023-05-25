@@ -88,10 +88,10 @@ export const SequenceUpdate = () => {
                 />
               ) : null}
               <ValidatedField
-                label={translate('eduApp.sequence.name')}
-                id="sequence-name"
-                name="name"
-                data-cy="name"
+                label={translate('eduApp.sequence.title')}
+                id="sequence-title"
+                name="title"
+                data-cy="title"
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
