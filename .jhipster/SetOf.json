@@ -17,11 +17,10 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityField": "title",
       "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "setOf",
-      "ownerSide": false,
-      "relationshipName": "fragment",
+      "otherEntityRelationshipName": "setof",
+      "ownerSide": true,
+      "relationshipName": "fragments",
       "relationshipType": "many-to-many"
     }
   ],

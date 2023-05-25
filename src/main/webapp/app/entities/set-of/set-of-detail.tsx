@@ -38,6 +38,19 @@ export const SetOfDetail = () => {
             </span>
           </dt>
           <dd>{setOfEntity.title}</dd>
+          <dt>
+            <Translate contentKey="eduApp.setOf.fragments">Fragments</Translate>
+          </dt>
+          <dd>
+            {setOfEntity.fragments
+              ? setOfEntity.fragments.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.id}</a>
+                    {setOfEntity.fragments && i === setOfEntity.fragments.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/set-of" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -10,14 +10,14 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IActivity } from 'app/shared/model/activity.model';
 import { getEntities as getActivities } from 'app/entities/activity/activity.reducer';
-import { ISetOf } from 'app/shared/model/set-of.model';
-import { getEntities as getSetOfs } from 'app/entities/set-of/set-of.reducer';
-import { ISequence } from 'app/shared/model/sequence.model';
-import { getEntities as getSequences } from 'app/entities/sequence/sequence.reducer';
 import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 import { getEntities as getAbstractActivities } from 'app/entities/abstract-activity/abstract-activity.reducer';
 import { IModule } from 'app/shared/model/module.model';
 import { getEntities as getModules } from 'app/entities/module/module.reducer';
+import { ISequence } from 'app/shared/model/sequence.model';
+import { getEntities as getSequences } from 'app/entities/sequence/sequence.reducer';
+import { ISetOf } from 'app/shared/model/set-of.model';
+import { getEntities as getSetOfs } from 'app/entities/set-of/set-of.reducer';
 import { IFragment } from 'app/shared/model/fragment.model';
 import { getEntity, updateEntity, createEntity, reset } from './fragment.reducer';
 
@@ -30,10 +30,10 @@ export const FragmentUpdate = () => {
   const isNew = id === undefined;
 
   const activities = useAppSelector(state => state.activity.entities);
-  const setOfs = useAppSelector(state => state.setOf.entities);
-  const sequences = useAppSelector(state => state.sequence.entities);
   const abstractActivities = useAppSelector(state => state.abstractActivity.entities);
   const modules = useAppSelector(state => state.module.entities);
+  const sequences = useAppSelector(state => state.sequence.entities);
+  const setOfs = useAppSelector(state => state.setOf.entities);
   const fragmentEntity = useAppSelector(state => state.fragment.entity);
   const loading = useAppSelector(state => state.fragment.loading);
   const updating = useAppSelector(state => state.fragment.updating);
@@ -51,10 +51,10 @@ export const FragmentUpdate = () => {
     }
 
     dispatch(getActivities({}));
-    dispatch(getSetOfs({}));
-    dispatch(getSequences({}));
     dispatch(getAbstractActivities({}));
     dispatch(getModules({}));
+    dispatch(getSequences({}));
+    dispatch(getSetOfs({}));
   }, []);
 
   useEffect(() => {
@@ -67,8 +67,6 @@ export const FragmentUpdate = () => {
     const entity = {
       ...fragmentEntity,
       ...values,
-      setOfs: mapIdList(values.setOfs),
-      sequences: mapIdList(values.sequences),
       abstractActivities: mapIdList(values.abstractActivities),
       activity: activities.find(it => it.id.toString() === values.activity.toString()),
     };
@@ -86,8 +84,6 @@ export const FragmentUpdate = () => {
       : {
           ...fragmentEntity,
           activity: fragmentEntity?.activity?.id,
-          setOfs: fragmentEntity?.setOfs?.map(e => e.id.toString()),
-          sequences: fragmentEntity?.sequences?.map(e => e.id.toString()),
           abstractActivities: fragmentEntity?.abstractActivities?.map(e => e.id.toString()),
         };
 
@@ -127,40 +123,6 @@ export const FragmentUpdate = () => {
                 <option value="" key="0" />
                 {activities
                   ? activities.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField
-                label={translate('eduApp.fragment.setOf')}
-                id="fragment-setOf"
-                data-cy="setOf"
-                type="select"
-                multiple
-                name="setOfs"
-              >
-                <option value="" key="0" />
-                {setOfs
-                  ? setOfs.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField
-                label={translate('eduApp.fragment.sequence')}
-                id="fragment-sequence"
-                data-cy="sequence"
-                type="select"
-                multiple
-                name="sequences"
-              >
-                <option value="" key="0" />
-                {sequences
-                  ? sequences.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
                       </option>
