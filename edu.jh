@@ -198,8 +198,9 @@ relationship ManyToMany {
   SetOf{ Fragment(title) } to Fragment{ SetOf(title) }
 }
 
+
 relationship OneToMany {
- AbstractActivity{ Goal(title) } to Goal{ AbstractActivity(title) }
+  AbstractActivity{activity} to Goal{goals}
 }
 
 
