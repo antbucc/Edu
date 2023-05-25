@@ -41,13 +41,6 @@
       "relationshipType": "many-to-many"
     },
     {
-      "otherEntityName": "sequence",
-      "otherEntityRelationshipName": "fragments",
-      "ownerSide": false,
-      "relationshipName": "sequences",
-      "relationshipType": "many-to-many"
-    },
-    {
       "otherEntityName": "setOf",
       "otherEntityRelationshipName": "fragments",
       "ownerSide": false,

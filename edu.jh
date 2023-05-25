@@ -191,9 +191,7 @@ relationship ManyToMany {
 
 
 
-relationship ManyToMany {
-  Sequence{fragments} to Fragment{sequences}
-}
+
 
 relationship ManyToMany {
   SetOf{fragments} to Fragment{setof}
