@@ -38,6 +38,12 @@ public interface SequenceService {
      * @return the list of entities.
      */
     List<Sequence> findAll();
+    /**
+     * Get all the Sequence where Fragment is {@code null}.
+     *
+     * @return the {@link List} of entities.
+     */
+    List<Sequence> findAllWhereFragmentIsNull();
 
     /**
      * Get the "id" sequence.
