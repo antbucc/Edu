@@ -9,11 +9,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * A SequenceFragment.
+ * A SetOfFragment.
  */
-@Document(collection = "sequence_fragment")
+@Document(collection = "set_of_fragment")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class SequenceFragment implements Serializable {
+public class SetOfFragment implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,9 +25,9 @@ public class SequenceFragment implements Serializable {
     private Integer order;
 
     @DBRef
-    @Field("sequence")
-    @JsonIgnoreProperties(value = { "fragmemts" }, allowSetters = true)
-    private Sequence sequence;
+    @Field("setOf")
+    @JsonIgnoreProperties(value = { "fragments", "fragmemts" }, allowSetters = true)
+    private SetOf setOf;
 
     @DBRef
     @Field("fragment")
@@ -40,7 +40,7 @@ public class SequenceFragment implements Serializable {
         return this.id;
     }
 
-    public SequenceFragment id(String id) {
+    public SetOfFragment id(String id) {
         this.setId(id);
         return this;
     }
@@ -53,7 +53,7 @@ public class SequenceFragment implements Serializable {
         return this.order;
     }
 
-    public SequenceFragment order(Integer order) {
+    public SetOfFragment order(Integer order) {
         this.setOrder(order);
         return this;
     }
@@ -62,16 +62,16 @@ public class SequenceFragment implements Serializable {
         this.order = order;
     }
 
-    public Sequence getSequence() {
-        return this.sequence;
+    public SetOf getSetOf() {
+        return this.setOf;
     }
 
-    public void setSequence(Sequence sequence) {
-        this.sequence = sequence;
+    public void setSetOf(SetOf setOf) {
+        this.setOf = setOf;
     }
 
-    public SequenceFragment sequence(Sequence sequence) {
-        this.setSequence(sequence);
+    public SetOfFragment setOf(SetOf setOf) {
+        this.setSetOf(setOf);
         return this;
     }
 
@@ -83,7 +83,7 @@ public class SequenceFragment implements Serializable {
         this.fragment = fragment;
     }
 
-    public SequenceFragment fragment(Fragment fragment) {
+    public SetOfFragment fragment(Fragment fragment) {
         this.setFragment(fragment);
         return this;
     }
@@ -95,10 +95,10 @@ public class SequenceFragment implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof SequenceFragment)) {
+        if (!(o instanceof SetOfFragment)) {
             return false;
         }
-        return id != null && id.equals(((SequenceFragment) o).id);
+        return id != null && id.equals(((SetOfFragment) o).id);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class SequenceFragment implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "SequenceFragment{" +
+        return "SetOfFragment{" +
             "id=" + getId() +
             ", order=" + getOrder() +
             "}";
