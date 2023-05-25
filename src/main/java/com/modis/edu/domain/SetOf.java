@@ -2,8 +2,6 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -25,9 +23,7 @@ public class SetOf implements Serializable {
     private String title;
 
     @DBRef
-    @Field("fragments")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "sequence", "modules", "setOfs" }, allowSetters = true)
-    private Set<Fragment> fragments = new HashSet<>();
+    private Fragment fragment;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -57,28 +53,22 @@ public class SetOf implements Serializable {
         this.title = title;
     }
 
-    public Set<Fragment> getFragments() {
-        return this.fragments;
+    public Fragment getFragment() {
+        return this.fragment;
     }
 
-    public void setFragments(Set<Fragment> fragments) {
-        this.fragments = fragments;
+    public void setFragment(Fragment fragment) {
+        if (this.fragment != null) {
+            this.fragment.setSetOf(null);
+        }
+        if (fragment != null) {
+            fragment.setSetOf(this);
+        }
+        this.fragment = fragment;
     }
 
-    public SetOf fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
-        return this;
-    }
-
-    public SetOf addFragment(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.getSetOfs().add(this);
-        return this;
-    }
-
-    public SetOf removeFragment(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.getSetOfs().remove(this);
+    public SetOf fragment(Fragment fragment) {
+        this.setFragment(fragment);
         return this;
     }
 

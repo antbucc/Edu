@@ -42,18 +42,18 @@
     },
     {
       "otherEntityField": "title",
+      "otherEntityName": "setOf",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": true,
+      "relationshipName": "setOf",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "title",
       "otherEntityName": "module",
       "otherEntityRelationshipName": "fragment",
       "ownerSide": false,
       "relationshipName": "module",
-      "relationshipType": "many-to-many"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "setOf",
-      "otherEntityRelationshipName": "fragment",
-      "ownerSide": false,
-      "relationshipName": "setOf",
       "relationshipType": "many-to-many"
     }
   ],

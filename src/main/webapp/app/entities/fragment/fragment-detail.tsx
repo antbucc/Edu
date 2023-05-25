@@ -50,6 +50,10 @@ export const FragmentDetail = () => {
             <Translate contentKey="eduApp.fragment.sequence">Sequence</Translate>
           </dt>
           <dd>{fragmentEntity.sequence ? fragmentEntity.sequence.title : ''}</dd>
+          <dt>
+            <Translate contentKey="eduApp.fragment.setOf">Set Of</Translate>
+          </dt>
+          <dd>{fragmentEntity.setOf ? fragmentEntity.setOf.title : ''}</dd>
         </dl>
         <Button tag={Link} to="/fragment" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
