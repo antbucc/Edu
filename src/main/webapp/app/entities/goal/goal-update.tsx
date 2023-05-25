@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IConcept } from 'app/shared/model/concept.model';
 import { getEntities as getConcepts } from 'app/entities/concept/concept.reducer';
+import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
+import { getEntities as getAbstractActivities } from 'app/entities/abstract-activity/abstract-activity.reducer';
 import { IGoal } from 'app/shared/model/goal.model';
 import { getEntity, updateEntity, createEntity, reset } from './goal.reducer';
 
@@ -22,6 +24,7 @@ export const GoalUpdate = () => {
   const isNew = id === undefined;
 
   const concepts = useAppSelector(state => state.concept.entities);
+  const abstractActivities = useAppSelector(state => state.abstractActivity.entities);
   const goalEntity = useAppSelector(state => state.goal.entity);
   const loading = useAppSelector(state => state.goal.loading);
   const updating = useAppSelector(state => state.goal.updating);
@@ -39,6 +42,7 @@ export const GoalUpdate = () => {
     }
 
     dispatch(getConcepts({}));
+    dispatch(getAbstractActivities({}));
   }, []);
 
   useEffect(() => {
@@ -52,6 +56,7 @@ export const GoalUpdate = () => {
       ...goalEntity,
       ...values,
       concepts: mapIdList(values.concepts),
+      abstractActivities: mapIdList(values.abstractActivities),
     };
 
     if (isNew) {
@@ -67,6 +72,7 @@ export const GoalUpdate = () => {
       : {
           ...goalEntity,
           concepts: goalEntity?.concepts?.map(e => e.id.toString()),
+          abstractActivities: goalEntity?.abstractActivities?.map(e => e.id.toString()),
         };
 
   return (
@@ -106,6 +112,23 @@ export const GoalUpdate = () => {
                 <option value="" key="0" />
                 {concepts
                   ? concepts.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                label={translate('eduApp.goal.abstractActivity')}
+                id="goal-abstractActivity"
+                data-cy="abstractActivity"
+                type="select"
+                multiple
+                name="abstractActivities"
+              >
+                <option value="" key="0" />
+                {abstractActivities
+                  ? abstractActivities.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
                       </option>

@@ -19,7 +19,8 @@
       },
       "id": "ID",
       "title": "Title",
-      "fragment": "Fragment"
+      "fragment": "Fragment",
+      "goal": "Goal"
     }
   }
 }

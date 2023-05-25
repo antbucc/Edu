@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IFragment } from 'app/shared/model/fragment.model';
 import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
+import { IGoal } from 'app/shared/model/goal.model';
+import { getEntities as getGoals } from 'app/entities/goal/goal.reducer';
 import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 import { getEntity, updateEntity, createEntity, reset } from './abstract-activity.reducer';
 
@@ -22,6 +24,7 @@ export const AbstractActivityUpdate = () => {
   const isNew = id === undefined;
 
   const fragments = useAppSelector(state => state.fragment.entities);
+  const goals = useAppSelector(state => state.goal.entities);
   const abstractActivityEntity = useAppSelector(state => state.abstractActivity.entity);
   const loading = useAppSelector(state => state.abstractActivity.loading);
   const updating = useAppSelector(state => state.abstractActivity.updating);
@@ -39,6 +42,7 @@ export const AbstractActivityUpdate = () => {
     }
 
     dispatch(getFragments({}));
+    dispatch(getGoals({}));
   }, []);
 
   useEffect(() => {

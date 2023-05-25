@@ -57,6 +57,9 @@ export const Goal = () => {
                 <th>
                   <Translate contentKey="eduApp.goal.concept">Concept</Translate>
                 </th>
+                <th>
+                  <Translate contentKey="eduApp.goal.abstractActivity">Abstract Activity</Translate>
+                </th>
                 <th />
               </tr>
             </thead>
@@ -75,6 +78,16 @@ export const Goal = () => {
                           <span key={j}>
                             <Link to={`/concept/${val.id}`}>{val.title}</Link>
                             {j === goal.concepts.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
+                  </td>
+                  <td>
+                    {goal.abstractActivities
+                      ? goal.abstractActivities.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/abstract-activity/${val.id}`}>{val.title}</Link>
+                            {j === goal.abstractActivities.length - 1 ? '' : ', '}
                           </span>
                         ))
                       : null}
