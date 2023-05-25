@@ -20,10 +20,10 @@
       "id": "ID",
       "title": "Title",
       "activity": "Activity",
-      "setOf": "Set Of",
-      "sequence": "Sequence",
       "abstractActivity": "Abstract Activity",
-      "module": "Module"
+      "module": "Module",
+      "sequences": "Sequences",
+      "setof": "Setof"
     }
   }
 }

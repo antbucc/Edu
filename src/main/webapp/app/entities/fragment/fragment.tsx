@@ -58,12 +58,6 @@ export const Fragment = () => {
                   <Translate contentKey="eduApp.fragment.activity">Activity</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.fragment.setOf">Set Of</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="eduApp.fragment.sequence">Sequence</Translate>
-                </th>
-                <th>
                   <Translate contentKey="eduApp.fragment.abstractActivity">Abstract Activity</Translate>
                 </th>
                 <th />
@@ -79,26 +73,6 @@ export const Fragment = () => {
                   </td>
                   <td>{fragment.title}</td>
                   <td>{fragment.activity ? <Link to={`/activity/${fragment.activity.id}`}>{fragment.activity.title}</Link> : ''}</td>
-                  <td>
-                    {fragment.setOfs
-                      ? fragment.setOfs.map((val, j) => (
-                          <span key={j}>
-                            <Link to={`/set-of/${val.id}`}>{val.title}</Link>
-                            {j === fragment.setOfs.length - 1 ? '' : ', '}
-                          </span>
-                        ))
-                      : null}
-                  </td>
-                  <td>
-                    {fragment.sequences
-                      ? fragment.sequences.map((val, j) => (
-                          <span key={j}>
-                            <Link to={`/sequence/${val.id}`}>{val.title}</Link>
-                            {j === fragment.sequences.length - 1 ? '' : ', '}
-                          </span>
-                        ))
-                      : null}
-                  </td>
                   <td>
                     {fragment.abstractActivities
                       ? fragment.abstractActivities.map((val, j) => (

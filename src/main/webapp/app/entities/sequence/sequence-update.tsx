@@ -51,6 +51,7 @@ export const SequenceUpdate = () => {
     const entity = {
       ...sequenceEntity,
       ...values,
+      fragments: mapIdList(values.fragments),
     };
 
     if (isNew) {
@@ -65,6 +66,7 @@ export const SequenceUpdate = () => {
       ? {}
       : {
           ...sequenceEntity,
+          fragments: sequenceEntity?.fragments?.map(e => e.id.toString()),
         };
 
   return (
@@ -93,6 +95,23 @@ export const SequenceUpdate = () => {
                 />
               ) : null}
               <ValidatedField label={translate('eduApp.sequence.title')} id="sequence-title" name="title" data-cy="title" type="text" />
+              <ValidatedField
+                label={translate('eduApp.sequence.fragments')}
+                id="sequence-fragments"
+                data-cy="fragments"
+                type="select"
+                multiple
+                name="fragments"
+              >
+                <option value="" key="0" />
+                {fragments
+                  ? fragments.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/sequence" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

@@ -51,6 +51,7 @@ export const SetOfUpdate = () => {
     const entity = {
       ...setOfEntity,
       ...values,
+      fragments: mapIdList(values.fragments),
     };
 
     if (isNew) {
@@ -65,6 +66,7 @@ export const SetOfUpdate = () => {
       ? {}
       : {
           ...setOfEntity,
+          fragments: setOfEntity?.fragments?.map(e => e.id.toString()),
         };
 
   return (
@@ -93,6 +95,23 @@ export const SetOfUpdate = () => {
                 />
               ) : null}
               <ValidatedField label={translate('eduApp.setOf.title')} id="set-of-title" name="title" data-cy="title" type="text" />
+              <ValidatedField
+                label={translate('eduApp.setOf.fragments')}
+                id="set-of-fragments"
+                data-cy="fragments"
+                type="select"
+                multiple
+                name="fragments"
+              >
+                <option value="" key="0" />
+                {fragments
+                  ? fragments.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/set-of" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

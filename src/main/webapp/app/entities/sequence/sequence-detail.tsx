@@ -38,6 +38,19 @@ export const SequenceDetail = () => {
             </span>
           </dt>
           <dd>{sequenceEntity.title}</dd>
+          <dt>
+            <Translate contentKey="eduApp.sequence.fragments">Fragments</Translate>
+          </dt>
+          <dd>
+            {sequenceEntity.fragments
+              ? sequenceEntity.fragments.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.id}</a>
+                    {sequenceEntity.fragments && i === sequenceEntity.fragments.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/sequence" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

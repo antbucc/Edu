@@ -26,22 +26,6 @@
     },
     {
       "otherEntityField": "title",
-      "otherEntityName": "setOf",
-      "otherEntityRelationshipName": "fragment",
-      "ownerSide": true,
-      "relationshipName": "setOf",
-      "relationshipType": "many-to-many"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "sequence",
-      "otherEntityRelationshipName": "fragment",
-      "ownerSide": true,
-      "relationshipName": "sequence",
-      "relationshipType": "many-to-many"
-    },
-    {
-      "otherEntityField": "title",
       "otherEntityName": "abstractActivity",
       "otherEntityRelationshipName": "fragment",
       "ownerSide": true,
@@ -54,6 +38,20 @@
       "otherEntityRelationshipName": "fragment",
       "ownerSide": false,
       "relationshipName": "module",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "sequence",
+      "otherEntityRelationshipName": "fragments",
+      "ownerSide": false,
+      "relationshipName": "sequences",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "setOf",
+      "otherEntityRelationshipName": "fragments",
+      "ownerSide": false,
+      "relationshipName": "setof",
       "relationshipType": "many-to-many"
     }
   ],
