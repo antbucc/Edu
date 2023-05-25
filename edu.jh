@@ -217,7 +217,7 @@ relationship ManyToMany {
 
 
 relationship ManyToOne {
-  SequenceFragment{ Sequence(title) } to Sequence { Fragmemt(title) }
+  SequenceFragment{ Sequence(title) } to Sequence { Fragment(title) }
   SequenceFragment{ Fragment (title) } to Fragment { Sequence(title) }
 }
 
