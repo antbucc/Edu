@@ -31,7 +31,10 @@ public class AbstractActivity implements Serializable {
 
     @DBRef
     @Field("fragments")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivities", "sequences", "modules", "setOfs" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "activity", "abstractActivities", "sequences", "setOfs", "sequences", "modules", "setOfs" },
+        allowSetters = true
+    )
     private Set<Fragment> fragments = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
