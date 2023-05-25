@@ -30,12 +30,7 @@ public class AbstractActivity implements Serializable {
     private Set<Goal> goals = new HashSet<>();
 
     @DBRef
-    @Field("fragments")
-    @JsonIgnoreProperties(
-        value = { "activity", "abstractActivities", "sequences", "setOfs", "sequences", "modules", "setOfs" },
-        allowSetters = true
-    )
-    private Set<Fragment> fragments = new HashSet<>();
+    private Fragment fragment;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -90,34 +85,22 @@ public class AbstractActivity implements Serializable {
         return this;
     }
 
-    public Set<Fragment> getFragments() {
-        return this.fragments;
+    public Fragment getFragment() {
+        return this.fragment;
     }
 
-    public void setFragments(Set<Fragment> fragments) {
-        if (this.fragments != null) {
-            this.fragments.forEach(i -> i.removeAbstractActivity(this));
+    public void setFragment(Fragment fragment) {
+        if (this.fragment != null) {
+            this.fragment.setAbstractActivity(null);
         }
-        if (fragments != null) {
-            fragments.forEach(i -> i.addAbstractActivity(this));
+        if (fragment != null) {
+            fragment.setAbstractActivity(this);
         }
-        this.fragments = fragments;
+        this.fragment = fragment;
     }
 
-    public AbstractActivity fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
-        return this;
-    }
-
-    public AbstractActivity addFragment(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.getAbstractActivities().add(this);
-        return this;
-    }
-
-    public AbstractActivity removeFragment(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.getAbstractActivities().remove(this);
+    public AbstractActivity fragment(Fragment fragment) {
+        this.setFragment(fragment);
         return this;
     }
 

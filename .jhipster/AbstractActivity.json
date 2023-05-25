@@ -30,7 +30,7 @@
       "otherEntityRelationshipName": "abstractActivity",
       "ownerSide": false,
       "relationshipName": "fragment",
-      "relationshipType": "many-to-many"
+      "relationshipType": "one-to-one"
     }
   ],
   "service": "serviceImpl"

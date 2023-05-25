@@ -23,14 +23,6 @@
       "otherEntityRelationshipName": "sequence",
       "relationshipName": "fragmemt",
       "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "sequence",
-      "ownerSide": false,
-      "relationshipName": "fragment",
-      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"

@@ -29,26 +29,9 @@ public class Fragment implements Serializable {
     private Activity activity;
 
     @DBRef
-    @Field("abstractActivities")
-    @JsonIgnoreProperties(value = { "goals", "fragments" }, allowSetters = true)
-    private Set<AbstractActivity> abstractActivities = new HashSet<>();
+    @Field("abstractActivity")
+    private AbstractActivity abstractActivity;
 
-    @DBRef
-    @Field("sequences")
-    @DBRef
-    @Field("sequence")
-    @JsonIgnoreProperties(value = { "fragmemts", "fragments" }, allowSetters = true)
-    private Set<Sequence> sequences = new HashSet<>();
-
-    @DBRef
-    @Field("setOfs")
-    @DBRef
-    @Field("setOfs")
-    @JsonIgnoreProperties(value = { "fragments", "fragments" }, allowSetters = true)
-    private Set<SetOf> setOfs = new HashSet<>();
-
-    @DBRef
-    @Field("sequences")
     @DBRef
     @Field("sequence")
     @JsonIgnoreProperties(value = { "sequence", "fragment" }, allowSetters = true)
@@ -61,9 +44,7 @@ public class Fragment implements Serializable {
 
     @DBRef
     @Field("setOfs")
-    @DBRef
-    @Field("setOfs")
-    @JsonIgnoreProperties(value = { "fragments", "fragments" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "fragments" }, allowSetters = true)
     private Set<SetOf> setOfs = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -107,78 +88,16 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public Set<AbstractActivity> getAbstractActivities() {
-        return this.abstractActivities;
+    public AbstractActivity getAbstractActivity() {
+        return this.abstractActivity;
     }
 
-    public void setAbstractActivities(Set<AbstractActivity> abstractActivities) {
-        this.abstractActivities = abstractActivities;
+    public void setAbstractActivity(AbstractActivity abstractActivity) {
+        this.abstractActivity = abstractActivity;
     }
 
-    public Fragment abstractActivities(Set<AbstractActivity> abstractActivities) {
-        this.setAbstractActivities(abstractActivities);
-        return this;
-    }
-
-    public Fragment addAbstractActivity(AbstractActivity abstractActivity) {
-        this.abstractActivities.add(abstractActivity);
-        abstractActivity.getFragments().add(this);
-        return this;
-    }
-
-    public Fragment removeAbstractActivity(AbstractActivity abstractActivity) {
-        this.abstractActivities.remove(abstractActivity);
-        abstractActivity.getFragments().remove(this);
-        return this;
-    }
-
-    public Set<Sequence> getSequences() {
-        return this.sequences;
-    }
-
-    public void setSequences(Set<Sequence> sequences) {
-        this.sequences = sequences;
-    }
-
-    public Fragment sequences(Set<Sequence> sequences) {
-        this.setSequences(sequences);
-        return this;
-    }
-
-    public Fragment addSequence(Sequence sequence) {
-        this.sequences.add(sequence);
-        sequence.getFragments().add(this);
-        return this;
-    }
-
-    public Fragment removeSequence(Sequence sequence) {
-        this.sequences.remove(sequence);
-        sequence.getFragments().remove(this);
-        return this;
-    }
-
-    public Set<SetOf> getSetOfs() {
-        return this.setOfs;
-    }
-
-    public void setSetOfs(Set<SetOf> setOfs) {
-        this.setOfs = setOfs;
-    }
-
-    public Fragment setOfs(Set<SetOf> setOfs) {
-        this.setSetOfs(setOfs);
-        return this;
-    }
-
-    public Fragment addSetOf(SetOf setOf) {
-        this.setOfs.add(setOf);
-        setOf.getFragments().add(this);
-        return this;
-    }
-
-    public Fragment removeSetOf(SetOf setOf) {
-        this.setOfs.remove(setOf);
-        setOf.getFragments().remove(this);
+    public Fragment abstractActivity(AbstractActivity abstractActivity) {
+        this.setAbstractActivity(abstractActivity);
         return this;
     }
 
