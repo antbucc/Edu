@@ -5,6 +5,8 @@ import com.modis.edu.repository.AbstractActivityRepository;
 import com.modis.edu.service.AbstractActivityService;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -61,6 +63,19 @@ public class AbstractActivityServiceImpl implements AbstractActivityService {
 
     public Page<AbstractActivity> findAllWithEagerRelationships(Pageable pageable) {
         return abstractActivityRepository.findAllWithEagerRelationships(pageable);
+    }
+
+    /**
+     *  Get all the abstractActivities where Fragment is {@code null}.
+     *  @return the list of entities.
+     */
+
+    public List<AbstractActivity> findAllWhereFragmentIsNull() {
+        log.debug("Request to get all abstractActivities where Fragment is null");
+        return StreamSupport
+            .stream(abstractActivityRepository.findAll().spliterator(), false)
+            .filter(abstractActivity -> abstractActivity.getFragment() == null)
+            .collect(Collectors.toList());
     }
 
     @Override

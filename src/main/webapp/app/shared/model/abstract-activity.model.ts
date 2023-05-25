@@ -5,7 +5,7 @@ export interface IAbstractActivity {
   id?: string;
   title?: string | null;
   goals?: IGoal[] | null;
-  fragments?: IFragment[] | null;
+  fragment?: IFragment | null;
 }
 
 export const defaultValue: Readonly<IAbstractActivity> = {};
