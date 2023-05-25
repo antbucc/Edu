@@ -91,8 +91,6 @@ entity SetOf {
 
 
 
-
-
 entity AbstractActivity {
  title String
 }
@@ -161,7 +159,7 @@ relationship OneToMany {
 }
 
 relationship OneToMany {
- Activity { Effect(title) } to Effect{ Activity(title) }
+Activity { Effect(title) } to Effect{ Activity(title) }
 }
 
 
@@ -197,7 +195,7 @@ relationship ManyToMany {
 
 
 relationship ManyToMany {
-  SetOf{fragments} to Fragment{setof}
+  SetOf{ Fragment(title) } to Fragment{ SetOf(title) }
 }
 
 
@@ -206,9 +204,6 @@ relationship ManyToOne {
   SequenceFragment{ Sequence(title) } to Sequence { Fragmemt(title) }
   SequenceFragment{ Fragment (title) } to Fragment { Sequence(title) }
 }
-
-
-
 
 
 
