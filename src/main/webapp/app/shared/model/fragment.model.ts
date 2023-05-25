@@ -1,8 +1,8 @@
 import { IActivity } from 'app/shared/model/activity.model';
 import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 import { ISequence } from 'app/shared/model/sequence.model';
-import { IModule } from 'app/shared/model/module.model';
 import { ISetOf } from 'app/shared/model/set-of.model';
+import { IModule } from 'app/shared/model/module.model';
 
 export interface IFragment {
   id?: string;
@@ -10,8 +10,8 @@ export interface IFragment {
   activity?: IActivity | null;
   abstractActivity?: IAbstractActivity | null;
   sequence?: ISequence | null;
+  setOf?: ISetOf | null;
   modules?: IModule[] | null;
-  setOfs?: ISetOf[] | null;
 }
 
 export const defaultValue: Readonly<IFragment> = {};
