@@ -24,14 +24,6 @@
       "ownerSide": false,
       "relationshipName": "fragment",
       "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "sequenceFragment",
-      "otherEntityRelationshipName": "sequence",
-      "ownerSide": false,
-      "relationshipName": "fragment",
-      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"
