@@ -58,7 +58,7 @@ export const Goal = () => {
                   <Translate contentKey="eduApp.goal.concept">Concept</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.goal.abstractActivity">Abstract Activity</Translate>
+                  <Translate contentKey="eduApp.goal.goals">Goals</Translate>
                 </th>
                 <th />
               </tr>
@@ -82,13 +82,7 @@ export const Goal = () => {
                         ))
                       : null}
                   </td>
-                  <td>
-                    {goal.abstractActivity ? (
-                      <Link to={`/abstract-activity/${goal.abstractActivity.id}`}>{goal.abstractActivity.title}</Link>
-                    ) : (
-                      ''
-                    )}
-                  </td>
+                  <td>{goal.goals ? <Link to={`/abstract-activity/${goal.goals.id}`}>{goal.goals.id}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/goal/${goal.id}`} color="info" size="sm" data-cy="entityDetailsButton">

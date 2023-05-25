@@ -30,9 +30,9 @@ public class Goal implements Serializable {
     private Set<Concept> concepts = new HashSet<>();
 
     @DBRef
-    @Field("abstractActivity")
-    @JsonIgnoreProperties(value = { "goals", "fragments" }, allowSetters = true)
-    private AbstractActivity abstractActivity;
+    @Field("goals")
+    @JsonIgnoreProperties(value = { "activities", "fragments" }, allowSetters = true)
+    private AbstractActivity goals;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -87,16 +87,16 @@ public class Goal implements Serializable {
         return this;
     }
 
-    public AbstractActivity getAbstractActivity() {
-        return this.abstractActivity;
+    public AbstractActivity getGoals() {
+        return this.goals;
     }
 
-    public void setAbstractActivity(AbstractActivity abstractActivity) {
-        this.abstractActivity = abstractActivity;
+    public void setGoals(AbstractActivity abstractActivity) {
+        this.goals = abstractActivity;
     }
 
-    public Goal abstractActivity(AbstractActivity abstractActivity) {
-        this.setAbstractActivity(abstractActivity);
+    public Goal goals(AbstractActivity abstractActivity) {
+        this.setGoals(abstractActivity);
         return this;
     }
 
