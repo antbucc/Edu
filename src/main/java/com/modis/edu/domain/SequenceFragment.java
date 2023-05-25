@@ -31,11 +31,6 @@ public class SequenceFragment implements Serializable {
     @JsonIgnoreProperties(value = { "fragment", "fragments" }, allowSetters = true)
     private Set<Sequence> sequences = new HashSet<>();
 
-    @DBRef
-    @Field("fragments")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "sequence", "setOf", "modules", "sequences" }, allowSetters = true)
-    private Set<Fragment> fragments = new HashSet<>();
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public String getId() {
@@ -86,31 +81,6 @@ public class SequenceFragment implements Serializable {
     public SequenceFragment removeSequence(Sequence sequence) {
         this.sequences.remove(sequence);
         sequence.getFragments().remove(this);
-        return this;
-    }
-
-    public Set<Fragment> getFragments() {
-        return this.fragments;
-    }
-
-    public void setFragments(Set<Fragment> fragments) {
-        this.fragments = fragments;
-    }
-
-    public SequenceFragment fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
-        return this;
-    }
-
-    public SequenceFragment addFragment(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.getSequences().add(this);
-        return this;
-    }
-
-    public SequenceFragment removeFragment(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.getSequences().remove(this);
         return this;
     }
 

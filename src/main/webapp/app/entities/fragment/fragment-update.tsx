@@ -18,8 +18,6 @@ import { ISetOf } from 'app/shared/model/set-of.model';
 import { getEntities as getSetOfs } from 'app/entities/set-of/set-of.reducer';
 import { IModule } from 'app/shared/model/module.model';
 import { getEntities as getModules } from 'app/entities/module/module.reducer';
-import { ISequenceFragment } from 'app/shared/model/sequence-fragment.model';
-import { getEntities as getSequenceFragments } from 'app/entities/sequence-fragment/sequence-fragment.reducer';
 import { IFragment } from 'app/shared/model/fragment.model';
 import { getEntity, updateEntity, createEntity, reset } from './fragment.reducer';
 
@@ -36,7 +34,6 @@ export const FragmentUpdate = () => {
   const sequences = useAppSelector(state => state.sequence.entities);
   const setOfs = useAppSelector(state => state.setOf.entities);
   const modules = useAppSelector(state => state.module.entities);
-  const sequenceFragments = useAppSelector(state => state.sequenceFragment.entities);
   const fragmentEntity = useAppSelector(state => state.fragment.entity);
   const loading = useAppSelector(state => state.fragment.loading);
   const updating = useAppSelector(state => state.fragment.updating);
@@ -58,7 +55,6 @@ export const FragmentUpdate = () => {
     dispatch(getSequences({}));
     dispatch(getSetOfs({}));
     dispatch(getModules({}));
-    dispatch(getSequenceFragments({}));
   }, []);
 
   useEffect(() => {
