@@ -31,6 +31,14 @@ public class Sequence implements Serializable {
     @JsonIgnoreProperties(value = { "sequence", "fragment" }, allowSetters = true)
     private Set<SequenceFragment> fragmemts = new HashSet<>();
 
+    @DBRef
+    @Field("fragments")
+    @JsonIgnoreProperties(
+        value = { "activity", "abstractActivities", "sequences", "setOfs", "sequences", "modules", "setOfs" },
+        allowSetters = true
+    )
+    private Set<Fragment> fragments = new HashSet<>();
+
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public String getId() {
@@ -87,6 +95,37 @@ public class Sequence implements Serializable {
     public Sequence removeFragmemt(SequenceFragment sequenceFragment) {
         this.fragmemts.remove(sequenceFragment);
         sequenceFragment.setSequence(null);
+        return this;
+    }
+
+    public Set<Fragment> getFragments() {
+        return this.fragments;
+    }
+
+    public void setFragments(Set<Fragment> fragments) {
+        if (this.fragments != null) {
+            this.fragments.forEach(i -> i.removeSequence(this));
+        }
+        if (fragments != null) {
+            fragments.forEach(i -> i.addSequence(this));
+        }
+        this.fragments = fragments;
+    }
+
+    public Sequence fragments(Set<Fragment> fragments) {
+        this.setFragments(fragments);
+        return this;
+    }
+
+    public Sequence addFragment(Fragment fragment) {
+        this.fragments.add(fragment);
+        fragment.getSequences().add(this);
+        return this;
+    }
+
+    public Sequence removeFragment(Fragment fragment) {
+        this.fragments.remove(fragment);
+        fragment.getSequences().remove(this);
         return this;
     }
 
