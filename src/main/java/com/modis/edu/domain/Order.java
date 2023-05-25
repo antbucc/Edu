@@ -2,8 +2,6 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -11,11 +9,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * A SequenceFragment.
+ * A Order.
  */
-@Document(collection = "sequence_fragment")
+@Document(collection = "order")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class SequenceFragment implements Serializable {
+public class Order implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -27,9 +25,8 @@ public class SequenceFragment implements Serializable {
     private Integer order;
 
     @DBRef
-    @Field("sequences")
-    @JsonIgnoreProperties(value = { "fragment", "order" }, allowSetters = true)
-    private Set<Sequence> sequences = new HashSet<>();
+    @Field("sequence")
+    private Sequence sequence;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -37,7 +34,7 @@ public class SequenceFragment implements Serializable {
         return this.id;
     }
 
-    public SequenceFragment id(String id) {
+    public Order id(String id) {
         this.setId(id);
         return this;
     }
@@ -50,7 +47,7 @@ public class SequenceFragment implements Serializable {
         return this.order;
     }
 
-    public SequenceFragment order(Integer order) {
+    public Order order(Integer order) {
         this.setOrder(order);
         return this;
     }
@@ -59,26 +56,16 @@ public class SequenceFragment implements Serializable {
         this.order = order;
     }
 
-    public Set<Sequence> getSequences() {
-        return this.sequences;
+    public Sequence getSequence() {
+        return this.sequence;
     }
 
-    public void setSequences(Set<Sequence> sequences) {
-        this.sequences = sequences;
+    public void setSequence(Sequence sequence) {
+        this.sequence = sequence;
     }
 
-    public SequenceFragment sequences(Set<Sequence> sequences) {
-        this.setSequences(sequences);
-        return this;
-    }
-
-    public SequenceFragment addSequence(Sequence sequence) {
-        this.sequences.add(sequence);
-        return this;
-    }
-
-    public SequenceFragment removeSequence(Sequence sequence) {
-        this.sequences.remove(sequence);
+    public Order sequence(Sequence sequence) {
+        this.setSequence(sequence);
         return this;
     }
 
@@ -89,10 +76,10 @@ public class SequenceFragment implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof SequenceFragment)) {
+        if (!(o instanceof Order)) {
             return false;
         }
-        return id != null && id.equals(((SequenceFragment) o).id);
+        return id != null && id.equals(((Order) o).id);
     }
 
     @Override
@@ -104,7 +91,7 @@ public class SequenceFragment implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "SequenceFragment{" +
+        return "Order{" +
             "id=" + getId() +
             ", order=" + getOrder() +
             "}";

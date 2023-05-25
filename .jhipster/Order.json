@@ -1,0 +1,30 @@
+{
+  "applications": "*",
+  "changelogDate": "20230525171337",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "order",
+  "fields": [
+    {
+      "fieldName": "order",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "Order",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "sequence",
+      "otherEntityRelationshipName": "order",
+      "ownerSide": true,
+      "relationshipName": "sequence",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

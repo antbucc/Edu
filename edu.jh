@@ -79,7 +79,7 @@ entity Sequence {
   title String required
 }
 
-entity SequenceFragment {
+entity Order {
   order Integer required
 }
 
@@ -207,9 +207,8 @@ relationship ManyToMany {
 
 
 
-relationship ManyToMany {
-  SequenceFragment{ Sequence(title) } to Sequence { Fragment(title) }
- // SequenceFragment{ Fragment (title) } to Fragment { Sequence(title) }
+relationship OneToOne {
+  Order{ Sequence(title) } to Sequence { Order(order) }
 }
 
 

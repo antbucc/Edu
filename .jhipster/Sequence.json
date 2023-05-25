@@ -26,12 +26,12 @@
       "relationshipType": "one-to-one"
     },
     {
-      "otherEntityField": "title",
-      "otherEntityName": "sequenceFragment",
+      "otherEntityField": "order",
+      "otherEntityName": "order",
       "otherEntityRelationshipName": "sequence",
       "ownerSide": false,
-      "relationshipName": "fragment",
-      "relationshipType": "many-to-many"
+      "relationshipName": "order",
+      "relationshipType": "one-to-one"
     }
   ],
   "service": "serviceImpl"
