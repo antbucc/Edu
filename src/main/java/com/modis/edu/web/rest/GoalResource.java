@@ -126,10 +126,11 @@ public class GoalResource {
     /**
      * {@code GET  /goals} : get all the goals.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of goals in body.
      */
     @GetMapping("/goals")
-    public List<Goal> getAllGoals() {
+    public List<Goal> getAllGoals(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
         log.debug("REST request to get all Goals");
         return goalService.findAll();
     }

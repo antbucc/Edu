@@ -9,12 +9,12 @@ import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { getEntities as getConcepts } from 'app/entities/concept/concept.reducer';
-import { IGoal } from 'app/shared/model/goal.model';
-import { getEntities as getGoals } from 'app/entities/goal/goal.reducer';
 import { ICompetence } from 'app/shared/model/competence.model';
 import { getEntities as getCompetences } from 'app/entities/competence/competence.reducer';
 import { IActivity } from 'app/shared/model/activity.model';
 import { getEntities as getActivities } from 'app/entities/activity/activity.reducer';
+import { IGoal } from 'app/shared/model/goal.model';
+import { getEntities as getGoals } from 'app/entities/goal/goal.reducer';
 import { IConcept } from 'app/shared/model/concept.model';
 import { getEntity, updateEntity, createEntity, reset } from './concept.reducer';
 
@@ -27,9 +27,9 @@ export const ConceptUpdate = () => {
   const isNew = id === undefined;
 
   const concepts = useAppSelector(state => state.concept.entities);
-  const goals = useAppSelector(state => state.goal.entities);
   const competences = useAppSelector(state => state.competence.entities);
   const activities = useAppSelector(state => state.activity.entities);
+  const goals = useAppSelector(state => state.goal.entities);
   const conceptEntity = useAppSelector(state => state.concept.entity);
   const loading = useAppSelector(state => state.concept.loading);
   const updating = useAppSelector(state => state.concept.updating);
@@ -47,9 +47,9 @@ export const ConceptUpdate = () => {
     }
 
     dispatch(getConcepts({}));
-    dispatch(getGoals({}));
     dispatch(getCompetences({}));
     dispatch(getActivities({}));
+    dispatch(getGoals({}));
   }, []);
 
   useEffect(() => {
@@ -63,7 +63,6 @@ export const ConceptUpdate = () => {
       ...conceptEntity,
       ...values,
       childs: concepts.find(it => it.id.toString() === values.childs.toString()),
-      concepts: goals.find(it => it.id.toString() === values.concepts.toString()),
     };
 
     if (isNew) {
@@ -78,7 +77,6 @@ export const ConceptUpdate = () => {
       ? {}
       : {
           ...conceptEntity,
-          concepts: conceptEntity?.concepts?.id,
           childs: conceptEntity?.childs?.id,
         };
 
@@ -115,22 +113,6 @@ export const ConceptUpdate = () => {
                 data-cy="description"
                 type="text"
               />
-              <ValidatedField
-                id="concept-concepts"
-                name="concepts"
-                data-cy="concepts"
-                label={translate('eduApp.concept.concepts')}
-                type="select"
-              >
-                <option value="" key="0" />
-                {goals
-                  ? goals.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
               <ValidatedField id="concept-childs" name="childs" data-cy="childs" label={translate('eduApp.concept.childs')} type="select">
                 <option value="" key="0" />
                 {concepts

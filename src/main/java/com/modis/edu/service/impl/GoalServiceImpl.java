@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -57,10 +59,14 @@ public class GoalServiceImpl implements GoalService {
         return goalRepository.findAll();
     }
 
+    public Page<Goal> findAllWithEagerRelationships(Pageable pageable) {
+        return goalRepository.findAllWithEagerRelationships(pageable);
+    }
+
     @Override
     public Optional<Goal> findOne(String id) {
         log.debug("Request to get Goal : {}", id);
-        return goalRepository.findById(id);
+        return goalRepository.findOneWithEagerRelationships(id);
     }
 
     @Override
