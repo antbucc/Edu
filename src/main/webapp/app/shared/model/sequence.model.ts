@@ -1,8 +1,10 @@
+import { IFragment } from 'app/shared/model/fragment.model';
 import { ISequenceFragment } from 'app/shared/model/sequence-fragment.model';
 
 export interface ISequence {
   id?: string;
   title?: string;
+  fragment?: IFragment | null;
   fragmemts?: ISequenceFragment[] | null;
 }
 

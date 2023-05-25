@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
@@ -135,10 +136,15 @@ public class SequenceResource {
     /**
      * {@code GET  /sequences} : get all the sequences.
      *
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of sequences in body.
      */
     @GetMapping("/sequences")
-    public List<Sequence> getAllSequences() {
+    public List<Sequence> getAllSequences(@RequestParam(required = false) String filter) {
+        if ("fragment-is-null".equals(filter)) {
+            log.debug("REST request to get all Sequences where fragment is null");
+            return sequenceService.findAllWhereFragmentIsNull();
+        }
         log.debug("REST request to get all Sequences");
         return sequenceService.findAll();
     }

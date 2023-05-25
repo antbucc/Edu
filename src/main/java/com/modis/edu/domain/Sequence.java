@@ -27,6 +27,9 @@ public class Sequence implements Serializable {
     private String title;
 
     @DBRef
+    private Fragment fragment;
+
+    @DBRef
     @Field("fragmemt")
     @JsonIgnoreProperties(value = { "sequence", "fragment" }, allowSetters = true)
     private Set<SequenceFragment> fragmemts = new HashSet<>();
@@ -57,6 +60,25 @@ public class Sequence implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Fragment getFragment() {
+        return this.fragment;
+    }
+
+    public void setFragment(Fragment fragment) {
+        if (this.fragment != null) {
+            this.fragment.setSequence(null);
+        }
+        if (fragment != null) {
+            fragment.setSequence(this);
+        }
+        this.fragment = fragment;
+    }
+
+    public Sequence fragment(Fragment fragment) {
+        this.setFragment(fragment);
+        return this;
     }
 
     public Set<SequenceFragment> getFragmemts() {

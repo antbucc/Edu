@@ -189,6 +189,10 @@ relationship OneToOne {
 Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
 }
 
+relationship OneToOne {
+Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
+}
+
 
 //relationship OneToOne {
 //Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
