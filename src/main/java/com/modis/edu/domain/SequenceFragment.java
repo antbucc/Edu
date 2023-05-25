@@ -1,12 +1,8 @@
 package com.modis.edu.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -25,16 +21,6 @@ public class SequenceFragment implements Serializable {
     @NotNull
     @Field("order")
     private Integer order;
-
-    @DBRef
-    @Field("sequences")
-    @JsonIgnoreProperties(value = { "fragment", "fragments" }, allowSetters = true)
-    private Set<Sequence> sequences = new HashSet<>();
-
-    @DBRef
-    @Field("fragments")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "sequence", "modules", "setOfs", "sequences" }, allowSetters = true)
-    private Set<Fragment> fragments = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -62,56 +48,6 @@ public class SequenceFragment implements Serializable {
 
     public void setOrder(Integer order) {
         this.order = order;
-    }
-
-    public Set<Sequence> getSequences() {
-        return this.sequences;
-    }
-
-    public void setSequences(Set<Sequence> sequences) {
-        this.sequences = sequences;
-    }
-
-    public SequenceFragment sequences(Set<Sequence> sequences) {
-        this.setSequences(sequences);
-        return this;
-    }
-
-    public SequenceFragment addSequence(Sequence sequence) {
-        this.sequences.add(sequence);
-        sequence.getFragments().add(this);
-        return this;
-    }
-
-    public SequenceFragment removeSequence(Sequence sequence) {
-        this.sequences.remove(sequence);
-        sequence.getFragments().remove(this);
-        return this;
-    }
-
-    public Set<Fragment> getFragments() {
-        return this.fragments;
-    }
-
-    public void setFragments(Set<Fragment> fragments) {
-        this.fragments = fragments;
-    }
-
-    public SequenceFragment fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
-        return this;
-    }
-
-    public SequenceFragment addFragment(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.getSequences().add(this);
-        return this;
-    }
-
-    public SequenceFragment removeFragment(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.getSequences().remove(this);
-        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

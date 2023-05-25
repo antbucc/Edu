@@ -8,10 +8,6 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { ISequence } from 'app/shared/model/sequence.model';
-import { getEntities as getSequences } from 'app/entities/sequence/sequence.reducer';
-import { IFragment } from 'app/shared/model/fragment.model';
-import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
 import { ISequenceFragment } from 'app/shared/model/sequence-fragment.model';
 import { getEntity, updateEntity, createEntity, reset } from './sequence-fragment.reducer';
 
@@ -23,8 +19,6 @@ export const SequenceFragmentUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const sequences = useAppSelector(state => state.sequence.entities);
-  const fragments = useAppSelector(state => state.fragment.entities);
   const sequenceFragmentEntity = useAppSelector(state => state.sequenceFragment.entity);
   const loading = useAppSelector(state => state.sequenceFragment.loading);
   const updating = useAppSelector(state => state.sequenceFragment.updating);
@@ -40,9 +34,6 @@ export const SequenceFragmentUpdate = () => {
     } else {
       dispatch(getEntity(id));
     }
-
-    dispatch(getSequences({}));
-    dispatch(getFragments({}));
   }, []);
 
   useEffect(() => {
@@ -55,8 +46,6 @@ export const SequenceFragmentUpdate = () => {
     const entity = {
       ...sequenceFragmentEntity,
       ...values,
-      sequences: mapIdList(values.sequences),
-      fragments: mapIdList(values.fragments),
     };
 
     if (isNew) {
@@ -71,8 +60,6 @@ export const SequenceFragmentUpdate = () => {
       ? {}
       : {
           ...sequenceFragmentEntity,
-          sequences: sequenceFragmentEntity?.sequences?.map(e => e.id.toString()),
-          fragments: sequenceFragmentEntity?.fragments?.map(e => e.id.toString()),
         };
 
   return (
@@ -111,40 +98,6 @@ export const SequenceFragmentUpdate = () => {
                   validate: v => isNumber(v) || translate('entity.validation.number'),
                 }}
               />
-              <ValidatedField
-                label={translate('eduApp.sequenceFragment.sequence')}
-                id="sequence-fragment-sequence"
-                data-cy="sequence"
-                type="select"
-                multiple
-                name="sequences"
-              >
-                <option value="" key="0" />
-                {sequences
-                  ? sequences.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField
-                label={translate('eduApp.sequenceFragment.fragment')}
-                id="sequence-fragment-fragment"
-                data-cy="fragment"
-                type="select"
-                multiple
-                name="fragments"
-              >
-                <option value="" key="0" />
-                {fragments
-                  ? fragments.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/sequence-fragment" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

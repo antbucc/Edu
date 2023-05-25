@@ -139,11 +139,10 @@ public class SequenceFragmentResource {
     /**
      * {@code GET  /sequence-fragments} : get all the sequenceFragments.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of sequenceFragments in body.
      */
     @GetMapping("/sequence-fragments")
-    public List<SequenceFragment> getAllSequenceFragments(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<SequenceFragment> getAllSequenceFragments() {
         log.debug("REST request to get all SequenceFragments");
         return sequenceFragmentService.findAll();
     }
