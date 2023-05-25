@@ -185,17 +185,19 @@ Fragment{ Activity(title) } to Activity{ Fragment(title) }
 
 
 
-relationship ManyToMany {
-	Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
+relationship OneToOne {
+Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
 }
 
-relationship ManyToMany {
-	Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
-}
 
-relationship ManyToMany {
-	Fragment{ SetOf(title) } to SetOf{ Fragment(title) } 
-}
+//relationship OneToOne {
+//Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
+//}
+
+//relationship OneToOne {
+//Fragment{ SetOf(title) } to SetOf{ Fragment(title) } 
+//}
+
 
 
 relationship ManyToMany {
