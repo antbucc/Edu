@@ -58,6 +58,9 @@ export const Concept = () => {
                   <Translate contentKey="eduApp.concept.description">Description</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="eduApp.concept.concepts">Concepts</Translate>
+                </th>
+                <th>
                   <Translate contentKey="eduApp.concept.childs">Childs</Translate>
                 </th>
                 <th />
@@ -73,6 +76,7 @@ export const Concept = () => {
                   </td>
                   <td>{concept.title}</td>
                   <td>{concept.description}</td>
+                  <td>{concept.concepts ? <Link to={`/goal/${concept.concepts.id}`}>{concept.concepts.id}</Link> : ''}</td>
                   <td>{concept.childs ? <Link to={`/concept/${concept.childs.id}`}>{concept.childs.id}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

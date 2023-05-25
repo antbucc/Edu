@@ -4,7 +4,7 @@ import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 export interface IGoal {
   id?: string;
   title?: string | null;
-  concepts?: IConcept[] | null;
+  goals?: IConcept[] | null;
   abstractActivities?: IAbstractActivity[] | null;
 }
 

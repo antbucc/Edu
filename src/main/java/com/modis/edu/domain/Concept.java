@@ -29,12 +29,17 @@ public class Concept implements Serializable {
 
     @DBRef
     @Field("parent")
-    @JsonIgnoreProperties(value = { "parents", "childs", "competences", "activities", "goals" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "parents", "concepts", "childs", "competences", "activities" }, allowSetters = true)
     private Set<Concept> parents = new HashSet<>();
 
     @DBRef
+    @Field("concepts")
+    @JsonIgnoreProperties(value = { "goals", "abstractActivities" }, allowSetters = true)
+    private Goal concepts;
+
+    @DBRef
     @Field("childs")
-    @JsonIgnoreProperties(value = { "parents", "childs", "competences", "activities", "goals" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "parents", "concepts", "childs", "competences", "activities" }, allowSetters = true)
     private Concept childs;
 
     @DBRef
@@ -46,11 +51,6 @@ public class Concept implements Serializable {
     @Field("activities")
     @JsonIgnoreProperties(value = { "preconditions", "effects", "concepts", "fragment" }, allowSetters = true)
     private Set<Activity> activities = new HashSet<>();
-
-    @DBRef
-    @Field("goals")
-    @JsonIgnoreProperties(value = { "concepts", "abstractActivities" }, allowSetters = true)
-    private Set<Goal> goals = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -121,6 +121,19 @@ public class Concept implements Serializable {
     public Concept removeParent(Concept concept) {
         this.parents.remove(concept);
         concept.setChilds(null);
+        return this;
+    }
+
+    public Goal getConcepts() {
+        return this.concepts;
+    }
+
+    public void setConcepts(Goal goal) {
+        this.concepts = goal;
+    }
+
+    public Concept concepts(Goal goal) {
+        this.setConcepts(goal);
         return this;
     }
 
@@ -196,37 +209,6 @@ public class Concept implements Serializable {
     public Concept removeActivity(Activity activity) {
         this.activities.remove(activity);
         activity.getConcepts().remove(this);
-        return this;
-    }
-
-    public Set<Goal> getGoals() {
-        return this.goals;
-    }
-
-    public void setGoals(Set<Goal> goals) {
-        if (this.goals != null) {
-            this.goals.forEach(i -> i.removeConcept(this));
-        }
-        if (goals != null) {
-            goals.forEach(i -> i.addConcept(this));
-        }
-        this.goals = goals;
-    }
-
-    public Concept goals(Set<Goal> goals) {
-        this.setGoals(goals);
-        return this;
-    }
-
-    public Concept addGoal(Goal goal) {
-        this.goals.add(goal);
-        goal.getConcepts().add(this);
-        return this;
-    }
-
-    public Concept removeGoal(Goal goal) {
-        this.goals.remove(goal);
-        goal.getConcepts().remove(this);
         return this;
     }
 
