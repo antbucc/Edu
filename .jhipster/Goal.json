@@ -25,10 +25,9 @@
       "relationshipType": "many-to-many"
     },
     {
-      "otherEntityField": "title",
       "otherEntityName": "abstractActivity",
-      "otherEntityRelationshipName": "goal",
-      "relationshipName": "abstractActivity",
+      "otherEntityRelationshipName": "activity",
+      "relationshipName": "goals",
       "relationshipType": "many-to-one"
     }
   ],

@@ -5,7 +5,7 @@ export interface IGoal {
   id?: string;
   title?: string | null;
   concepts?: IConcept[] | null;
-  abstractActivity?: IAbstractActivity | null;
+  goals?: IAbstractActivity | null;
 }
 
 export const defaultValue: Readonly<IGoal> = {};

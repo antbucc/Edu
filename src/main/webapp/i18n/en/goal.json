@@ -20,7 +20,7 @@
       "id": "ID",
       "title": "Title",
       "concept": "Concept",
-      "abstractActivity": "Abstract Activity"
+      "goals": "Goals"
     }
   }
 }

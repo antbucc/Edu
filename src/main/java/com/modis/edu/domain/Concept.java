@@ -49,7 +49,7 @@ public class Concept implements Serializable {
 
     @DBRef
     @Field("goals")
-    @JsonIgnoreProperties(value = { "concepts", "abstractActivity" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "concepts", "goals" }, allowSetters = true)
     private Set<Goal> goals = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
