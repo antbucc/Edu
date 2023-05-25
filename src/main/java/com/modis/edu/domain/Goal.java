@@ -25,9 +25,9 @@ public class Goal implements Serializable {
     private String title;
 
     @DBRef
-    @Field("goal")
-    @JsonIgnoreProperties(value = { "parents", "concepts", "childs", "competences", "activities" }, allowSetters = true)
-    private Set<Concept> goals = new HashSet<>();
+    @Field("concepts")
+    @JsonIgnoreProperties(value = { "parents", "childs", "competences", "activities", "goals" }, allowSetters = true)
+    private Set<Concept> concepts = new HashSet<>();
 
     @DBRef
     @Field("abstractActivities")
@@ -62,34 +62,28 @@ public class Goal implements Serializable {
         this.title = title;
     }
 
-    public Set<Concept> getGoals() {
-        return this.goals;
+    public Set<Concept> getConcepts() {
+        return this.concepts;
     }
 
-    public void setGoals(Set<Concept> concepts) {
-        if (this.goals != null) {
-            this.goals.forEach(i -> i.setConcepts(null));
-        }
-        if (concepts != null) {
-            concepts.forEach(i -> i.setConcepts(this));
-        }
-        this.goals = concepts;
+    public void setConcepts(Set<Concept> concepts) {
+        this.concepts = concepts;
     }
 
-    public Goal goals(Set<Concept> concepts) {
-        this.setGoals(concepts);
+    public Goal concepts(Set<Concept> concepts) {
+        this.setConcepts(concepts);
         return this;
     }
 
-    public Goal addGoal(Concept concept) {
-        this.goals.add(concept);
-        concept.setConcepts(this);
+    public Goal addConcept(Concept concept) {
+        this.concepts.add(concept);
+        concept.getGoals().add(this);
         return this;
     }
 
-    public Goal removeGoal(Concept concept) {
-        this.goals.remove(concept);
-        concept.setConcepts(null);
+    public Goal removeConcept(Concept concept) {
+        this.concepts.remove(concept);
+        concept.getGoals().remove(this);
         return this;
     }
 

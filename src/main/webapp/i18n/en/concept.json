@@ -21,10 +21,10 @@
       "title": "Title",
       "description": "Description",
       "parent": "Parent",
-      "concepts": "Concepts",
       "childs": "Childs",
       "competence": "Competence",
-      "activity": "Activity"
+      "activity": "Activity",
+      "goal": "Goal"
     }
   }
 }

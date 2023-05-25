@@ -17,10 +17,12 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "title",
       "otherEntityName": "concept",
-      "otherEntityRelationshipName": "concepts",
-      "relationshipName": "goal",
-      "relationshipType": "one-to-many"
+      "otherEntityRelationshipName": "goal",
+      "ownerSide": true,
+      "relationshipName": "concept",
+      "relationshipType": "many-to-many"
     },
     {
       "otherEntityField": "title",

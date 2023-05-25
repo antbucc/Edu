@@ -45,10 +45,6 @@ export const ConceptDetail = () => {
           </dt>
           <dd>{conceptEntity.description}</dd>
           <dt>
-            <Translate contentKey="eduApp.concept.concepts">Concepts</Translate>
-          </dt>
-          <dd>{conceptEntity.concepts ? conceptEntity.concepts.id : ''}</dd>
-          <dt>
             <Translate contentKey="eduApp.concept.childs">Childs</Translate>
           </dt>
           <dd>{conceptEntity.childs ? conceptEntity.childs.id : ''}</dd>

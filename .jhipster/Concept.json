@@ -27,12 +27,6 @@
       "relationshipType": "one-to-many"
     },
     {
-      "otherEntityName": "goal",
-      "otherEntityRelationshipName": "goal",
-      "relationshipName": "concepts",
-      "relationshipType": "many-to-one"
-    },
-    {
       "otherEntityName": "concept",
       "otherEntityRelationshipName": "parent",
       "relationshipName": "childs",
@@ -52,6 +46,14 @@
       "otherEntityRelationshipName": "concept",
       "ownerSide": false,
       "relationshipName": "activity",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "goal",
+      "otherEntityRelationshipName": "concept",
+      "ownerSide": false,
+      "relationshipName": "goal",
       "relationshipType": "many-to-many"
     }
   ],

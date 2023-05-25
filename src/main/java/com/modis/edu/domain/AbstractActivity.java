@@ -26,7 +26,7 @@ public class AbstractActivity implements Serializable {
 
     @DBRef
     @Field("goals")
-    @JsonIgnoreProperties(value = { "goals", "abstractActivities" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "concepts", "abstractActivities" }, allowSetters = true)
     private Set<Goal> goals = new HashSet<>();
 
     @DBRef
