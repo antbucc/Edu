@@ -16,14 +16,6 @@
   "name": "Sequence",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [
-    {
-      "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "sequences",
-      "ownerSide": true,
-      "relationshipName": "fragments",
-      "relationshipType": "many-to-many"
-    }
-  ],
+  "relationships": [],
   "service": "serviceImpl"
 }

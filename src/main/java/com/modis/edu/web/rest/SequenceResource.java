@@ -135,11 +135,10 @@ public class SequenceResource {
     /**
      * {@code GET  /sequences} : get all the sequences.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of sequences in body.
      */
     @GetMapping("/sequences")
-    public List<Sequence> getAllSequences(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<Sequence> getAllSequences() {
         log.debug("REST request to get all Sequences");
         return sequenceService.findAll();
     }

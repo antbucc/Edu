@@ -54,9 +54,6 @@ export const Sequence = () => {
                 <th>
                   <Translate contentKey="eduApp.sequence.name">Name</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="eduApp.sequence.fragments">Fragments</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -69,16 +66,6 @@ export const Sequence = () => {
                     </Button>
                   </td>
                   <td>{sequence.name}</td>
-                  <td>
-                    {sequence.fragments
-                      ? sequence.fragments.map((val, j) => (
-                          <span key={j}>
-                            <Link to={`/fragment/${val.id}`}>{val.id}</Link>
-                            {j === sequence.fragments.length - 1 ? '' : ', '}
-                          </span>
-                        ))
-                      : null}
-                  </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/sequence/${sequence.id}`} color="info" size="sm" data-cy="entityDetailsButton">
