@@ -34,7 +34,7 @@ public class Sequence implements Serializable {
     @DBRef
     @DBRef
     @Field("fragments")
-    @JsonIgnoreProperties(value = { "sequences", "fragments" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "sequences" }, allowSetters = true)
     private Set<SequenceFragment> fragments = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

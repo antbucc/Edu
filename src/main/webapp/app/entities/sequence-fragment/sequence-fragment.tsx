@@ -57,9 +57,6 @@ export const SequenceFragment = () => {
                 <th>
                   <Translate contentKey="eduApp.sequenceFragment.sequence">Sequence</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="eduApp.sequenceFragment.fragment">Fragment</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -78,16 +75,6 @@ export const SequenceFragment = () => {
                           <span key={j}>
                             <Link to={`/sequence/${val.id}`}>{val.title}</Link>
                             {j === sequenceFragment.sequences.length - 1 ? '' : ', '}
-                          </span>
-                        ))
-                      : null}
-                  </td>
-                  <td>
-                    {sequenceFragment.fragments
-                      ? sequenceFragment.fragments.map((val, j) => (
-                          <span key={j}>
-                            <Link to={`/fragment/${val.id}`}>{val.title}</Link>
-                            {j === sequenceFragment.fragments.length - 1 ? '' : ', '}
                           </span>
                         ))
                       : null}
