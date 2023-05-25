@@ -19,7 +19,8 @@
       },
       "id": "ID",
       "title": "Title",
-      "concept": "Concept"
+      "concept": "Concept",
+      "abstractActivity": "Abstract Activity"
     }
   }
 }
