@@ -183,15 +183,19 @@ relationship ManyToMany {
 	Fragment{ SetOf(title) } to SetOf{ Fragment(title) } 
 }
 
-relationship ManyToMany {
-	Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
-}
 
 
 relationship ManyToMany {
 	Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
 }
 
+
+relationship OneToMany {
+SetOf{ Fragment(title) } to Fragment{ SetOf(title) } 
+} 
+relationship ManyToMany {
+  Sequence{fragments} to Fragment{sequences}
+}
 
 
 
