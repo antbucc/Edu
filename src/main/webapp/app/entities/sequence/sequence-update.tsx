@@ -10,8 +10,6 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IFragment } from 'app/shared/model/fragment.model';
 import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
-import { IOrder } from 'app/shared/model/order.model';
-import { getEntities as getOrders } from 'app/entities/order/order.reducer';
 import { ISequence } from 'app/shared/model/sequence.model';
 import { getEntity, updateEntity, createEntity, reset } from './sequence.reducer';
 
@@ -24,7 +22,6 @@ export const SequenceUpdate = () => {
   const isNew = id === undefined;
 
   const fragments = useAppSelector(state => state.fragment.entities);
-  const orders = useAppSelector(state => state.order.entities);
   const sequenceEntity = useAppSelector(state => state.sequence.entity);
   const loading = useAppSelector(state => state.sequence.loading);
   const updating = useAppSelector(state => state.sequence.updating);
@@ -42,7 +39,6 @@ export const SequenceUpdate = () => {
     }
 
     dispatch(getFragments({}));
-    dispatch(getOrders({}));
   }, []);
 
   useEffect(() => {
@@ -55,6 +51,7 @@ export const SequenceUpdate = () => {
     const entity = {
       ...sequenceEntity,
       ...values,
+      fragment: fragments.find(it => it.id.toString() === values.fragment.toString()),
     };
 
     if (isNew) {
@@ -69,6 +66,7 @@ export const SequenceUpdate = () => {
       ? {}
       : {
           ...sequenceEntity,
+          fragment: sequenceEntity?.fragment?.id,
         };
 
   return (
@@ -106,6 +104,22 @@ export const SequenceUpdate = () => {
                   required: { value: true, message: translate('entity.validation.required') },
                 }}
               />
+              <ValidatedField
+                id="sequence-fragment"
+                name="fragment"
+                data-cy="fragment"
+                label={translate('eduApp.sequence.fragment')}
+                type="select"
+              >
+                <option value="" key="0" />
+                {fragments
+                  ? fragments.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/sequence" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

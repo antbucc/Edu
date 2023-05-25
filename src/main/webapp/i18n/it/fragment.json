@@ -23,6 +23,8 @@
       "abstractActivity": "Abstract Activity",
       "sequence": "Sequence",
       "setOf": "Set Of",
+      "order": "Order",
+      "sequence": "Sequence",
       "module": "Module"
     }
   }

@@ -38,6 +38,10 @@ export const SequenceDetail = () => {
             </span>
           </dt>
           <dd>{sequenceEntity.title}</dd>
+          <dt>
+            <Translate contentKey="eduApp.sequence.fragment">Fragment</Translate>
+          </dt>
+          <dd>{sequenceEntity.fragment ? sequenceEntity.fragment.title : ''}</dd>
         </dl>
         <Button tag={Link} to="/sequence" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

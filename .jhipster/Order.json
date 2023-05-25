@@ -19,11 +19,11 @@
   "relationships": [
     {
       "otherEntityField": "title",
-      "otherEntityName": "sequence",
+      "otherEntityName": "fragment",
       "otherEntityRelationshipName": "order",
       "ownerSide": true,
-      "relationshipName": "sequence",
-      "relationshipType": "many-to-many"
+      "relationshipName": "fragment",
+      "relationshipType": "one-to-one"
     }
   ],
   "service": "serviceImpl"

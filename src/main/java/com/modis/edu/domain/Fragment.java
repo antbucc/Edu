@@ -34,11 +34,20 @@ public class Fragment implements Serializable {
 
     @DBRef
     @Field("sequence")
+    @DBRef
     private Sequence sequence;
 
     @DBRef
     @Field("setOf")
     private SetOf setOf;
+
+    @DBRef
+    private Order order;
+
+    @DBRef
+    @Field("sequence")
+    @DBRef
+    private Sequence sequence;
 
     @DBRef
     @Field("modules")
@@ -122,6 +131,44 @@ public class Fragment implements Serializable {
 
     public Fragment setOf(SetOf setOf) {
         this.setSetOf(setOf);
+        return this;
+    }
+
+    public Order getOrder() {
+        return this.order;
+    }
+
+    public void setOrder(Order order) {
+        if (this.order != null) {
+            this.order.setFragment(null);
+        }
+        if (order != null) {
+            order.setFragment(this);
+        }
+        this.order = order;
+    }
+
+    public Fragment order(Order order) {
+        this.setOrder(order);
+        return this;
+    }
+
+    public Sequence getSequence() {
+        return this.sequence;
+    }
+
+    public void setSequence(Sequence sequence) {
+        if (this.sequence != null) {
+            this.sequence.setFragment(null);
+        }
+        if (sequence != null) {
+            sequence.setFragment(this);
+        }
+        this.sequence = sequence;
+    }
+
+    public Fragment sequence(Sequence sequence) {
+        this.setSequence(sequence);
         return this;
     }
 

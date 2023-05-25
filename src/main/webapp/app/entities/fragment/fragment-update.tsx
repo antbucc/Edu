@@ -16,6 +16,8 @@ import { ISequence } from 'app/shared/model/sequence.model';
 import { getEntities as getSequences } from 'app/entities/sequence/sequence.reducer';
 import { ISetOf } from 'app/shared/model/set-of.model';
 import { getEntities as getSetOfs } from 'app/entities/set-of/set-of.reducer';
+import { IOrder } from 'app/shared/model/order.model';
+import { getEntities as getOrders } from 'app/entities/order/order.reducer';
 import { IModule } from 'app/shared/model/module.model';
 import { getEntities as getModules } from 'app/entities/module/module.reducer';
 import { IFragment } from 'app/shared/model/fragment.model';
@@ -33,6 +35,7 @@ export const FragmentUpdate = () => {
   const abstractActivities = useAppSelector(state => state.abstractActivity.entities);
   const sequences = useAppSelector(state => state.sequence.entities);
   const setOfs = useAppSelector(state => state.setOf.entities);
+  const orders = useAppSelector(state => state.order.entities);
   const modules = useAppSelector(state => state.module.entities);
   const fragmentEntity = useAppSelector(state => state.fragment.entity);
   const loading = useAppSelector(state => state.fragment.loading);
@@ -54,6 +57,7 @@ export const FragmentUpdate = () => {
     dispatch(getAbstractActivities({}));
     dispatch(getSequences({}));
     dispatch(getSetOfs({}));
+    dispatch(getOrders({}));
     dispatch(getModules({}));
   }, []);
 

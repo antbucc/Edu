@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -59,6 +61,10 @@ public class SequenceServiceImpl implements SequenceService {
         return sequenceRepository.findAll();
     }
 
+    public Page<Sequence> findAllWithEagerRelationships(Pageable pageable) {
+        return sequenceRepository.findAllWithEagerRelationships(pageable);
+    }
+
     /**
      *  Get all the sequences where Fragment is {@code null}.
      *  @return the list of entities.
@@ -75,7 +81,7 @@ public class SequenceServiceImpl implements SequenceService {
     @Override
     public Optional<Sequence> findOne(String id) {
         log.debug("Request to get Sequence : {}", id);
-        return sequenceRepository.findById(id);
+        return sequenceRepository.findOneWithEagerRelationships(id);
     }
 
     @Override
