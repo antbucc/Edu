@@ -39,13 +39,13 @@ export const SetOfDetail = () => {
           </dt>
           <dd>{setOfEntity.title}</dd>
           <dt>
-            <Translate contentKey="eduApp.setOf.fragments">Fragments</Translate>
+            <Translate contentKey="eduApp.setOf.fragment">Fragment</Translate>
           </dt>
           <dd>
             {setOfEntity.fragments
               ? setOfEntity.fragments.map((val, i) => (
                   <span key={val.id}>
-                    <a>{val.id}</a>
+                    <a>{val.title}</a>
                     {setOfEntity.fragments && i === setOfEntity.fragments.length - 1 ? '' : ', '}
                   </span>
                 ))

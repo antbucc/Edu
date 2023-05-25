@@ -48,10 +48,11 @@
       "relationshipType": "many-to-many"
     },
     {
+      "otherEntityField": "title",
       "otherEntityName": "setOf",
-      "otherEntityRelationshipName": "fragments",
+      "otherEntityRelationshipName": "fragment",
       "ownerSide": false,
-      "relationshipName": "setof",
+      "relationshipName": "setOf",
       "relationshipType": "many-to-many"
     }
   ],
