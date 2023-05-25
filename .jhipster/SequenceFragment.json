@@ -1,0 +1,32 @@
+{
+  "applications": "*",
+  "changelogDate": "20230525115053",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "sequence_fragment",
+  "fields": [
+    {
+      "fieldName": "order",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "SequenceFragment",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "sequence",
+      "relationshipName": "sequence",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "fragment",
+      "relationshipName": "fragment",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

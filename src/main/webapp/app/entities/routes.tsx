@@ -19,6 +19,7 @@ import AbstractActivity from './abstract-activity';
 import Sequence from './sequence';
 import Set from './set';
 import SetOf from './set-of';
+import SequenceFragment from './sequence-fragment';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -42,6 +43,7 @@ export default () => {
         <Route path="sequence/*" element={<Sequence />} />
         <Route path="set/*" element={<Set />} />
         <Route path="set-of/*" element={<SetOf />} />
+        <Route path="sequence-fragment/*" element={<SequenceFragment />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

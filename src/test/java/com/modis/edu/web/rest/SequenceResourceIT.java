@@ -36,8 +36,8 @@ import org.springframework.test.web.servlet.MockMvc;
 @WithMockUser
 class SequenceResourceIT {
 
-    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
-    private static final String UPDATED_TITLE = "BBBBBBBBBB";
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
 
     private static final String ENTITY_API_URL = "/api/sequences";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -63,7 +63,7 @@ class SequenceResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Sequence createEntity() {
-        Sequence sequence = new Sequence().title(DEFAULT_TITLE);
+        Sequence sequence = new Sequence().name(DEFAULT_NAME);
         return sequence;
     }
 
@@ -74,7 +74,7 @@ class SequenceResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Sequence createUpdatedEntity() {
-        Sequence sequence = new Sequence().title(UPDATED_TITLE);
+        Sequence sequence = new Sequence().name(UPDATED_NAME);
         return sequence;
     }
 
@@ -96,7 +96,7 @@ class SequenceResourceIT {
         List<Sequence> sequenceList = sequenceRepository.findAll();
         assertThat(sequenceList).hasSize(databaseSizeBeforeCreate + 1);
         Sequence testSequence = sequenceList.get(sequenceList.size() - 1);
-        assertThat(testSequence.getTitle()).isEqualTo(DEFAULT_TITLE);
+        assertThat(testSequence.getName()).isEqualTo(DEFAULT_NAME);
     }
 
     @Test
@@ -117,6 +117,22 @@ class SequenceResourceIT {
     }
 
     @Test
+    void checkNameIsRequired() throws Exception {
+        int databaseSizeBeforeTest = sequenceRepository.findAll().size();
+        // set the field null
+        sequence.setName(null);
+
+        // Create the Sequence, which fails.
+
+        restSequenceMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(sequence)))
+            .andExpect(status().isBadRequest());
+
+        List<Sequence> sequenceList = sequenceRepository.findAll();
+        assertThat(sequenceList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     void getAllSequences() throws Exception {
         // Initialize the database
         sequenceRepository.save(sequence);
@@ -127,7 +143,7 @@ class SequenceResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(sequence.getId())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)));
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME)));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -158,7 +174,7 @@ class SequenceResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(sequence.getId()))
-            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME));
     }
 
     @Test
@@ -176,7 +192,7 @@ class SequenceResourceIT {
 
         // Update the sequence
         Sequence updatedSequence = sequenceRepository.findById(sequence.getId()).get();
-        updatedSequence.title(UPDATED_TITLE);
+        updatedSequence.name(UPDATED_NAME);
 
         restSequenceMockMvc
             .perform(
@@ -190,7 +206,7 @@ class SequenceResourceIT {
         List<Sequence> sequenceList = sequenceRepository.findAll();
         assertThat(sequenceList).hasSize(databaseSizeBeforeUpdate);
         Sequence testSequence = sequenceList.get(sequenceList.size() - 1);
-        assertThat(testSequence.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testSequence.getName()).isEqualTo(UPDATED_NAME);
     }
 
     @Test
@@ -257,7 +273,7 @@ class SequenceResourceIT {
         Sequence partialUpdatedSequence = new Sequence();
         partialUpdatedSequence.setId(sequence.getId());
 
-        partialUpdatedSequence.title(UPDATED_TITLE);
+        partialUpdatedSequence.name(UPDATED_NAME);
 
         restSequenceMockMvc
             .perform(
@@ -271,7 +287,7 @@ class SequenceResourceIT {
         List<Sequence> sequenceList = sequenceRepository.findAll();
         assertThat(sequenceList).hasSize(databaseSizeBeforeUpdate);
         Sequence testSequence = sequenceList.get(sequenceList.size() - 1);
-        assertThat(testSequence.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testSequence.getName()).isEqualTo(UPDATED_NAME);
     }
 
     @Test
@@ -285,7 +301,7 @@ class SequenceResourceIT {
         Sequence partialUpdatedSequence = new Sequence();
         partialUpdatedSequence.setId(sequence.getId());
 
-        partialUpdatedSequence.title(UPDATED_TITLE);
+        partialUpdatedSequence.name(UPDATED_NAME);
 
         restSequenceMockMvc
             .perform(
@@ -299,7 +315,7 @@ class SequenceResourceIT {
         List<Sequence> sequenceList = sequenceRepository.findAll();
         assertThat(sequenceList).hasSize(databaseSizeBeforeUpdate);
         Sequence testSequence = sequenceList.get(sequenceList.size() - 1);
-        assertThat(testSequence.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testSequence.getName()).isEqualTo(UPDATED_NAME);
     }
 
     @Test

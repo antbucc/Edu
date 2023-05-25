@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the Sequence entity.
+ * Performance test for the SequenceFragment entity.
  */
-class SequenceGatlingTest extends Simulation {
+class SequenceFragmentGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -43,7 +43,7 @@ class SequenceGatlingTest extends Simulation {
         "Authorization" -> "${access_token}"
     )
 
-    val scn = scenario("Test the Sequence entity")
+    val scn = scenario("Test the SequenceFragment entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -62,28 +62,28 @@ class SequenceGatlingTest extends Simulation {
         .check(status.is(200)))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all sequences")
-            .get("/api/sequences")
+            exec(http("Get all sequenceFragments")
+            .get("/api/sequence-fragments")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new sequence")
-            .post("/api/sequences")
+            .exec(http("Create new sequenceFragment")
+            .post("/api/sequence-fragments")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
-                "name":"SAMPLE_TEXT"
+                "order":"0"
                 }""")).asJson
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_sequence_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_sequenceFragment_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created sequence")
-                .get("${new_sequence_url}")
+                exec(http("Get created sequenceFragment")
+                .get("${new_sequenceFragment_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created sequence")
-            .delete("${new_sequence_url}")
+            .exec(http("Delete created sequenceFragment")
+            .delete("${new_sequenceFragment_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }
