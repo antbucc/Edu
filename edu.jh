@@ -47,7 +47,7 @@ entity Concept {
  description String
 }
 
-entity Activity {
+entity ConcreteActivity {
 title String
 description String
 type ActivityType
@@ -88,8 +88,6 @@ entity SequenceFragment {
 entity SetOf {
  title String
 }
-
-
 
 
 
@@ -151,17 +149,17 @@ relationship ManyToMany {
 
 
 relationship ManyToMany {
-  Activity { Concept(title) } to Concept{ Activity(title) }
+  ConcreteActivity { Concept(title) } to Concept{ ConcreteActivity(title) }
 }
 
 
 
 relationship OneToMany {
- Activity { Precondition(title) } to Precondition{ Activity(title) }
+ ConcreteActivity { Precondition(title) } to Precondition{ ConcreteActivity(title) }
 }
 
 relationship OneToMany {
- Activity { Effect(title) } to Effect{ Activity(title) }
+ ConcreteActivity { Effect(title) } to Effect{ ConcreteActivity(title) }
 }
 
 
@@ -183,7 +181,7 @@ Module{ Fragment(title) } to Fragment{ Module(title) }
 
 
 relationship OneToOne {
-Fragment{ Activity(title) } to Activity{ Fragment(title) } 
+Fragment{ ConcreteActivity(title) } to ConcreteActivity{ Fragment(title) } 
 }
 
 
@@ -197,7 +195,7 @@ relationship ManyToMany {
 
 
 relationship ManyToMany {
-  SetOf{fragments} to Fragment{setof}
+  SetOf{ Fragment(title) } to Fragment{ SetOf(title) }
 }
 
 
@@ -206,9 +204,6 @@ relationship ManyToOne {
   SequenceFragment{ Sequence(title) } to Sequence { Fragmemt(title) }
   SequenceFragment{ Fragment (title) } to Fragment { Sequence(title) }
 }
-
-
-
 
 
 
