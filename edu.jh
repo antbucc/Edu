@@ -207,10 +207,10 @@ relationship ManyToMany {
 
 
 
-//relationship ManyToMany {
-//  SequenceFragment{ Sequence(title) } to Sequence { Fragment(title) }
-//  SequenceFragment{ Fragment (title) } to Fragment { Sequence(title) }
-//}
+relationship ManyToMany {
+  SequenceFragment{ Sequence(title) } to Sequence { Fragment(title) }
+  SequenceFragment{ Fragment (title) } to Fragment { Sequence(title) }
+}
 
 
 
