@@ -26,12 +26,12 @@ public class SetOfFragment implements Serializable {
 
     @DBRef
     @Field("setOf")
-    @JsonIgnoreProperties(value = { "fragments", "fragmemts" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "fragments" }, allowSetters = true)
     private SetOf setOf;
 
     @DBRef
     @Field("fragment")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivities", "sequences", "setOfs", "modules", "setofs" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "activity", "abstractActivities", "sequences", "modules", "setofs" }, allowSetters = true)
     private Fragment fragment;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

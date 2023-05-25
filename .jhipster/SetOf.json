@@ -22,13 +22,6 @@
       "ownerSide": true,
       "relationshipName": "fragments",
       "relationshipType": "many-to-many"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "setOfFragment",
-      "otherEntityRelationshipName": "setOf",
-      "relationshipName": "fragmemt",
-      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"
