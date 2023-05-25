@@ -29,7 +29,7 @@
       "otherEntityField": "title",
       "otherEntityName": "sequenceFragment",
       "otherEntityRelationshipName": "sequence",
-      "relationshipName": "fragmemt",
+      "relationshipName": "fragment",
       "relationshipType": "one-to-many"
     }
   ],
