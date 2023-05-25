@@ -1,11 +1,11 @@
-import { IFragment } from 'app/shared/model/fragment.model';
 import { IGoal } from 'app/shared/model/goal.model';
+import { IFragment } from 'app/shared/model/fragment.model';
 
 export interface IAbstractActivity {
   id?: string;
   title?: string | null;
-  fragments?: IFragment[] | null;
   goals?: IGoal[] | null;
+  fragments?: IFragment[] | null;
 }
 
 export const defaultValue: Readonly<IAbstractActivity> = {};

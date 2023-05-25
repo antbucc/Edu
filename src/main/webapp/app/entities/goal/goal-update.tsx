@@ -56,7 +56,7 @@ export const GoalUpdate = () => {
       ...goalEntity,
       ...values,
       concepts: mapIdList(values.concepts),
-      abstractActivities: mapIdList(values.abstractActivities),
+      abstractActivity: abstractActivities.find(it => it.id.toString() === values.abstractActivity.toString()),
     };
 
     if (isNew) {
@@ -72,7 +72,7 @@ export const GoalUpdate = () => {
       : {
           ...goalEntity,
           concepts: goalEntity?.concepts?.map(e => e.id.toString()),
-          abstractActivities: goalEntity?.abstractActivities?.map(e => e.id.toString()),
+          abstractActivity: goalEntity?.abstractActivity?.id,
         };
 
   return (
@@ -119,12 +119,11 @@ export const GoalUpdate = () => {
                   : null}
               </ValidatedField>
               <ValidatedField
-                label={translate('eduApp.goal.abstractActivity')}
                 id="goal-abstractActivity"
+                name="abstractActivity"
                 data-cy="abstractActivity"
+                label={translate('eduApp.goal.abstractActivity')}
                 type="select"
-                multiple
-                name="abstractActivities"
               >
                 <option value="" key="0" />
                 {abstractActivities

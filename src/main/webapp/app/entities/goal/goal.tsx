@@ -83,14 +83,11 @@ export const Goal = () => {
                       : null}
                   </td>
                   <td>
-                    {goal.abstractActivities
-                      ? goal.abstractActivities.map((val, j) => (
-                          <span key={j}>
-                            <Link to={`/abstract-activity/${val.id}`}>{val.title}</Link>
-                            {j === goal.abstractActivities.length - 1 ? '' : ', '}
-                          </span>
-                        ))
-                      : null}
+                    {goal.abstractActivity ? (
+                      <Link to={`/abstract-activity/${goal.abstractActivity.id}`}>{goal.abstractActivity.title}</Link>
+                    ) : (
+                      ''
+                    )}
                   </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

@@ -30,7 +30,7 @@ public class Fragment implements Serializable {
 
     @DBRef
     @Field("abstractActivities")
-    @JsonIgnoreProperties(value = { "fragments", "goals" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "goals", "fragments" }, allowSetters = true)
     private Set<AbstractActivity> abstractActivities = new HashSet<>();
 
     @DBRef
