@@ -77,7 +77,8 @@ title String
 }
 
 entity Sequence {
-title String
+  name String required
+  fragments Fragment required
 }
 
 entity SetOf {
