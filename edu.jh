@@ -77,7 +77,7 @@ title String
 }
 
 entity Sequence {
-  name String required
+  title String required
 }
 
 entity SequenceFragment {
@@ -201,8 +201,8 @@ relationship ManyToMany {
 
 
 relationship ManyToOne {
-  SequenceFragment{sequence} to Sequence
-  SequenceFragment{fragment} to Fragment
+  SequenceFragment{sequence} to Sequence { Fragmemt(title) }
+  SequenceFragment{fragment} to Fragment { Sequence(title) }
 }
 
 
