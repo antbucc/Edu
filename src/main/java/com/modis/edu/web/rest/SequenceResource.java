@@ -136,11 +136,15 @@ public class SequenceResource {
     /**
      * {@code GET  /sequences} : get all the sequences.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of sequences in body.
      */
     @GetMapping("/sequences")
-    public List<Sequence> getAllSequences(@RequestParam(required = false) String filter) {
+    public List<Sequence> getAllSequences(
+        @RequestParam(required = false) String filter,
+        @RequestParam(required = false, defaultValue = "false") boolean eagerload
+    ) {
         if ("fragment-is-null".equals(filter)) {
             log.debug("REST request to get all Sequences where fragment is null");
             return sequenceService.findAllWhereFragmentIsNull();

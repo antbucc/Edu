@@ -2,8 +2,6 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -27,12 +25,14 @@ public class Sequence implements Serializable {
     private String title;
 
     @DBRef
+    @Field("fragment")
+    @DBRef
     private Fragment fragment;
 
     @DBRef
-    @Field("orders")
-    @JsonIgnoreProperties(value = { "sequences" }, allowSetters = true)
-    private Set<Order> orders = new HashSet<>();
+    @Field("fragment")
+    @DBRef
+    private Fragment fragment;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -67,6 +67,19 @@ public class Sequence implements Serializable {
     }
 
     public void setFragment(Fragment fragment) {
+        this.fragment = fragment;
+    }
+
+    public Sequence fragment(Fragment fragment) {
+        this.setFragment(fragment);
+        return this;
+    }
+
+    public Fragment getFragment() {
+        return this.fragment;
+    }
+
+    public void setFragment(Fragment fragment) {
         if (this.fragment != null) {
             this.fragment.setSequence(null);
         }
@@ -78,37 +91,6 @@ public class Sequence implements Serializable {
 
     public Sequence fragment(Fragment fragment) {
         this.setFragment(fragment);
-        return this;
-    }
-
-    public Set<Order> getOrders() {
-        return this.orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        if (this.orders != null) {
-            this.orders.forEach(i -> i.removeSequence(this));
-        }
-        if (orders != null) {
-            orders.forEach(i -> i.addSequence(this));
-        }
-        this.orders = orders;
-    }
-
-    public Sequence orders(Set<Order> orders) {
-        this.setOrders(orders);
-        return this;
-    }
-
-    public Sequence addOrder(Order order) {
-        this.orders.add(order);
-        order.getSequences().add(this);
-        return this;
-    }
-
-    public Sequence removeOrder(Order order) {
-        this.orders.remove(order);
-        order.getSequences().remove(this);
         return this;
     }
 

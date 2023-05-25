@@ -39,18 +39,9 @@ export const OrderDetail = () => {
           </dt>
           <dd>{orderEntity.order}</dd>
           <dt>
-            <Translate contentKey="eduApp.order.sequence">Sequence</Translate>
+            <Translate contentKey="eduApp.order.fragment">Fragment</Translate>
           </dt>
-          <dd>
-            {orderEntity.sequences
-              ? orderEntity.sequences.map((val, i) => (
-                  <span key={val.id}>
-                    <a>{val.title}</a>
-                    {orderEntity.sequences && i === orderEntity.sequences.length - 1 ? '' : ', '}
-                  </span>
-                ))
-              : null}
-          </dd>
+          <dd>{orderEntity.fragment ? orderEntity.fragment.title : ''}</dd>
         </dl>
         <Button tag={Link} to="/order" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

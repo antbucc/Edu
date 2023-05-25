@@ -49,6 +49,22 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityField": "order",
+      "otherEntityName": "order",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": false,
+      "relationshipName": "order",
+      "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "sequence",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": false,
+      "relationshipName": "sequence",
+      "relationshipType": "one-to-one"
+    },
+    {
       "otherEntityField": "title",
       "otherEntityName": "module",
       "otherEntityRelationshipName": "fragment",

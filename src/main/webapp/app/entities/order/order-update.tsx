@@ -8,8 +8,8 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { ISequence } from 'app/shared/model/sequence.model';
-import { getEntities as getSequences } from 'app/entities/sequence/sequence.reducer';
+import { IFragment } from 'app/shared/model/fragment.model';
+import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
 import { IOrder } from 'app/shared/model/order.model';
 import { getEntity, updateEntity, createEntity, reset } from './order.reducer';
 
@@ -21,7 +21,7 @@ export const OrderUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const sequences = useAppSelector(state => state.sequence.entities);
+  const fragments = useAppSelector(state => state.fragment.entities);
   const orderEntity = useAppSelector(state => state.order.entity);
   const loading = useAppSelector(state => state.order.loading);
   const updating = useAppSelector(state => state.order.updating);
@@ -38,7 +38,7 @@ export const OrderUpdate = () => {
       dispatch(getEntity(id));
     }
 
-    dispatch(getSequences({}));
+    dispatch(getFragments({}));
   }, []);
 
   useEffect(() => {
@@ -51,7 +51,7 @@ export const OrderUpdate = () => {
     const entity = {
       ...orderEntity,
       ...values,
-      sequences: mapIdList(values.sequences),
+      fragment: fragments.find(it => it.id.toString() === values.fragment.toString()),
     };
 
     if (isNew) {
@@ -66,7 +66,7 @@ export const OrderUpdate = () => {
       ? {}
       : {
           ...orderEntity,
-          sequences: orderEntity?.sequences?.map(e => e.id.toString()),
+          fragment: orderEntity?.fragment?.id,
         };
 
   return (
@@ -106,16 +106,15 @@ export const OrderUpdate = () => {
                 }}
               />
               <ValidatedField
-                label={translate('eduApp.order.sequence')}
-                id="order-sequence"
-                data-cy="sequence"
+                id="order-fragment"
+                name="fragment"
+                data-cy="fragment"
+                label={translate('eduApp.order.fragment')}
                 type="select"
-                multiple
-                name="sequences"
               >
                 <option value="" key="0" />
-                {sequences
-                  ? sequences.map(otherEntity => (
+                {fragments
+                  ? fragments.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
                       </option>

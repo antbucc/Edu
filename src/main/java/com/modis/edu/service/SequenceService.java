@@ -3,6 +3,8 @@ package com.modis.edu.service;
 import com.modis.edu.domain.Sequence;
 import java.util.List;
 import java.util.Optional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 /**
  * Service Interface for managing {@link Sequence}.
@@ -44,6 +46,14 @@ public interface SequenceService {
      * @return the {@link List} of entities.
      */
     List<Sequence> findAllWhereFragmentIsNull();
+
+    /**
+     * Get all the sequences with eager load of many-to-many relationships.
+     *
+     * @param pageable the pagination information.
+     * @return the list of entities.
+     */
+    Page<Sequence> findAllWithEagerRelationships(Pageable pageable);
 
     /**
      * Get the "id" sequence.
