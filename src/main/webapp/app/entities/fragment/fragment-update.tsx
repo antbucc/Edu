@@ -12,8 +12,6 @@ import { IActivity } from 'app/shared/model/activity.model';
 import { getEntities as getActivities } from 'app/entities/activity/activity.reducer';
 import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 import { getEntities as getAbstractActivities } from 'app/entities/abstract-activity/abstract-activity.reducer';
-import { ISequence } from 'app/shared/model/sequence.model';
-import { getEntities as getSequences } from 'app/entities/sequence/sequence.reducer';
 import { IModule } from 'app/shared/model/module.model';
 import { getEntities as getModules } from 'app/entities/module/module.reducer';
 import { ISetOf } from 'app/shared/model/set-of.model';
@@ -31,7 +29,6 @@ export const FragmentUpdate = () => {
 
   const activities = useAppSelector(state => state.activity.entities);
   const abstractActivities = useAppSelector(state => state.abstractActivity.entities);
-  const sequences = useAppSelector(state => state.sequence.entities);
   const modules = useAppSelector(state => state.module.entities);
   const setOfs = useAppSelector(state => state.setOf.entities);
   const fragmentEntity = useAppSelector(state => state.fragment.entity);
@@ -52,7 +49,6 @@ export const FragmentUpdate = () => {
 
     dispatch(getActivities({}));
     dispatch(getAbstractActivities({}));
-    dispatch(getSequences({}));
     dispatch(getModules({}));
     dispatch(getSetOfs({}));
   }, []);
@@ -69,7 +65,6 @@ export const FragmentUpdate = () => {
       ...values,
       activity: activities.find(it => it.id.toString() === values.activity.toString()),
       abstractActivity: abstractActivities.find(it => it.id.toString() === values.abstractActivity.toString()),
-      sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
     };
 
     if (isNew) {
@@ -86,7 +81,6 @@ export const FragmentUpdate = () => {
           ...fragmentEntity,
           activity: fragmentEntity?.activity?.id,
           abstractActivity: fragmentEntity?.abstractActivity?.id,
-          sequence: fragmentEntity?.sequence?.id,
         };
 
   return (
@@ -141,22 +135,6 @@ export const FragmentUpdate = () => {
                 <option value="" key="0" />
                 {abstractActivities
                   ? abstractActivities.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField
-                id="fragment-sequence"
-                name="sequence"
-                data-cy="sequence"
-                label={translate('eduApp.fragment.sequence')}
-                type="select"
-              >
-                <option value="" key="0" />
-                {sequences
-                  ? sequences.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
                       </option>

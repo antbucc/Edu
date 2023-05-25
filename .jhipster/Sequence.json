@@ -19,14 +19,6 @@
   "relationships": [
     {
       "otherEntityField": "title",
-      "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "sequence",
-      "ownerSide": false,
-      "relationshipName": "fragment",
-      "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityField": "title",
       "otherEntityName": "sequenceFragment",
       "otherEntityRelationshipName": "sequence",
       "relationshipName": "fragment",
