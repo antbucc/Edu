@@ -41,13 +41,6 @@
     },
     {
       "otherEntityField": "title",
-      "otherEntityName": "setOfFragment",
-      "otherEntityRelationshipName": "fragment",
-      "relationshipName": "setOf",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityField": "title",
       "otherEntityName": "module",
       "otherEntityRelationshipName": "fragment",
       "ownerSide": false,
