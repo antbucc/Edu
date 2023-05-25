@@ -55,6 +55,14 @@
       "ownerSide": false,
       "relationshipName": "module",
       "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "sequenceFragment",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": false,
+      "relationshipName": "sequence",
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "no"

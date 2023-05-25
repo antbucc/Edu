@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IFragment } from 'app/shared/model/fragment.model';
 import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
+import { ISequenceFragment } from 'app/shared/model/sequence-fragment.model';
+import { getEntities as getSequenceFragments } from 'app/entities/sequence-fragment/sequence-fragment.reducer';
 import { ISequence } from 'app/shared/model/sequence.model';
 import { getEntity, updateEntity, createEntity, reset } from './sequence.reducer';
 
@@ -22,6 +24,7 @@ export const SequenceUpdate = () => {
   const isNew = id === undefined;
 
   const fragments = useAppSelector(state => state.fragment.entities);
+  const sequenceFragments = useAppSelector(state => state.sequenceFragment.entities);
   const sequenceEntity = useAppSelector(state => state.sequence.entity);
   const loading = useAppSelector(state => state.sequence.loading);
   const updating = useAppSelector(state => state.sequence.updating);
@@ -39,6 +42,7 @@ export const SequenceUpdate = () => {
     }
 
     dispatch(getFragments({}));
+    dispatch(getSequenceFragments({}));
   }, []);
 
   useEffect(() => {

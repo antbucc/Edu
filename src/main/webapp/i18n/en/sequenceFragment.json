@@ -18,7 +18,9 @@
         "title": "Sequence Fragment"
       },
       "id": "ID",
-      "order": "Order"
+      "order": "Order",
+      "sequence": "Sequence",
+      "fragment": "Fragment"
     }
   }
 }
