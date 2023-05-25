@@ -4,8 +4,8 @@ import { IFragment } from 'app/shared/model/fragment.model';
 export interface ISequenceFragment {
   id?: string;
   order?: number;
-  sequence?: ISequence | null;
-  fragment?: IFragment | null;
+  sequences?: ISequence[] | null;
+  fragments?: IFragment[] | null;
 }
 
 export const defaultValue: Readonly<ISequenceFragment> = {};

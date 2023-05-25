@@ -2,6 +2,8 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -25,14 +27,14 @@ public class SequenceFragment implements Serializable {
     private Integer order;
 
     @DBRef
-    @Field("sequence")
+    @Field("sequences")
     @JsonIgnoreProperties(value = { "fragment", "fragments" }, allowSetters = true)
-    private Sequence sequence;
+    private Set<Sequence> sequences = new HashSet<>();
 
     @DBRef
-    @Field("fragment")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "sequence", "sequences", "modules", "setOfs" }, allowSetters = true)
-    private Fragment fragment;
+    @Field("fragments")
+    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "sequence", "modules", "setOfs", "sequences" }, allowSetters = true)
+    private Set<Fragment> fragments = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -62,29 +64,53 @@ public class SequenceFragment implements Serializable {
         this.order = order;
     }
 
-    public Sequence getSequence() {
-        return this.sequence;
+    public Set<Sequence> getSequences() {
+        return this.sequences;
     }
 
-    public void setSequence(Sequence sequence) {
-        this.sequence = sequence;
+    public void setSequences(Set<Sequence> sequences) {
+        this.sequences = sequences;
     }
 
-    public SequenceFragment sequence(Sequence sequence) {
-        this.setSequence(sequence);
+    public SequenceFragment sequences(Set<Sequence> sequences) {
+        this.setSequences(sequences);
         return this;
     }
 
-    public Fragment getFragment() {
-        return this.fragment;
+    public SequenceFragment addSequence(Sequence sequence) {
+        this.sequences.add(sequence);
+        sequence.getFragments().add(this);
+        return this;
     }
 
-    public void setFragment(Fragment fragment) {
-        this.fragment = fragment;
+    public SequenceFragment removeSequence(Sequence sequence) {
+        this.sequences.remove(sequence);
+        sequence.getFragments().remove(this);
+        return this;
     }
 
-    public SequenceFragment fragment(Fragment fragment) {
-        this.setFragment(fragment);
+    public Set<Fragment> getFragments() {
+        return this.fragments;
+    }
+
+    public void setFragments(Set<Fragment> fragments) {
+        this.fragments = fragments;
+    }
+
+    public SequenceFragment fragments(Set<Fragment> fragments) {
+        this.setFragments(fragments);
+        return this;
+    }
+
+    public SequenceFragment addFragment(Fragment fragment) {
+        this.fragments.add(fragment);
+        fragment.getSequences().add(this);
+        return this;
+    }
+
+    public SequenceFragment removeFragment(Fragment fragment) {
+        this.fragments.remove(fragment);
+        fragment.getSequences().remove(this);
         return this;
     }
 

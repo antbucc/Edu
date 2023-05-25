@@ -55,8 +55,8 @@ export const SequenceFragmentUpdate = () => {
     const entity = {
       ...sequenceFragmentEntity,
       ...values,
-      sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
-      fragment: fragments.find(it => it.id.toString() === values.fragment.toString()),
+      sequences: mapIdList(values.sequences),
+      fragments: mapIdList(values.fragments),
     };
 
     if (isNew) {
@@ -71,8 +71,8 @@ export const SequenceFragmentUpdate = () => {
       ? {}
       : {
           ...sequenceFragmentEntity,
-          sequence: sequenceFragmentEntity?.sequence?.id,
-          fragment: sequenceFragmentEntity?.fragment?.id,
+          sequences: sequenceFragmentEntity?.sequences?.map(e => e.id.toString()),
+          fragments: sequenceFragmentEntity?.fragments?.map(e => e.id.toString()),
         };
 
   return (
@@ -112,11 +112,12 @@ export const SequenceFragmentUpdate = () => {
                 }}
               />
               <ValidatedField
-                id="sequence-fragment-sequence"
-                name="sequence"
-                data-cy="sequence"
                 label={translate('eduApp.sequenceFragment.sequence')}
+                id="sequence-fragment-sequence"
+                data-cy="sequence"
                 type="select"
+                multiple
+                name="sequences"
               >
                 <option value="" key="0" />
                 {sequences
@@ -128,11 +129,12 @@ export const SequenceFragmentUpdate = () => {
                   : null}
               </ValidatedField>
               <ValidatedField
-                id="sequence-fragment-fragment"
-                name="fragment"
-                data-cy="fragment"
                 label={translate('eduApp.sequenceFragment.fragment')}
+                id="sequence-fragment-fragment"
+                data-cy="fragment"
                 type="select"
+                multiple
+                name="fragments"
               >
                 <option value="" key="0" />
                 {fragments

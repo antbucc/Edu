@@ -21,15 +21,17 @@
       "otherEntityField": "title",
       "otherEntityName": "sequence",
       "otherEntityRelationshipName": "fragment",
+      "ownerSide": true,
       "relationshipName": "sequence",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-many"
     },
     {
       "otherEntityField": "title",
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "sequence",
+      "ownerSide": true,
       "relationshipName": "fragment",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"
