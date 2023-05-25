@@ -51,10 +51,6 @@ export const GoalDetail = () => {
                 ))
               : null}
           </dd>
-          <dt>
-            <Translate contentKey="eduApp.goal.goals">Goals</Translate>
-          </dt>
-          <dd>{goalEntity.goals ? goalEntity.goals.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/goal" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -54,6 +54,9 @@ export const AbstractActivity = () => {
                 <th>
                   <Translate contentKey="eduApp.abstractActivity.title">Title</Translate>
                 </th>
+                <th>
+                  <Translate contentKey="eduApp.abstractActivity.goal">Goal</Translate>
+                </th>
                 <th />
               </tr>
             </thead>
@@ -66,6 +69,16 @@ export const AbstractActivity = () => {
                     </Button>
                   </td>
                   <td>{abstractActivity.title}</td>
+                  <td>
+                    {abstractActivity.goals
+                      ? abstractActivity.goals.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/goal/${val.id}`}>{val.title}</Link>
+                            {j === abstractActivity.goals.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
+                  </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button

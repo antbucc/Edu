@@ -25,10 +25,12 @@
       "relationshipType": "many-to-many"
     },
     {
+      "otherEntityField": "title",
       "otherEntityName": "abstractActivity",
-      "otherEntityRelationshipName": "activity",
-      "relationshipName": "goals",
-      "relationshipType": "many-to-one"
+      "otherEntityRelationshipName": "goal",
+      "ownerSide": false,
+      "relationshipName": "abstractActivity",
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"
