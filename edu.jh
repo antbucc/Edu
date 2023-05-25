@@ -207,8 +207,9 @@ relationship ManyToMany {
 
 
 
-relationship ManyToMany {
-  Order{ Sequence(title) } to Sequence { Order(order) }
+relationship OneToOne {
+  Order{ Fragment(title) } to Fragment { Order(order) }
+  Sequence { Fragment(title) } to Fragment { Sequence(title) }
 }
 
 
