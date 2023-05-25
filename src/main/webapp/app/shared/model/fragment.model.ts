@@ -3,6 +3,7 @@ import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 import { ISequence } from 'app/shared/model/sequence.model';
 import { ISetOf } from 'app/shared/model/set-of.model';
 import { IModule } from 'app/shared/model/module.model';
+import { ISequenceFragment } from 'app/shared/model/sequence-fragment.model';
 
 export interface IFragment {
   id?: string;
@@ -12,6 +13,7 @@ export interface IFragment {
   sequence?: ISequence | null;
   setOf?: ISetOf | null;
   modules?: IModule[] | null;
+  sequences?: ISequenceFragment[] | null;
 }
 
 export const defaultValue: Readonly<IFragment> = {};

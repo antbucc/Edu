@@ -2,6 +2,8 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -25,7 +27,15 @@ public class Sequence implements Serializable {
     private String title;
 
     @DBRef
+    @DBRef
+    @Field("fragments")
     private Fragment fragment;
+
+    @DBRef
+    @DBRef
+    @Field("fragments")
+    @JsonIgnoreProperties(value = { "sequences", "fragments" }, allowSetters = true)
+    private Set<SequenceFragment> fragments = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -71,6 +81,37 @@ public class Sequence implements Serializable {
 
     public Sequence fragment(Fragment fragment) {
         this.setFragment(fragment);
+        return this;
+    }
+
+    public Set<SequenceFragment> getFragments() {
+        return this.fragments;
+    }
+
+    public void setFragments(Set<SequenceFragment> sequenceFragments) {
+        if (this.fragments != null) {
+            this.fragments.forEach(i -> i.removeSequence(this));
+        }
+        if (sequenceFragments != null) {
+            sequenceFragments.forEach(i -> i.addSequence(this));
+        }
+        this.fragments = sequenceFragments;
+    }
+
+    public Sequence fragments(Set<SequenceFragment> sequenceFragments) {
+        this.setFragments(sequenceFragments);
+        return this;
+    }
+
+    public Sequence addFragment(SequenceFragment sequenceFragment) {
+        this.fragments.add(sequenceFragment);
+        sequenceFragment.getSequences().add(this);
+        return this;
+    }
+
+    public Sequence removeFragment(SequenceFragment sequenceFragment) {
+        this.fragments.remove(sequenceFragment);
+        sequenceFragment.getSequences().remove(this);
         return this;
     }
 
