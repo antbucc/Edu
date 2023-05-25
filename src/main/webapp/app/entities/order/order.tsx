@@ -69,7 +69,16 @@ export const Order = () => {
                     </Button>
                   </td>
                   <td>{order.order}</td>
-                  <td>{order.sequence ? <Link to={`/sequence/${order.sequence.id}`}>{order.sequence.title}</Link> : ''}</td>
+                  <td>
+                    {order.sequences
+                      ? order.sequences.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/sequence/${val.id}`}>{val.title}</Link>
+                            {j === order.sequences.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
+                  </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/order/${order.id}`} color="info" size="sm" data-cy="entityDetailsButton">

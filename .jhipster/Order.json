@@ -23,7 +23,7 @@
       "otherEntityRelationshipName": "order",
       "ownerSide": true,
       "relationshipName": "sequence",
-      "relationshipType": "one-to-one"
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"

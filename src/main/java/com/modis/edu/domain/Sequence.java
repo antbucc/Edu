@@ -2,6 +2,8 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -28,7 +30,9 @@ public class Sequence implements Serializable {
     private Fragment fragment;
 
     @DBRef
-    private Order order;
+    @Field("orders")
+    @JsonIgnoreProperties(value = { "sequences" }, allowSetters = true)
+    private Set<Order> orders = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -77,22 +81,34 @@ public class Sequence implements Serializable {
         return this;
     }
 
-    public Order getOrder() {
-        return this.order;
+    public Set<Order> getOrders() {
+        return this.orders;
     }
 
-    public void setOrder(Order order) {
-        if (this.order != null) {
-            this.order.setSequence(null);
+    public void setOrders(Set<Order> orders) {
+        if (this.orders != null) {
+            this.orders.forEach(i -> i.removeSequence(this));
         }
-        if (order != null) {
-            order.setSequence(this);
+        if (orders != null) {
+            orders.forEach(i -> i.addSequence(this));
         }
-        this.order = order;
+        this.orders = orders;
     }
 
-    public Sequence order(Order order) {
-        this.setOrder(order);
+    public Sequence orders(Set<Order> orders) {
+        this.setOrders(orders);
+        return this;
+    }
+
+    public Sequence addOrder(Order order) {
+        this.orders.add(order);
+        order.getSequences().add(this);
+        return this;
+    }
+
+    public Sequence removeOrder(Order order) {
+        this.orders.remove(order);
+        order.getSequences().remove(this);
         return this;
     }
 
