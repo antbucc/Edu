@@ -8,14 +8,12 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { IFragment } from 'app/shared/model/fragment.model';
-import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
-import { IOrder } from 'app/shared/model/order.model';
-import { getEntities as getOrders } from 'app/entities/order/order.reducer';
 import { ISequence } from 'app/shared/model/sequence.model';
-import { getEntity, updateEntity, createEntity, reset } from './sequence.reducer';
+import { getEntities as getSequences } from 'app/entities/sequence/sequence.reducer';
+import { IOrder } from 'app/shared/model/order.model';
+import { getEntity, updateEntity, createEntity, reset } from './order.reducer';
 
-export const SequenceUpdate = () => {
+export const OrderUpdate = () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -23,15 +21,14 @@ export const SequenceUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const fragments = useAppSelector(state => state.fragment.entities);
-  const orders = useAppSelector(state => state.order.entities);
-  const sequenceEntity = useAppSelector(state => state.sequence.entity);
-  const loading = useAppSelector(state => state.sequence.loading);
-  const updating = useAppSelector(state => state.sequence.updating);
-  const updateSuccess = useAppSelector(state => state.sequence.updateSuccess);
+  const sequences = useAppSelector(state => state.sequence.entities);
+  const orderEntity = useAppSelector(state => state.order.entity);
+  const loading = useAppSelector(state => state.order.loading);
+  const updating = useAppSelector(state => state.order.updating);
+  const updateSuccess = useAppSelector(state => state.order.updateSuccess);
 
   const handleClose = () => {
-    navigate('/sequence');
+    navigate('/order');
   };
 
   useEffect(() => {
@@ -41,8 +38,7 @@ export const SequenceUpdate = () => {
       dispatch(getEntity(id));
     }
 
-    dispatch(getFragments({}));
-    dispatch(getOrders({}));
+    dispatch(getSequences({}));
   }, []);
 
   useEffect(() => {
@@ -53,8 +49,9 @@ export const SequenceUpdate = () => {
 
   const saveEntity = values => {
     const entity = {
-      ...sequenceEntity,
+      ...orderEntity,
       ...values,
+      sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
     };
 
     if (isNew) {
@@ -68,15 +65,16 @@ export const SequenceUpdate = () => {
     isNew
       ? {}
       : {
-          ...sequenceEntity,
+          ...orderEntity,
+          sequence: orderEntity?.sequence?.id,
         };
 
   return (
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="eduApp.sequence.home.createOrEditLabel" data-cy="SequenceCreateUpdateHeading">
-            <Translate contentKey="eduApp.sequence.home.createOrEditLabel">Create or edit a Sequence</Translate>
+          <h2 id="eduApp.order.home.createOrEditLabel" data-cy="OrderCreateUpdateHeading">
+            <Translate contentKey="eduApp.order.home.createOrEditLabel">Create or edit a Order</Translate>
           </h2>
         </Col>
       </Row>
@@ -91,22 +89,39 @@ export const SequenceUpdate = () => {
                   name="id"
                   required
                   readOnly
-                  id="sequence-id"
+                  id="order-id"
                   label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
               ) : null}
               <ValidatedField
-                label={translate('eduApp.sequence.title')}
-                id="sequence-title"
-                name="title"
-                data-cy="title"
+                label={translate('eduApp.order.order')}
+                id="order-order"
+                name="order"
+                data-cy="order"
                 type="text"
                 validate={{
                   required: { value: true, message: translate('entity.validation.required') },
+                  validate: v => isNumber(v) || translate('entity.validation.number'),
                 }}
               />
-              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/sequence" replace color="info">
+              <ValidatedField
+                id="order-sequence"
+                name="sequence"
+                data-cy="sequence"
+                label={translate('eduApp.order.sequence')}
+                type="select"
+              >
+                <option value="" key="0" />
+                {sequences
+                  ? sequences.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/order" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
@@ -127,4 +142,4 @@ export const SequenceUpdate = () => {
   );
 };
 
-export default SequenceUpdate;
+export default OrderUpdate;

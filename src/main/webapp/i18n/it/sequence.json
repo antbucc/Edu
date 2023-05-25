@@ -20,7 +20,7 @@
       "id": "ID",
       "title": "Title",
       "fragment": "Fragment",
-      "fragment": "Fragment"
+      "order": "Order"
     }
   }
 }

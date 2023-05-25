@@ -145,6 +145,11 @@ public class SequenceResource {
             log.debug("REST request to get all Sequences where fragment is null");
             return sequenceService.findAllWhereFragmentIsNull();
         }
+
+        if ("order-is-null".equals(filter)) {
+            log.debug("REST request to get all Sequences where order is null");
+            return sequenceService.findAllWhereOrderIsNull();
+        }
         log.debug("REST request to get all Sequences");
         return sequenceService.findAll();
     }

@@ -26,6 +26,7 @@
         "setOf": "Set Of",
         "sequenceFragment": "Sequence Fragment",
         "setOfFragment": "Set Of Fragment",
+        "order": "Order",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

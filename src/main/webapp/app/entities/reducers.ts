@@ -16,6 +16,7 @@ import set from 'app/entities/set/set.reducer';
 import setOf from 'app/entities/set-of/set-of.reducer';
 import sequenceFragment from 'app/entities/sequence-fragment/sequence-fragment.reducer';
 import setOfFragment from 'app/entities/set-of-fragment/set-of-fragment.reducer';
+import order from 'app/entities/order/order.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const entitiesReducers = {
@@ -37,6 +38,7 @@ const entitiesReducers = {
   setOf,
   sequenceFragment,
   setOfFragment,
+  order,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
 };
 

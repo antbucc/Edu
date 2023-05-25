@@ -44,6 +44,12 @@ public interface SequenceService {
      * @return the {@link List} of entities.
      */
     List<Sequence> findAllWhereFragmentIsNull();
+    /**
+     * Get all the Sequence where Order is {@code null}.
+     *
+     * @return the {@link List} of entities.
+     */
+    List<Sequence> findAllWhereOrderIsNull();
 
     /**
      * Get the "id" sequence.
