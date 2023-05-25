@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { getEntity } from './sequence-fragment.reducer';
+import { getEntity } from './set-of-fragment.reducer';
 
-export const SequenceFragmentDetail = () => {
+export const SetOfFragmentDetail = () => {
   const dispatch = useAppDispatch();
 
   const { id } = useParams<'id'>();
@@ -18,12 +18,12 @@ export const SequenceFragmentDetail = () => {
     dispatch(getEntity(id));
   }, []);
 
-  const sequenceFragmentEntity = useAppSelector(state => state.sequenceFragment.entity);
+  const setOfFragmentEntity = useAppSelector(state => state.setOfFragment.entity);
   return (
     <Row>
       <Col md="8">
-        <h2 data-cy="sequenceFragmentDetailsHeading">
-          <Translate contentKey="eduApp.sequenceFragment.detail.title">SequenceFragment</Translate>
+        <h2 data-cy="setOfFragmentDetailsHeading">
+          <Translate contentKey="eduApp.setOfFragment.detail.title">SetOfFragment</Translate>
         </h2>
         <dl className="jh-entity-details">
           <dt>
@@ -31,30 +31,30 @@ export const SequenceFragmentDetail = () => {
               <Translate contentKey="global.field.id">ID</Translate>
             </span>
           </dt>
-          <dd>{sequenceFragmentEntity.id}</dd>
+          <dd>{setOfFragmentEntity.id}</dd>
           <dt>
             <span id="order">
-              <Translate contentKey="eduApp.sequenceFragment.order">Order</Translate>
+              <Translate contentKey="eduApp.setOfFragment.order">Order</Translate>
             </span>
           </dt>
-          <dd>{sequenceFragmentEntity.order}</dd>
+          <dd>{setOfFragmentEntity.order}</dd>
           <dt>
-            <Translate contentKey="eduApp.sequenceFragment.sequence">Sequence</Translate>
+            <Translate contentKey="eduApp.setOfFragment.setOf">Set Of</Translate>
           </dt>
-          <dd>{sequenceFragmentEntity.sequence ? sequenceFragmentEntity.sequence.title : ''}</dd>
+          <dd>{setOfFragmentEntity.setOf ? setOfFragmentEntity.setOf.title : ''}</dd>
           <dt>
-            <Translate contentKey="eduApp.sequenceFragment.fragment">Fragment</Translate>
+            <Translate contentKey="eduApp.setOfFragment.fragment">Fragment</Translate>
           </dt>
-          <dd>{sequenceFragmentEntity.fragment ? sequenceFragmentEntity.fragment.title : ''}</dd>
+          <dd>{setOfFragmentEntity.fragment ? setOfFragmentEntity.fragment.title : ''}</dd>
         </dl>
-        <Button tag={Link} to="/sequence-fragment" replace color="info" data-cy="entityDetailsBackButton">
+        <Button tag={Link} to="/set-of-fragment" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.back">Back</Translate>
           </span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/sequence-fragment/${sequenceFragmentEntity.id}/edit`} replace color="primary">
+        <Button tag={Link} to={`/set-of-fragment/${setOfFragmentEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.edit">Edit</Translate>
@@ -65,4 +65,4 @@ export const SequenceFragmentDetail = () => {
   );
 };
 
-export default SequenceFragmentDetail;
+export default SetOfFragmentDetail;

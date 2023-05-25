@@ -1,6 +1,6 @@
 package com.modis.edu.repository;
 
-import com.modis.edu.domain.SequenceFragment;
+import com.modis.edu.domain.SetOfFragment;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
@@ -10,16 +10,16 @@ import org.springframework.data.mongodb.repository.Query;
 import org.springframework.stereotype.Repository;
 
 /**
- * Spring Data MongoDB repository for the SequenceFragment entity.
+ * Spring Data MongoDB repository for the SetOfFragment entity.
  */
 @Repository
-public interface SequenceFragmentRepository extends MongoRepository<SequenceFragment, String> {
+public interface SetOfFragmentRepository extends MongoRepository<SetOfFragment, String> {
     @Query("{}")
-    Page<SequenceFragment> findAllWithEagerRelationships(Pageable pageable);
+    Page<SetOfFragment> findAllWithEagerRelationships(Pageable pageable);
 
     @Query("{}")
-    List<SequenceFragment> findAllWithEagerRelationships();
+    List<SetOfFragment> findAllWithEagerRelationships();
 
     @Query("{'id': ?0}")
-    Optional<SequenceFragment> findOneWithEagerRelationships(String id);
+    Optional<SetOfFragment> findOneWithEagerRelationships(String id);
 }
