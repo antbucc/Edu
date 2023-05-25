@@ -8,8 +8,6 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { IConcept } from 'app/shared/model/concept.model';
-import { getEntities as getConcepts } from 'app/entities/concept/concept.reducer';
 import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 import { getEntities as getAbstractActivities } from 'app/entities/abstract-activity/abstract-activity.reducer';
 import { IGoal } from 'app/shared/model/goal.model';
@@ -23,7 +21,6 @@ export const GoalUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const concepts = useAppSelector(state => state.concept.entities);
   const abstractActivities = useAppSelector(state => state.abstractActivity.entities);
   const goalEntity = useAppSelector(state => state.goal.entity);
   const loading = useAppSelector(state => state.goal.loading);
@@ -41,7 +38,6 @@ export const GoalUpdate = () => {
       dispatch(getEntity(id));
     }
 
-    dispatch(getConcepts({}));
     dispatch(getAbstractActivities({}));
   }, []);
 
@@ -55,7 +51,6 @@ export const GoalUpdate = () => {
     const entity = {
       ...goalEntity,
       ...values,
-      concepts: mapIdList(values.concepts),
     };
 
     if (isNew) {
@@ -70,7 +65,6 @@ export const GoalUpdate = () => {
       ? {}
       : {
           ...goalEntity,
-          concepts: goalEntity?.concepts?.map(e => e.id.toString()),
         };
 
   return (
@@ -99,23 +93,6 @@ export const GoalUpdate = () => {
                 />
               ) : null}
               <ValidatedField label={translate('eduApp.goal.title')} id="goal-title" name="title" data-cy="title" type="text" />
-              <ValidatedField
-                label={translate('eduApp.goal.concept')}
-                id="goal-concept"
-                data-cy="concept"
-                type="select"
-                multiple
-                name="concepts"
-              >
-                <option value="" key="0" />
-                {concepts
-                  ? concepts.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/goal" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
