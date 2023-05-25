@@ -30,9 +30,9 @@ public class Goal implements Serializable {
     private Set<Concept> concepts = new HashSet<>();
 
     @DBRef
-    @Field("abstractActivities")
-    @JsonIgnoreProperties(value = { "fragments", "goals" }, allowSetters = true)
-    private Set<AbstractActivity> abstractActivities = new HashSet<>();
+    @Field("abstractActivity")
+    @JsonIgnoreProperties(value = { "goals", "fragments" }, allowSetters = true)
+    private AbstractActivity abstractActivity;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -87,28 +87,16 @@ public class Goal implements Serializable {
         return this;
     }
 
-    public Set<AbstractActivity> getAbstractActivities() {
-        return this.abstractActivities;
+    public AbstractActivity getAbstractActivity() {
+        return this.abstractActivity;
     }
 
-    public void setAbstractActivities(Set<AbstractActivity> abstractActivities) {
-        this.abstractActivities = abstractActivities;
+    public void setAbstractActivity(AbstractActivity abstractActivity) {
+        this.abstractActivity = abstractActivity;
     }
 
-    public Goal abstractActivities(Set<AbstractActivity> abstractActivities) {
-        this.setAbstractActivities(abstractActivities);
-        return this;
-    }
-
-    public Goal addAbstractActivity(AbstractActivity abstractActivity) {
-        this.abstractActivities.add(abstractActivity);
-        abstractActivity.getGoals().add(this);
-        return this;
-    }
-
-    public Goal removeAbstractActivity(AbstractActivity abstractActivity) {
-        this.abstractActivities.remove(abstractActivity);
-        abstractActivity.getGoals().remove(this);
+    public Goal abstractActivity(AbstractActivity abstractActivity) {
+        this.setAbstractActivity(abstractActivity);
         return this;
     }
 

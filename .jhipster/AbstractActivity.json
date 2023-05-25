@@ -18,18 +18,17 @@
   "relationships": [
     {
       "otherEntityField": "title",
+      "otherEntityName": "goal",
+      "otherEntityRelationshipName": "abstractActivity",
+      "relationshipName": "goal",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "title",
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "abstractActivity",
       "ownerSide": false,
       "relationshipName": "fragment",
-      "relationshipType": "many-to-many"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "goal",
-      "otherEntityRelationshipName": "abstractActivity",
-      "ownerSide": false,
-      "relationshipName": "goal",
       "relationshipType": "many-to-many"
     }
   ],

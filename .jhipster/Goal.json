@@ -28,9 +28,8 @@
       "otherEntityField": "title",
       "otherEntityName": "abstractActivity",
       "otherEntityRelationshipName": "goal",
-      "ownerSide": true,
       "relationshipName": "abstractActivity",
-      "relationshipType": "many-to-many"
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceImpl"
