@@ -164,8 +164,8 @@ Activity { Effect(title) } to Effect{ Activity(title) }
 
 
 
-relationship ManyToMany {
-  Goal { Concept(title) } to Concept{ Goal(title) }
+relationship OneToMany {
+  Goal{goal} to Concept{concepts}
 }
 
 
