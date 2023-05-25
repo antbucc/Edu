@@ -89,9 +89,6 @@ entity SetOf {
  title String
 }
 
-entity SetOfFragment {
-  order Integer required
-}
 
 
 
@@ -205,17 +202,12 @@ relationship ManyToMany {
 
 
 
-
 relationship ManyToOne {
   SequenceFragment{ Sequence(title) } to Sequence { Fragmemt(title) }
   SequenceFragment{ Fragment (title) } to Fragment { Sequence(title) }
 }
 
 
-relationship ManyToOne {
-  SetOfFragment{ SetOf(title) } to SetOf { Fragmemt(title) }
-  SetOfFragment{ Fragment (title) } to Fragment { SetOf(title) }
-}
 
 
 
