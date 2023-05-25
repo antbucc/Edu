@@ -199,8 +199,8 @@ relationship ManyToMany {
 }
 
 
-relationship OneToMany {
-  AbstractActivity{activity} to Goal{goals}
+relationship ManyToMany {
+  AbstractActivity{ Goal(title) } to Goal{ AbstractActivity(title) }
 }
 
 

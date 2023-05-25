@@ -17,10 +17,12 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "title",
       "otherEntityName": "goal",
-      "otherEntityRelationshipName": "goals",
-      "relationshipName": "activity",
-      "relationshipType": "one-to-many"
+      "otherEntityRelationshipName": "abstractActivity",
+      "ownerSide": true,
+      "relationshipName": "goal",
+      "relationshipType": "many-to-many"
     },
     {
       "otherEntityField": "title",

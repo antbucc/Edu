@@ -57,9 +57,6 @@ export const Goal = () => {
                 <th>
                   <Translate contentKey="eduApp.goal.concept">Concept</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="eduApp.goal.goals">Goals</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -82,7 +79,6 @@ export const Goal = () => {
                         ))
                       : null}
                   </td>
-                  <td>{goal.goals ? <Link to={`/abstract-activity/${goal.goals.id}`}>{goal.goals.id}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/goal/${goal.id}`} color="info" size="sm" data-cy="entityDetailsButton">

@@ -25,9 +25,9 @@ public class AbstractActivity implements Serializable {
     private String title;
 
     @DBRef
-    @Field("activity")
-    @JsonIgnoreProperties(value = { "concepts", "goals" }, allowSetters = true)
-    private Set<Goal> activities = new HashSet<>();
+    @Field("goals")
+    @JsonIgnoreProperties(value = { "concepts", "abstractActivities" }, allowSetters = true)
+    private Set<Goal> goals = new HashSet<>();
 
     @DBRef
     @Field("fragments")
@@ -62,34 +62,28 @@ public class AbstractActivity implements Serializable {
         this.title = title;
     }
 
-    public Set<Goal> getActivities() {
-        return this.activities;
+    public Set<Goal> getGoals() {
+        return this.goals;
     }
 
-    public void setActivities(Set<Goal> goals) {
-        if (this.activities != null) {
-            this.activities.forEach(i -> i.setGoals(null));
-        }
-        if (goals != null) {
-            goals.forEach(i -> i.setGoals(this));
-        }
-        this.activities = goals;
+    public void setGoals(Set<Goal> goals) {
+        this.goals = goals;
     }
 
-    public AbstractActivity activities(Set<Goal> goals) {
-        this.setActivities(goals);
+    public AbstractActivity goals(Set<Goal> goals) {
+        this.setGoals(goals);
         return this;
     }
 
-    public AbstractActivity addActivity(Goal goal) {
-        this.activities.add(goal);
-        goal.setGoals(this);
+    public AbstractActivity addGoal(Goal goal) {
+        this.goals.add(goal);
+        goal.getAbstractActivities().add(this);
         return this;
     }
 
-    public AbstractActivity removeActivity(Goal goal) {
-        this.activities.remove(goal);
-        goal.setGoals(null);
+    public AbstractActivity removeGoal(Goal goal) {
+        this.goals.remove(goal);
+        goal.getAbstractActivities().remove(this);
         return this;
     }
 

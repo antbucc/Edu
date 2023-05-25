@@ -8,6 +8,8 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
+import { IGoal } from 'app/shared/model/goal.model';
+import { getEntities as getGoals } from 'app/entities/goal/goal.reducer';
 import { IFragment } from 'app/shared/model/fragment.model';
 import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
 import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
@@ -21,6 +23,7 @@ export const AbstractActivityUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
+  const goals = useAppSelector(state => state.goal.entities);
   const fragments = useAppSelector(state => state.fragment.entities);
   const abstractActivityEntity = useAppSelector(state => state.abstractActivity.entity);
   const loading = useAppSelector(state => state.abstractActivity.loading);
@@ -38,6 +41,7 @@ export const AbstractActivityUpdate = () => {
       dispatch(getEntity(id));
     }
 
+    dispatch(getGoals({}));
     dispatch(getFragments({}));
   }, []);
 
@@ -51,6 +55,7 @@ export const AbstractActivityUpdate = () => {
     const entity = {
       ...abstractActivityEntity,
       ...values,
+      goals: mapIdList(values.goals),
     };
 
     if (isNew) {
@@ -65,6 +70,7 @@ export const AbstractActivityUpdate = () => {
       ? {}
       : {
           ...abstractActivityEntity,
+          goals: abstractActivityEntity?.goals?.map(e => e.id.toString()),
         };
 
   return (
@@ -99,6 +105,23 @@ export const AbstractActivityUpdate = () => {
                 data-cy="title"
                 type="text"
               />
+              <ValidatedField
+                label={translate('eduApp.abstractActivity.goal')}
+                id="abstract-activity-goal"
+                data-cy="goal"
+                type="select"
+                multiple
+                name="goals"
+              >
+                <option value="" key="0" />
+                {goals
+                  ? goals.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/abstract-activity" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
