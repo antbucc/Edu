@@ -55,7 +55,7 @@ export const SetOf = () => {
                   <Translate contentKey="eduApp.setOf.title">Title</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.setOf.fragments">Fragments</Translate>
+                  <Translate contentKey="eduApp.setOf.fragment">Fragment</Translate>
                 </th>
                 <th />
               </tr>
@@ -73,7 +73,7 @@ export const SetOf = () => {
                     {setOf.fragments
                       ? setOf.fragments.map((val, j) => (
                           <span key={j}>
-                            <Link to={`/fragment/${val.id}`}>{val.id}</Link>
+                            <Link to={`/fragment/${val.id}`}>{val.title}</Link>
                             {j === setOf.fragments.length - 1 ? '' : ', '}
                           </span>
                         ))

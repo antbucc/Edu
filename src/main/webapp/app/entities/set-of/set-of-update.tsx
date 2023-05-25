@@ -96,9 +96,9 @@ export const SetOfUpdate = () => {
               ) : null}
               <ValidatedField label={translate('eduApp.setOf.title')} id="set-of-title" name="title" data-cy="title" type="text" />
               <ValidatedField
-                label={translate('eduApp.setOf.fragments')}
-                id="set-of-fragments"
-                data-cy="fragments"
+                label={translate('eduApp.setOf.fragment')}
+                id="set-of-fragment"
+                data-cy="fragment"
                 type="select"
                 multiple
                 name="fragments"
@@ -107,7 +107,7 @@ export const SetOfUpdate = () => {
                 {fragments
                   ? fragments.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.title}
                       </option>
                     ))
                   : null}

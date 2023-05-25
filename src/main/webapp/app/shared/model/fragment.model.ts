@@ -11,7 +11,7 @@ export interface IFragment {
   abstractActivities?: IAbstractActivity[] | null;
   sequences?: ISequenceFragment[] | null;
   modules?: IModule[] | null;
-  setofs?: ISetOf[] | null;
+  setOfs?: ISetOf[] | null;
 }
 
 export const defaultValue: Readonly<IFragment> = {};
