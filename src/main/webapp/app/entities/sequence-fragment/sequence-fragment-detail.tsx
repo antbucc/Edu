@@ -41,11 +41,29 @@ export const SequenceFragmentDetail = () => {
           <dt>
             <Translate contentKey="eduApp.sequenceFragment.sequence">Sequence</Translate>
           </dt>
-          <dd>{sequenceFragmentEntity.sequence ? sequenceFragmentEntity.sequence.title : ''}</dd>
+          <dd>
+            {sequenceFragmentEntity.sequences
+              ? sequenceFragmentEntity.sequences.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.title}</a>
+                    {sequenceFragmentEntity.sequences && i === sequenceFragmentEntity.sequences.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
           <dt>
             <Translate contentKey="eduApp.sequenceFragment.fragment">Fragment</Translate>
           </dt>
-          <dd>{sequenceFragmentEntity.fragment ? sequenceFragmentEntity.fragment.title : ''}</dd>
+          <dd>
+            {sequenceFragmentEntity.fragments
+              ? sequenceFragmentEntity.fragments.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.title}</a>
+                    {sequenceFragmentEntity.fragments && i === sequenceFragmentEntity.fragments.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/sequence-fragment" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

@@ -73,18 +73,24 @@ export const SequenceFragment = () => {
                   </td>
                   <td>{sequenceFragment.order}</td>
                   <td>
-                    {sequenceFragment.sequence ? (
-                      <Link to={`/sequence/${sequenceFragment.sequence.id}`}>{sequenceFragment.sequence.title}</Link>
-                    ) : (
-                      ''
-                    )}
+                    {sequenceFragment.sequences
+                      ? sequenceFragment.sequences.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/sequence/${val.id}`}>{val.title}</Link>
+                            {j === sequenceFragment.sequences.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
                   </td>
                   <td>
-                    {sequenceFragment.fragment ? (
-                      <Link to={`/fragment/${sequenceFragment.fragment.id}`}>{sequenceFragment.fragment.title}</Link>
-                    ) : (
-                      ''
-                    )}
+                    {sequenceFragment.fragments
+                      ? sequenceFragment.fragments.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/fragment/${val.id}`}>{val.title}</Link>
+                            {j === sequenceFragment.fragments.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
                   </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

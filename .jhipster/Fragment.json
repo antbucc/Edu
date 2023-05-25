@@ -42,13 +42,6 @@
     },
     {
       "otherEntityField": "title",
-      "otherEntityName": "sequenceFragment",
-      "otherEntityRelationshipName": "fragment",
-      "relationshipName": "sequence",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityField": "title",
       "otherEntityName": "module",
       "otherEntityRelationshipName": "fragment",
       "ownerSide": false,
@@ -61,6 +54,14 @@
       "otherEntityRelationshipName": "fragment",
       "ownerSide": false,
       "relationshipName": "setOf",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "sequenceFragment",
+      "otherEntityRelationshipName": "fragment",
+      "ownerSide": false,
+      "relationshipName": "sequence",
       "relationshipType": "many-to-many"
     }
   ],

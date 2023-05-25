@@ -29,8 +29,9 @@
       "otherEntityField": "title",
       "otherEntityName": "sequenceFragment",
       "otherEntityRelationshipName": "sequence",
+      "ownerSide": false,
       "relationshipName": "fragment",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"
