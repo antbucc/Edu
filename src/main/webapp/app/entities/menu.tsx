@@ -58,6 +58,9 @@ const EntitiesMenu = () => {
         <Translate contentKey="global.menu.entities.order" />
       </MenuItem>
 
+      <MenuItem icon="asterisk" to="/set-of">
+        <Translate contentKey="global.menu.entities.setOf" />
+      </MenuItem>
       {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
     </>
   );
