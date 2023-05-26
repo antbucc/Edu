@@ -122,7 +122,7 @@ export const OrderUpdate = () => {
                 {fragments
                   ? fragments.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.title}
                       </option>
                     ))
                   : null}
@@ -138,7 +138,7 @@ export const OrderUpdate = () => {
                 {sequences
                   ? sequences.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.title}
                       </option>
                     ))
                   : null}
