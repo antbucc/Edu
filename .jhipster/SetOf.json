@@ -26,8 +26,9 @@
     {
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "setOf",
+      "ownerSide": false,
       "relationshipName": "partofSet",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"
