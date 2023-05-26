@@ -39,9 +39,9 @@ public class Fragment implements Serializable {
     private Sequence sequence;
 
     @DBRef
-    @Field("setofs")
+    @Field("setOf")
     @JsonIgnoreProperties(value = { "partofSets" }, allowSetters = true)
-    private Set<SetOf> setofs = new HashSet<>();
+    private SetOf setOf;
 
     @DBRef
     @Field("modules")
@@ -115,28 +115,16 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public Set<SetOf> getSetofs() {
-        return this.setofs;
+    public SetOf getSetOf() {
+        return this.setOf;
     }
 
-    public void setSetofs(Set<SetOf> setOfs) {
-        this.setofs = setOfs;
+    public void setSetOf(SetOf setOf) {
+        this.setOf = setOf;
     }
 
-    public Fragment setofs(Set<SetOf> setOfs) {
-        this.setSetofs(setOfs);
-        return this;
-    }
-
-    public Fragment addSetof(SetOf setOf) {
-        this.setofs.add(setOf);
-        setOf.getPartofSets().add(this);
-        return this;
-    }
-
-    public Fragment removeSetof(SetOf setOf) {
-        this.setofs.remove(setOf);
-        setOf.getPartofSets().remove(this);
+    public Fragment setOf(SetOf setOf) {
+        this.setSetOf(setOf);
         return this;
     }
 

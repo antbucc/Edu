@@ -22,7 +22,7 @@
       "activity": "Activity",
       "abstractActivity": "Abstract Activity",
       "sequence": "Sequence",
-      "setof": "Setof",
+      "setOf": "Set Of",
       "module": "Module"
     }
   }
