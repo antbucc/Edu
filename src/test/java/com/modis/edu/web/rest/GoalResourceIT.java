@@ -117,6 +117,22 @@ class GoalResourceIT {
     }
 
     @Test
+    void checkTitleIsRequired() throws Exception {
+        int databaseSizeBeforeTest = goalRepository.findAll().size();
+        // set the field null
+        goal.setTitle(null);
+
+        // Create the Goal, which fails.
+
+        restGoalMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(goal)))
+            .andExpect(status().isBadRequest());
+
+        List<Goal> goalList = goalRepository.findAll();
+        assertThat(goalList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     void getAllGoals() throws Exception {
         // Initialize the database
         goalRepository.save(goal);

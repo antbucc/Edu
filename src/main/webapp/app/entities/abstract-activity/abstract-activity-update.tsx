@@ -104,6 +104,9 @@ export const AbstractActivityUpdate = () => {
                 name="title"
                 data-cy="title"
                 type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                }}
               />
               <ValidatedField
                 label={translate('eduApp.abstractActivity.goal')}

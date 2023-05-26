@@ -7,7 +7,8 @@
   "fields": [
     {
       "fieldName": "title",
-      "fieldType": "String"
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,
@@ -18,15 +19,10 @@
   "relationships": [
     {
       "otherEntityName": "fragment",
-      "relationshipName": "fragments",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "fragment",
       "otherEntityRelationshipName": "setof",
       "ownerSide": false,
       "relationshipName": "partofSet",
-      "relationshipType": "one-to-one"
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"

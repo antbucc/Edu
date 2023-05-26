@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
+import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,6 +22,7 @@ public class Fragment implements Serializable {
     @Id
     private String id;
 
+    @NotNull
     @Field("title")
     private String title;
 
@@ -33,12 +35,13 @@ public class Fragment implements Serializable {
     private AbstractActivity abstractActivity;
 
     @DBRef
-    @Field("setof")
-    private SetOf setof;
-
-    @DBRef
     @Field("sequence")
     private Sequence sequence;
+
+    @DBRef
+    @Field("setofs")
+    @JsonIgnoreProperties(value = { "partofSets" }, allowSetters = true)
+    private Set<SetOf> setofs = new HashSet<>();
 
     @DBRef
     @Field("modules")
@@ -99,19 +102,6 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public SetOf getSetof() {
-        return this.setof;
-    }
-
-    public void setSetof(SetOf setOf) {
-        this.setof = setOf;
-    }
-
-    public Fragment setof(SetOf setOf) {
-        this.setSetof(setOf);
-        return this;
-    }
-
     public Sequence getSequence() {
         return this.sequence;
     }
@@ -122,6 +112,31 @@ public class Fragment implements Serializable {
 
     public Fragment sequence(Sequence sequence) {
         this.setSequence(sequence);
+        return this;
+    }
+
+    public Set<SetOf> getSetofs() {
+        return this.setofs;
+    }
+
+    public void setSetofs(Set<SetOf> setOfs) {
+        this.setofs = setOfs;
+    }
+
+    public Fragment setofs(Set<SetOf> setOfs) {
+        this.setSetofs(setOfs);
+        return this;
+    }
+
+    public Fragment addSetof(SetOf setOf) {
+        this.setofs.add(setOf);
+        setOf.getPartofSets().add(this);
+        return this;
+    }
+
+    public Fragment removeSetof(SetOf setOf) {
+        this.setofs.remove(setOf);
+        setOf.getPartofSets().remove(this);
         return this;
     }
 

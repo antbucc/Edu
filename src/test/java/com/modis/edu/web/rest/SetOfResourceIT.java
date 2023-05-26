@@ -101,6 +101,22 @@ class SetOfResourceIT {
     }
 
     @Test
+    void checkTitleIsRequired() throws Exception {
+        int databaseSizeBeforeTest = setOfRepository.findAll().size();
+        // set the field null
+        setOf.setTitle(null);
+
+        // Create the SetOf, which fails.
+
+        restSetOfMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(setOf)))
+            .andExpect(status().isBadRequest());
+
+        List<SetOf> setOfList = setOfRepository.findAll();
+        assertThat(setOfList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     void getAllSetOfs() throws Exception {
         // Initialize the database
         setOfRepository.save(setOf);

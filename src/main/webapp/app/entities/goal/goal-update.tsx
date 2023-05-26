@@ -98,7 +98,16 @@ export const GoalUpdate = () => {
                   validate={{ required: true }}
                 />
               ) : null}
-              <ValidatedField label={translate('eduApp.goal.title')} id="goal-title" name="title" data-cy="title" type="text" />
+              <ValidatedField
+                label={translate('eduApp.goal.title')}
+                id="goal-title"
+                name="title"
+                data-cy="title"
+                type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                }}
+              />
               <ValidatedField
                 label={translate('eduApp.goal.concept')}
                 id="goal-concept"

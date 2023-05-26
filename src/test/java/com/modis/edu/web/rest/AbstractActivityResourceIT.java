@@ -121,6 +121,24 @@ class AbstractActivityResourceIT {
     }
 
     @Test
+    void checkTitleIsRequired() throws Exception {
+        int databaseSizeBeforeTest = abstractActivityRepository.findAll().size();
+        // set the field null
+        abstractActivity.setTitle(null);
+
+        // Create the AbstractActivity, which fails.
+
+        restAbstractActivityMockMvc
+            .perform(
+                post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(abstractActivity))
+            )
+            .andExpect(status().isBadRequest());
+
+        List<AbstractActivity> abstractActivityList = abstractActivityRepository.findAll();
+        assertThat(abstractActivityList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     void getAllAbstractActivities() throws Exception {
         // Initialize the database
         abstractActivityRepository.save(abstractActivity);

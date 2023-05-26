@@ -3,7 +3,7 @@ import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 
 export interface IGoal {
   id?: string;
-  title?: string | null;
+  title?: string;
   concepts?: IConcept[] | null;
   abstractActivities?: IAbstractActivity[] | null;
 }
