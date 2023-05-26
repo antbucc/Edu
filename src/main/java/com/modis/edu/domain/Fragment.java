@@ -41,7 +41,7 @@ public class Fragment implements Serializable {
 
     @DBRef
     @Field("sequence")
-    @JsonIgnoreProperties(value = { "fragments", "fragments" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "orders", "fragments" }, allowSetters = true)
     private Sequence sequence;
 
     @DBRef

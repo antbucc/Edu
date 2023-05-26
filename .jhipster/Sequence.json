@@ -18,9 +18,10 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "order",
       "otherEntityName": "order",
       "otherEntityRelationshipName": "sequence",
-      "relationshipName": "fragments",
+      "relationshipName": "order",
       "relationshipType": "one-to-many"
     },
     {

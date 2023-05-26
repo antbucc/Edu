@@ -4,7 +4,7 @@ import { IFragment } from 'app/shared/model/fragment.model';
 export interface ISequence {
   id?: string;
   title?: string;
-  fragments?: IOrder[] | null;
+  orders?: IOrder[] | null;
   fragments?: IFragment[] | null;
 }
 

@@ -26,7 +26,7 @@
     {
       "otherEntityField": "title",
       "otherEntityName": "sequence",
-      "otherEntityRelationshipName": "fragments",
+      "otherEntityRelationshipName": "order",
       "relationshipName": "sequence",
       "relationshipType": "many-to-one"
     }
