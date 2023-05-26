@@ -21,8 +21,8 @@
       "title": "Title",
       "activity": "Activity",
       "abstractActivity": "Abstract Activity",
-      "sequence": "Sequence",
       "setOf": "Set Of",
+      "sequence": "Sequence",
       "module": "Module"
     }
   }
