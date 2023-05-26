@@ -41,17 +41,6 @@ public class Fragment implements Serializable {
     private Sequence sequence;
 
     @DBRef
-    @Field("child")
-    private Fragment child;
-
-    @DBRef
-    @Field("order")
-    private Fragment order;
-
-    @DBRef
-    private Fragment parent;
-
-    @DBRef
     @Field("modules")
     @JsonIgnoreProperties(value = { "scenario", "fragments" }, allowSetters = true)
     private Set<Module> modules = new HashSet<>();
@@ -133,51 +122,6 @@ public class Fragment implements Serializable {
 
     public Fragment sequence(Sequence sequence) {
         this.setSequence(sequence);
-        return this;
-    }
-
-    public Fragment getChild() {
-        return this.child;
-    }
-
-    public void setChild(Fragment fragment) {
-        this.child = fragment;
-    }
-
-    public Fragment child(Fragment fragment) {
-        this.setChild(fragment);
-        return this;
-    }
-
-    public Fragment getOrder() {
-        return this.order;
-    }
-
-    public void setOrder(Fragment fragment) {
-        this.order = fragment;
-    }
-
-    public Fragment order(Fragment fragment) {
-        this.setOrder(fragment);
-        return this;
-    }
-
-    public Fragment getParent() {
-        return this.parent;
-    }
-
-    public void setParent(Fragment fragment) {
-        if (this.parent != null) {
-            this.parent.setChild(null);
-        }
-        if (fragment != null) {
-            fragment.setChild(this);
-        }
-        this.parent = fragment;
-    }
-
-    public Fragment parent(Fragment fragment) {
-        this.setParent(fragment);
         return this;
     }
 

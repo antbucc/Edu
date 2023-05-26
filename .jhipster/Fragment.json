@@ -49,26 +49,6 @@
       "relationshipType": "one-to-one"
     },
     {
-      "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "parent",
-      "ownerSide": true,
-      "relationshipName": "child",
-      "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityName": "fragment",
-      "ownerSide": true,
-      "relationshipName": "order",
-      "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "child",
-      "ownerSide": false,
-      "relationshipName": "parent",
-      "relationshipType": "one-to-one"
-    },
-    {
       "otherEntityField": "title",
       "otherEntityName": "module",
       "otherEntityRelationshipName": "fragment",
