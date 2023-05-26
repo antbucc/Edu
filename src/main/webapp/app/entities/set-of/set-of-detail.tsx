@@ -39,9 +39,18 @@ export const SetOfDetail = () => {
           </dt>
           <dd>{setOfEntity.title}</dd>
           <dt>
-            <Translate contentKey="eduApp.setOf.fragment2">Fragment 2</Translate>
+            <Translate contentKey="eduApp.setOf.fragments">Fragments</Translate>
           </dt>
-          <dd>{setOfEntity.fragment2 ? setOfEntity.fragment2.id : ''}</dd>
+          <dd>
+            {setOfEntity.fragments
+              ? setOfEntity.fragments.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.id}</a>
+                    {setOfEntity.fragments && i === setOfEntity.fragments.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/set-of" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

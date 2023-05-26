@@ -9,10 +9,10 @@ export interface IFragment {
   title?: string;
   activity?: IActivity | null;
   abstractActivity?: IAbstractActivity | null;
-  setOf2?: ISetOf | null;
+  setOf?: ISetOf | null;
   sequence?: ISequence | null;
-  setOf1s?: ISetOf[] | null;
   modules?: IModule[] | null;
+  setOf1s?: ISetOf[] | null;
 }
 
 export const defaultValue: Readonly<IFragment> = {};

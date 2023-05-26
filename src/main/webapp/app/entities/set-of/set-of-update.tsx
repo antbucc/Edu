@@ -51,7 +51,7 @@ export const SetOfUpdate = () => {
     const entity = {
       ...setOfEntity,
       ...values,
-      fragment2: fragments.find(it => it.id.toString() === values.fragment2.toString()),
+      fragments: mapIdList(values.fragments),
     };
 
     if (isNew) {
@@ -66,7 +66,7 @@ export const SetOfUpdate = () => {
       ? {}
       : {
           ...setOfEntity,
-          fragment2: setOfEntity?.fragment2?.id,
+          fragments: setOfEntity?.fragments?.map(e => e.id.toString()),
         };
 
   return (
@@ -105,11 +105,12 @@ export const SetOfUpdate = () => {
                 }}
               />
               <ValidatedField
-                id="set-of-fragment2"
-                name="fragment2"
-                data-cy="fragment2"
-                label={translate('eduApp.setOf.fragment2')}
+                label={translate('eduApp.setOf.fragments')}
+                id="set-of-fragments"
+                data-cy="fragments"
                 type="select"
+                multiple
+                name="fragments"
               >
                 <option value="" key="0" />
                 {fragments

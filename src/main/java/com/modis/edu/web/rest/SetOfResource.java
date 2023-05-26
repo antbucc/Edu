@@ -133,11 +133,15 @@ public class SetOfResource {
     /**
      * {@code GET  /set-ofs} : get all the setOfs.
      *
+     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of setOfs in body.
      */
     @GetMapping("/set-ofs")
-    public List<SetOf> getAllSetOfs(@RequestParam(required = false) String filter) {
+    public List<SetOf> getAllSetOfs(
+        @RequestParam(required = false) String filter,
+        @RequestParam(required = false, defaultValue = "false") boolean eagerload
+    ) {
         if ("fragment1-is-null".equals(filter)) {
             log.debug("REST request to get all SetOfs where fragment1 is null");
             return setOfService.findAllWhereFragment1IsNull();

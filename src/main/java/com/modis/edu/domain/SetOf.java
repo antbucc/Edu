@@ -2,6 +2,8 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -25,9 +27,9 @@ public class SetOf implements Serializable {
     private String title;
 
     @DBRef
-    @Field("fragment2")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf2", "sequence", "setOf1s", "modules" }, allowSetters = true)
-    private Fragment fragment2;
+    @Field("fragments")
+    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf", "sequence", "modules", "setOf1s" }, allowSetters = true)
+    private Set<Fragment> fragments = new HashSet<>();
 
     @DBRef
     private Fragment fragment1;
@@ -60,16 +62,28 @@ public class SetOf implements Serializable {
         this.title = title;
     }
 
-    public Fragment getFragment2() {
-        return this.fragment2;
+    public Set<Fragment> getFragments() {
+        return this.fragments;
     }
 
-    public void setFragment2(Fragment fragment) {
-        this.fragment2 = fragment;
+    public void setFragments(Set<Fragment> fragments) {
+        this.fragments = fragments;
     }
 
-    public SetOf fragment2(Fragment fragment) {
-        this.setFragment2(fragment);
+    public SetOf fragments(Set<Fragment> fragments) {
+        this.setFragments(fragments);
+        return this;
+    }
+
+    public SetOf addFragments(Fragment fragment) {
+        this.fragments.add(fragment);
+        fragment.getSetOf1s().add(this);
+        return this;
+    }
+
+    public SetOf removeFragments(Fragment fragment) {
+        this.fragments.remove(fragment);
+        fragment.getSetOf1s().remove(this);
         return this;
     }
 
@@ -79,10 +93,10 @@ public class SetOf implements Serializable {
 
     public void setFragment1(Fragment fragment) {
         if (this.fragment1 != null) {
-            this.fragment1.setSetOf2(null);
+            this.fragment1.setSetOf(null);
         }
         if (fragment != null) {
-            fragment.setSetOf2(this);
+            fragment.setSetOf(this);
         }
         this.fragment1 = fragment;
     }

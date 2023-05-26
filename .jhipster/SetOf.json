@@ -20,12 +20,13 @@
     {
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "setOf1",
-      "relationshipName": "fragment2",
-      "relationshipType": "many-to-one"
+      "ownerSide": true,
+      "relationshipName": "fragments",
+      "relationshipType": "many-to-many"
     },
     {
       "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "setOf2",
+      "otherEntityRelationshipName": "setOf",
       "ownerSide": false,
       "relationshipName": "fragment1",
       "relationshipType": "one-to-one"
