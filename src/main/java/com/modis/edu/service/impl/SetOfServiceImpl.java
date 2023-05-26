@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -59,6 +61,10 @@ public class SetOfServiceImpl implements SetOfService {
         return setOfRepository.findAll();
     }
 
+    public Page<SetOf> findAllWithEagerRelationships(Pageable pageable) {
+        return setOfRepository.findAllWithEagerRelationships(pageable);
+    }
+
     /**
      *  Get all the setOfs where Fragment1 is {@code null}.
      *  @return the list of entities.
@@ -75,7 +81,7 @@ public class SetOfServiceImpl implements SetOfService {
     @Override
     public Optional<SetOf> findOne(String id) {
         log.debug("Request to get SetOf : {}", id);
-        return setOfRepository.findById(id);
+        return setOfRepository.findOneWithEagerRelationships(id);
     }
 
     @Override

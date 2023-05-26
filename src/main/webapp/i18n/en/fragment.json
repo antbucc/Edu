@@ -21,10 +21,10 @@
       "title": "Title",
       "activity": "Activity",
       "abstractActivity": "Abstract Activity",
-      "setOf2": "Set Of 2",
+      "setOf": "Set Of",
       "sequence": "Sequence",
-      "setOf1": "Set Of 1",
-      "module": "Module"
+      "module": "Module",
+      "setOf1": "Set Of 1"
     }
   }
 }

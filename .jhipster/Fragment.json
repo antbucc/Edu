@@ -37,7 +37,7 @@
       "otherEntityName": "setOf",
       "otherEntityRelationshipName": "fragment1",
       "ownerSide": true,
-      "relationshipName": "setOf2",
+      "relationshipName": "setOf",
       "relationshipType": "one-to-one"
     },
     {
@@ -48,17 +48,18 @@
       "relationshipType": "many-to-one"
     },
     {
-      "otherEntityName": "setOf",
-      "otherEntityRelationshipName": "fragment2",
-      "relationshipName": "setOf1",
-      "relationshipType": "one-to-many"
-    },
-    {
       "otherEntityField": "title",
       "otherEntityName": "module",
       "otherEntityRelationshipName": "fragment",
       "ownerSide": false,
       "relationshipName": "module",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "setOf",
+      "otherEntityRelationshipName": "fragments",
+      "ownerSide": false,
+      "relationshipName": "setOf1",
       "relationshipType": "many-to-many"
     }
   ],
