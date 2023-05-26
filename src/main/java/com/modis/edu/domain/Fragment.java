@@ -35,14 +35,14 @@ public class Fragment implements Serializable {
     private AbstractActivity abstractActivity;
 
     @DBRef
+    @Field("setOf")
+    @JsonIgnoreProperties(value = { "fragments" }, allowSetters = true)
+    private SetOf setOf;
+
+    @DBRef
     @Field("sequence")
     @JsonIgnoreProperties(value = { "orders", "fragments" }, allowSetters = true)
     private Sequence sequence;
-
-    @DBRef
-    @Field("setOfs")
-    @JsonIgnoreProperties(value = { "fragment", "partofSets" }, allowSetters = true)
-    private Set<SetOf> setOfs = new HashSet<>();
 
     @DBRef
     @Field("modules")
@@ -103,6 +103,19 @@ public class Fragment implements Serializable {
         return this;
     }
 
+    public SetOf getSetOf() {
+        return this.setOf;
+    }
+
+    public void setSetOf(SetOf setOf) {
+        this.setOf = setOf;
+    }
+
+    public Fragment setOf(SetOf setOf) {
+        this.setSetOf(setOf);
+        return this;
+    }
+
     public Sequence getSequence() {
         return this.sequence;
     }
@@ -113,31 +126,6 @@ public class Fragment implements Serializable {
 
     public Fragment sequence(Sequence sequence) {
         this.setSequence(sequence);
-        return this;
-    }
-
-    public Set<SetOf> getSetOfs() {
-        return this.setOfs;
-    }
-
-    public void setSetOfs(Set<SetOf> setOfs) {
-        this.setOfs = setOfs;
-    }
-
-    public Fragment setOfs(Set<SetOf> setOfs) {
-        this.setSetOfs(setOfs);
-        return this;
-    }
-
-    public Fragment addSetOf(SetOf setOf) {
-        this.setOfs.add(setOf);
-        setOf.getPartofSets().add(this);
-        return this;
-    }
-
-    public Fragment removeSetOf(SetOf setOf) {
-        this.setOfs.remove(setOf);
-        setOf.getPartofSets().remove(this);
         return this;
     }
 

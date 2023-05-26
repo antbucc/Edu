@@ -20,15 +20,9 @@
     {
       "otherEntityField": "title",
       "otherEntityName": "fragment",
-      "relationshipName": "fragment",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "fragment",
       "otherEntityRelationshipName": "setOf",
-      "ownerSide": false,
-      "relationshipName": "partofSet",
-      "relationshipType": "many-to-many"
+      "relationshipName": "fragment",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"
