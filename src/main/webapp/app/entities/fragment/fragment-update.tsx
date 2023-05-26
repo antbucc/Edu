@@ -163,7 +163,7 @@ export const FragmentUpdate = () => {
                 {setOfs
                   ? setOfs.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.title}
                       </option>
                     ))
                   : null}

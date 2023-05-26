@@ -45,7 +45,7 @@ export const SetOfDetail = () => {
             {setOfEntity.fragments
               ? setOfEntity.fragments.map((val, i) => (
                   <span key={val.id}>
-                    <a>{val.id}</a>
+                    <a>{val.title}</a>
                     {setOfEntity.fragments && i === setOfEntity.fragments.length - 1 ? '' : ', '}
                   </span>
                 ))

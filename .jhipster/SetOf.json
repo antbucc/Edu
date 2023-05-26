@@ -18,6 +18,7 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "title",
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "setOf1",
       "ownerSide": true,

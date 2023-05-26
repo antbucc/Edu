@@ -73,7 +73,7 @@ export const SetOf = () => {
                     {setOf.fragments
                       ? setOf.fragments.map((val, j) => (
                           <span key={j}>
-                            <Link to={`/fragment/${val.id}`}>{val.id}</Link>
+                            <Link to={`/fragment/${val.id}`}>{val.title}</Link>
                             {j === setOf.fragments.length - 1 ? '' : ', '}
                           </span>
                         ))

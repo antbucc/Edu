@@ -86,7 +86,7 @@ export const Fragment = () => {
                       ''
                     )}
                   </td>
-                  <td>{fragment.setOf ? <Link to={`/set-of/${fragment.setOf.id}`}>{fragment.setOf.id}</Link> : ''}</td>
+                  <td>{fragment.setOf ? <Link to={`/set-of/${fragment.setOf.id}`}>{fragment.setOf.title}</Link> : ''}</td>
                   <td>{fragment.sequence ? <Link to={`/sequence/${fragment.sequence.id}`}>{fragment.sequence.title}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
