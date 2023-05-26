@@ -54,9 +54,6 @@ export const Sequence = () => {
                 <th>
                   <Translate contentKey="eduApp.sequence.title">Title</Translate>
                 </th>
-                <th>
-                  <Translate contentKey="eduApp.sequence.fragment">Fragment</Translate>
-                </th>
                 <th />
               </tr>
             </thead>
@@ -69,7 +66,6 @@ export const Sequence = () => {
                     </Button>
                   </td>
                   <td>{sequence.title}</td>
-                  <td>{sequence.fragment ? <Link to={`/fragment/${sequence.fragment.id}`}>{sequence.fragment.title}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/sequence/${sequence.id}`} color="info" size="sm" data-cy="entityDetailsButton">

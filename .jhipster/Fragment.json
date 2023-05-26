@@ -41,20 +41,41 @@
       "relationshipType": "one-to-one"
     },
     {
-      "otherEntityField": "order",
-      "otherEntityName": "order",
-      "otherEntityRelationshipName": "fragment",
-      "ownerSide": false,
-      "relationshipName": "order",
-      "relationshipType": "one-to-one"
-    },
-    {
       "otherEntityField": "title",
       "otherEntityName": "sequence",
       "otherEntityRelationshipName": "fragment",
-      "ownerSide": false,
+      "ownerSide": true,
       "relationshipName": "sequence",
       "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "parent",
+      "relationshipName": "fragments",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "fragments",
+      "relationshipName": "parent",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "fragment",
+      "relationshipName": "order",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "fragments",
+      "relationshipName": "parent",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "parent",
+      "relationshipName": "fragments",
+      "relationshipType": "one-to-many"
     },
     {
       "otherEntityField": "title",
