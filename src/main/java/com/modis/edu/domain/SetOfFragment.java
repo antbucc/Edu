@@ -32,7 +32,7 @@ public class SetOfFragment implements Serializable {
     @DBRef
     @Field("fragment")
     @JsonIgnoreProperties(
-        value = { "activity", "abstractActivity", "setOf", "sequence", "fragments", "parent", "order", "parent", "fragments", "modules" },
+        value = { "activity", "abstractActivity", "setOf", "sequence", "child", "order", "parent", "modules" },
         allowSetters = true
     )
     private Fragment fragment;

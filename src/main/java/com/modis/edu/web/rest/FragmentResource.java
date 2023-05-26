@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -139,10 +141,21 @@ public class FragmentResource {
      * {@code GET  /fragments} : get all the fragments.
      *
      * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of fragments in body.
      */
     @GetMapping("/fragments")
-    public List<Fragment> getAllFragments(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<Fragment> getAllFragments(
+        @RequestParam(required = false) String filter,
+        @RequestParam(required = false, defaultValue = "false") boolean eagerload
+    ) {
+        if ("parent-is-null".equals(filter)) {
+            log.debug("REST request to get all Fragments where parent is null");
+            return StreamSupport
+                .stream(fragmentRepository.findAll().spliterator(), false)
+                .filter(fragment -> fragment.getParent() == null)
+                .collect(Collectors.toList());
+        }
         log.debug("REST request to get all Fragments");
         if (eagerload) {
             return fragmentRepository.findAllWithEagerRelationships();
