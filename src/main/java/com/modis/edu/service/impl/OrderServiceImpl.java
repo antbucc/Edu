@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -59,14 +57,10 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findAll();
     }
 
-    public Page<Order> findAllWithEagerRelationships(Pageable pageable) {
-        return orderRepository.findAllWithEagerRelationships(pageable);
-    }
-
     @Override
     public Optional<Order> findOne(String id) {
         log.debug("Request to get Order : {}", id);
-        return orderRepository.findOneWithEagerRelationships(id);
+        return orderRepository.findById(id);
     }
 
     @Override

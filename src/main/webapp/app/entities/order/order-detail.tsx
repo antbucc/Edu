@@ -41,7 +41,11 @@ export const OrderDetail = () => {
           <dt>
             <Translate contentKey="eduApp.order.fragment">Fragment</Translate>
           </dt>
-          <dd>{orderEntity.fragment ? orderEntity.fragment.title : ''}</dd>
+          <dd>{orderEntity.fragment ? orderEntity.fragment.id : ''}</dd>
+          <dt>
+            <Translate contentKey="eduApp.order.sequence">Sequence</Translate>
+          </dt>
+          <dd>{orderEntity.sequence ? orderEntity.sequence.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/order" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

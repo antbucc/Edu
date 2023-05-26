@@ -2,6 +2,8 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -23,6 +25,11 @@ public class Sequence implements Serializable {
     @NotNull
     @Field("title")
     private String title;
+
+    @DBRef
+    @Field("fragments")
+    @JsonIgnoreProperties(value = { "fragment", "sequence" }, allowSetters = true)
+    private Set<Order> fragments = new HashSet<>();
 
     @DBRef
     private Fragment fragment;
@@ -53,6 +60,37 @@ public class Sequence implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Set<Order> getFragments() {
+        return this.fragments;
+    }
+
+    public void setFragments(Set<Order> orders) {
+        if (this.fragments != null) {
+            this.fragments.forEach(i -> i.setSequence(null));
+        }
+        if (orders != null) {
+            orders.forEach(i -> i.setSequence(this));
+        }
+        this.fragments = orders;
+    }
+
+    public Sequence fragments(Set<Order> orders) {
+        this.setFragments(orders);
+        return this;
+    }
+
+    public Sequence addFragments(Order order) {
+        this.fragments.add(order);
+        order.setSequence(this);
+        return this;
+    }
+
+    public Sequence removeFragments(Order order) {
+        this.fragments.remove(order);
+        order.setSequence(null);
+        return this;
     }
 
     public Fragment getFragment() {

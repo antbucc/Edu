@@ -10,6 +10,8 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IFragment } from 'app/shared/model/fragment.model';
 import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
+import { ISequence } from 'app/shared/model/sequence.model';
+import { getEntities as getSequences } from 'app/entities/sequence/sequence.reducer';
 import { IOrder } from 'app/shared/model/order.model';
 import { getEntity, updateEntity, createEntity, reset } from './order.reducer';
 
@@ -22,6 +24,7 @@ export const OrderUpdate = () => {
   const isNew = id === undefined;
 
   const fragments = useAppSelector(state => state.fragment.entities);
+  const sequences = useAppSelector(state => state.sequence.entities);
   const orderEntity = useAppSelector(state => state.order.entity);
   const loading = useAppSelector(state => state.order.loading);
   const updating = useAppSelector(state => state.order.updating);
@@ -39,6 +42,7 @@ export const OrderUpdate = () => {
     }
 
     dispatch(getFragments({}));
+    dispatch(getSequences({}));
   }, []);
 
   useEffect(() => {
@@ -52,6 +56,7 @@ export const OrderUpdate = () => {
       ...orderEntity,
       ...values,
       fragment: fragments.find(it => it.id.toString() === values.fragment.toString()),
+      sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
     };
 
     if (isNew) {
@@ -67,6 +72,7 @@ export const OrderUpdate = () => {
       : {
           ...orderEntity,
           fragment: orderEntity?.fragment?.id,
+          sequence: orderEntity?.sequence?.id,
         };
 
   return (
@@ -116,7 +122,23 @@ export const OrderUpdate = () => {
                 {fragments
                   ? fragments.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                id="order-sequence"
+                name="sequence"
+                data-cy="sequence"
+                label={translate('eduApp.order.sequence')}
+                type="select"
+              >
+                <option value="" key="0" />
+                {sequences
+                  ? sequences.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
                       </option>
                     ))
                   : null}

@@ -57,6 +57,9 @@ export const Order = () => {
                 <th>
                   <Translate contentKey="eduApp.order.fragment">Fragment</Translate>
                 </th>
+                <th>
+                  <Translate contentKey="eduApp.order.sequence">Sequence</Translate>
+                </th>
                 <th />
               </tr>
             </thead>
@@ -69,7 +72,8 @@ export const Order = () => {
                     </Button>
                   </td>
                   <td>{order.order}</td>
-                  <td>{order.fragment ? <Link to={`/fragment/${order.fragment.id}`}>{order.fragment.title}</Link> : ''}</td>
+                  <td>{order.fragment ? <Link to={`/fragment/${order.fragment.id}`}>{order.fragment.id}</Link> : ''}</td>
+                  <td>{order.sequence ? <Link to={`/sequence/${order.sequence.id}`}>{order.sequence.id}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/order/${order.id}`} color="info" size="sm" data-cy="entityDetailsButton">
