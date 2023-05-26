@@ -51,31 +51,22 @@
     {
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "parent",
-      "relationshipName": "fragments",
-      "relationshipType": "one-to-many"
+      "ownerSide": true,
+      "relationshipName": "child",
+      "relationshipType": "one-to-one"
     },
     {
       "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "fragments",
-      "relationshipName": "parent",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "fragment",
+      "ownerSide": true,
       "relationshipName": "order",
-      "relationshipType": "many-to-one"
+      "relationshipType": "one-to-one"
     },
     {
       "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "fragments",
+      "otherEntityRelationshipName": "child",
+      "ownerSide": false,
       "relationshipName": "parent",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "parent",
-      "relationshipName": "fragments",
-      "relationshipType": "one-to-many"
+      "relationshipType": "one-to-one"
     },
     {
       "otherEntityField": "title",

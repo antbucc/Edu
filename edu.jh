@@ -214,15 +214,14 @@ relationship ManyToMany {
 //  Sequence { Fragment(title) } to Fragment { Sequence(title) }
 //}
 
-relationship OneToMany {
-  Fragment{fragments} to Fragment{parent}
+relationship OneToOne {
+  Fragment{child} to Fragment{parent}
 }
 
-relationship ManyToOne {
-  Fragment{parent} to Fragment{fragments}
+relationship OneToOne {
+  //Fragment{parent} to Fragment{fragments}
   Fragment{order} to Fragment
 }
-
 
 
 

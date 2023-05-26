@@ -74,9 +74,8 @@ export const FragmentUpdate = () => {
       abstractActivity: abstractActivities.find(it => it.id.toString() === values.abstractActivity.toString()),
       setOf: setOfs.find(it => it.id.toString() === values.setOf.toString()),
       sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
-      parent: fragments.find(it => it.id.toString() === values.parent.toString()),
+      child: fragments.find(it => it.id.toString() === values.child.toString()),
       order: fragments.find(it => it.id.toString() === values.order.toString()),
-      parent: fragments.find(it => it.id.toString() === values.parent.toString()),
     };
 
     if (isNew) {
@@ -95,9 +94,8 @@ export const FragmentUpdate = () => {
           abstractActivity: fragmentEntity?.abstractActivity?.id,
           setOf: fragmentEntity?.setOf?.id,
           sequence: fragmentEntity?.sequence?.id,
-          parent: fragmentEntity?.parent?.id,
+          child: fragmentEntity?.child?.id,
           order: fragmentEntity?.order?.id,
-          parent: fragmentEntity?.parent?.id,
         };
 
   return (
@@ -184,7 +182,7 @@ export const FragmentUpdate = () => {
                     ))
                   : null}
               </ValidatedField>
-              <ValidatedField id="fragment-parent" name="parent" data-cy="parent" label={translate('eduApp.fragment.parent')} type="select">
+              <ValidatedField id="fragment-child" name="child" data-cy="child" label={translate('eduApp.fragment.child')} type="select">
                 <option value="" key="0" />
                 {fragments
                   ? fragments.map(otherEntity => (
@@ -195,16 +193,6 @@ export const FragmentUpdate = () => {
                   : null}
               </ValidatedField>
               <ValidatedField id="fragment-order" name="order" data-cy="order" label={translate('eduApp.fragment.order')} type="select">
-                <option value="" key="0" />
-                {fragments
-                  ? fragments.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
-              <ValidatedField id="fragment-parent" name="parent" data-cy="parent" label={translate('eduApp.fragment.parent')} type="select">
                 <option value="" key="0" />
                 {fragments
                   ? fragments.map(otherEntity => (

@@ -67,13 +67,10 @@ export const Fragment = () => {
                   <Translate contentKey="eduApp.fragment.sequence">Sequence</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.fragment.parent">Parent</Translate>
+                  <Translate contentKey="eduApp.fragment.child">Child</Translate>
                 </th>
                 <th>
                   <Translate contentKey="eduApp.fragment.order">Order</Translate>
-                </th>
-                <th>
-                  <Translate contentKey="eduApp.fragment.parent">Parent</Translate>
                 </th>
                 <th />
               </tr>
@@ -97,9 +94,8 @@ export const Fragment = () => {
                   </td>
                   <td>{fragment.setOf ? <Link to={`/set-of/${fragment.setOf.id}`}>{fragment.setOf.title}</Link> : ''}</td>
                   <td>{fragment.sequence ? <Link to={`/sequence/${fragment.sequence.id}`}>{fragment.sequence.title}</Link> : ''}</td>
-                  <td>{fragment.parent ? <Link to={`/fragment/${fragment.parent.id}`}>{fragment.parent.id}</Link> : ''}</td>
+                  <td>{fragment.child ? <Link to={`/fragment/${fragment.child.id}`}>{fragment.child.id}</Link> : ''}</td>
                   <td>{fragment.order ? <Link to={`/fragment/${fragment.order.id}`}>{fragment.order.id}</Link> : ''}</td>
-                  <td>{fragment.parent ? <Link to={`/fragment/${fragment.parent.id}`}>{fragment.parent.id}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/fragment/${fragment.id}`} color="info" size="sm" data-cy="entityDetailsButton">

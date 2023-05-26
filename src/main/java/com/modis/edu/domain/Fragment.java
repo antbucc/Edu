@@ -41,52 +41,15 @@ public class Fragment implements Serializable {
     private Sequence sequence;
 
     @DBRef
-    @Field("fragments")
-    @DBRef
-    @Field("fragments")
-    @JsonIgnoreProperties(
-        value = { "activity", "abstractActivity", "setOf", "sequence", "fragments", "parent", "order", "parent", "fragments", "modules" },
-        allowSetters = true
-    )
-    private Set<Fragment> fragments = new HashSet<>();
-
-    @DBRef
-    @Field("parent")
-    @DBRef
-    @Field("parent")
-    @JsonIgnoreProperties(
-        value = { "activity", "abstractActivity", "setOf", "sequence", "fragments", "parent", "order", "parent", "fragments", "modules" },
-        allowSetters = true
-    )
-    private Fragment parent;
+    @Field("child")
+    private Fragment child;
 
     @DBRef
     @Field("order")
-    @JsonIgnoreProperties(
-        value = { "activity", "abstractActivity", "setOf", "sequence", "fragments", "parent", "order", "parent", "fragments", "modules" },
-        allowSetters = true
-    )
     private Fragment order;
 
     @DBRef
-    @Field("parent")
-    @DBRef
-    @Field("parent")
-    @JsonIgnoreProperties(
-        value = { "activity", "abstractActivity", "setOf", "sequence", "fragments", "parent", "order", "parent", "fragments", "modules" },
-        allowSetters = true
-    )
     private Fragment parent;
-
-    @DBRef
-    @Field("fragments")
-    @DBRef
-    @Field("fragments")
-    @JsonIgnoreProperties(
-        value = { "activity", "abstractActivity", "setOf", "sequence", "fragments", "parent", "order", "parent", "fragments", "modules" },
-        allowSetters = true
-    )
-    private Set<Fragment> fragments = new HashSet<>();
 
     @DBRef
     @Field("modules")
@@ -173,47 +136,16 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public Set<Fragment> getFragments() {
-        return this.fragments;
+    public Fragment getChild() {
+        return this.child;
     }
 
-    public void setFragments(Set<Fragment> fragments) {
-        if (this.fragments != null) {
-            this.fragments.forEach(i -> i.setParent(null));
-        }
-        if (fragments != null) {
-            fragments.forEach(i -> i.setParent(this));
-        }
-        this.fragments = fragments;
+    public void setChild(Fragment fragment) {
+        this.child = fragment;
     }
 
-    public Fragment fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
-        return this;
-    }
-
-    public Fragment addFragments(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.setParent(this);
-        return this;
-    }
-
-    public Fragment removeFragments(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.setParent(null);
-        return this;
-    }
-
-    public Fragment getParent() {
-        return this.parent;
-    }
-
-    public void setParent(Fragment fragment) {
-        this.parent = fragment;
-    }
-
-    public Fragment parent(Fragment fragment) {
-        this.setParent(fragment);
+    public Fragment child(Fragment fragment) {
+        this.setChild(fragment);
         return this;
     }
 
@@ -235,42 +167,17 @@ public class Fragment implements Serializable {
     }
 
     public void setParent(Fragment fragment) {
+        if (this.parent != null) {
+            this.parent.setChild(null);
+        }
+        if (fragment != null) {
+            fragment.setChild(this);
+        }
         this.parent = fragment;
     }
 
     public Fragment parent(Fragment fragment) {
         this.setParent(fragment);
-        return this;
-    }
-
-    public Set<Fragment> getFragments() {
-        return this.fragments;
-    }
-
-    public void setFragments(Set<Fragment> fragments) {
-        if (this.fragments != null) {
-            this.fragments.forEach(i -> i.setParent(null));
-        }
-        if (fragments != null) {
-            fragments.forEach(i -> i.setParent(this));
-        }
-        this.fragments = fragments;
-    }
-
-    public Fragment fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
-        return this;
-    }
-
-    public Fragment addFragments(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.setParent(this);
-        return this;
-    }
-
-    public Fragment removeFragments(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.setParent(null);
         return this;
     }
 
