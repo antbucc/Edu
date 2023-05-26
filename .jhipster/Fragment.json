@@ -49,12 +49,6 @@
       "relationshipType": "many-to-one"
     },
     {
-      "otherEntityName": "setOf",
-      "otherEntityRelationshipName": "fragment",
-      "relationshipName": "fragments",
-      "relationshipType": "many-to-one"
-    },
-    {
       "otherEntityField": "title",
       "otherEntityName": "module",
       "otherEntityRelationshipName": "fragment",

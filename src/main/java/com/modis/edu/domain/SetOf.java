@@ -28,12 +28,12 @@ public class SetOf implements Serializable {
 
     @DBRef
     @Field("fragment")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "sequence", "setOf", "fragments", "modules" }, allowSetters = true)
-    private Set<Fragment> fragments = new HashSet<>();
+    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "sequence", "setOf", "modules" }, allowSetters = true)
+    private Fragment fragment;
 
     @DBRef
     @Field("partofSet")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "sequence", "setOf", "fragments", "modules" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "sequence", "setOf", "modules" }, allowSetters = true)
     private Set<Fragment> partofSets = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -64,34 +64,16 @@ public class SetOf implements Serializable {
         this.title = title;
     }
 
-    public Set<Fragment> getFragments() {
-        return this.fragments;
+    public Fragment getFragment() {
+        return this.fragment;
     }
 
-    public void setFragments(Set<Fragment> fragments) {
-        if (this.fragments != null) {
-            this.fragments.forEach(i -> i.setFragments(null));
-        }
-        if (fragments != null) {
-            fragments.forEach(i -> i.setFragments(this));
-        }
-        this.fragments = fragments;
+    public void setFragment(Fragment fragment) {
+        this.fragment = fragment;
     }
 
-    public SetOf fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
-        return this;
-    }
-
-    public SetOf addFragment(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.setFragments(this);
-        return this;
-    }
-
-    public SetOf removeFragment(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.setFragments(null);
+    public SetOf fragment(Fragment fragment) {
+        this.setFragment(fragment);
         return this;
     }
 
