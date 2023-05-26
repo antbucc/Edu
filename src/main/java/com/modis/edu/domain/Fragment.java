@@ -33,8 +33,8 @@ public class Fragment implements Serializable {
     private AbstractActivity abstractActivity;
 
     @DBRef
-    @Field("setOf")
-    private SetOf setOf;
+    @Field("setof")
+    private SetOf setof;
 
     @DBRef
     @Field("sequence")
@@ -99,16 +99,16 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public SetOf getSetOf() {
-        return this.setOf;
+    public SetOf getSetof() {
+        return this.setof;
     }
 
-    public void setSetOf(SetOf setOf) {
-        this.setOf = setOf;
+    public void setSetof(SetOf setOf) {
+        this.setof = setOf;
     }
 
-    public Fragment setOf(SetOf setOf) {
-        this.setSetOf(setOf);
+    public Fragment setof(SetOf setOf) {
+        this.setSetof(setOf);
         return this;
     }
 

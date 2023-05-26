@@ -33,11 +33,10 @@
       "relationshipType": "one-to-one"
     },
     {
-      "otherEntityField": "title",
       "otherEntityName": "setOf",
-      "otherEntityRelationshipName": "fragment",
+      "otherEntityRelationshipName": "partofSet",
       "ownerSide": true,
-      "relationshipName": "setOf",
+      "relationshipName": "setof",
       "relationshipType": "one-to-one"
     },
     {

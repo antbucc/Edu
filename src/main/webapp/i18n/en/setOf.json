@@ -19,7 +19,8 @@
       },
       "id": "ID",
       "title": "Title",
-      "fragment": "Fragment"
+      "fragments": "Fragments",
+      "partofSet": "Partof Set"
     }
   }
 }
