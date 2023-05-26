@@ -224,7 +224,7 @@ relationship ManyToOne {
 
 
 relationship OneToMany {
-  Sequence{fragments} to Order{ Sequence(title) }
+  Sequence{ Order(order) } to Order{ Sequence(title) }
 }
 
 
