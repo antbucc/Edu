@@ -190,8 +190,16 @@ Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) }
 
 
 relationship OneToOne {
- Fragment{ SetOf(title) } to SetOf{ Fragment(title) } 
+  Fragment{setof} to SetOf{partofSet}
 }
+
+relationship ManyToOne {
+  SetOf{fragments} to Fragment,
+}
+
+
+
+
 
 relationship OneToOne {
  Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
