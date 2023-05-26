@@ -9,11 +9,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * A SetOfFragment.
+ * A FragmentOrder.
  */
-@Document(collection = "set_of_fragment")
+@Document(collection = "fragment_order")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class SetOfFragment implements Serializable {
+public class FragmentOrder implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -25,14 +25,14 @@ public class SetOfFragment implements Serializable {
     private Integer order;
 
     @DBRef
-    @Field("setOf")
-    @JsonIgnoreProperties(value = { "fragment" }, allowSetters = true)
-    private SetOf setOf;
-
-    @DBRef
     @Field("fragment")
     @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf", "sequence", "modules" }, allowSetters = true)
     private Fragment fragment;
+
+    @DBRef
+    @Field("set")
+    @JsonIgnoreProperties(value = { "fragments" }, allowSetters = true)
+    private FragmentSet set;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -40,7 +40,7 @@ public class SetOfFragment implements Serializable {
         return this.id;
     }
 
-    public SetOfFragment id(String id) {
+    public FragmentOrder id(String id) {
         this.setId(id);
         return this;
     }
@@ -53,26 +53,13 @@ public class SetOfFragment implements Serializable {
         return this.order;
     }
 
-    public SetOfFragment order(Integer order) {
+    public FragmentOrder order(Integer order) {
         this.setOrder(order);
         return this;
     }
 
     public void setOrder(Integer order) {
         this.order = order;
-    }
-
-    public SetOf getSetOf() {
-        return this.setOf;
-    }
-
-    public void setSetOf(SetOf setOf) {
-        this.setOf = setOf;
-    }
-
-    public SetOfFragment setOf(SetOf setOf) {
-        this.setSetOf(setOf);
-        return this;
     }
 
     public Fragment getFragment() {
@@ -83,8 +70,21 @@ public class SetOfFragment implements Serializable {
         this.fragment = fragment;
     }
 
-    public SetOfFragment fragment(Fragment fragment) {
+    public FragmentOrder fragment(Fragment fragment) {
         this.setFragment(fragment);
+        return this;
+    }
+
+    public FragmentSet getSet() {
+        return this.set;
+    }
+
+    public void setSet(FragmentSet fragmentSet) {
+        this.set = fragmentSet;
+    }
+
+    public FragmentOrder set(FragmentSet fragmentSet) {
+        this.setSet(fragmentSet);
         return this;
     }
 
@@ -95,10 +95,10 @@ public class SetOfFragment implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof SetOfFragment)) {
+        if (!(o instanceof FragmentOrder)) {
             return false;
         }
-        return id != null && id.equals(((SetOfFragment) o).id);
+        return id != null && id.equals(((FragmentOrder) o).id);
     }
 
     @Override
@@ -110,7 +110,7 @@ public class SetOfFragment implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "SetOfFragment{" +
+        return "FragmentOrder{" +
             "id=" + getId() +
             ", order=" + getOrder() +
             "}";

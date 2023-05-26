@@ -54,14 +54,6 @@ export const FragmentDetail = () => {
             <Translate contentKey="eduApp.fragment.sequence">Sequence</Translate>
           </dt>
           <dd>{fragmentEntity.sequence ? fragmentEntity.sequence.title : ''}</dd>
-          <dt>
-            <Translate contentKey="eduApp.fragment.child">Child</Translate>
-          </dt>
-          <dd>{fragmentEntity.child ? fragmentEntity.child.id : ''}</dd>
-          <dt>
-            <Translate contentKey="eduApp.fragment.order">Order</Translate>
-          </dt>
-          <dd>{fragmentEntity.order ? fragmentEntity.order.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/fragment" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

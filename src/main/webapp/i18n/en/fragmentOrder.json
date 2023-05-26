@@ -1,0 +1,26 @@
+{
+  "eduApp": {
+    "fragmentOrder": {
+      "home": {
+        "title": "Fragment Orders",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Fragment Order",
+        "createOrEditLabel": "Create or edit a Fragment Order",
+        "notFound": "No Fragment Orders found"
+      },
+      "created": "A new Fragment Order is created with identifier {{ param }}",
+      "updated": "A Fragment Order is updated with identifier {{ param }}",
+      "deleted": "A Fragment Order is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Fragment Order {{ id }}?"
+      },
+      "detail": {
+        "title": "Fragment Order"
+      },
+      "id": "ID",
+      "order": "Order",
+      "fragment": "Fragment",
+      "set": "Set"
+    }
+  }
+}
