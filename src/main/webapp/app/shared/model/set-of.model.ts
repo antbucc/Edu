@@ -4,6 +4,7 @@ export interface ISetOf {
   id?: string;
   title?: string;
   fragments?: IFragment[] | null;
+  fragments?: IFragment[] | null;
 }
 
 export const defaultValue: Readonly<ISetOf> = {};

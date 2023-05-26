@@ -28,7 +28,16 @@ public class SetOf implements Serializable {
 
     @DBRef
     @Field("fragment")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf", "sequence", "modules" }, allowSetters = true)
+    @DBRef
+    @Field("fragment")
+    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf", "sequence", "setOf", "modules" }, allowSetters = true)
+    private Set<Fragment> fragments = new HashSet<>();
+
+    @DBRef
+    @Field("fragment")
+    @DBRef
+    @Field("fragment")
+    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf", "sequence", "setOf", "modules" }, allowSetters = true)
     private Set<Fragment> fragments = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -57,6 +66,37 @@ public class SetOf implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Set<Fragment> getFragments() {
+        return this.fragments;
+    }
+
+    public void setFragments(Set<Fragment> fragments) {
+        if (this.fragments != null) {
+            this.fragments.forEach(i -> i.setSetOf(null));
+        }
+        if (fragments != null) {
+            fragments.forEach(i -> i.setSetOf(this));
+        }
+        this.fragments = fragments;
+    }
+
+    public SetOf fragments(Set<Fragment> fragments) {
+        this.setFragments(fragments);
+        return this;
+    }
+
+    public SetOf addFragment(Fragment fragment) {
+        this.fragments.add(fragment);
+        fragment.setSetOf(this);
+        return this;
+    }
+
+    public SetOf removeFragment(Fragment fragment) {
+        this.fragments.remove(fragment);
+        fragment.setSetOf(null);
+        return this;
     }
 
     public Set<Fragment> getFragments() {
