@@ -14,10 +14,9 @@ import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 import { getEntities as getAbstractActivities } from 'app/entities/abstract-activity/abstract-activity.reducer';
 import { ISetOf } from 'app/shared/model/set-of.model';
 import { getEntities as getSetOfs } from 'app/entities/set-of/set-of.reducer';
-import { IOrder } from 'app/shared/model/order.model';
-import { getEntities as getOrders } from 'app/entities/order/order.reducer';
 import { ISequence } from 'app/shared/model/sequence.model';
 import { getEntities as getSequences } from 'app/entities/sequence/sequence.reducer';
+import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
 import { IModule } from 'app/shared/model/module.model';
 import { getEntities as getModules } from 'app/entities/module/module.reducer';
 import { IFragment } from 'app/shared/model/fragment.model';
@@ -34,8 +33,8 @@ export const FragmentUpdate = () => {
   const activities = useAppSelector(state => state.activity.entities);
   const abstractActivities = useAppSelector(state => state.abstractActivity.entities);
   const setOfs = useAppSelector(state => state.setOf.entities);
-  const orders = useAppSelector(state => state.order.entities);
   const sequences = useAppSelector(state => state.sequence.entities);
+  const fragments = useAppSelector(state => state.fragment.entities);
   const modules = useAppSelector(state => state.module.entities);
   const fragmentEntity = useAppSelector(state => state.fragment.entity);
   const loading = useAppSelector(state => state.fragment.loading);
@@ -56,8 +55,8 @@ export const FragmentUpdate = () => {
     dispatch(getActivities({}));
     dispatch(getAbstractActivities({}));
     dispatch(getSetOfs({}));
-    dispatch(getOrders({}));
     dispatch(getSequences({}));
+    dispatch(getFragments({}));
     dispatch(getModules({}));
   }, []);
 
@@ -74,6 +73,10 @@ export const FragmentUpdate = () => {
       activity: activities.find(it => it.id.toString() === values.activity.toString()),
       abstractActivity: abstractActivities.find(it => it.id.toString() === values.abstractActivity.toString()),
       setOf: setOfs.find(it => it.id.toString() === values.setOf.toString()),
+      sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
+      parent: fragments.find(it => it.id.toString() === values.parent.toString()),
+      order: fragments.find(it => it.id.toString() === values.order.toString()),
+      parent: fragments.find(it => it.id.toString() === values.parent.toString()),
     };
 
     if (isNew) {
@@ -91,6 +94,10 @@ export const FragmentUpdate = () => {
           activity: fragmentEntity?.activity?.id,
           abstractActivity: fragmentEntity?.abstractActivity?.id,
           setOf: fragmentEntity?.setOf?.id,
+          sequence: fragmentEntity?.sequence?.id,
+          parent: fragmentEntity?.parent?.id,
+          order: fragmentEntity?.order?.id,
+          parent: fragmentEntity?.parent?.id,
         };
 
   return (
@@ -157,6 +164,52 @@ export const FragmentUpdate = () => {
                   ? setOfs.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                id="fragment-sequence"
+                name="sequence"
+                data-cy="sequence"
+                label={translate('eduApp.fragment.sequence')}
+                type="select"
+              >
+                <option value="" key="0" />
+                {sequences
+                  ? sequences.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField id="fragment-parent" name="parent" data-cy="parent" label={translate('eduApp.fragment.parent')} type="select">
+                <option value="" key="0" />
+                {fragments
+                  ? fragments.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField id="fragment-order" name="order" data-cy="order" label={translate('eduApp.fragment.order')} type="select">
+                <option value="" key="0" />
+                {fragments
+                  ? fragments.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField id="fragment-parent" name="parent" data-cy="parent" label={translate('eduApp.fragment.parent')} type="select">
+                <option value="" key="0" />
+                {fragments
+                  ? fragments.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
                       </option>
                     ))
                   : null}

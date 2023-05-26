@@ -79,9 +79,9 @@ entity Sequence {
   title String required
 }
 
-entity Order {
-  order Integer required
-}
+//entity Order {
+ // order Integer required
+//}
 
 
 entity SetOf {
@@ -196,6 +196,10 @@ relationship OneToOne {
  Fragment{ SetOf(title) } to SetOf{ Fragment(title) } 
 }
 
+relationship OneToOne {
+ Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
+}
+
 
 
 
@@ -205,9 +209,18 @@ relationship ManyToMany {
 
 
 
-relationship OneToOne {
-  Order{ Fragment(title) } to Fragment { Order(order) }
-  Sequence { Fragment(title) } to Fragment { Sequence(title) }
+//relationship OneToOne {
+//  Order{ Fragment(title) } to Fragment { Order(order) }
+//  Sequence { Fragment(title) } to Fragment { Sequence(title) }
+//}
+
+relationship OneToMany {
+  Fragment{fragments} to Fragment{parent}
+}
+
+relationship ManyToOne {
+  Fragment{parent} to Fragment{fragments}
+  Fragment{order} to Fragment
 }
 
 

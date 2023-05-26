@@ -21,7 +21,7 @@
       "otherEntityField": "title",
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "sequence",
-      "ownerSide": true,
+      "ownerSide": false,
       "relationshipName": "fragment",
       "relationshipType": "one-to-one"
     }

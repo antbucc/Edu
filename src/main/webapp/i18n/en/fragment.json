@@ -22,8 +22,12 @@
       "activity": "Activity",
       "abstractActivity": "Abstract Activity",
       "setOf": "Set Of",
-      "order": "Order",
       "sequence": "Sequence",
+      "fragments": "Fragments",
+      "parent": "Parent",
+      "order": "Order",
+      "parent": "Parent",
+      "fragments": "Fragments",
       "module": "Module"
     }
   }

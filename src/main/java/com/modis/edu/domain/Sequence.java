@@ -25,7 +25,6 @@ public class Sequence implements Serializable {
     private String title;
 
     @DBRef
-    @Field("fragment")
     private Fragment fragment;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -61,6 +60,12 @@ public class Sequence implements Serializable {
     }
 
     public void setFragment(Fragment fragment) {
+        if (this.fragment != null) {
+            this.fragment.setSequence(null);
+        }
+        if (fragment != null) {
+            fragment.setSequence(this);
+        }
         this.fragment = fragment;
     }
 
