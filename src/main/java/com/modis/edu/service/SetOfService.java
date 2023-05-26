@@ -38,12 +38,6 @@ public interface SetOfService {
      * @return the list of entities.
      */
     List<SetOf> findAll();
-    /**
-     * Get all the SetOf where PartofSet is {@code null}.
-     *
-     * @return the {@link List} of entities.
-     */
-    List<SetOf> findAllWherePartofSetIsNull();
 
     /**
      * Get the "id" setOf.

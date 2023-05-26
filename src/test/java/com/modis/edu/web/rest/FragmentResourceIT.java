@@ -113,6 +113,22 @@ class FragmentResourceIT {
     }
 
     @Test
+    void checkTitleIsRequired() throws Exception {
+        int databaseSizeBeforeTest = fragmentRepository.findAll().size();
+        // set the field null
+        fragment.setTitle(null);
+
+        // Create the Fragment, which fails.
+
+        restFragmentMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(fragment)))
+            .andExpect(status().isBadRequest());
+
+        List<Fragment> fragmentList = fragmentRepository.findAll();
+        assertThat(fragmentList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     void getAllFragments() throws Exception {
         // Initialize the database
         fragmentRepository.save(fragment);

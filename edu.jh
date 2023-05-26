@@ -66,13 +66,13 @@ entity Effect{
 
 
 entity Goal {
- title String
+ title String required
 }
 
 
 
 entity Fragment {
- title String
+ title String required
 }
 
 entity Sequence {
@@ -82,13 +82,13 @@ entity Sequence {
 
 
 entity SetOf {
- title String
+ title String required
 }
 
 
 
 entity AbstractActivity {
- title String
+ title String required
 }
 
 
@@ -189,13 +189,10 @@ Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) }
 
 
 
-relationship OneToOne {
+relationship ManyToMany {
   Fragment{setof} to SetOf{partofSet}
 }
 
-relationship ManyToOne {
-  SetOf{fragments} to Fragment,
-}
 
 
 

@@ -9,6 +9,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,7 +50,7 @@ public class GoalResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/goals")
-    public ResponseEntity<Goal> createGoal(@RequestBody Goal goal) throws URISyntaxException {
+    public ResponseEntity<Goal> createGoal(@Valid @RequestBody Goal goal) throws URISyntaxException {
         log.debug("REST request to save Goal : {}", goal);
         if (goal.getId() != null) {
             throw new BadRequestAlertException("A new goal cannot already have an ID", ENTITY_NAME, "idexists");
@@ -71,7 +73,7 @@ public class GoalResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/goals/{id}")
-    public ResponseEntity<Goal> updateGoal(@PathVariable(value = "id", required = false) final String id, @RequestBody Goal goal)
+    public ResponseEntity<Goal> updateGoal(@PathVariable(value = "id", required = false) final String id, @Valid @RequestBody Goal goal)
         throws URISyntaxException {
         log.debug("REST request to update Goal : {}, {}", id, goal);
         if (goal.getId() == null) {
@@ -104,8 +106,10 @@ public class GoalResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PatchMapping(value = "/goals/{id}", consumes = { "application/json", "application/merge-patch+json" })
-    public ResponseEntity<Goal> partialUpdateGoal(@PathVariable(value = "id", required = false) final String id, @RequestBody Goal goal)
-        throws URISyntaxException {
+    public ResponseEntity<Goal> partialUpdateGoal(
+        @PathVariable(value = "id", required = false) final String id,
+        @NotNull @RequestBody Goal goal
+    ) throws URISyntaxException {
         log.debug("REST request to partial update Goal partially : {}, {}", id, goal);
         if (goal.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");

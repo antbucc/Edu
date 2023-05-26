@@ -3,7 +3,7 @@ import { IFragment } from 'app/shared/model/fragment.model';
 
 export interface IAbstractActivity {
   id?: string;
-  title?: string | null;
+  title?: string;
   goals?: IGoal[] | null;
   fragment?: IFragment | null;
 }

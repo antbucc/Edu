@@ -8,6 +8,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -44,7 +46,7 @@ public class FragmentResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/fragments")
-    public ResponseEntity<Fragment> createFragment(@RequestBody Fragment fragment) throws URISyntaxException {
+    public ResponseEntity<Fragment> createFragment(@Valid @RequestBody Fragment fragment) throws URISyntaxException {
         log.debug("REST request to save Fragment : {}", fragment);
         if (fragment.getId() != null) {
             throw new BadRequestAlertException("A new fragment cannot already have an ID", ENTITY_NAME, "idexists");
@@ -69,7 +71,7 @@ public class FragmentResource {
     @PutMapping("/fragments/{id}")
     public ResponseEntity<Fragment> updateFragment(
         @PathVariable(value = "id", required = false) final String id,
-        @RequestBody Fragment fragment
+        @Valid @RequestBody Fragment fragment
     ) throws URISyntaxException {
         log.debug("REST request to update Fragment : {}, {}", id, fragment);
         if (fragment.getId() == null) {
@@ -104,7 +106,7 @@ public class FragmentResource {
     @PatchMapping(value = "/fragments/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<Fragment> partialUpdateFragment(
         @PathVariable(value = "id", required = false) final String id,
-        @RequestBody Fragment fragment
+        @NotNull @RequestBody Fragment fragment
     ) throws URISyntaxException {
         log.debug("REST request to partial update Fragment partially : {}, {}", id, fragment);
         if (fragment.getId() == null) {

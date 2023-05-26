@@ -9,7 +9,8 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.StreamSupport;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -49,7 +50,7 @@ public class SetOfResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PostMapping("/set-ofs")
-    public ResponseEntity<SetOf> createSetOf(@RequestBody SetOf setOf) throws URISyntaxException {
+    public ResponseEntity<SetOf> createSetOf(@Valid @RequestBody SetOf setOf) throws URISyntaxException {
         log.debug("REST request to save SetOf : {}", setOf);
         if (setOf.getId() != null) {
             throw new BadRequestAlertException("A new setOf cannot already have an ID", ENTITY_NAME, "idexists");
@@ -72,8 +73,10 @@ public class SetOfResource {
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
     @PutMapping("/set-ofs/{id}")
-    public ResponseEntity<SetOf> updateSetOf(@PathVariable(value = "id", required = false) final String id, @RequestBody SetOf setOf)
-        throws URISyntaxException {
+    public ResponseEntity<SetOf> updateSetOf(
+        @PathVariable(value = "id", required = false) final String id,
+        @Valid @RequestBody SetOf setOf
+    ) throws URISyntaxException {
         log.debug("REST request to update SetOf : {}, {}", id, setOf);
         if (setOf.getId() == null) {
             throw new BadRequestAlertException("Invalid id", ENTITY_NAME, "idnull");
@@ -107,7 +110,7 @@ public class SetOfResource {
     @PatchMapping(value = "/set-ofs/{id}", consumes = { "application/json", "application/merge-patch+json" })
     public ResponseEntity<SetOf> partialUpdateSetOf(
         @PathVariable(value = "id", required = false) final String id,
-        @RequestBody SetOf setOf
+        @NotNull @RequestBody SetOf setOf
     ) throws URISyntaxException {
         log.debug("REST request to partial update SetOf partially : {}, {}", id, setOf);
         if (setOf.getId() == null) {
@@ -129,15 +132,10 @@ public class SetOfResource {
     /**
      * {@code GET  /set-ofs} : get all the setOfs.
      *
-     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of setOfs in body.
      */
     @GetMapping("/set-ofs")
-    public List<SetOf> getAllSetOfs(@RequestParam(required = false) String filter) {
-        if ("partofset-is-null".equals(filter)) {
-            log.debug("REST request to get all SetOfs where partofSet is null");
-            return setOfService.findAllWherePartofSetIsNull();
-        }
+    public List<SetOf> getAllSetOfs() {
         log.debug("REST request to get all SetOfs");
         return setOfService.findAll();
     }

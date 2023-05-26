@@ -47,13 +47,22 @@ export const FragmentDetail = () => {
           </dt>
           <dd>{fragmentEntity.abstractActivity ? fragmentEntity.abstractActivity.title : ''}</dd>
           <dt>
-            <Translate contentKey="eduApp.fragment.setof">Setof</Translate>
-          </dt>
-          <dd>{fragmentEntity.setof ? fragmentEntity.setof.id : ''}</dd>
-          <dt>
             <Translate contentKey="eduApp.fragment.sequence">Sequence</Translate>
           </dt>
           <dd>{fragmentEntity.sequence ? fragmentEntity.sequence.title : ''}</dd>
+          <dt>
+            <Translate contentKey="eduApp.fragment.setof">Setof</Translate>
+          </dt>
+          <dd>
+            {fragmentEntity.setofs
+              ? fragmentEntity.setofs.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.id}</a>
+                    {fragmentEntity.setofs && i === fragmentEntity.setofs.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/fragment" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
