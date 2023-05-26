@@ -208,33 +208,17 @@ relationship ManyToMany {
 }
 
 
-
-//relationship OneToOne {
-//  Order{ Fragment(title) } to Fragment { Order(order) }
-//  Sequence { Fragment(title) } to Fragment { Sequence(title) }
-//}
-
-//relationship OneToOne {
-//  Fragment{child} to Fragment{parent}
-//}
-
-//relationship OneToOne {
-  //Fragment{parent} to Fragment{fragments}
- // Fragment{order} to Fragment
-//}
-
-
 entity Order {
   order Integer required
 }
 
 relationship ManyToOne {
- Order{fragment} to Fragment
+ Order{ Fragment(title) } to Fragment
 }
 
 
 relationship OneToMany {
-  Sequence{fragments} to Order{sequence}
+  Sequence{fragments} to Order{ Sequence(title) }
 }
 
 
