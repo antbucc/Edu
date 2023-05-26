@@ -34,13 +34,8 @@
       "Goal",
       "AbstractActivity",
       "Sequence",
-      "Set",
-      "SetOf",
       "SequenceFragment",
-      "SetOfFragment",
-      "Order",
-      "FragmentOrder",
-      "FragmentSet"
+      "Order"
     ],
     "entitySuffix": "",
     "gitCompany": "",
