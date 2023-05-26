@@ -27,9 +27,9 @@ public class Sequence implements Serializable {
     private String title;
 
     @DBRef
-    @Field("fragments")
+    @Field("order")
     @JsonIgnoreProperties(value = { "fragment", "sequence" }, allowSetters = true)
-    private Set<Order> fragments = new HashSet<>();
+    private Set<Order> orders = new HashSet<>();
 
     @DBRef
     @Field("fragment")
@@ -64,33 +64,33 @@ public class Sequence implements Serializable {
         this.title = title;
     }
 
-    public Set<Order> getFragments() {
-        return this.fragments;
+    public Set<Order> getOrders() {
+        return this.orders;
     }
 
-    public void setFragments(Set<Order> orders) {
-        if (this.fragments != null) {
-            this.fragments.forEach(i -> i.setSequence(null));
+    public void setOrders(Set<Order> orders) {
+        if (this.orders != null) {
+            this.orders.forEach(i -> i.setSequence(null));
         }
         if (orders != null) {
             orders.forEach(i -> i.setSequence(this));
         }
-        this.fragments = orders;
+        this.orders = orders;
     }
 
-    public Sequence fragments(Set<Order> orders) {
-        this.setFragments(orders);
+    public Sequence orders(Set<Order> orders) {
+        this.setOrders(orders);
         return this;
     }
 
-    public Sequence addFragments(Order order) {
-        this.fragments.add(order);
+    public Sequence addOrder(Order order) {
+        this.orders.add(order);
         order.setSequence(this);
         return this;
     }
 
-    public Sequence removeFragments(Order order) {
-        this.fragments.remove(order);
+    public Sequence removeOrder(Order order) {
+        this.orders.remove(order);
         order.setSequence(null);
         return this;
     }
