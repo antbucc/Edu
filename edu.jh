@@ -198,9 +198,9 @@ relationship ManyToOne {
 
 
 
-//relationship ManyToMany {
- //SetOf{ Fragment(title) } to Fragment
-//}
+relationship OneToMany {
+ SetOf{ Fragment(title) } to Fragment { SetOf(title) }
+}
 
 
 
