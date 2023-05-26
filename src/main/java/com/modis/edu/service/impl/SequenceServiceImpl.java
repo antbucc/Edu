@@ -5,8 +5,6 @@ import com.modis.edu.repository.SequenceRepository;
 import com.modis.edu.service.SequenceService;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -57,19 +55,6 @@ public class SequenceServiceImpl implements SequenceService {
     public List<Sequence> findAll() {
         log.debug("Request to get all Sequences");
         return sequenceRepository.findAll();
-    }
-
-    /**
-     *  Get all the sequences where Fragment is {@code null}.
-     *  @return the list of entities.
-     */
-
-    public List<Sequence> findAllWhereFragmentIsNull() {
-        log.debug("Request to get all sequences where Fragment is null");
-        return StreamSupport
-            .stream(sequenceRepository.findAll().spliterator(), false)
-            .filter(sequence -> sequence.getFragment() == null)
-            .collect(Collectors.toList());
     }
 
     @Override

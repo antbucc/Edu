@@ -26,12 +26,12 @@ public class Order implements Serializable {
 
     @DBRef
     @Field("fragment")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "sequence", "setOf", "modules" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf", "sequence", "modules" }, allowSetters = true)
     private Fragment fragment;
 
     @DBRef
     @Field("sequence")
-    @JsonIgnoreProperties(value = { "fragments", "fragment" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "fragments", "fragments" }, allowSetters = true)
     private Sequence sequence;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

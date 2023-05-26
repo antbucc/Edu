@@ -35,13 +35,14 @@ public class Fragment implements Serializable {
     private AbstractActivity abstractActivity;
 
     @DBRef
-    @Field("sequence")
-    private Sequence sequence;
-
-    @DBRef
     @Field("setOf")
     @JsonIgnoreProperties(value = { "fragment", "partofSets" }, allowSetters = true)
     private SetOf setOf;
+
+    @DBRef
+    @Field("sequence")
+    @JsonIgnoreProperties(value = { "fragments", "fragments" }, allowSetters = true)
+    private Sequence sequence;
 
     @DBRef
     @Field("modules")
@@ -102,19 +103,6 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public Sequence getSequence() {
-        return this.sequence;
-    }
-
-    public void setSequence(Sequence sequence) {
-        this.sequence = sequence;
-    }
-
-    public Fragment sequence(Sequence sequence) {
-        this.setSequence(sequence);
-        return this;
-    }
-
     public SetOf getSetOf() {
         return this.setOf;
     }
@@ -125,6 +113,19 @@ public class Fragment implements Serializable {
 
     public Fragment setOf(SetOf setOf) {
         this.setSetOf(setOf);
+        return this;
+    }
+
+    public Sequence getSequence() {
+        return this.sequence;
+    }
+
+    public void setSequence(Sequence sequence) {
+        this.sequence = sequence;
+    }
+
+    public Fragment sequence(Sequence sequence) {
+        this.setSequence(sequence);
         return this;
     }
 
