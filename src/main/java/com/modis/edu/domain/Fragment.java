@@ -27,6 +27,10 @@ public class Fragment implements Serializable {
     private String title;
 
     @DBRef
+    @Field("order")
+    private Order order;
+
+    @DBRef
     @Field("activity")
     private Activity activity;
 
@@ -79,6 +83,19 @@ public class Fragment implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Order getOrder() {
+        return this.order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
+
+    public Fragment order(Order order) {
+        this.setOrder(order);
+        return this;
     }
 
     public Activity getActivity() {
