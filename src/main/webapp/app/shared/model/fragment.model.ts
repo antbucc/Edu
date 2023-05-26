@@ -9,7 +9,7 @@ export interface IFragment {
   title?: string | null;
   activity?: IActivity | null;
   abstractActivity?: IAbstractActivity | null;
-  setOf?: ISetOf | null;
+  setof?: ISetOf | null;
   sequence?: ISequence | null;
   modules?: IModule[] | null;
 }

@@ -38,6 +38,10 @@ export const SetOfDetail = () => {
             </span>
           </dt>
           <dd>{setOfEntity.title}</dd>
+          <dt>
+            <Translate contentKey="eduApp.setOf.fragments">Fragments</Translate>
+          </dt>
+          <dd>{setOfEntity.fragments ? setOfEntity.fragments.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/set-of" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

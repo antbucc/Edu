@@ -61,7 +61,7 @@ export const Fragment = () => {
                   <Translate contentKey="eduApp.fragment.abstractActivity">Abstract Activity</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.fragment.setOf">Set Of</Translate>
+                  <Translate contentKey="eduApp.fragment.setof">Setof</Translate>
                 </th>
                 <th>
                   <Translate contentKey="eduApp.fragment.sequence">Sequence</Translate>
@@ -86,7 +86,7 @@ export const Fragment = () => {
                       ''
                     )}
                   </td>
-                  <td>{fragment.setOf ? <Link to={`/set-of/${fragment.setOf.id}`}>{fragment.setOf.title}</Link> : ''}</td>
+                  <td>{fragment.setof ? <Link to={`/set-of/${fragment.setof.id}`}>{fragment.setof.id}</Link> : ''}</td>
                   <td>{fragment.sequence ? <Link to={`/sequence/${fragment.sequence.id}`}>{fragment.sequence.title}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

@@ -60,15 +60,15 @@ public class SetOfServiceImpl implements SetOfService {
     }
 
     /**
-     *  Get all the setOfs where Fragment is {@code null}.
+     *  Get all the setOfs where PartofSet is {@code null}.
      *  @return the list of entities.
      */
 
-    public List<SetOf> findAllWhereFragmentIsNull() {
-        log.debug("Request to get all setOfs where Fragment is null");
+    public List<SetOf> findAllWherePartofSetIsNull() {
+        log.debug("Request to get all setOfs where PartofSet is null");
         return StreamSupport
             .stream(setOfRepository.findAll().spliterator(), false)
-            .filter(setOf -> setOf.getFragment() == null)
+            .filter(setOf -> setOf.getPartofSet() == null)
             .collect(Collectors.toList());
     }
 

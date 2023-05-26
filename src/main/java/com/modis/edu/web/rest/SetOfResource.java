@@ -134,9 +134,9 @@ public class SetOfResource {
      */
     @GetMapping("/set-ofs")
     public List<SetOf> getAllSetOfs(@RequestParam(required = false) String filter) {
-        if ("fragment-is-null".equals(filter)) {
-            log.debug("REST request to get all SetOfs where fragment is null");
-            return setOfService.findAllWhereFragmentIsNull();
+        if ("partofset-is-null".equals(filter)) {
+            log.debug("REST request to get all SetOfs where partofSet is null");
+            return setOfService.findAllWherePartofSetIsNull();
         }
         log.debug("REST request to get all SetOfs");
         return setOfService.findAll();
