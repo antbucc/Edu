@@ -85,6 +85,9 @@ entity SetOf {
  title String required
 }
 
+entity Order {
+  order Integer required
+}
 
 
 entity AbstractActivity {
@@ -194,6 +197,10 @@ relationship ManyToOne {
 }
 
 
+relationship OneToMany {
+  SetOf{ Fragment(title) } to Fragment{member}
+}
+
 
 
 
@@ -210,9 +217,7 @@ relationship ManyToMany {
 }
 
 
-entity Order {
-  order Integer required
-}
+
 
 relationship ManyToOne {
  Order{ Fragment(title) } to Fragment

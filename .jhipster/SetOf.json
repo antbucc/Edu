@@ -18,6 +18,13 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityField": "title",
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "member",
+      "relationshipName": "fragment",
+      "relationshipType": "one-to-many"
+    },
+    {
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "setOf",
       "relationshipName": "partofSet",
