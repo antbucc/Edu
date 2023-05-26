@@ -51,7 +51,7 @@
     {
       "otherEntityName": "setOf",
       "otherEntityRelationshipName": "fragment",
-      "relationshipName": "member",
+      "relationshipName": "fragments",
       "relationshipType": "many-to-one"
     },
     {
