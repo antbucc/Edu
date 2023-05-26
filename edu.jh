@@ -194,11 +194,11 @@ Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) }
 
 
 relationship OneToOne {
-  Fragment{setOf2} to SetOf{fragment1}
+  Fragment{setOf} to SetOf{fragment1}
 }
 
-relationship ManyToOne {
-  SetOf{fragment2} to Fragment{setOf1},
+relationship ManyToMany {
+  SetOf{fragments} to Fragment{setOf1},
 }
 
 //relationship ManyToMany {
