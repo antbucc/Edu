@@ -23,6 +23,13 @@
       "otherEntityRelationshipName": "setOf",
       "relationshipName": "fragment",
       "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "setOf",
+      "relationshipName": "fragment",
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

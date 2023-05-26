@@ -70,6 +70,7 @@ export const FragmentUpdate = () => {
       activity: activities.find(it => it.id.toString() === values.activity.toString()),
       abstractActivity: abstractActivities.find(it => it.id.toString() === values.abstractActivity.toString()),
       setOf: setOfs.find(it => it.id.toString() === values.setOf.toString()),
+      setOf: setOfs.find(it => it.id.toString() === values.setOf.toString()),
       sequence: sequences.find(it => it.id.toString() === values.sequence.toString()),
     };
 
@@ -89,6 +90,7 @@ export const FragmentUpdate = () => {
           abstractActivity: fragmentEntity?.abstractActivity?.id,
           setOf: fragmentEntity?.setOf?.id,
           sequence: fragmentEntity?.sequence?.id,
+          setOf: fragmentEntity?.setOf?.id,
         };
 
   return (
@@ -178,6 +180,16 @@ export const FragmentUpdate = () => {
                 <option value="" key="0" />
                 {sequences
                   ? sequences.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField id="fragment-setOf" name="setOf" data-cy="setOf" label={translate('eduApp.fragment.setOf')} type="select">
+                <option value="" key="0" />
+                {setOfs
+                  ? setOfs.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
                       </option>
