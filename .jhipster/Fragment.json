@@ -42,11 +42,11 @@
       "relationshipType": "one-to-one"
     },
     {
+      "otherEntityField": "title",
       "otherEntityName": "setOf",
       "otherEntityRelationshipName": "partofSet",
-      "ownerSide": true,
-      "relationshipName": "setof",
-      "relationshipType": "many-to-many"
+      "relationshipName": "setOf",
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityField": "title",

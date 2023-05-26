@@ -19,10 +19,9 @@
   "relationships": [
     {
       "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "setof",
-      "ownerSide": false,
+      "otherEntityRelationshipName": "setOf",
       "relationshipName": "partofSet",
-      "relationshipType": "many-to-many"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"
