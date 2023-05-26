@@ -55,6 +55,9 @@ export const Fragment = () => {
                   <Translate contentKey="eduApp.fragment.title">Title</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="eduApp.fragment.order">Order</Translate>
+                </th>
+                <th>
                   <Translate contentKey="eduApp.fragment.activity">Activity</Translate>
                 </th>
                 <th>
@@ -78,6 +81,7 @@ export const Fragment = () => {
                     </Button>
                   </td>
                   <td>{fragment.title}</td>
+                  <td>{fragment.order ? <Link to={`/order/${fragment.order.id}`}>{fragment.order.id}</Link> : ''}</td>
                   <td>{fragment.activity ? <Link to={`/activity/${fragment.activity.id}`}>{fragment.activity.title}</Link> : ''}</td>
                   <td>
                     {fragment.abstractActivity ? (

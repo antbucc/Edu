@@ -19,6 +19,7 @@
       },
       "id": "ID",
       "title": "Title",
+      "order": "Order",
       "activity": "Activity",
       "abstractActivity": "Abstract Activity",
       "setOf": "Set Of",
