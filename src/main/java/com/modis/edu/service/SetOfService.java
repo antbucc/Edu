@@ -39,11 +39,11 @@ public interface SetOfService {
      */
     List<SetOf> findAll();
     /**
-     * Get all the SetOf where SetOff is {@code null}.
+     * Get all the SetOf where Fragment1 is {@code null}.
      *
      * @return the {@link List} of entities.
      */
-    List<SetOf> findAllWhereSetOffIsNull();
+    List<SetOf> findAllWhereFragment1IsNull();
 
     /**
      * Get the "id" setOf.

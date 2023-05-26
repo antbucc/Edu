@@ -55,7 +55,7 @@ export const SetOf = () => {
                   <Translate contentKey="eduApp.setOf.title">Title</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.setOf.fragment">Fragment</Translate>
+                  <Translate contentKey="eduApp.setOf.fragment2">Fragment 2</Translate>
                 </th>
                 <th />
               </tr>
@@ -69,7 +69,7 @@ export const SetOf = () => {
                     </Button>
                   </td>
                   <td>{setOf.title}</td>
-                  <td>{setOf.fragment ? <Link to={`/fragment/${setOf.fragment.id}`}>{setOf.fragment.id}</Link> : ''}</td>
+                  <td>{setOf.fragment2 ? <Link to={`/fragment/${setOf.fragment2.id}`}>{setOf.fragment2.id}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/set-of/${setOf.id}`} color="info" size="sm" data-cy="entityDetailsButton">
