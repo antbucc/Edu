@@ -34,14 +34,6 @@
     },
     {
       "otherEntityField": "title",
-      "otherEntityName": "sequence",
-      "otherEntityRelationshipName": "fragment",
-      "ownerSide": true,
-      "relationshipName": "sequence",
-      "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityField": "title",
       "otherEntityName": "setOf",
       "otherEntityRelationshipName": "fragment",
       "ownerSide": true,
