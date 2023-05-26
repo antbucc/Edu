@@ -214,13 +214,30 @@ relationship ManyToMany {
 //  Sequence { Fragment(title) } to Fragment { Sequence(title) }
 //}
 
-relationship OneToOne {
-  Fragment{child} to Fragment{parent}
+//relationship OneToOne {
+//  Fragment{child} to Fragment{parent}
+//}
+
+//relationship OneToOne {
+  //Fragment{parent} to Fragment{fragments}
+ // Fragment{order} to Fragment
+//}
+
+
+entity FragmentOrder {
+  order Integer required
 }
 
-relationship OneToOne {
-  //Fragment{parent} to Fragment{fragments}
-  Fragment{order} to Fragment
+relationship ManyToOne {
+  FragmentOrder{fragment} to Fragment
+}
+
+entity FragmentSet {
+  // Add any additional properties specific to the fragment set
+}
+
+relationship OneToMany {
+  FragmentSet{fragments} to FragmentOrder{set}
 }
 
 
