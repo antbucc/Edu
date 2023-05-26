@@ -17,12 +17,9 @@ import Effect from './effect';
 import Goal from './goal';
 import AbstractActivity from './abstract-activity';
 import Sequence from './sequence';
-
-import SequenceFragment from './sequence-fragment';
-
 import Order from './order';
-
 import SetOf from './set-of';
+import SequenceFragment from './sequence-fragment';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -44,9 +41,9 @@ export default () => {
         <Route path="goal/*" element={<Goal />} />
         <Route path="abstract-activity/*" element={<AbstractActivity />} />
         <Route path="sequence/*" element={<Sequence />} />
-        <Route path="sequence-fragment/*" element={<SequenceFragment />} />
         <Route path="order/*" element={<Order />} />
         <Route path="set-of/*" element={<SetOf />} />
+        <Route path="sequence-fragment/*" element={<SequenceFragment />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

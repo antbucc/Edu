@@ -21,9 +21,9 @@
         "goal": "Goal",
         "abstractActivity": "Abstract Activity",
         "sequence": "Sequence",
-        "sequenceFragment": "Sequence Fragment",
         "order": "Order",
         "setOf": "Set Of",
+        "sequenceFragment": "Sequence Fragment",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
