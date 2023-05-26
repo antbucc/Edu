@@ -9,6 +9,7 @@ import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.StreamSupport;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import org.slf4j.Logger;
@@ -132,10 +133,15 @@ public class SetOfResource {
     /**
      * {@code GET  /set-ofs} : get all the setOfs.
      *
+     * @param filter the filter of the request.
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of setOfs in body.
      */
     @GetMapping("/set-ofs")
-    public List<SetOf> getAllSetOfs() {
+    public List<SetOf> getAllSetOfs(@RequestParam(required = false) String filter) {
+        if ("setoff-is-null".equals(filter)) {
+            log.debug("REST request to get all SetOfs where setOff is null");
+            return setOfService.findAllWhereSetOffIsNull();
+        }
         log.debug("REST request to get all SetOfs");
         return setOfService.findAll();
     }

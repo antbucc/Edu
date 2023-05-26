@@ -3,8 +3,8 @@ import { IFragment } from 'app/shared/model/fragment.model';
 export interface ISetOf {
   id?: string;
   title?: string;
-  fragments?: IFragment[] | null;
-  fragments?: IFragment[] | null;
+  fragment?: IFragment | null;
+  setOff?: IFragment | null;
 }
 
 export const defaultValue: Readonly<ISetOf> = {};
