@@ -193,6 +193,13 @@ relationship OneToOne {
  Fragment{ SetOf(title) } to SetOf{ Fragment(title) } 
 }
 
+relationship OneToMany {
+SetOf { Fragment(title) } to Fragment{fragments}
+}
+
+
+
+
 relationship OneToOne {
  Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
 }
