@@ -4,7 +4,6 @@ export interface ISequence {
   id?: string;
   title?: string;
   fragment?: IFragment | null;
-  fragment?: IFragment | null;
 }
 
 export const defaultValue: Readonly<ISequence> = {};

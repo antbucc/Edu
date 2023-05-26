@@ -33,19 +33,12 @@ public class Fragment implements Serializable {
     private AbstractActivity abstractActivity;
 
     @DBRef
-    @Field("sequence")
-    @DBRef
-    private Sequence sequence;
-
-    @DBRef
     @Field("setOf")
     private SetOf setOf;
 
     @DBRef
     private Order order;
 
-    @DBRef
-    @Field("sequence")
     @DBRef
     private Sequence sequence;
 
@@ -105,19 +98,6 @@ public class Fragment implements Serializable {
 
     public Fragment abstractActivity(AbstractActivity abstractActivity) {
         this.setAbstractActivity(abstractActivity);
-        return this;
-    }
-
-    public Sequence getSequence() {
-        return this.sequence;
-    }
-
-    public void setSequence(Sequence sequence) {
-        this.sequence = sequence;
-    }
-
-    public Fragment sequence(Sequence sequence) {
-        this.setSequence(sequence);
         return this;
     }
 
