@@ -18,18 +18,16 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityField": "title",
       "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "setOf",
       "relationshipName": "fragment",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-one"
     },
     {
-      "otherEntityField": "title",
       "otherEntityName": "fragment",
       "otherEntityRelationshipName": "setOf",
-      "relationshipName": "fragment",
-      "relationshipType": "one-to-many"
+      "ownerSide": false,
+      "relationshipName": "setOff",
+      "relationshipType": "one-to-one"
     }
   ],
   "service": "serviceImpl"

@@ -2,8 +2,6 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -28,17 +26,11 @@ public class SetOf implements Serializable {
 
     @DBRef
     @Field("fragment")
-    @DBRef
-    @Field("fragment")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf", "sequence", "setOf", "modules" }, allowSetters = true)
-    private Set<Fragment> fragments = new HashSet<>();
+    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf", "sequence", "modules" }, allowSetters = true)
+    private Fragment fragment;
 
     @DBRef
-    @Field("fragment")
-    @DBRef
-    @Field("fragment")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf", "sequence", "setOf", "modules" }, allowSetters = true)
-    private Set<Fragment> fragments = new HashSet<>();
+    private Fragment setOff;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -68,65 +60,35 @@ public class SetOf implements Serializable {
         this.title = title;
     }
 
-    public Set<Fragment> getFragments() {
-        return this.fragments;
+    public Fragment getFragment() {
+        return this.fragment;
     }
 
-    public void setFragments(Set<Fragment> fragments) {
-        if (this.fragments != null) {
-            this.fragments.forEach(i -> i.setSetOf(null));
+    public void setFragment(Fragment fragment) {
+        this.fragment = fragment;
+    }
+
+    public SetOf fragment(Fragment fragment) {
+        this.setFragment(fragment);
+        return this;
+    }
+
+    public Fragment getSetOff() {
+        return this.setOff;
+    }
+
+    public void setSetOff(Fragment fragment) {
+        if (this.setOff != null) {
+            this.setOff.setSetOf(null);
         }
-        if (fragments != null) {
-            fragments.forEach(i -> i.setSetOf(this));
+        if (fragment != null) {
+            fragment.setSetOf(this);
         }
-        this.fragments = fragments;
+        this.setOff = fragment;
     }
 
-    public SetOf fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
-        return this;
-    }
-
-    public SetOf addFragment(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.setSetOf(this);
-        return this;
-    }
-
-    public SetOf removeFragment(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.setSetOf(null);
-        return this;
-    }
-
-    public Set<Fragment> getFragments() {
-        return this.fragments;
-    }
-
-    public void setFragments(Set<Fragment> fragments) {
-        if (this.fragments != null) {
-            this.fragments.forEach(i -> i.setSetOf(null));
-        }
-        if (fragments != null) {
-            fragments.forEach(i -> i.setSetOf(this));
-        }
-        this.fragments = fragments;
-    }
-
-    public SetOf fragments(Set<Fragment> fragments) {
-        this.setFragments(fragments);
-        return this;
-    }
-
-    public SetOf addFragment(Fragment fragment) {
-        this.fragments.add(fragment);
-        fragment.setSetOf(this);
-        return this;
-    }
-
-    public SetOf removeFragment(Fragment fragment) {
-        this.fragments.remove(fragment);
-        fragment.setSetOf(null);
+    public SetOf setOff(Fragment fragment) {
+        this.setSetOff(fragment);
         return this;
     }
 

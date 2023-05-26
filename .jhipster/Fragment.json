@@ -34,24 +34,17 @@
       "relationshipType": "one-to-one"
     },
     {
-      "otherEntityField": "title",
       "otherEntityName": "setOf",
-      "otherEntityRelationshipName": "fragment",
+      "otherEntityRelationshipName": "setOff",
+      "ownerSide": true,
       "relationshipName": "setOf",
-      "relationshipType": "many-to-one"
+      "relationshipType": "one-to-one"
     },
     {
       "otherEntityField": "title",
       "otherEntityName": "sequence",
       "otherEntityRelationshipName": "fragment",
       "relationshipName": "sequence",
-      "relationshipType": "many-to-one"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "setOf",
-      "otherEntityRelationshipName": "fragment",
-      "relationshipName": "setOf",
       "relationshipType": "many-to-one"
     },
     {
