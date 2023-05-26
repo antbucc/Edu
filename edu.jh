@@ -204,7 +204,7 @@ relationship ManyToOne {
 
 
 
-relationship OneToOne {
+relationship ManyToOne {
  Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
 }
 
