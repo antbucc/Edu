@@ -39,9 +39,9 @@ export const SetOfDetail = () => {
           </dt>
           <dd>{setOfEntity.title}</dd>
           <dt>
-            <Translate contentKey="eduApp.setOf.fragment">Fragment</Translate>
+            <Translate contentKey="eduApp.setOf.fragment2">Fragment 2</Translate>
           </dt>
-          <dd>{setOfEntity.fragment ? setOfEntity.fragment.id : ''}</dd>
+          <dd>{setOfEntity.fragment2 ? setOfEntity.fragment2.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/set-of" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

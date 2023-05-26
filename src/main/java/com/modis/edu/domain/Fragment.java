@@ -35,13 +35,18 @@ public class Fragment implements Serializable {
     private AbstractActivity abstractActivity;
 
     @DBRef
-    @Field("setOf")
-    private SetOf setOf;
+    @Field("setOf2")
+    private SetOf setOf2;
 
     @DBRef
     @Field("sequence")
     @JsonIgnoreProperties(value = { "orders", "fragments" }, allowSetters = true)
     private Sequence sequence;
+
+    @DBRef
+    @Field("setOf1")
+    @JsonIgnoreProperties(value = { "fragment2", "fragment1" }, allowSetters = true)
+    private Set<SetOf> setOf1s = new HashSet<>();
 
     @DBRef
     @Field("modules")
@@ -102,16 +107,16 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public SetOf getSetOf() {
-        return this.setOf;
+    public SetOf getSetOf2() {
+        return this.setOf2;
     }
 
-    public void setSetOf(SetOf setOf) {
-        this.setOf = setOf;
+    public void setSetOf2(SetOf setOf) {
+        this.setOf2 = setOf;
     }
 
-    public Fragment setOf(SetOf setOf) {
-        this.setSetOf(setOf);
+    public Fragment setOf2(SetOf setOf) {
+        this.setSetOf2(setOf);
         return this;
     }
 
@@ -125,6 +130,37 @@ public class Fragment implements Serializable {
 
     public Fragment sequence(Sequence sequence) {
         this.setSequence(sequence);
+        return this;
+    }
+
+    public Set<SetOf> getSetOf1s() {
+        return this.setOf1s;
+    }
+
+    public void setSetOf1s(Set<SetOf> setOfs) {
+        if (this.setOf1s != null) {
+            this.setOf1s.forEach(i -> i.setFragment2(null));
+        }
+        if (setOfs != null) {
+            setOfs.forEach(i -> i.setFragment2(this));
+        }
+        this.setOf1s = setOfs;
+    }
+
+    public Fragment setOf1s(Set<SetOf> setOfs) {
+        this.setSetOf1s(setOfs);
+        return this;
+    }
+
+    public Fragment addSetOf1(SetOf setOf) {
+        this.setOf1s.add(setOf);
+        setOf.setFragment2(this);
+        return this;
+    }
+
+    public Fragment removeSetOf1(SetOf setOf) {
+        this.setOf1s.remove(setOf);
+        setOf.setFragment2(null);
         return this;
     }
 

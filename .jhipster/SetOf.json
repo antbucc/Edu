@@ -19,14 +19,15 @@
   "relationships": [
     {
       "otherEntityName": "fragment",
-      "relationshipName": "fragment",
+      "otherEntityRelationshipName": "setOf1",
+      "relationshipName": "fragment2",
       "relationshipType": "many-to-one"
     },
     {
       "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "setOf",
+      "otherEntityRelationshipName": "setOf2",
       "ownerSide": false,
-      "relationshipName": "setOff",
+      "relationshipName": "fragment1",
       "relationshipType": "one-to-one"
     }
   ],
