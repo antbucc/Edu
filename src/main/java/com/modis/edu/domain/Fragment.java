@@ -40,8 +40,13 @@ public class Fragment implements Serializable {
 
     @DBRef
     @Field("setOf")
-    @JsonIgnoreProperties(value = { "partofSets" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "fragments", "partofSets" }, allowSetters = true)
     private SetOf setOf;
+
+    @DBRef
+    @Field("member")
+    @JsonIgnoreProperties(value = { "fragments", "partofSets" }, allowSetters = true)
+    private SetOf member;
 
     @DBRef
     @Field("modules")
@@ -125,6 +130,19 @@ public class Fragment implements Serializable {
 
     public Fragment setOf(SetOf setOf) {
         this.setSetOf(setOf);
+        return this;
+    }
+
+    public SetOf getMember() {
+        return this.member;
+    }
+
+    public void setMember(SetOf setOf) {
+        this.member = setOf;
+    }
+
+    public Fragment member(SetOf setOf) {
+        this.setMember(setOf);
         return this;
     }
 

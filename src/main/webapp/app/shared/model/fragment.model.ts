@@ -11,6 +11,7 @@ export interface IFragment {
   abstractActivity?: IAbstractActivity | null;
   sequence?: ISequence | null;
   setOf?: ISetOf | null;
+  member?: ISetOf | null;
   modules?: IModule[] | null;
 }
 
