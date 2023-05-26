@@ -20,7 +20,7 @@
     {
       "otherEntityField": "title",
       "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "member",
+      "otherEntityRelationshipName": "fragments",
       "relationshipName": "fragment",
       "relationshipType": "one-to-many"
     },
