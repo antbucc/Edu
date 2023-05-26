@@ -79,9 +79,6 @@ entity Sequence {
   title String required
 }
 
-//entity Order {
- // order Integer required
-//}
 
 
 entity SetOf {

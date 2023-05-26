@@ -22,6 +22,7 @@ import SequenceFragment from './sequence-fragment';
 
 import Order from './order';
 
+import SetOf from './set-of';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -45,6 +46,7 @@ export default () => {
         <Route path="sequence/*" element={<Sequence />} />
         <Route path="sequence-fragment/*" element={<SequenceFragment />} />
         <Route path="order/*" element={<Order />} />
+        <Route path="set-of/*" element={<SetOf />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

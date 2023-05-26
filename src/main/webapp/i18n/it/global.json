@@ -23,6 +23,7 @@
         "sequence": "Sequence",
         "sequenceFragment": "Sequence Fragment",
         "order": "Order",
+        "setOf": "Set Of",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {
