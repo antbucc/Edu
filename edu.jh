@@ -224,20 +224,17 @@ relationship ManyToMany {
 //}
 
 
-entity FragmentOrder {
+entity Order {
   order Integer required
 }
 
 relationship ManyToOne {
-  FragmentOrder{fragment} to Fragment
+ Order{fragment} to Fragment
 }
 
-entity FragmentSet {
-  // Add any additional properties specific to the fragment set
-}
 
 relationship OneToMany {
-  FragmentSet{fragments} to FragmentOrder{set}
+  Sequence{fragments} to Order{sequence}
 }
 
 

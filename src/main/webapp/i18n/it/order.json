@@ -19,7 +19,8 @@
       },
       "id": "ID",
       "order": "Order",
-      "fragment": "Fragment"
+      "fragment": "Fragment",
+      "sequence": "Sequence"
     }
   }
 }
