@@ -116,7 +116,7 @@ export const SetOfUpdate = () => {
                 {fragments
                   ? fragments.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.title}
                       </option>
                     ))
                   : null}
