@@ -189,8 +189,8 @@ Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) }
 
 
 
-relationship ManyToMany {
-  Fragment{setof} to SetOf{partofSet}
+relationship ManyToOne {
+  Fragment{ SetOf(title) } to SetOf{partofSet}
 }
 
 
