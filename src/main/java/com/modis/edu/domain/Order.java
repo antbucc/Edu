@@ -26,7 +26,7 @@ public class Order implements Serializable {
 
     @DBRef
     @Field("fragment")
-    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "sequence", "setOfs", "modules" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf", "sequence", "modules" }, allowSetters = true)
     private Fragment fragment;
 
     @DBRef

@@ -132,11 +132,10 @@ public class SetOfResource {
     /**
      * {@code GET  /set-ofs} : get all the setOfs.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of setOfs in body.
      */
     @GetMapping("/set-ofs")
-    public List<SetOf> getAllSetOfs(@RequestParam(required = false, defaultValue = "false") boolean eagerload) {
+    public List<SetOf> getAllSetOfs() {
         log.debug("REST request to get all SetOfs");
         return setOfService.findAll();
     }
