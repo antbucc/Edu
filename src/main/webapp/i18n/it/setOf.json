@@ -19,6 +19,8 @@
       },
       "id": "ID",
       "title": "Title",
+      "atLeast": "At Least",
+      "noLess": "No Less",
       "fragments": "Fragments",
       "fragment1": "Fragment 1"
     }

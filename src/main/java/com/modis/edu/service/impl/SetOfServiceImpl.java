@@ -49,6 +49,12 @@ public class SetOfServiceImpl implements SetOfService {
                 if (setOf.getTitle() != null) {
                     existingSetOf.setTitle(setOf.getTitle());
                 }
+                if (setOf.getAtLeast() != null) {
+                    existingSetOf.setAtLeast(setOf.getAtLeast());
+                }
+                if (setOf.getNoLess() != null) {
+                    existingSetOf.setNoLess(setOf.getNoLess());
+                }
 
                 return existingSetOf;
             })

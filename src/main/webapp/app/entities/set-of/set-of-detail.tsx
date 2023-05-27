@@ -39,6 +39,18 @@ export const SetOfDetail = () => {
           </dt>
           <dd>{setOfEntity.title}</dd>
           <dt>
+            <span id="atLeast">
+              <Translate contentKey="eduApp.setOf.atLeast">At Least</Translate>
+            </span>
+          </dt>
+          <dd>{setOfEntity.atLeast}</dd>
+          <dt>
+            <span id="noLess">
+              <Translate contentKey="eduApp.setOf.noLess">No Less</Translate>
+            </span>
+          </dt>
+          <dd>{setOfEntity.noLess}</dd>
+          <dt>
             <Translate contentKey="eduApp.setOf.fragments">Fragments</Translate>
           </dt>
           <dd>
