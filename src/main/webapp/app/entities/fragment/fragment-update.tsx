@@ -139,7 +139,7 @@ export const FragmentUpdate = () => {
                 {orders
                   ? orders.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.order}
                       </option>
                     ))
                   : null}
