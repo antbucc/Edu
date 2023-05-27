@@ -1,5 +1,4 @@
 import scenario from 'app/entities/scenario/scenario.reducer';
-import module from 'app/entities/module/module.reducer';
 import learner from 'app/entities/learner/learner.reducer';
 import educator from 'app/entities/educator/educator.reducer';
 import domain from 'app/entities/domain/domain.reducer';
@@ -15,12 +14,10 @@ import sequence from 'app/entities/sequence/sequence.reducer';
 import order from 'app/entities/order/order.reducer';
 import setOf from 'app/entities/set-of/set-of.reducer';
 import sequenceFragment from 'app/entities/sequence-fragment/sequence-fragment.reducer';
-import module1 from 'app/entities/module-1/module-1.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const entitiesReducers = {
   scenario,
-  module,
   learner,
   educator,
   domain,
@@ -36,7 +33,6 @@ const entitiesReducers = {
   order,
   setOf,
   sequenceFragment,
-  module1,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
 };
 

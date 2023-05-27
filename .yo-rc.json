@@ -21,7 +21,6 @@
     "enableTranslation": true,
     "entities": [
       "Scenario",
-      "Module",
       "Learner",
       "Educator",
       "Domain",
@@ -36,8 +35,7 @@
       "Sequence",
       "SequenceFragment",
       "Order",
-      "SetOf",
-      "Module1"
+      "SetOf"
     ],
     "entitySuffix": "",
     "gitCompany": "",

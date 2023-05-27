@@ -8,7 +8,6 @@
       "entities": {
         "main": "Entities",
         "scenario": "Scenario",
-        "module": "Module",
         "learner": "Learner",
         "educator": "Educator",
         "domain": "Domain",
@@ -24,7 +23,6 @@
         "order": "Order",
         "setOf": "Set Of",
         "sequenceFragment": "Sequence Fragment",
-        "module1": "Module 1",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

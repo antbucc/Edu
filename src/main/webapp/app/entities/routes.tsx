@@ -4,7 +4,6 @@ import { Route } from 'react-router-dom';
 import ErrorBoundaryRoutes from 'app/shared/error/error-boundary-routes';
 
 import Scenario from './scenario';
-import Module from './module';
 import Learner from './learner';
 import Educator from './educator';
 import Domain from './domain';
@@ -20,7 +19,6 @@ import Sequence from './sequence';
 import Order from './order';
 import SetOf from './set-of';
 import SequenceFragment from './sequence-fragment';
-import Module1 from './module-1';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -29,7 +27,6 @@ export default () => {
       <ErrorBoundaryRoutes>
         {/* prettier-ignore */}
         <Route path="scenario/*" element={<Scenario />} />
-        <Route path="module/*" element={<Module />} />
         <Route path="learner/*" element={<Learner />} />
         <Route path="educator/*" element={<Educator />} />
         <Route path="domain/*" element={<Domain />} />
@@ -45,7 +42,6 @@ export default () => {
         <Route path="order/*" element={<Order />} />
         <Route path="set-of/*" element={<SetOf />} />
         <Route path="sequence-fragment/*" element={<SequenceFragment />} />
-        <Route path="module-1/*" element={<Module1 />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>
