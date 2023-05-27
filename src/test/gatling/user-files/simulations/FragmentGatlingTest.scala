@@ -72,6 +72,7 @@ class FragmentGatlingTest extends Simulation {
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "title":"SAMPLE_TEXT"
+                , "order":"0"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_fragment_url"))).exitHereIfFailed

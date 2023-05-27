@@ -8,8 +8,6 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { IOrder } from 'app/shared/model/order.model';
-import { getEntities as getOrders } from 'app/entities/order/order.reducer';
 import { IActivity } from 'app/shared/model/activity.model';
 import { getEntities as getActivities } from 'app/entities/activity/activity.reducer';
 import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
@@ -31,7 +29,6 @@ export const FragmentUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const orders = useAppSelector(state => state.order.entities);
   const activities = useAppSelector(state => state.activity.entities);
   const abstractActivities = useAppSelector(state => state.abstractActivity.entities);
   const setOfs = useAppSelector(state => state.setOf.entities);
@@ -53,7 +50,6 @@ export const FragmentUpdate = () => {
       dispatch(getEntity(id));
     }
 
-    dispatch(getOrders({}));
     dispatch(getActivities({}));
     dispatch(getAbstractActivities({}));
     dispatch(getSetOfs({}));
@@ -71,7 +67,6 @@ export const FragmentUpdate = () => {
     const entity = {
       ...fragmentEntity,
       ...values,
-      order: orders.find(it => it.id.toString() === values.order.toString()),
       activity: activities.find(it => it.id.toString() === values.activity.toString()),
       abstractActivity: abstractActivities.find(it => it.id.toString() === values.abstractActivity.toString()),
       setOf: setOfs.find(it => it.id.toString() === values.setOf.toString()),
@@ -91,7 +86,6 @@ export const FragmentUpdate = () => {
       ? {}
       : {
           ...fragmentEntity,
-          order: fragmentEntity?.order?.id,
           activity: fragmentEntity?.activity?.id,
           abstractActivity: fragmentEntity?.abstractActivity?.id,
           setOf: fragmentEntity?.setOf?.id,
@@ -134,16 +128,17 @@ export const FragmentUpdate = () => {
                   required: { value: true, message: translate('entity.validation.required') },
                 }}
               />
-              <ValidatedField id="fragment-order" name="order" data-cy="order" label={translate('eduApp.fragment.order')} type="select">
-                <option value="" key="0" />
-                {orders
-                  ? orders.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.order}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
+              <ValidatedField
+                label={translate('eduApp.fragment.order')}
+                id="fragment-order"
+                name="order"
+                data-cy="order"
+                type="text"
+                validate={{
+                  required: { value: true, message: translate('entity.validation.required') },
+                  validate: v => isNumber(v) || translate('entity.validation.number'),
+                }}
+              />
               <ValidatedField
                 id="fragment-activity"
                 name="activity"

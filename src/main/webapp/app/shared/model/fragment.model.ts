@@ -1,4 +1,3 @@
-import { IOrder } from 'app/shared/model/order.model';
 import { IActivity } from 'app/shared/model/activity.model';
 import { IAbstractActivity } from 'app/shared/model/abstract-activity.model';
 import { ISetOf } from 'app/shared/model/set-of.model';
@@ -8,7 +7,7 @@ import { IModule } from 'app/shared/model/module.model';
 export interface IFragment {
   id?: string;
   title?: string;
-  order?: IOrder | null;
+  order?: number;
   activity?: IActivity | null;
   abstractActivity?: IAbstractActivity | null;
   setOf?: ISetOf | null;

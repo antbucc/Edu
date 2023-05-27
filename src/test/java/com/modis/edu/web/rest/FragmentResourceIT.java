@@ -38,6 +38,9 @@ class FragmentResourceIT {
     private static final String DEFAULT_TITLE = "AAAAAAAAAA";
     private static final String UPDATED_TITLE = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_ORDER = 1;
+    private static final Integer UPDATED_ORDER = 2;
+
     private static final String ENTITY_API_URL = "/api/fragments";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -59,7 +62,7 @@ class FragmentResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Fragment createEntity() {
-        Fragment fragment = new Fragment().title(DEFAULT_TITLE);
+        Fragment fragment = new Fragment().title(DEFAULT_TITLE).order(DEFAULT_ORDER);
         return fragment;
     }
 
@@ -70,7 +73,7 @@ class FragmentResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static Fragment createUpdatedEntity() {
-        Fragment fragment = new Fragment().title(UPDATED_TITLE);
+        Fragment fragment = new Fragment().title(UPDATED_TITLE).order(UPDATED_ORDER);
         return fragment;
     }
 
@@ -93,6 +96,7 @@ class FragmentResourceIT {
         assertThat(fragmentList).hasSize(databaseSizeBeforeCreate + 1);
         Fragment testFragment = fragmentList.get(fragmentList.size() - 1);
         assertThat(testFragment.getTitle()).isEqualTo(DEFAULT_TITLE);
+        assertThat(testFragment.getOrder()).isEqualTo(DEFAULT_ORDER);
     }
 
     @Test
@@ -129,6 +133,22 @@ class FragmentResourceIT {
     }
 
     @Test
+    void checkOrderIsRequired() throws Exception {
+        int databaseSizeBeforeTest = fragmentRepository.findAll().size();
+        // set the field null
+        fragment.setOrder(null);
+
+        // Create the Fragment, which fails.
+
+        restFragmentMockMvc
+            .perform(post(ENTITY_API_URL).contentType(MediaType.APPLICATION_JSON).content(TestUtil.convertObjectToJsonBytes(fragment)))
+            .andExpect(status().isBadRequest());
+
+        List<Fragment> fragmentList = fragmentRepository.findAll();
+        assertThat(fragmentList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
     void getAllFragments() throws Exception {
         // Initialize the database
         fragmentRepository.save(fragment);
@@ -139,7 +159,8 @@ class FragmentResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(fragment.getId())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)));
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
+            .andExpect(jsonPath("$.[*].order").value(hasItem(DEFAULT_ORDER)));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -170,7 +191,8 @@ class FragmentResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(fragment.getId()))
-            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE));
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
+            .andExpect(jsonPath("$.order").value(DEFAULT_ORDER));
     }
 
     @Test
@@ -188,7 +210,7 @@ class FragmentResourceIT {
 
         // Update the fragment
         Fragment updatedFragment = fragmentRepository.findById(fragment.getId()).get();
-        updatedFragment.title(UPDATED_TITLE);
+        updatedFragment.title(UPDATED_TITLE).order(UPDATED_ORDER);
 
         restFragmentMockMvc
             .perform(
@@ -203,6 +225,7 @@ class FragmentResourceIT {
         assertThat(fragmentList).hasSize(databaseSizeBeforeUpdate);
         Fragment testFragment = fragmentList.get(fragmentList.size() - 1);
         assertThat(testFragment.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testFragment.getOrder()).isEqualTo(UPDATED_ORDER);
     }
 
     @Test
@@ -269,6 +292,8 @@ class FragmentResourceIT {
         Fragment partialUpdatedFragment = new Fragment();
         partialUpdatedFragment.setId(fragment.getId());
 
+        partialUpdatedFragment.order(UPDATED_ORDER);
+
         restFragmentMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedFragment.getId())
@@ -282,6 +307,7 @@ class FragmentResourceIT {
         assertThat(fragmentList).hasSize(databaseSizeBeforeUpdate);
         Fragment testFragment = fragmentList.get(fragmentList.size() - 1);
         assertThat(testFragment.getTitle()).isEqualTo(DEFAULT_TITLE);
+        assertThat(testFragment.getOrder()).isEqualTo(UPDATED_ORDER);
     }
 
     @Test
@@ -295,7 +321,7 @@ class FragmentResourceIT {
         Fragment partialUpdatedFragment = new Fragment();
         partialUpdatedFragment.setId(fragment.getId());
 
-        partialUpdatedFragment.title(UPDATED_TITLE);
+        partialUpdatedFragment.title(UPDATED_TITLE).order(UPDATED_ORDER);
 
         restFragmentMockMvc
             .perform(
@@ -310,6 +336,7 @@ class FragmentResourceIT {
         assertThat(fragmentList).hasSize(databaseSizeBeforeUpdate);
         Fragment testFragment = fragmentList.get(fragmentList.size() - 1);
         assertThat(testFragment.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testFragment.getOrder()).isEqualTo(UPDATED_ORDER);
     }
 
     @Test

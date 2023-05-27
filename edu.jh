@@ -73,6 +73,7 @@ entity Goal {
 
 entity Fragment {
  title String required
+ order Integer required
 }
 
 entity Sequence {
@@ -182,9 +183,9 @@ relationship OneToMany {
 
 
 
-relationship OneToOne {
-Fragment{ Order(order) } to Order
-}
+//relationship OneToOne {
+//Fragment{ Order(order) } to Order
+//}
 
 relationship OneToOne {
 Fragment{ Activity(title) } to Activity{ Fragment(title) } 
