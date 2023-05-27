@@ -42,11 +42,11 @@ public interface ScenarioService {
      */
     Page<Scenario> findAll(Pageable pageable);
     /**
-     * Get all the Scenario where Module is {@code null}.
+     * Get all the Scenario where Module1 is {@code null}.
      *
      * @return the {@link List} of entities.
      */
-    List<Scenario> findAllWhereModuleIsNull();
+    List<Scenario> findAllWhereModule1IsNull();
 
     /**
      * Get all the scenarios with eager load of many-to-many relationships.

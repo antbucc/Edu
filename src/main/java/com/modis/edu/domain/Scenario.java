@@ -51,7 +51,7 @@ public class Scenario implements Serializable {
     private Set<Learner> learners = new HashSet<>();
 
     @DBRef
-    private Module module;
+    private Module1 module1;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -195,22 +195,22 @@ public class Scenario implements Serializable {
         return this;
     }
 
-    public Module getModule() {
-        return this.module;
+    public Module1 getModule1() {
+        return this.module1;
     }
 
-    public void setModule(Module module) {
-        if (this.module != null) {
-            this.module.setScenario(null);
+    public void setModule1(Module1 module1) {
+        if (this.module1 != null) {
+            this.module1.setScenario(null);
         }
-        if (module != null) {
-            module.setScenario(this);
+        if (module1 != null) {
+            module1.setScenario(this);
         }
-        this.module = module;
+        this.module1 = module1;
     }
 
-    public Scenario module(Module module) {
-        this.setModule(module);
+    public Scenario module1(Module1 module1) {
+        this.setModule1(module1);
         return this;
     }
 

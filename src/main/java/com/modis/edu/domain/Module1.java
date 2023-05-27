@@ -12,11 +12,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * A Module.
+ * A Module1.
  */
-@Document(collection = "module")
+@Document(collection = "module_1")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class Module implements Serializable {
+public class Module1 implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -56,7 +56,7 @@ public class Module implements Serializable {
         return this.id;
     }
 
-    public Module id(String id) {
+    public Module1 id(String id) {
         this.setId(id);
         return this;
     }
@@ -69,7 +69,7 @@ public class Module implements Serializable {
         return this.title;
     }
 
-    public Module title(String title) {
+    public Module1 title(String title) {
         this.setTitle(title);
         return this;
     }
@@ -82,7 +82,7 @@ public class Module implements Serializable {
         return this.description;
     }
 
-    public Module description(String description) {
+    public Module1 description(String description) {
         this.setDescription(description);
         return this;
     }
@@ -95,7 +95,7 @@ public class Module implements Serializable {
         return this.startDate;
     }
 
-    public Module startDate(Instant startDate) {
+    public Module1 startDate(Instant startDate) {
         this.setStartDate(startDate);
         return this;
     }
@@ -108,7 +108,7 @@ public class Module implements Serializable {
         return this.endData;
     }
 
-    public Module endData(Instant endData) {
+    public Module1 endData(Instant endData) {
         this.setEndData(endData);
         return this;
     }
@@ -121,7 +121,7 @@ public class Module implements Serializable {
         return this.level;
     }
 
-    public Module level(Level level) {
+    public Module1 level(Level level) {
         this.setLevel(level);
         return this;
     }
@@ -138,7 +138,7 @@ public class Module implements Serializable {
         this.scenario = scenario;
     }
 
-    public Module scenario(Scenario scenario) {
+    public Module1 scenario(Scenario scenario) {
         this.setScenario(scenario);
         return this;
     }
@@ -151,18 +151,20 @@ public class Module implements Serializable {
         this.fragments = fragments;
     }
 
-    public Module fragments(Set<Fragment> fragments) {
+    public Module1 fragments(Set<Fragment> fragments) {
         this.setFragments(fragments);
         return this;
     }
 
-    public Module addFragment(Fragment fragment) {
+    public Module1 addFragment(Fragment fragment) {
         this.fragments.add(fragment);
+        fragment.getModule1s().add(this);
         return this;
     }
 
-    public Module removeFragment(Fragment fragment) {
+    public Module1 removeFragment(Fragment fragment) {
         this.fragments.remove(fragment);
+        fragment.getModule1s().remove(this);
         return this;
     }
 
@@ -173,10 +175,10 @@ public class Module implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Module)) {
+        if (!(o instanceof Module1)) {
             return false;
         }
-        return id != null && id.equals(((Module) o).id);
+        return id != null && id.equals(((Module1) o).id);
     }
 
     @Override
@@ -188,7 +190,7 @@ public class Module implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Module{" +
+        return "Module1{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", description='" + getDescription() + "'" +

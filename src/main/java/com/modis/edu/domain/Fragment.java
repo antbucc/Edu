@@ -48,9 +48,9 @@ public class Fragment implements Serializable {
     private Sequence sequence;
 
     @DBRef
-    @Field("modules")
+    @Field("module1s")
     @JsonIgnoreProperties(value = { "scenario", "fragments" }, allowSetters = true)
-    private Set<Module> modules = new HashSet<>();
+    private Set<Module1> module1s = new HashSet<>();
 
     @DBRef
     @Field("setOf1s")
@@ -150,34 +150,34 @@ public class Fragment implements Serializable {
         return this;
     }
 
-    public Set<Module> getModules() {
-        return this.modules;
+    public Set<Module1> getModule1s() {
+        return this.module1s;
     }
 
-    public void setModules(Set<Module> modules) {
-        if (this.modules != null) {
-            this.modules.forEach(i -> i.removeFragment(this));
+    public void setModule1s(Set<Module1> module1s) {
+        if (this.module1s != null) {
+            this.module1s.forEach(i -> i.removeFragment(this));
         }
-        if (modules != null) {
-            modules.forEach(i -> i.addFragment(this));
+        if (module1s != null) {
+            module1s.forEach(i -> i.addFragment(this));
         }
-        this.modules = modules;
+        this.module1s = module1s;
     }
 
-    public Fragment modules(Set<Module> modules) {
-        this.setModules(modules);
+    public Fragment module1s(Set<Module1> module1s) {
+        this.setModule1s(module1s);
         return this;
     }
 
-    public Fragment addModule(Module module) {
-        this.modules.add(module);
-        module.getFragments().add(this);
+    public Fragment addModule1(Module1 module1) {
+        this.module1s.add(module1);
+        module1.getFragments().add(this);
         return this;
     }
 
-    public Fragment removeModule(Module module) {
-        this.modules.remove(module);
-        module.getFragments().remove(this);
+    public Fragment removeModule1(Module1 module1) {
+        this.module1s.remove(module1);
+        module1.getFragments().remove(this);
         return this;
     }
 

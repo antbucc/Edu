@@ -29,7 +29,7 @@ public class SetOf implements Serializable {
     @DBRef
     @Field("fragments")
     @JsonIgnoreProperties(
-        value = { "order", "activity", "abstractActivity", "setOf", "sequence", "modules", "setOf1s" },
+        value = { "order", "activity", "abstractActivity", "setOf", "sequence", "module1s", "setOf1s" },
         allowSetters = true
     )
     private Set<Fragment> fragments = new HashSet<>();
