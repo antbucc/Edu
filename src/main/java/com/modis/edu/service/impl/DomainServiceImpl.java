@@ -3,10 +3,7 @@ package com.modis.edu.service.impl;
 import com.modis.edu.domain.Domain;
 import com.modis.edu.repository.DomainRepository;
 import com.modis.edu.service.DomainService;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -65,19 +62,6 @@ public class DomainServiceImpl implements DomainService {
     public Page<Domain> findAll(Pageable pageable) {
         log.debug("Request to get all Domains");
         return domainRepository.findAll(pageable);
-    }
-
-    /**
-     *  Get all the domains where Scenario is {@code null}.
-     *  @return the list of entities.
-     */
-
-    public List<Domain> findAllWhereScenarioIsNull() {
-        log.debug("Request to get all domains where Scenario is null");
-        return StreamSupport
-            .stream(domainRepository.findAll().spliterator(), false)
-            .filter(domain -> domain.getScenario() == null)
-            .collect(Collectors.toList());
     }
 
     @Override

@@ -28,9 +28,8 @@
       "otherEntityField": "title",
       "otherEntityName": "scenario",
       "otherEntityRelationshipName": "domain",
-      "ownerSide": false,
       "relationshipName": "scenario",
-      "relationshipType": "one-to-one"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

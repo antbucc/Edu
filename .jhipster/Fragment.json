@@ -55,6 +55,13 @@
       "relationshipType": "many-to-one"
     },
     {
+      "otherEntityField": "title",
+      "otherEntityName": "module",
+      "otherEntityRelationshipName": "fragment",
+      "relationshipName": "module",
+      "relationshipType": "many-to-one"
+    },
+    {
       "otherEntityName": "setOf",
       "otherEntityRelationshipName": "fragments",
       "ownerSide": false,

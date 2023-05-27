@@ -2,6 +2,8 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -29,7 +31,9 @@ public class Domain implements Serializable {
     private String city;
 
     @DBRef
-    private Scenario scenario;
+    @Field("scenario")
+    @JsonIgnoreProperties(value = { "modules", "educators", "competences", "learners", "domain" }, allowSetters = true)
+    private Set<Scenario> scenarios = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -85,22 +89,34 @@ public class Domain implements Serializable {
         this.city = city;
     }
 
-    public Scenario getScenario() {
-        return this.scenario;
+    public Set<Scenario> getScenarios() {
+        return this.scenarios;
     }
 
-    public void setScenario(Scenario scenario) {
-        if (this.scenario != null) {
-            this.scenario.setDomain(null);
+    public void setScenarios(Set<Scenario> scenarios) {
+        if (this.scenarios != null) {
+            this.scenarios.forEach(i -> i.setDomain(null));
         }
-        if (scenario != null) {
-            scenario.setDomain(this);
+        if (scenarios != null) {
+            scenarios.forEach(i -> i.setDomain(this));
         }
-        this.scenario = scenario;
+        this.scenarios = scenarios;
     }
 
-    public Domain scenario(Scenario scenario) {
-        this.setScenario(scenario);
+    public Domain scenarios(Set<Scenario> scenarios) {
+        this.setScenarios(scenarios);
+        return this;
+    }
+
+    public Domain addScenario(Scenario scenario) {
+        this.scenarios.add(scenario);
+        scenario.setDomain(this);
+        return this;
+    }
+
+    public Domain removeScenario(Scenario scenario) {
+        this.scenarios.remove(scenario);
+        scenario.setDomain(null);
         return this;
     }
 

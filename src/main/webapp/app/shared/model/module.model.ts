@@ -1,4 +1,5 @@
 import dayjs from 'dayjs';
+import { IFragment } from 'app/shared/model/fragment.model';
 import { IScenario } from 'app/shared/model/scenario.model';
 import { Level } from 'app/shared/model/enumerations/level.model';
 
@@ -9,6 +10,7 @@ export interface IModule {
   startDate?: string | null;
   endData?: string | null;
   level?: Level | null;
+  fragments?: IFragment[] | null;
   scenario?: IScenario | null;
 }
 

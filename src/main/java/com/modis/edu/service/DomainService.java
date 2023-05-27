@@ -1,7 +1,6 @@
 package com.modis.edu.service;
 
 import com.modis.edu.domain.Domain;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,12 +40,6 @@ public interface DomainService {
      * @return the list of entities.
      */
     Page<Domain> findAll(Pageable pageable);
-    /**
-     * Get all the Domain where Scenario is {@code null}.
-     *
-     * @return the {@link List} of entities.
-     */
-    List<Domain> findAllWhereScenarioIsNull();
 
     /**
      * Get the "id" domain.

@@ -32,8 +32,9 @@ public class Scenario implements Serializable {
     private Language language;
 
     @DBRef
-    @Field("domain")
-    private Domain domain;
+    @Field("module")
+    @JsonIgnoreProperties(value = { "fragments", "scenario" }, allowSetters = true)
+    private Set<Module> modules = new HashSet<>();
 
     @DBRef
     @Field("educators")
@@ -51,7 +52,9 @@ public class Scenario implements Serializable {
     private Set<Learner> learners = new HashSet<>();
 
     @DBRef
-    private Module module;
+    @Field("domain")
+    @JsonIgnoreProperties(value = { "scenarios" }, allowSetters = true)
+    private Domain domain;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -107,16 +110,34 @@ public class Scenario implements Serializable {
         this.language = language;
     }
 
-    public Domain getDomain() {
-        return this.domain;
+    public Set<Module> getModules() {
+        return this.modules;
     }
 
-    public void setDomain(Domain domain) {
-        this.domain = domain;
+    public void setModules(Set<Module> modules) {
+        if (this.modules != null) {
+            this.modules.forEach(i -> i.setScenario(null));
+        }
+        if (modules != null) {
+            modules.forEach(i -> i.setScenario(this));
+        }
+        this.modules = modules;
     }
 
-    public Scenario domain(Domain domain) {
-        this.setDomain(domain);
+    public Scenario modules(Set<Module> modules) {
+        this.setModules(modules);
+        return this;
+    }
+
+    public Scenario addModule(Module module) {
+        this.modules.add(module);
+        module.setScenario(this);
+        return this;
+    }
+
+    public Scenario removeModule(Module module) {
+        this.modules.remove(module);
+        module.setScenario(null);
         return this;
     }
 
@@ -195,22 +216,16 @@ public class Scenario implements Serializable {
         return this;
     }
 
-    public Module getModule() {
-        return this.module;
+    public Domain getDomain() {
+        return this.domain;
     }
 
-    public void setModule(Module module) {
-        if (this.module != null) {
-            this.module.setScenario(null);
-        }
-        if (module != null) {
-            module.setScenario(this);
-        }
-        this.module = module;
+    public void setDomain(Domain domain) {
+        this.domain = domain;
     }
 
-    public Scenario module(Module module) {
-        this.setModule(module);
+    public Scenario domain(Domain domain) {
+        this.setDomain(domain);
         return this;
     }
 

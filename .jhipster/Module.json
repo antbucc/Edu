@@ -35,11 +35,17 @@
   "relationships": [
     {
       "otherEntityField": "title",
+      "otherEntityName": "fragment",
+      "otherEntityRelationshipName": "module",
+      "relationshipName": "fragment",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityField": "title",
       "otherEntityName": "scenario",
       "otherEntityRelationshipName": "module",
-      "ownerSide": true,
       "relationshipName": "scenario",
-      "relationshipType": "one-to-one"
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceImpl"
