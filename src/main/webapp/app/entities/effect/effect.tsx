@@ -55,7 +55,7 @@ export const Effect = () => {
                   <Translate contentKey="eduApp.effect.title">Title</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.effect.activity">Activity</Translate>
+                  <Translate contentKey="eduApp.effect.concept">Concept</Translate>
                 </th>
                 <th />
               </tr>
@@ -69,7 +69,16 @@ export const Effect = () => {
                     </Button>
                   </td>
                   <td>{effect.title}</td>
-                  <td>{effect.activity ? <Link to={`/activity/${effect.activity.id}`}>{effect.activity.title}</Link> : ''}</td>
+                  <td>
+                    {effect.concepts
+                      ? effect.concepts.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/concept/${val.id}`}>{val.title}</Link>
+                            {j === effect.concepts.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
+                  </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/effect/${effect.id}`} color="info" size="sm" data-cy="entityDetailsButton">

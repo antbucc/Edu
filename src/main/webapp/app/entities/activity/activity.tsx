@@ -69,6 +69,12 @@ export const Activity = () => {
                 <th>
                   <Translate contentKey="eduApp.activity.concept">Concept</Translate>
                 </th>
+                <th>
+                  <Translate contentKey="eduApp.activity.precondition">Precondition</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="eduApp.activity.effect">Effect</Translate>
+                </th>
                 <th />
               </tr>
             </thead>
@@ -97,6 +103,26 @@ export const Activity = () => {
                           <span key={j}>
                             <Link to={`/concept/${val.id}`}>{val.title}</Link>
                             {j === activity.concepts.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
+                  </td>
+                  <td>
+                    {activity.preconditions
+                      ? activity.preconditions.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/precondition/${val.id}`}>{val.title}</Link>
+                            {j === activity.preconditions.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
+                  </td>
+                  <td>
+                    {activity.effects
+                      ? activity.effects.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/effect/${val.id}`}>{val.title}</Link>
+                            {j === activity.effects.length - 1 ? '' : ', '}
                           </span>
                         ))
                       : null}

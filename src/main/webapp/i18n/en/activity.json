@@ -23,9 +23,9 @@
       "type": "Type",
       "tool": "Tool",
       "difficulty": "Difficulty",
+      "concept": "Concept",
       "precondition": "Precondition",
       "effect": "Effect",
-      "concept": "Concept",
       "fragment": "Fragment"
     }
   }

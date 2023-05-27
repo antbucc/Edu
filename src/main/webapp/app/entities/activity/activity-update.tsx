@@ -10,6 +10,10 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 
 import { IConcept } from 'app/shared/model/concept.model';
 import { getEntities as getConcepts } from 'app/entities/concept/concept.reducer';
+import { IPrecondition } from 'app/shared/model/precondition.model';
+import { getEntities as getPreconditions } from 'app/entities/precondition/precondition.reducer';
+import { IEffect } from 'app/shared/model/effect.model';
+import { getEntities as getEffects } from 'app/entities/effect/effect.reducer';
 import { IFragment } from 'app/shared/model/fragment.model';
 import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
 import { IActivity } from 'app/shared/model/activity.model';
@@ -27,6 +31,8 @@ export const ActivityUpdate = () => {
   const isNew = id === undefined;
 
   const concepts = useAppSelector(state => state.concept.entities);
+  const preconditions = useAppSelector(state => state.precondition.entities);
+  const effects = useAppSelector(state => state.effect.entities);
   const fragments = useAppSelector(state => state.fragment.entities);
   const activityEntity = useAppSelector(state => state.activity.entity);
   const loading = useAppSelector(state => state.activity.loading);
@@ -48,6 +54,8 @@ export const ActivityUpdate = () => {
     }
 
     dispatch(getConcepts({}));
+    dispatch(getPreconditions({}));
+    dispatch(getEffects({}));
     dispatch(getFragments({}));
   }, []);
 
@@ -62,6 +70,8 @@ export const ActivityUpdate = () => {
       ...activityEntity,
       ...values,
       concepts: mapIdList(values.concepts),
+      preconditions: mapIdList(values.preconditions),
+      effects: mapIdList(values.effects),
     };
 
     if (isNew) {
@@ -80,6 +90,8 @@ export const ActivityUpdate = () => {
           difficulty: 'LOW',
           ...activityEntity,
           concepts: activityEntity?.concepts?.map(e => e.id.toString()),
+          preconditions: activityEntity?.preconditions?.map(e => e.id.toString()),
+          effects: activityEntity?.effects?.map(e => e.id.toString()),
         };
 
   return (
@@ -153,6 +165,40 @@ export const ActivityUpdate = () => {
                 <option value="" key="0" />
                 {concepts
                   ? concepts.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                label={translate('eduApp.activity.precondition')}
+                id="activity-precondition"
+                data-cy="precondition"
+                type="select"
+                multiple
+                name="preconditions"
+              >
+                <option value="" key="0" />
+                {preconditions
+                  ? preconditions.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                label={translate('eduApp.activity.effect')}
+                id="activity-effect"
+                data-cy="effect"
+                type="select"
+                multiple
+                name="effects"
+              >
+                <option value="" key="0" />
+                {effects
+                  ? effects.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
                       </option>

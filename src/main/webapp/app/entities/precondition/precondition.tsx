@@ -55,7 +55,7 @@ export const Precondition = () => {
                   <Translate contentKey="eduApp.precondition.title">Title</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.precondition.activity">Activity</Translate>
+                  <Translate contentKey="eduApp.precondition.concept">Concept</Translate>
                 </th>
                 <th />
               </tr>
@@ -70,7 +70,14 @@ export const Precondition = () => {
                   </td>
                   <td>{precondition.title}</td>
                   <td>
-                    {precondition.activity ? <Link to={`/activity/${precondition.activity.id}`}>{precondition.activity.title}</Link> : ''}
+                    {precondition.concepts
+                      ? precondition.concepts.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/concept/${val.id}`}>{val.title}</Link>
+                            {j === precondition.concepts.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
                   </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

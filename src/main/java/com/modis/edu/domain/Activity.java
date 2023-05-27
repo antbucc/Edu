@@ -40,19 +40,22 @@ public class Activity implements Serializable {
     private Difficulty difficulty;
 
     @DBRef
-    @Field("precondition")
-    @JsonIgnoreProperties(value = { "activity" }, allowSetters = true)
+    @Field("concepts")
+    @JsonIgnoreProperties(
+        value = { "parents", "childs", "competences", "activities", "goals", "preconditions", "effects" },
+        allowSetters = true
+    )
+    private Set<Concept> concepts = new HashSet<>();
+
+    @DBRef
+    @Field("preconditions")
+    @JsonIgnoreProperties(value = { "concepts", "activities" }, allowSetters = true)
     private Set<Precondition> preconditions = new HashSet<>();
 
     @DBRef
-    @Field("effect")
-    @JsonIgnoreProperties(value = { "activity" }, allowSetters = true)
+    @Field("effects")
+    @JsonIgnoreProperties(value = { "concepts", "activities" }, allowSetters = true)
     private Set<Effect> effects = new HashSet<>();
-
-    @DBRef
-    @Field("concepts")
-    @JsonIgnoreProperties(value = { "parents", "childs", "competences", "activities", "goals" }, allowSetters = true)
-    private Set<Concept> concepts = new HashSet<>();
 
     @DBRef
     private Fragment fragment;
@@ -137,68 +140,6 @@ public class Activity implements Serializable {
         this.difficulty = difficulty;
     }
 
-    public Set<Precondition> getPreconditions() {
-        return this.preconditions;
-    }
-
-    public void setPreconditions(Set<Precondition> preconditions) {
-        if (this.preconditions != null) {
-            this.preconditions.forEach(i -> i.setActivity(null));
-        }
-        if (preconditions != null) {
-            preconditions.forEach(i -> i.setActivity(this));
-        }
-        this.preconditions = preconditions;
-    }
-
-    public Activity preconditions(Set<Precondition> preconditions) {
-        this.setPreconditions(preconditions);
-        return this;
-    }
-
-    public Activity addPrecondition(Precondition precondition) {
-        this.preconditions.add(precondition);
-        precondition.setActivity(this);
-        return this;
-    }
-
-    public Activity removePrecondition(Precondition precondition) {
-        this.preconditions.remove(precondition);
-        precondition.setActivity(null);
-        return this;
-    }
-
-    public Set<Effect> getEffects() {
-        return this.effects;
-    }
-
-    public void setEffects(Set<Effect> effects) {
-        if (this.effects != null) {
-            this.effects.forEach(i -> i.setActivity(null));
-        }
-        if (effects != null) {
-            effects.forEach(i -> i.setActivity(this));
-        }
-        this.effects = effects;
-    }
-
-    public Activity effects(Set<Effect> effects) {
-        this.setEffects(effects);
-        return this;
-    }
-
-    public Activity addEffect(Effect effect) {
-        this.effects.add(effect);
-        effect.setActivity(this);
-        return this;
-    }
-
-    public Activity removeEffect(Effect effect) {
-        this.effects.remove(effect);
-        effect.setActivity(null);
-        return this;
-    }
-
     public Set<Concept> getConcepts() {
         return this.concepts;
     }
@@ -221,6 +162,56 @@ public class Activity implements Serializable {
     public Activity removeConcept(Concept concept) {
         this.concepts.remove(concept);
         concept.getActivities().remove(this);
+        return this;
+    }
+
+    public Set<Precondition> getPreconditions() {
+        return this.preconditions;
+    }
+
+    public void setPreconditions(Set<Precondition> preconditions) {
+        this.preconditions = preconditions;
+    }
+
+    public Activity preconditions(Set<Precondition> preconditions) {
+        this.setPreconditions(preconditions);
+        return this;
+    }
+
+    public Activity addPrecondition(Precondition precondition) {
+        this.preconditions.add(precondition);
+        precondition.getActivities().add(this);
+        return this;
+    }
+
+    public Activity removePrecondition(Precondition precondition) {
+        this.preconditions.remove(precondition);
+        precondition.getActivities().remove(this);
+        return this;
+    }
+
+    public Set<Effect> getEffects() {
+        return this.effects;
+    }
+
+    public void setEffects(Set<Effect> effects) {
+        this.effects = effects;
+    }
+
+    public Activity effects(Set<Effect> effects) {
+        this.setEffects(effects);
+        return this;
+    }
+
+    public Activity addEffect(Effect effect) {
+        this.effects.add(effect);
+        effect.getActivities().add(this);
+        return this;
+    }
+
+    public Activity removeEffect(Effect effect) {
+        this.effects.remove(effect);
+        effect.getActivities().remove(this);
         return this;
     }
 

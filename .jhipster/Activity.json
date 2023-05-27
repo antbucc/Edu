@@ -37,24 +37,26 @@
   "relationships": [
     {
       "otherEntityField": "title",
+      "otherEntityName": "concept",
+      "otherEntityRelationshipName": "activity",
+      "ownerSide": true,
+      "relationshipName": "concept",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
       "otherEntityName": "precondition",
       "otherEntityRelationshipName": "activity",
+      "ownerSide": true,
       "relationshipName": "precondition",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-many"
     },
     {
       "otherEntityField": "title",
       "otherEntityName": "effect",
       "otherEntityRelationshipName": "activity",
-      "relationshipName": "effect",
-      "relationshipType": "one-to-many"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "concept",
-      "otherEntityRelationshipName": "activity",
       "ownerSide": true,
-      "relationshipName": "concept",
+      "relationshipName": "effect",
       "relationshipType": "many-to-many"
     },
     {

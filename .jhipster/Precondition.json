@@ -18,10 +18,19 @@
   "relationships": [
     {
       "otherEntityField": "title",
+      "otherEntityName": "concept",
+      "otherEntityRelationshipName": "precondition",
+      "ownerSide": true,
+      "relationshipName": "concept",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
       "otherEntityName": "activity",
       "otherEntityRelationshipName": "precondition",
+      "ownerSide": false,
       "relationshipName": "activity",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"
