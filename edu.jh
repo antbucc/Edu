@@ -122,12 +122,18 @@ SKILL, KNOWLEDGE, ATTITUDE
 
 
 
-relationship OneToOne {
-   Module { Scenario(title) } to Scenario { Module(title) }
+relationship OneToMany {
+  Scenario { Module(title) } to  Module { Scenario(title) } 
 }
 
-relationship OneToOne {
-  Scenario { Domain(title) } to Domain {Scenario(title)}
+relationship OneToMany {
+  Module { Fragment(title) } to  Fragment { Module(title) } 
+}
+
+
+
+relationship OneToMany {
+  Domain {Scenario(title)} to  Scenario { Domain(title) } 
 }
 
 relationship ManyToMany {
