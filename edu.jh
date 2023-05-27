@@ -173,9 +173,9 @@ relationship OneToMany {
 }
 
 
-relationship ManyToMany {
-Module{ Fragment(title) } to Fragment{ Module(title) }
-}
+//relationship ManyToMany {
+//Module{ Fragment(title) } to Fragment{ Module(title) }
+//}
 
 
 

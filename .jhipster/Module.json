@@ -40,14 +40,6 @@
       "ownerSide": true,
       "relationshipName": "scenario",
       "relationshipType": "one-to-one"
-    },
-    {
-      "otherEntityField": "title",
-      "otherEntityName": "fragment",
-      "otherEntityRelationshipName": "module",
-      "ownerSide": true,
-      "relationshipName": "fragment",
-      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"
