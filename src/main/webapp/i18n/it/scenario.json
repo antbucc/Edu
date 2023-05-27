@@ -24,8 +24,7 @@
       "domain": "Domain",
       "educator": "Educator",
       "competence": "Competence",
-      "learner": "Learner",
-      "module": "Module"
+      "learner": "Learner"
     }
   }
 }
