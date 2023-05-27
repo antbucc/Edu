@@ -50,9 +50,6 @@ public class Scenario implements Serializable {
     @JsonIgnoreProperties(value = { "scenarios" }, allowSetters = true)
     private Set<Learner> learners = new HashSet<>();
 
-    @DBRef
-    private Module module;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public String getId() {
@@ -192,25 +189,6 @@ public class Scenario implements Serializable {
     public Scenario removeLearner(Learner learner) {
         this.learners.remove(learner);
         learner.getScenarios().remove(this);
-        return this;
-    }
-
-    public Module getModule() {
-        return this.module;
-    }
-
-    public void setModule(Module module) {
-        if (this.module != null) {
-            this.module.setScenario(null);
-        }
-        if (module != null) {
-            module.setScenario(this);
-        }
-        this.module = module;
-    }
-
-    public Scenario module(Module module) {
-        this.setModule(module);
         return this;
     }
 

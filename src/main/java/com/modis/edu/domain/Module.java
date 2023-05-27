@@ -44,10 +44,7 @@ public class Module implements Serializable {
 
     @DBRef
     @Field("fragments")
-    @JsonIgnoreProperties(
-        value = { "order", "activity", "abstractActivity", "setOf", "sequence", "modules", "setOf1s" },
-        allowSetters = true
-    )
+    @JsonIgnoreProperties(value = { "order", "activity", "abstractActivity", "setOf", "sequence", "setOf1s" }, allowSetters = true)
     private Set<Fragment> fragments = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -158,13 +155,11 @@ public class Module implements Serializable {
 
     public Module addFragment(Fragment fragment) {
         this.fragments.add(fragment);
-        fragment.getModules().add(this);
         return this;
     }
 
     public Module removeFragment(Fragment fragment) {
         this.fragments.remove(fragment);
-        fragment.getModules().remove(this);
         return this;
     }
 

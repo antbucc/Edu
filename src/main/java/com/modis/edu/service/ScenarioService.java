@@ -1,7 +1,6 @@
 package com.modis.edu.service;
 
 import com.modis.edu.domain.Scenario;
-import java.util.List;
 import java.util.Optional;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -41,12 +40,6 @@ public interface ScenarioService {
      * @return the list of entities.
      */
     Page<Scenario> findAll(Pageable pageable);
-    /**
-     * Get all the Scenario where Module is {@code null}.
-     *
-     * @return the {@link List} of entities.
-     */
-    List<Scenario> findAllWhereModuleIsNull();
 
     /**
      * Get all the scenarios with eager load of many-to-many relationships.
