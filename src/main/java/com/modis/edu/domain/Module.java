@@ -1,38 +1,49 @@
 package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.modis.edu.domain.enumeration.Level;
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.HashSet;
 import java.util.Set;
-import javax.validation.constraints.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * A Sequence.
+ * A Module.
  */
-@Document(collection = "sequence")
+@Document(collection = "module")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class Sequence implements Serializable {
+public class Module implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
     @Id
     private String id;
 
-    @NotNull
     @Field("title")
     private String title;
 
-    @DBRef
-    @Field("order")
-    @JsonIgnoreProperties(value = { "fragment", "sequence" }, allowSetters = true)
-    private Set<Order> orders = new HashSet<>();
+    @Field("description")
+    private String description;
+
+    @Field("start_date")
+    private Instant startDate;
+
+    @Field("end_data")
+    private Instant endData;
+
+    @Field("level")
+    private Level level;
 
     @DBRef
-    @Field("fragment")
+    @Field("scenario")
+    private Scenario scenario;
+
+    @DBRef
+    @Field("fragments")
     @JsonIgnoreProperties(
         value = { "order", "activity", "abstractActivity", "setOf", "sequence", "modules", "setOf1s" },
         allowSetters = true
@@ -45,7 +56,7 @@ public class Sequence implements Serializable {
         return this.id;
     }
 
-    public Sequence id(String id) {
+    public Module id(String id) {
         this.setId(id);
         return this;
     }
@@ -58,7 +69,7 @@ public class Sequence implements Serializable {
         return this.title;
     }
 
-    public Sequence title(String title) {
+    public Module title(String title) {
         this.setTitle(title);
         return this;
     }
@@ -67,34 +78,68 @@ public class Sequence implements Serializable {
         this.title = title;
     }
 
-    public Set<Order> getOrders() {
-        return this.orders;
+    public String getDescription() {
+        return this.description;
     }
 
-    public void setOrders(Set<Order> orders) {
-        if (this.orders != null) {
-            this.orders.forEach(i -> i.setSequence(null));
-        }
-        if (orders != null) {
-            orders.forEach(i -> i.setSequence(this));
-        }
-        this.orders = orders;
-    }
-
-    public Sequence orders(Set<Order> orders) {
-        this.setOrders(orders);
+    public Module description(String description) {
+        this.setDescription(description);
         return this;
     }
 
-    public Sequence addOrder(Order order) {
-        this.orders.add(order);
-        order.setSequence(this);
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public Instant getStartDate() {
+        return this.startDate;
+    }
+
+    public Module startDate(Instant startDate) {
+        this.setStartDate(startDate);
         return this;
     }
 
-    public Sequence removeOrder(Order order) {
-        this.orders.remove(order);
-        order.setSequence(null);
+    public void setStartDate(Instant startDate) {
+        this.startDate = startDate;
+    }
+
+    public Instant getEndData() {
+        return this.endData;
+    }
+
+    public Module endData(Instant endData) {
+        this.setEndData(endData);
+        return this;
+    }
+
+    public void setEndData(Instant endData) {
+        this.endData = endData;
+    }
+
+    public Level getLevel() {
+        return this.level;
+    }
+
+    public Module level(Level level) {
+        this.setLevel(level);
+        return this;
+    }
+
+    public void setLevel(Level level) {
+        this.level = level;
+    }
+
+    public Scenario getScenario() {
+        return this.scenario;
+    }
+
+    public void setScenario(Scenario scenario) {
+        this.scenario = scenario;
+    }
+
+    public Module scenario(Scenario scenario) {
+        this.setScenario(scenario);
         return this;
     }
 
@@ -103,29 +148,23 @@ public class Sequence implements Serializable {
     }
 
     public void setFragments(Set<Fragment> fragments) {
-        if (this.fragments != null) {
-            this.fragments.forEach(i -> i.setSequence(null));
-        }
-        if (fragments != null) {
-            fragments.forEach(i -> i.setSequence(this));
-        }
         this.fragments = fragments;
     }
 
-    public Sequence fragments(Set<Fragment> fragments) {
+    public Module fragments(Set<Fragment> fragments) {
         this.setFragments(fragments);
         return this;
     }
 
-    public Sequence addFragment(Fragment fragment) {
+    public Module addFragment(Fragment fragment) {
         this.fragments.add(fragment);
-        fragment.setSequence(this);
+        fragment.getModules().add(this);
         return this;
     }
 
-    public Sequence removeFragment(Fragment fragment) {
+    public Module removeFragment(Fragment fragment) {
         this.fragments.remove(fragment);
-        fragment.setSequence(null);
+        fragment.getModules().remove(this);
         return this;
     }
 
@@ -136,10 +175,10 @@ public class Sequence implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof Sequence)) {
+        if (!(o instanceof Module)) {
             return false;
         }
-        return id != null && id.equals(((Sequence) o).id);
+        return id != null && id.equals(((Module) o).id);
     }
 
     @Override
@@ -151,9 +190,13 @@ public class Sequence implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "Sequence{" +
+        return "Module{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", startDate='" + getStartDate() + "'" +
+            ", endData='" + getEndData() + "'" +
+            ", level='" + getLevel() + "'" +
             "}";
     }
 }

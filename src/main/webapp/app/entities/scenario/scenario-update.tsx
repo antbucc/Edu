@@ -16,6 +16,8 @@ import { ICompetence } from 'app/shared/model/competence.model';
 import { getEntities as getCompetences } from 'app/entities/competence/competence.reducer';
 import { ILearner } from 'app/shared/model/learner.model';
 import { getEntities as getLearners } from 'app/entities/learner/learner.reducer';
+import { IModule } from 'app/shared/model/module.model';
+import { getEntities as getModules } from 'app/entities/module/module.reducer';
 import { IScenario } from 'app/shared/model/scenario.model';
 import { Language } from 'app/shared/model/enumerations/language.model';
 import { getEntity, updateEntity, createEntity, reset } from './scenario.reducer';
@@ -32,6 +34,7 @@ export const ScenarioUpdate = () => {
   const educators = useAppSelector(state => state.educator.entities);
   const competences = useAppSelector(state => state.competence.entities);
   const learners = useAppSelector(state => state.learner.entities);
+  const modules = useAppSelector(state => state.module.entities);
   const scenarioEntity = useAppSelector(state => state.scenario.entity);
   const loading = useAppSelector(state => state.scenario.loading);
   const updating = useAppSelector(state => state.scenario.updating);
@@ -53,6 +56,7 @@ export const ScenarioUpdate = () => {
     dispatch(getEducators({}));
     dispatch(getCompetences({}));
     dispatch(getLearners({}));
+    dispatch(getModules({}));
   }, []);
 
   useEffect(() => {

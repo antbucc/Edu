@@ -3,7 +3,10 @@ package com.modis.edu.service.impl;
 import com.modis.edu.domain.Scenario;
 import com.modis.edu.repository.ScenarioRepository;
 import com.modis.edu.service.ScenarioService;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -66,6 +69,19 @@ public class ScenarioServiceImpl implements ScenarioService {
 
     public Page<Scenario> findAllWithEagerRelationships(Pageable pageable) {
         return scenarioRepository.findAllWithEagerRelationships(pageable);
+    }
+
+    /**
+     *  Get all the scenarios where Module is {@code null}.
+     *  @return the list of entities.
+     */
+
+    public List<Scenario> findAllWhereModuleIsNull() {
+        log.debug("Request to get all scenarios where Module is null");
+        return StreamSupport
+            .stream(scenarioRepository.findAll().spliterator(), false)
+            .filter(scenario -> scenario.getModule() == null)
+            .collect(Collectors.toList());
     }
 
     @Override

@@ -56,6 +56,14 @@
       "ownerSide": true,
       "relationshipName": "learner",
       "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "module",
+      "otherEntityRelationshipName": "scenario",
+      "ownerSide": false,
+      "relationshipName": "module",
+      "relationshipType": "one-to-one"
     }
   ],
   "service": "serviceImpl"
