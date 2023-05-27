@@ -59,10 +59,10 @@
     },
     {
       "otherEntityField": "title",
-      "otherEntityName": "module1",
+      "otherEntityName": "module",
       "otherEntityRelationshipName": "scenario",
       "ownerSide": false,
-      "relationshipName": "module1",
+      "relationshipName": "module",
       "relationshipType": "one-to-one"
     }
   ],

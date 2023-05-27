@@ -45,7 +45,7 @@ public class Module1 implements Serializable {
     @DBRef
     @Field("fragments")
     @JsonIgnoreProperties(
-        value = { "order", "activity", "abstractActivity", "setOf", "sequence", "module1s", "setOf1s" },
+        value = { "order", "activity", "abstractActivity", "setOf", "sequence", "modules", "setOf1s" },
         allowSetters = true
     )
     private Set<Fragment> fragments = new HashSet<>();
@@ -158,13 +158,11 @@ public class Module1 implements Serializable {
 
     public Module1 addFragment(Fragment fragment) {
         this.fragments.add(fragment);
-        fragment.getModule1s().add(this);
         return this;
     }
 
     public Module1 removeFragment(Fragment fragment) {
         this.fragments.remove(fragment);
-        fragment.getModule1s().remove(this);
         return this;
     }
 
