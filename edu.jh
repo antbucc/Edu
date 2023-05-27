@@ -6,9 +6,9 @@ entity Scenario {
 
 
 entity Module {
-	title String,
-	description String,
-	startDate Instant,
+	title String
+	description String
+	startDate Instant
 	endData Instant
     level Level
 }
@@ -17,15 +17,15 @@ entity Module {
 
 entity Learner {
 	
-	firstName String,
-	lastName String,
-	email String,
+	firstName String
+	lastName String
+	email String
 	phoneNumber String
 }
 
 entity Educator {
-	firstName String,
-	lastName String,
+	firstName String
+	lastName String
 	email String
 }
 
@@ -176,8 +176,6 @@ relationship OneToMany {
 relationship ManyToMany {
 Module{ Fragment(title) } to Fragment{ Module(title) }
 }
-
-
 
 
 
