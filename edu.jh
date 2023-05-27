@@ -5,7 +5,7 @@ entity Scenario {
 }
 
 
-entity Module1 {
+entity Module {
 	title String
 	description String
 	startDate Instant
@@ -123,7 +123,7 @@ SKILL, KNOWLEDGE, ATTITUDE
 
 
 relationship OneToOne {
-   Module1 { Scenario(title) } to Scenario { Module1(title) }
+   Module { Scenario(title) } to Scenario { Module(title) }
 }
 
 relationship OneToOne {
@@ -174,7 +174,7 @@ relationship OneToMany {
 
 
 relationship ManyToMany {
-Module1{ Fragment(title) } to Fragment{ Module1(title) }
+Module{ Fragment(title) } to Fragment{ Module(title) }
 }
 
 
