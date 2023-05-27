@@ -8,16 +8,14 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { IDomain } from 'app/shared/model/domain.model';
-import { getEntities as getDomains } from 'app/entities/domain/domain.reducer';
 import { IEducator } from 'app/shared/model/educator.model';
 import { getEntities as getEducators } from 'app/entities/educator/educator.reducer';
 import { ICompetence } from 'app/shared/model/competence.model';
 import { getEntities as getCompetences } from 'app/entities/competence/competence.reducer';
 import { ILearner } from 'app/shared/model/learner.model';
 import { getEntities as getLearners } from 'app/entities/learner/learner.reducer';
-import { IModule } from 'app/shared/model/module.model';
-import { getEntities as getModules } from 'app/entities/module/module.reducer';
+import { IDomain } from 'app/shared/model/domain.model';
+import { getEntities as getDomains } from 'app/entities/domain/domain.reducer';
 import { IScenario } from 'app/shared/model/scenario.model';
 import { Language } from 'app/shared/model/enumerations/language.model';
 import { getEntity, updateEntity, createEntity, reset } from './scenario.reducer';
@@ -30,11 +28,10 @@ export const ScenarioUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const domains = useAppSelector(state => state.domain.entities);
   const educators = useAppSelector(state => state.educator.entities);
   const competences = useAppSelector(state => state.competence.entities);
   const learners = useAppSelector(state => state.learner.entities);
-  const modules = useAppSelector(state => state.module.entities);
+  const domains = useAppSelector(state => state.domain.entities);
   const scenarioEntity = useAppSelector(state => state.scenario.entity);
   const loading = useAppSelector(state => state.scenario.loading);
   const updating = useAppSelector(state => state.scenario.updating);
@@ -52,11 +49,10 @@ export const ScenarioUpdate = () => {
       dispatch(getEntity(id));
     }
 
-    dispatch(getDomains({}));
     dispatch(getEducators({}));
     dispatch(getCompetences({}));
     dispatch(getLearners({}));
-    dispatch(getModules({}));
+    dispatch(getDomains({}));
   }, []);
 
   useEffect(() => {
@@ -88,10 +84,10 @@ export const ScenarioUpdate = () => {
       : {
           language: 'ENGLISH',
           ...scenarioEntity,
-          domain: scenarioEntity?.domain?.id,
           educators: scenarioEntity?.educators?.map(e => e.id.toString()),
           competences: scenarioEntity?.competences?.map(e => e.id.toString()),
           learners: scenarioEntity?.learners?.map(e => e.id.toString()),
+          domain: scenarioEntity?.domain?.id,
         };
 
   return (
@@ -140,16 +136,6 @@ export const ScenarioUpdate = () => {
                   </option>
                 ))}
               </ValidatedField>
-              <ValidatedField id="scenario-domain" name="domain" data-cy="domain" label={translate('eduApp.scenario.domain')} type="select">
-                <option value="" key="0" />
-                {domains
-                  ? domains.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.title}
-                      </option>
-                    ))
-                  : null}
-              </ValidatedField>
               <ValidatedField
                 label={translate('eduApp.scenario.educator')}
                 id="scenario-educator"
@@ -197,6 +183,16 @@ export const ScenarioUpdate = () => {
                   ? learners.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.lastName}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField id="scenario-domain" name="domain" data-cy="domain" label={translate('eduApp.scenario.domain')} type="select">
+                <option value="" key="0" />
+                {domains
+                  ? domains.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.title}
                       </option>
                     ))
                   : null}

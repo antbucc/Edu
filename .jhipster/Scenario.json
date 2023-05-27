@@ -27,11 +27,10 @@
   "relationships": [
     {
       "otherEntityField": "title",
-      "otherEntityName": "domain",
+      "otherEntityName": "module",
       "otherEntityRelationshipName": "scenario",
-      "ownerSide": true,
-      "relationshipName": "domain",
-      "relationshipType": "one-to-one"
+      "relationshipName": "module",
+      "relationshipType": "one-to-many"
     },
     {
       "otherEntityField": "lastName",
@@ -59,11 +58,10 @@
     },
     {
       "otherEntityField": "title",
-      "otherEntityName": "module",
+      "otherEntityName": "domain",
       "otherEntityRelationshipName": "scenario",
-      "ownerSide": false,
-      "relationshipName": "module",
-      "relationshipType": "one-to-one"
+      "relationshipName": "domain",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceImpl"

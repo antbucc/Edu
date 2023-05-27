@@ -21,11 +21,11 @@
       "title": "Title",
       "description": "Description",
       "language": "Language",
-      "domain": "Domain",
+      "module": "Module",
       "educator": "Educator",
       "competence": "Competence",
       "learner": "Learner",
-      "module": "Module"
+      "domain": "Domain"
     }
   }
 }
