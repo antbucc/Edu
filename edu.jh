@@ -5,13 +5,13 @@ entity Scenario {
 }
 
 
-//entity Module {
-//	title String
-//	description String
-//	startDate Instant
-//	endData Instant
- //   level Level
-//}
+entity Module {
+	title String
+	description String
+	startDate Instant
+	endData Instant
+    level Level
+}
 
 
 
@@ -122,9 +122,9 @@ SKILL, KNOWLEDGE, ATTITUDE
 
 
 
-//relationship OneToOne {
- //  Module { Scenario(title) } to Scenario { Module(title) }
-//}
+relationship OneToOne {
+   Module { Scenario(title) } to Scenario { Module(title) }
+}
 
 relationship OneToOne {
   Scenario { Domain(title) } to Domain {Scenario(title)}
@@ -173,9 +173,9 @@ relationship OneToMany {
 }
 
 
-//relationship ManyToMany {
-//Module{ Fragment(title) } to Fragment{ Module(title) }
-//}
+relationship ManyToMany {
+Module{ Fragment(title) } to Fragment{ Module(title) }
+}
 
 
 
