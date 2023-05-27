@@ -84,6 +84,8 @@ entity Sequence {
 
 entity SetOf {
  title String required
+ atLeast Integer
+ noLess Integer
 }
 
 entity Order {
