@@ -151,9 +151,9 @@ public class ScenarioResource {
         @RequestParam(required = false) String filter,
         @RequestParam(required = false, defaultValue = "false") boolean eagerload
     ) {
-        if ("module-is-null".equals(filter)) {
-            log.debug("REST request to get all Scenarios where module is null");
-            return new ResponseEntity<>(scenarioService.findAllWhereModuleIsNull(), HttpStatus.OK);
+        if ("module1-is-null".equals(filter)) {
+            log.debug("REST request to get all Scenarios where module1 is null");
+            return new ResponseEntity<>(scenarioService.findAllWhereModule1IsNull(), HttpStatus.OK);
         }
         log.debug("REST request to get a page of Scenarios");
         Page<Scenario> page;

@@ -72,15 +72,15 @@ public class ScenarioServiceImpl implements ScenarioService {
     }
 
     /**
-     *  Get all the scenarios where Module is {@code null}.
+     *  Get all the scenarios where Module1 is {@code null}.
      *  @return the list of entities.
      */
 
-    public List<Scenario> findAllWhereModuleIsNull() {
-        log.debug("Request to get all scenarios where Module is null");
+    public List<Scenario> findAllWhereModule1IsNull() {
+        log.debug("Request to get all scenarios where Module1 is null");
         return StreamSupport
             .stream(scenarioRepository.findAll().spliterator(), false)
-            .filter(scenario -> scenario.getModule() == null)
+            .filter(scenario -> scenario.getModule1() == null)
             .collect(Collectors.toList());
     }
 
