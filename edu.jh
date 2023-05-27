@@ -179,14 +179,11 @@ relationship OneToMany {
 }
 
 
-//relationship ManyToMany {
-//Module{ Fragment(title) } to Fragment{ Module(title) }
-//}
 
 
 
 relationship OneToOne {
-Fragment{order} to Order
+Fragment{ Order(order) } to Order
 }
 
 relationship OneToOne {

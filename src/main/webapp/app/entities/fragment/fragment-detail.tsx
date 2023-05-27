@@ -41,7 +41,7 @@ export const FragmentDetail = () => {
           <dt>
             <Translate contentKey="eduApp.fragment.order">Order</Translate>
           </dt>
-          <dd>{fragmentEntity.order ? fragmentEntity.order.id : ''}</dd>
+          <dd>{fragmentEntity.order ? fragmentEntity.order.order : ''}</dd>
           <dt>
             <Translate contentKey="eduApp.fragment.activity">Activity</Translate>
           </dt>
