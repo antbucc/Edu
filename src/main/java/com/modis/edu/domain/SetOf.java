@@ -26,6 +26,12 @@ public class SetOf implements Serializable {
     @Field("title")
     private String title;
 
+    @Field("at_least")
+    private Integer atLeast;
+
+    @Field("no_less")
+    private Integer noLess;
+
     @DBRef
     @Field("fragments")
     @JsonIgnoreProperties(value = { "activity", "abstractActivity", "setOf", "sequence", "module", "setOf1s" }, allowSetters = true)
@@ -60,6 +66,32 @@ public class SetOf implements Serializable {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public Integer getAtLeast() {
+        return this.atLeast;
+    }
+
+    public SetOf atLeast(Integer atLeast) {
+        this.setAtLeast(atLeast);
+        return this;
+    }
+
+    public void setAtLeast(Integer atLeast) {
+        this.atLeast = atLeast;
+    }
+
+    public Integer getNoLess() {
+        return this.noLess;
+    }
+
+    public SetOf noLess(Integer noLess) {
+        this.setNoLess(noLess);
+        return this;
+    }
+
+    public void setNoLess(Integer noLess) {
+        this.noLess = noLess;
     }
 
     public Set<Fragment> getFragments() {
@@ -131,6 +163,8 @@ public class SetOf implements Serializable {
         return "SetOf{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
+            ", atLeast=" + getAtLeast() +
+            ", noLess=" + getNoLess() +
             "}";
     }
 }

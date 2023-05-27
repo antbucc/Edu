@@ -104,6 +104,8 @@ export const SetOfUpdate = () => {
                   required: { value: true, message: translate('entity.validation.required') },
                 }}
               />
+              <ValidatedField label={translate('eduApp.setOf.atLeast')} id="set-of-atLeast" name="atLeast" data-cy="atLeast" type="text" />
+              <ValidatedField label={translate('eduApp.setOf.noLess')} id="set-of-noLess" name="noLess" data-cy="noLess" type="text" />
               <ValidatedField
                 label={translate('eduApp.setOf.fragments')}
                 id="set-of-fragments"

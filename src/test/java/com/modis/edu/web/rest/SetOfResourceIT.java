@@ -39,6 +39,12 @@ class SetOfResourceIT {
     private static final String DEFAULT_TITLE = "AAAAAAAAAA";
     private static final String UPDATED_TITLE = "BBBBBBBBBB";
 
+    private static final Integer DEFAULT_AT_LEAST = 1;
+    private static final Integer UPDATED_AT_LEAST = 2;
+
+    private static final Integer DEFAULT_NO_LESS = 1;
+    private static final Integer UPDATED_NO_LESS = 2;
+
     private static final String ENTITY_API_URL = "/api/set-ofs";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -63,7 +69,7 @@ class SetOfResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static SetOf createEntity() {
-        SetOf setOf = new SetOf().title(DEFAULT_TITLE);
+        SetOf setOf = new SetOf().title(DEFAULT_TITLE).atLeast(DEFAULT_AT_LEAST).noLess(DEFAULT_NO_LESS);
         return setOf;
     }
 
@@ -74,7 +80,7 @@ class SetOfResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static SetOf createUpdatedEntity() {
-        SetOf setOf = new SetOf().title(UPDATED_TITLE);
+        SetOf setOf = new SetOf().title(UPDATED_TITLE).atLeast(UPDATED_AT_LEAST).noLess(UPDATED_NO_LESS);
         return setOf;
     }
 
@@ -97,6 +103,8 @@ class SetOfResourceIT {
         assertThat(setOfList).hasSize(databaseSizeBeforeCreate + 1);
         SetOf testSetOf = setOfList.get(setOfList.size() - 1);
         assertThat(testSetOf.getTitle()).isEqualTo(DEFAULT_TITLE);
+        assertThat(testSetOf.getAtLeast()).isEqualTo(DEFAULT_AT_LEAST);
+        assertThat(testSetOf.getNoLess()).isEqualTo(DEFAULT_NO_LESS);
     }
 
     @Test
@@ -143,7 +151,9 @@ class SetOfResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(setOf.getId())))
-            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)));
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
+            .andExpect(jsonPath("$.[*].atLeast").value(hasItem(DEFAULT_AT_LEAST)))
+            .andExpect(jsonPath("$.[*].noLess").value(hasItem(DEFAULT_NO_LESS)));
     }
 
     @SuppressWarnings({ "unchecked" })
@@ -174,7 +184,9 @@ class SetOfResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(setOf.getId()))
-            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE));
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
+            .andExpect(jsonPath("$.atLeast").value(DEFAULT_AT_LEAST))
+            .andExpect(jsonPath("$.noLess").value(DEFAULT_NO_LESS));
     }
 
     @Test
@@ -192,7 +204,7 @@ class SetOfResourceIT {
 
         // Update the setOf
         SetOf updatedSetOf = setOfRepository.findById(setOf.getId()).get();
-        updatedSetOf.title(UPDATED_TITLE);
+        updatedSetOf.title(UPDATED_TITLE).atLeast(UPDATED_AT_LEAST).noLess(UPDATED_NO_LESS);
 
         restSetOfMockMvc
             .perform(
@@ -207,6 +219,8 @@ class SetOfResourceIT {
         assertThat(setOfList).hasSize(databaseSizeBeforeUpdate);
         SetOf testSetOf = setOfList.get(setOfList.size() - 1);
         assertThat(testSetOf.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testSetOf.getAtLeast()).isEqualTo(UPDATED_AT_LEAST);
+        assertThat(testSetOf.getNoLess()).isEqualTo(UPDATED_NO_LESS);
     }
 
     @Test
@@ -273,7 +287,7 @@ class SetOfResourceIT {
         SetOf partialUpdatedSetOf = new SetOf();
         partialUpdatedSetOf.setId(setOf.getId());
 
-        partialUpdatedSetOf.title(UPDATED_TITLE);
+        partialUpdatedSetOf.title(UPDATED_TITLE).atLeast(UPDATED_AT_LEAST).noLess(UPDATED_NO_LESS);
 
         restSetOfMockMvc
             .perform(
@@ -288,6 +302,8 @@ class SetOfResourceIT {
         assertThat(setOfList).hasSize(databaseSizeBeforeUpdate);
         SetOf testSetOf = setOfList.get(setOfList.size() - 1);
         assertThat(testSetOf.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testSetOf.getAtLeast()).isEqualTo(UPDATED_AT_LEAST);
+        assertThat(testSetOf.getNoLess()).isEqualTo(UPDATED_NO_LESS);
     }
 
     @Test
@@ -301,7 +317,7 @@ class SetOfResourceIT {
         SetOf partialUpdatedSetOf = new SetOf();
         partialUpdatedSetOf.setId(setOf.getId());
 
-        partialUpdatedSetOf.title(UPDATED_TITLE);
+        partialUpdatedSetOf.title(UPDATED_TITLE).atLeast(UPDATED_AT_LEAST).noLess(UPDATED_NO_LESS);
 
         restSetOfMockMvc
             .perform(
@@ -316,6 +332,8 @@ class SetOfResourceIT {
         assertThat(setOfList).hasSize(databaseSizeBeforeUpdate);
         SetOf testSetOf = setOfList.get(setOfList.size() - 1);
         assertThat(testSetOf.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testSetOf.getAtLeast()).isEqualTo(UPDATED_AT_LEAST);
+        assertThat(testSetOf.getNoLess()).isEqualTo(UPDATED_NO_LESS);
     }
 
     @Test

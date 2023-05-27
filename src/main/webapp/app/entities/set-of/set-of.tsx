@@ -55,6 +55,12 @@ export const SetOf = () => {
                   <Translate contentKey="eduApp.setOf.title">Title</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="eduApp.setOf.atLeast">At Least</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="eduApp.setOf.noLess">No Less</Translate>
+                </th>
+                <th>
                   <Translate contentKey="eduApp.setOf.fragments">Fragments</Translate>
                 </th>
                 <th />
@@ -69,6 +75,8 @@ export const SetOf = () => {
                     </Button>
                   </td>
                   <td>{setOf.title}</td>
+                  <td>{setOf.atLeast}</td>
+                  <td>{setOf.noLess}</td>
                   <td>
                     {setOf.fragments
                       ? setOf.fragments.map((val, j) => (
