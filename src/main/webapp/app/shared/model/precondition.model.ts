@@ -1,9 +1,11 @@
+import { IConcept } from 'app/shared/model/concept.model';
 import { IActivity } from 'app/shared/model/activity.model';
 
 export interface IPrecondition {
   id?: string;
   title?: string | null;
-  activity?: IActivity | null;
+  concepts?: IConcept[] | null;
+  activities?: IActivity[] | null;
 }
 
 export const defaultValue: Readonly<IPrecondition> = {};

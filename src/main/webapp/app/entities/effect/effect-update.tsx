@@ -8,6 +8,8 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
+import { IConcept } from 'app/shared/model/concept.model';
+import { getEntities as getConcepts } from 'app/entities/concept/concept.reducer';
 import { IActivity } from 'app/shared/model/activity.model';
 import { getEntities as getActivities } from 'app/entities/activity/activity.reducer';
 import { IEffect } from 'app/shared/model/effect.model';
@@ -21,6 +23,7 @@ export const EffectUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
+  const concepts = useAppSelector(state => state.concept.entities);
   const activities = useAppSelector(state => state.activity.entities);
   const effectEntity = useAppSelector(state => state.effect.entity);
   const loading = useAppSelector(state => state.effect.loading);
@@ -38,6 +41,7 @@ export const EffectUpdate = () => {
       dispatch(getEntity(id));
     }
 
+    dispatch(getConcepts({}));
     dispatch(getActivities({}));
   }, []);
 
@@ -51,7 +55,7 @@ export const EffectUpdate = () => {
     const entity = {
       ...effectEntity,
       ...values,
-      activity: activities.find(it => it.id.toString() === values.activity.toString()),
+      concepts: mapIdList(values.concepts),
     };
 
     if (isNew) {
@@ -66,7 +70,7 @@ export const EffectUpdate = () => {
       ? {}
       : {
           ...effectEntity,
-          activity: effectEntity?.activity?.id,
+          concepts: effectEntity?.concepts?.map(e => e.id.toString()),
         };
 
   return (
@@ -96,15 +100,16 @@ export const EffectUpdate = () => {
               ) : null}
               <ValidatedField label={translate('eduApp.effect.title')} id="effect-title" name="title" data-cy="title" type="text" />
               <ValidatedField
-                id="effect-activity"
-                name="activity"
-                data-cy="activity"
-                label={translate('eduApp.effect.activity')}
+                label={translate('eduApp.effect.concept')}
+                id="effect-concept"
+                data-cy="concept"
                 type="select"
+                multiple
+                name="concepts"
               >
                 <option value="" key="0" />
-                {activities
-                  ? activities.map(otherEntity => (
+                {concepts
+                  ? concepts.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
                       </option>

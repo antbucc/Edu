@@ -29,12 +29,18 @@ public class Concept implements Serializable {
 
     @DBRef
     @Field("parent")
-    @JsonIgnoreProperties(value = { "parents", "childs", "competences", "activities", "goals" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "parents", "childs", "competences", "activities", "goals", "preconditions", "effects" },
+        allowSetters = true
+    )
     private Set<Concept> parents = new HashSet<>();
 
     @DBRef
     @Field("childs")
-    @JsonIgnoreProperties(value = { "parents", "childs", "competences", "activities", "goals" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "parents", "childs", "competences", "activities", "goals", "preconditions", "effects" },
+        allowSetters = true
+    )
     private Concept childs;
 
     @DBRef
@@ -44,13 +50,23 @@ public class Concept implements Serializable {
 
     @DBRef
     @Field("activities")
-    @JsonIgnoreProperties(value = { "preconditions", "effects", "concepts", "fragment" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "concepts", "preconditions", "effects", "fragment" }, allowSetters = true)
     private Set<Activity> activities = new HashSet<>();
 
     @DBRef
     @Field("goals")
     @JsonIgnoreProperties(value = { "concepts", "abstractActivities" }, allowSetters = true)
     private Set<Goal> goals = new HashSet<>();
+
+    @DBRef
+    @Field("preconditions")
+    @JsonIgnoreProperties(value = { "concepts", "activities" }, allowSetters = true)
+    private Set<Precondition> preconditions = new HashSet<>();
+
+    @DBRef
+    @Field("effects")
+    @JsonIgnoreProperties(value = { "concepts", "activities" }, allowSetters = true)
+    private Set<Effect> effects = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -227,6 +243,68 @@ public class Concept implements Serializable {
     public Concept removeGoal(Goal goal) {
         this.goals.remove(goal);
         goal.getConcepts().remove(this);
+        return this;
+    }
+
+    public Set<Precondition> getPreconditions() {
+        return this.preconditions;
+    }
+
+    public void setPreconditions(Set<Precondition> preconditions) {
+        if (this.preconditions != null) {
+            this.preconditions.forEach(i -> i.removeConcept(this));
+        }
+        if (preconditions != null) {
+            preconditions.forEach(i -> i.addConcept(this));
+        }
+        this.preconditions = preconditions;
+    }
+
+    public Concept preconditions(Set<Precondition> preconditions) {
+        this.setPreconditions(preconditions);
+        return this;
+    }
+
+    public Concept addPrecondition(Precondition precondition) {
+        this.preconditions.add(precondition);
+        precondition.getConcepts().add(this);
+        return this;
+    }
+
+    public Concept removePrecondition(Precondition precondition) {
+        this.preconditions.remove(precondition);
+        precondition.getConcepts().remove(this);
+        return this;
+    }
+
+    public Set<Effect> getEffects() {
+        return this.effects;
+    }
+
+    public void setEffects(Set<Effect> effects) {
+        if (this.effects != null) {
+            this.effects.forEach(i -> i.removeConcept(this));
+        }
+        if (effects != null) {
+            effects.forEach(i -> i.addConcept(this));
+        }
+        this.effects = effects;
+    }
+
+    public Concept effects(Set<Effect> effects) {
+        this.setEffects(effects);
+        return this;
+    }
+
+    public Concept addEffect(Effect effect) {
+        this.effects.add(effect);
+        effect.getConcepts().add(this);
+        return this;
+    }
+
+    public Concept removeEffect(Effect effect) {
+        this.effects.remove(effect);
+        effect.getConcepts().remove(this);
         return this;
     }
 

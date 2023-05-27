@@ -2,6 +2,8 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,9 +25,17 @@ public class Effect implements Serializable {
     private String title;
 
     @DBRef
-    @Field("activity")
-    @JsonIgnoreProperties(value = { "preconditions", "effects", "concepts", "fragment" }, allowSetters = true)
-    private Activity activity;
+    @Field("concepts")
+    @JsonIgnoreProperties(
+        value = { "parents", "childs", "competences", "activities", "goals", "preconditions", "effects" },
+        allowSetters = true
+    )
+    private Set<Concept> concepts = new HashSet<>();
+
+    @DBRef
+    @Field("activities")
+    @JsonIgnoreProperties(value = { "concepts", "preconditions", "effects", "fragment" }, allowSetters = true)
+    private Set<Activity> activities = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -55,16 +65,59 @@ public class Effect implements Serializable {
         this.title = title;
     }
 
-    public Activity getActivity() {
-        return this.activity;
+    public Set<Concept> getConcepts() {
+        return this.concepts;
     }
 
-    public void setActivity(Activity activity) {
-        this.activity = activity;
+    public void setConcepts(Set<Concept> concepts) {
+        this.concepts = concepts;
     }
 
-    public Effect activity(Activity activity) {
-        this.setActivity(activity);
+    public Effect concepts(Set<Concept> concepts) {
+        this.setConcepts(concepts);
+        return this;
+    }
+
+    public Effect addConcept(Concept concept) {
+        this.concepts.add(concept);
+        concept.getEffects().add(this);
+        return this;
+    }
+
+    public Effect removeConcept(Concept concept) {
+        this.concepts.remove(concept);
+        concept.getEffects().remove(this);
+        return this;
+    }
+
+    public Set<Activity> getActivities() {
+        return this.activities;
+    }
+
+    public void setActivities(Set<Activity> activities) {
+        if (this.activities != null) {
+            this.activities.forEach(i -> i.removeEffect(this));
+        }
+        if (activities != null) {
+            activities.forEach(i -> i.addEffect(this));
+        }
+        this.activities = activities;
+    }
+
+    public Effect activities(Set<Activity> activities) {
+        this.setActivities(activities);
+        return this;
+    }
+
+    public Effect addActivity(Activity activity) {
+        this.activities.add(activity);
+        activity.getEffects().add(this);
+        return this;
+    }
+
+    public Effect removeActivity(Activity activity) {
+        this.activities.remove(activity);
+        activity.getEffects().remove(this);
         return this;
     }
 

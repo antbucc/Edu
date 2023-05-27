@@ -39,9 +39,18 @@ export const EffectDetail = () => {
           </dt>
           <dd>{effectEntity.title}</dd>
           <dt>
-            <Translate contentKey="eduApp.effect.activity">Activity</Translate>
+            <Translate contentKey="eduApp.effect.concept">Concept</Translate>
           </dt>
-          <dd>{effectEntity.activity ? effectEntity.activity.title : ''}</dd>
+          <dd>
+            {effectEntity.concepts
+              ? effectEntity.concepts.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.title}</a>
+                    {effectEntity.concepts && i === effectEntity.concepts.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/effect" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

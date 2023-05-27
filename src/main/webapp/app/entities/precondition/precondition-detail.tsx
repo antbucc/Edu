@@ -39,9 +39,18 @@ export const PreconditionDetail = () => {
           </dt>
           <dd>{preconditionEntity.title}</dd>
           <dt>
-            <Translate contentKey="eduApp.precondition.activity">Activity</Translate>
+            <Translate contentKey="eduApp.precondition.concept">Concept</Translate>
           </dt>
-          <dd>{preconditionEntity.activity ? preconditionEntity.activity.title : ''}</dd>
+          <dd>
+            {preconditionEntity.concepts
+              ? preconditionEntity.concepts.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.title}</a>
+                    {preconditionEntity.concepts && i === preconditionEntity.concepts.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/precondition" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

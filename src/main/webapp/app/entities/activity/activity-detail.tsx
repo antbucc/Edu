@@ -75,6 +75,32 @@ export const ActivityDetail = () => {
                 ))
               : null}
           </dd>
+          <dt>
+            <Translate contentKey="eduApp.activity.precondition">Precondition</Translate>
+          </dt>
+          <dd>
+            {activityEntity.preconditions
+              ? activityEntity.preconditions.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.title}</a>
+                    {activityEntity.preconditions && i === activityEntity.preconditions.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
+          <dt>
+            <Translate contentKey="eduApp.activity.effect">Effect</Translate>
+          </dt>
+          <dd>
+            {activityEntity.effects
+              ? activityEntity.effects.map((val, i) => (
+                  <span key={val.id}>
+                    <a>{val.title}</a>
+                    {activityEntity.effects && i === activityEntity.effects.length - 1 ? '' : ', '}
+                  </span>
+                ))
+              : null}
+          </dd>
         </dl>
         <Button tag={Link} to="/activity" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

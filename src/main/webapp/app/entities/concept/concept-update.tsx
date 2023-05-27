@@ -15,6 +15,10 @@ import { IActivity } from 'app/shared/model/activity.model';
 import { getEntities as getActivities } from 'app/entities/activity/activity.reducer';
 import { IGoal } from 'app/shared/model/goal.model';
 import { getEntities as getGoals } from 'app/entities/goal/goal.reducer';
+import { IPrecondition } from 'app/shared/model/precondition.model';
+import { getEntities as getPreconditions } from 'app/entities/precondition/precondition.reducer';
+import { IEffect } from 'app/shared/model/effect.model';
+import { getEntities as getEffects } from 'app/entities/effect/effect.reducer';
 import { IConcept } from 'app/shared/model/concept.model';
 import { getEntity, updateEntity, createEntity, reset } from './concept.reducer';
 
@@ -30,6 +34,8 @@ export const ConceptUpdate = () => {
   const competences = useAppSelector(state => state.competence.entities);
   const activities = useAppSelector(state => state.activity.entities);
   const goals = useAppSelector(state => state.goal.entities);
+  const preconditions = useAppSelector(state => state.precondition.entities);
+  const effects = useAppSelector(state => state.effect.entities);
   const conceptEntity = useAppSelector(state => state.concept.entity);
   const loading = useAppSelector(state => state.concept.loading);
   const updating = useAppSelector(state => state.concept.updating);
@@ -50,6 +56,8 @@ export const ConceptUpdate = () => {
     dispatch(getCompetences({}));
     dispatch(getActivities({}));
     dispatch(getGoals({}));
+    dispatch(getPreconditions({}));
+    dispatch(getEffects({}));
   }, []);
 
   useEffect(() => {

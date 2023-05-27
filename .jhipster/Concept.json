@@ -55,6 +55,22 @@
       "ownerSide": false,
       "relationshipName": "goal",
       "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "precondition",
+      "otherEntityRelationshipName": "concept",
+      "ownerSide": false,
+      "relationshipName": "precondition",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityField": "title",
+      "otherEntityName": "effect",
+      "otherEntityRelationshipName": "concept",
+      "ownerSide": false,
+      "relationshipName": "effect",
+      "relationshipType": "many-to-many"
     }
   ],
   "service": "serviceImpl"

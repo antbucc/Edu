@@ -24,7 +24,9 @@
       "childs": "Childs",
       "competence": "Competence",
       "activity": "Activity",
-      "goal": "Goal"
+      "goal": "Goal",
+      "precondition": "Precondition",
+      "effect": "Effect"
     }
   }
 }

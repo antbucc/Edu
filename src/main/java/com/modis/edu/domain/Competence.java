@@ -33,7 +33,10 @@ public class Competence implements Serializable {
 
     @DBRef
     @Field("concepts")
-    @JsonIgnoreProperties(value = { "parents", "childs", "competences", "activities", "goals" }, allowSetters = true)
+    @JsonIgnoreProperties(
+        value = { "parents", "childs", "competences", "activities", "goals", "preconditions", "effects" },
+        allowSetters = true
+    )
     private Set<Concept> concepts = new HashSet<>();
 
     @DBRef
