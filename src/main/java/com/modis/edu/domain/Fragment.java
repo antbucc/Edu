@@ -26,9 +26,9 @@ public class Fragment implements Serializable {
     @Field("title")
     private String title;
 
-    @DBRef
+    @NotNull
     @Field("order")
-    private Order order;
+    private Integer order;
 
     @DBRef
     @Field("activity")
@@ -85,17 +85,17 @@ public class Fragment implements Serializable {
         this.title = title;
     }
 
-    public Order getOrder() {
+    public Integer getOrder() {
         return this.order;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
-    }
-
-    public Fragment order(Order order) {
+    public Fragment order(Integer order) {
         this.setOrder(order);
         return this;
+    }
+
+    public void setOrder(Integer order) {
+        this.order = order;
     }
 
     public Activity getActivity() {
@@ -219,6 +219,7 @@ public class Fragment implements Serializable {
         return "Fragment{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
+            ", order=" + getOrder() +
             "}";
     }
 }

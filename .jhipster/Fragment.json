@@ -9,6 +9,11 @@
       "fieldName": "title",
       "fieldType": "String",
       "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "order",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
     }
   ],
   "fluentMethods": true,
@@ -17,13 +22,6 @@
   "pagination": "no",
   "readOnly": false,
   "relationships": [
-    {
-      "otherEntityField": "order",
-      "otherEntityName": "order",
-      "ownerSide": true,
-      "relationshipName": "order",
-      "relationshipType": "one-to-one"
-    },
     {
       "otherEntityField": "title",
       "otherEntityName": "activity",

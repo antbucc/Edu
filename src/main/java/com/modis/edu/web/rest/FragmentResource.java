@@ -126,6 +126,9 @@ public class FragmentResource {
                 if (fragment.getTitle() != null) {
                     existingFragment.setTitle(fragment.getTitle());
                 }
+                if (fragment.getOrder() != null) {
+                    existingFragment.setOrder(fragment.getOrder());
+                }
 
                 return existingFragment;
             })

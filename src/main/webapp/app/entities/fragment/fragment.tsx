@@ -84,7 +84,7 @@ export const Fragment = () => {
                     </Button>
                   </td>
                   <td>{fragment.title}</td>
-                  <td>{fragment.order ? <Link to={`/order/${fragment.order.id}`}>{fragment.order.order}</Link> : ''}</td>
+                  <td>{fragment.order}</td>
                   <td>{fragment.activity ? <Link to={`/activity/${fragment.activity.id}`}>{fragment.activity.title}</Link> : ''}</td>
                   <td>
                     {fragment.abstractActivity ? (

@@ -39,9 +39,11 @@ export const FragmentDetail = () => {
           </dt>
           <dd>{fragmentEntity.title}</dd>
           <dt>
-            <Translate contentKey="eduApp.fragment.order">Order</Translate>
+            <span id="order">
+              <Translate contentKey="eduApp.fragment.order">Order</Translate>
+            </span>
           </dt>
-          <dd>{fragmentEntity.order ? fragmentEntity.order.order : ''}</dd>
+          <dd>{fragmentEntity.order}</dd>
           <dt>
             <Translate contentKey="eduApp.fragment.activity">Activity</Translate>
           </dt>
