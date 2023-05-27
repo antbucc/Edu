@@ -28,10 +28,7 @@ public class SetOf implements Serializable {
 
     @DBRef
     @Field("fragments")
-    @JsonIgnoreProperties(
-        value = { "order", "activity", "abstractActivity", "setOf", "sequence", "modules", "setOf1s" },
-        allowSetters = true
-    )
+    @JsonIgnoreProperties(value = { "order", "activity", "abstractActivity", "setOf", "sequence", "setOf1s" }, allowSetters = true)
     private Set<Fragment> fragments = new HashSet<>();
 
     @DBRef

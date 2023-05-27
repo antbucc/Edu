@@ -1,6 +1,5 @@
 import dayjs from 'dayjs';
 import { IScenario } from 'app/shared/model/scenario.model';
-import { IFragment } from 'app/shared/model/fragment.model';
 import { Level } from 'app/shared/model/enumerations/level.model';
 
 export interface IModule {
@@ -11,7 +10,6 @@ export interface IModule {
   endData?: string | null;
   level?: Level | null;
   scenario?: IScenario | null;
-  fragments?: IFragment[] | null;
 }
 
 export const defaultValue: Readonly<IModule> = {};
