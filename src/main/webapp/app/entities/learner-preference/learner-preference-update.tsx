@@ -76,7 +76,7 @@ export const LearnerPreferenceUpdate = () => {
           style: 'VISUAL',
           modality: 'ONLINE',
           difficulty: 'LOW',
-          disability: 'DYSLEXIA',
+          disability: 'NONE',
           ...learnerPreferenceEntity,
           learner: learnerPreferenceEntity?.learner?.id,
         };

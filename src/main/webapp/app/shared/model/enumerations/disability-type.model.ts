@@ -1,4 +1,6 @@
 export enum DisabilityType {
+  NONE = 'NONE',
+
   DYSLEXIA = 'DYSLEXIA',
 
   DYSCALCULIA = 'DYSCALCULIA',

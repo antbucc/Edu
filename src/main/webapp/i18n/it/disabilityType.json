@@ -2,6 +2,7 @@
   "eduApp": {
     "DisabilityType": {
       "null": "",
+      "NONE": "NONE",
       "DYSLEXIA": "DYSLEXIA",
       "DYSCALCULIA": "DYSCALCULIA",
       "DYSGRAPHIA": "DYSGRAPHIA",

@@ -125,11 +125,6 @@ tool Tool
 difficulty Difficulty
 }
 
-relationship ManyToMany {
-  EducatorPreference{ PreferredActivity(title) } to PreferredActivity{preferences}
-  }
-
-
 
 
 
@@ -181,6 +176,7 @@ enum GenderType {
 
 
 enum DisabilityType {
+  NONE
   DYSLEXIA
   DYSCALCULIA
   DYSGRAPHIA
@@ -208,7 +204,9 @@ relationship OneToMany {
   Educator { EducatorPreference(title) } to  EducatorPreference { Educator(lastName) } 
 }
 
-
+relationship ManyToMany {
+  EducatorPreference{ PreferredActivity(title) } to PreferredActivity{preferences}
+  }
 
 
 relationship OneToMany {
