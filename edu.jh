@@ -23,11 +23,6 @@ entity Learner {
     gender GenderType
 }
 
-entity LearningDisability {
-  name String
-  description String
-  disabilityType DisabilityType
-}
 
 entity Educator {
 	firstName String
@@ -107,26 +102,23 @@ entity AbstractActivity {
 
 
 entity EducatorPreference {
-  subject String
-  difficulty Difficulty
+title String
+style  LearningStyleType
+modality ModalityType
+difficulty Difficulty
 }
 
-entity PreferredTopic {
-  topicId Long,
-  topic String,
+
+entity LearnerPreference {
+title String
+style  LearningStyleType
+modality ModalityType
+difficulty Difficulty
+disability DisabilityType
 }
 
-entity PreferredActivity {
-  activity ActivityType,
-}
 
-entity PreferredModality {
-  modality ModalityType,
-}
 
-entity PreferredLearningStyle {
-  style LearningStyleType,
-}
 
 enum ActivityType {
   LECTURE
@@ -187,11 +179,7 @@ enum DisabilityType {
 }
 
 
-enum ModalityType {
-  ONLINE
-  IN_PERSON
-  BLENDED
-}
+
 
 enum LearningStyleType {
   VISUAL
@@ -203,7 +191,14 @@ enum LearningStyleType {
 }
 
 
+relationship OneToMany {
+  Educator { EducatorPreference(title) } to  EducatorPreference { Educator(surname) } 
+}
 
+
+relationship OneToMany {
+  Learner { LearnerPreference(title) } to  LearnerPreference { Learner(surname) } 
+}
 
 
 
@@ -313,14 +308,6 @@ relationship OneToMany {
 }
 
 
-relationship OneToMany {
-  Learner{disabilities} to LearningDisability{learnarDisabilities}
-  Educator{preferences} to EducatorPreference{eductarPreferences}
-  EducatorPreference{preferredTopics} to PreferredTopic{educatorPreference}
-  EducatorPreference{preferredActivities} to PreferredActivity{educatorPreference}
-  EducatorPreference{preferredModalities} to PreferredModality{educatorPreference}
-  EducatorPreference{preferredLearningStyles} to PreferredLearningStyle{educatorPreference}
-}
 
 
 // Set pagination options
