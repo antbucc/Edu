@@ -22,7 +22,7 @@
       "style": "Style",
       "modality": "Modality",
       "difficulty": "Difficulty",
-      "preferredActivities": "Preferred Activities",
+      "preferredActivity": "Preferred Activity",
       "educator": "Educator"
     }
   }

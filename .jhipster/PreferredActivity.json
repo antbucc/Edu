@@ -37,7 +37,7 @@
   "relationships": [
     {
       "otherEntityName": "educatorPreference",
-      "otherEntityRelationshipName": "preferredActivities",
+      "otherEntityRelationshipName": "preferredActivity",
       "ownerSide": false,
       "relationshipName": "preferences",
       "relationshipType": "many-to-many"
