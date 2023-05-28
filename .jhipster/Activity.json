@@ -66,6 +66,12 @@
       "ownerSide": false,
       "relationshipName": "fragment",
       "relationshipType": "one-to-one"
+    },
+    {
+      "otherEntityName": "educator",
+      "otherEntityRelationshipName": "activity",
+      "relationshipName": "preferred",
+      "relationshipType": "many-to-one"
     }
   ],
   "service": "serviceImpl"

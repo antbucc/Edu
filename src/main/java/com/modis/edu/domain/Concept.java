@@ -50,7 +50,7 @@ public class Concept implements Serializable {
 
     @DBRef
     @Field("activities")
-    @JsonIgnoreProperties(value = { "concepts", "preconditions", "effects", "fragment" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "concepts", "preconditions", "effects", "fragment", "preferred" }, allowSetters = true)
     private Set<Activity> activities = new HashSet<>();
 
     @DBRef

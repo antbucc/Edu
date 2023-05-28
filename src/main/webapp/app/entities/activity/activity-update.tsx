@@ -16,6 +16,8 @@ import { IEffect } from 'app/shared/model/effect.model';
 import { getEntities as getEffects } from 'app/entities/effect/effect.reducer';
 import { IFragment } from 'app/shared/model/fragment.model';
 import { getEntities as getFragments } from 'app/entities/fragment/fragment.reducer';
+import { IEducator } from 'app/shared/model/educator.model';
+import { getEntities as getEducators } from 'app/entities/educator/educator.reducer';
 import { IActivity } from 'app/shared/model/activity.model';
 import { ActivityType } from 'app/shared/model/enumerations/activity-type.model';
 import { Tool } from 'app/shared/model/enumerations/tool.model';
@@ -34,6 +36,7 @@ export const ActivityUpdate = () => {
   const preconditions = useAppSelector(state => state.precondition.entities);
   const effects = useAppSelector(state => state.effect.entities);
   const fragments = useAppSelector(state => state.fragment.entities);
+  const educators = useAppSelector(state => state.educator.entities);
   const activityEntity = useAppSelector(state => state.activity.entity);
   const loading = useAppSelector(state => state.activity.loading);
   const updating = useAppSelector(state => state.activity.updating);
@@ -57,6 +60,7 @@ export const ActivityUpdate = () => {
     dispatch(getPreconditions({}));
     dispatch(getEffects({}));
     dispatch(getFragments({}));
+    dispatch(getEducators({}));
   }, []);
 
   useEffect(() => {
@@ -72,6 +76,7 @@ export const ActivityUpdate = () => {
       concepts: mapIdList(values.concepts),
       preconditions: mapIdList(values.preconditions),
       effects: mapIdList(values.effects),
+      preferred: educators.find(it => it.id.toString() === values.preferred.toString()),
     };
 
     if (isNew) {
@@ -92,6 +97,7 @@ export const ActivityUpdate = () => {
           concepts: activityEntity?.concepts?.map(e => e.id.toString()),
           preconditions: activityEntity?.preconditions?.map(e => e.id.toString()),
           effects: activityEntity?.effects?.map(e => e.id.toString()),
+          preferred: activityEntity?.preferred?.id,
         };
 
   return (
@@ -201,6 +207,22 @@ export const ActivityUpdate = () => {
                   ? effects.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.title}
+                      </option>
+                    ))
+                  : null}
+              </ValidatedField>
+              <ValidatedField
+                id="activity-preferred"
+                name="preferred"
+                data-cy="preferred"
+                label={translate('eduApp.activity.preferred')}
+                type="select"
+              >
+                <option value="" key="0" />
+                {educators
+                  ? educators.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
                       </option>
                     ))
                   : null}
