@@ -167,10 +167,6 @@ enum LearningStyle {
 
 
 relationship OneToMany {
-LearningDisability to Learner { LearningDisability(disabilityType) }
-}
-
-relationship OneToMany {
   Scenario { Module(title) } to  Module { Scenario(title) } 
 }
 
