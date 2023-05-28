@@ -14,13 +14,19 @@ entity Module {
 }
 
 
-
 entity Learner {
 	
 	firstName String
 	lastName String
 	email String
 	phoneNumber String
+    gender GenderType
+}
+
+entity LearningDisability {
+  name String
+  description String
+  disabilityType DisabilityType
 }
 
 entity Educator {
@@ -131,6 +137,19 @@ enum GenderType {
 }
 
 
+
+enum DisabilityType {
+  DYSLEXIA
+  DYSCALCULIA
+  DYSGRAPHIA
+  ADHD
+  APD
+  VISUAL_PROCESSING
+  LANGUAGE_PROCESSING
+  // Add more specific learning disability types as needed
+}
+
+
 enum ModalityType {
   ONLINE
   IN_PERSON
@@ -145,6 +164,11 @@ enum LearningStyle {
 }
 
 
+
+
+relationship OneToMany {
+  Learner { LearningDisability(disabilityType) } to  LearningDisability 
+}
 
 relationship OneToMany {
   Scenario { Module(title) } to  Module { Scenario(title) } 
