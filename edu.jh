@@ -55,6 +55,7 @@ difficulty Difficulty
 }
 
 
+
 entity Precondition{
  title String
 }
@@ -98,6 +99,7 @@ entity AbstractActivity {
 }
 
 
+
 enum Tool {
  COMPUTER, MOBILE
 }
@@ -122,6 +124,25 @@ enum CompetenceType {
 SKILL, KNOWLEDGE, ATTITUDE
 }
 
+enum GenderType {
+  MALE
+  FEMALE
+  OTHER
+}
+
+
+enum ModalityType {
+  ONLINE
+  IN_PERSON
+  BLENDED
+}
+
+enum LearningStyle {
+  VISUAL
+  AUDITORY
+  KINESTHETIC
+  READ_WRITE
+}
 
 
 
@@ -191,13 +212,6 @@ relationship OneToMany {
 }
 
 
-
-
-
-//relationship OneToOne {
-//Fragment{ Order(order) } to Order
-//}
-
 relationship OneToOne {
 Fragment{ Activity(title) } to Activity{ Fragment(title) } 
 }
@@ -207,9 +221,6 @@ Fragment{ Activity(title) } to Activity{ Fragment(title) }
 relationship OneToOne {
 Fragment{ AbstractActivity(title) } to AbstractActivity{ Fragment(title) } 
 }
-
-
-
 
 
 relationship OneToOne {
@@ -222,20 +233,14 @@ relationship ManyToMany {
 
 
 
-
 relationship ManyToOne {
  Fragment{ Sequence(title) } to Sequence{ Fragment(title) } 
 }
 
 
-
-
 relationship ManyToMany {
   AbstractActivity{ Goal(title) } to Goal{ AbstractActivity(title) }
 }
-
-
-
 
 relationship ManyToOne {
  Order{ Fragment(title) } to Fragment
@@ -245,8 +250,6 @@ relationship ManyToOne {
 relationship OneToMany {
   Sequence{ Order(order) } to Order{ Sequence(title) }
 }
-
-
 
 
 // Set pagination options
