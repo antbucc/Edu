@@ -29,7 +29,7 @@
       "otherEntityName": "learner",
       "otherEntityRelationshipName": "learningDisability",
       "relationshipName": "learner",
-      "relationshipType": "many-to-one"
+      "relationshipType": "one-to-many"
     }
   ],
   "service": "serviceImpl"

@@ -6,7 +6,7 @@ export interface ILearningDisability {
   name?: string | null;
   description?: string | null;
   disabilityType?: DisabilityType | null;
-  learner?: ILearner | null;
+  learners?: ILearner[] | null;
 }
 
 export const defaultValue: Readonly<ILearningDisability> = {};

@@ -38,7 +38,7 @@
       "otherEntityName": "learningDisability",
       "otherEntityRelationshipName": "learner",
       "relationshipName": "learningDisability",
-      "relationshipType": "one-to-many"
+      "relationshipType": "many-to-one"
     },
     {
       "otherEntityField": "title",

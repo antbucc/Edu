@@ -39,8 +39,8 @@ public class Learner implements Serializable {
 
     @DBRef
     @Field("learningDisability")
-    @JsonIgnoreProperties(value = { "learner" }, allowSetters = true)
-    private Set<LearningDisability> learningDisabilities = new HashSet<>();
+    @JsonIgnoreProperties(value = { "learners" }, allowSetters = true)
+    private LearningDisability learningDisability;
 
     @DBRef
     @Field("scenarios")
@@ -127,34 +127,16 @@ public class Learner implements Serializable {
         this.gender = gender;
     }
 
-    public Set<LearningDisability> getLearningDisabilities() {
-        return this.learningDisabilities;
+    public LearningDisability getLearningDisability() {
+        return this.learningDisability;
     }
 
-    public void setLearningDisabilities(Set<LearningDisability> learningDisabilities) {
-        if (this.learningDisabilities != null) {
-            this.learningDisabilities.forEach(i -> i.setLearner(null));
-        }
-        if (learningDisabilities != null) {
-            learningDisabilities.forEach(i -> i.setLearner(this));
-        }
-        this.learningDisabilities = learningDisabilities;
+    public void setLearningDisability(LearningDisability learningDisability) {
+        this.learningDisability = learningDisability;
     }
 
-    public Learner learningDisabilities(Set<LearningDisability> learningDisabilities) {
-        this.setLearningDisabilities(learningDisabilities);
-        return this;
-    }
-
-    public Learner addLearningDisability(LearningDisability learningDisability) {
-        this.learningDisabilities.add(learningDisability);
-        learningDisability.setLearner(this);
-        return this;
-    }
-
-    public Learner removeLearningDisability(LearningDisability learningDisability) {
-        this.learningDisabilities.remove(learningDisability);
-        learningDisability.setLearner(null);
+    public Learner learningDisability(LearningDisability learningDisability) {
+        this.setLearningDisability(learningDisability);
         return this;
     }
 

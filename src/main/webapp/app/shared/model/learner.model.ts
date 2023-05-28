@@ -9,7 +9,7 @@ export interface ILearner {
   email?: string | null;
   phoneNumber?: string | null;
   gender?: GenderType | null;
-  learningDisabilities?: ILearningDisability[] | null;
+  learningDisability?: ILearningDisability | null;
   scenarios?: IScenario[] | null;
 }
 
