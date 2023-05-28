@@ -27,7 +27,7 @@
     {
       "fieldName": "disability",
       "fieldType": "DisabilityType",
-      "fieldValues": "DYSLEXIA,DYSCALCULIA,DYSGRAPHIA,ADHD,APD,VISUAL_PROCESSING,LANGUAGE_PROCESSING"
+      "fieldValues": "NONE,DYSLEXIA,DYSCALCULIA,DYSGRAPHIA,ADHD,APD,VISUAL_PROCESSING,LANGUAGE_PROCESSING"
     }
   ],
   "fluentMethods": true,

@@ -52,8 +52,8 @@ class LearnerPreferenceResourceIT {
     private static final Difficulty DEFAULT_DIFFICULTY = Difficulty.LOW;
     private static final Difficulty UPDATED_DIFFICULTY = Difficulty.MODERATE;
 
-    private static final DisabilityType DEFAULT_DISABILITY = DisabilityType.DYSLEXIA;
-    private static final DisabilityType UPDATED_DISABILITY = DisabilityType.DYSCALCULIA;
+    private static final DisabilityType DEFAULT_DISABILITY = DisabilityType.NONE;
+    private static final DisabilityType UPDATED_DISABILITY = DisabilityType.DYSLEXIA;
 
     private static final String ENTITY_API_URL = "/api/learner-preferences";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";

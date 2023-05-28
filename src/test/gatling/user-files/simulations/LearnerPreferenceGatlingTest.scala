@@ -75,7 +75,7 @@ class LearnerPreferenceGatlingTest extends Simulation {
                 , "style":"VISUAL"
                 , "modality":"ONLINE"
                 , "difficulty":"LOW"
-                , "disability":"DYSLEXIA"
+                , "disability":"NONE"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_learnerPreference_url"))).exitHereIfFailed
