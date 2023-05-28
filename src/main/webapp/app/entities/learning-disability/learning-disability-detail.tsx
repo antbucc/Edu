@@ -50,6 +50,10 @@ export const LearningDisabilityDetail = () => {
             </span>
           </dt>
           <dd>{learningDisabilityEntity.disabilityType}</dd>
+          <dt>
+            <Translate contentKey="eduApp.learningDisability.learnarDisabilities">Learnar Disabilities</Translate>
+          </dt>
+          <dd>{learningDisabilityEntity.learnarDisabilities ? learningDisabilityEntity.learnarDisabilities.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/learning-disability" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

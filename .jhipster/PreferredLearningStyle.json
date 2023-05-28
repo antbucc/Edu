@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20230528090727",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "preferred_learning_style",
+  "fields": [
+    {
+      "fieldName": "style",
+      "fieldType": "LearningStyleType",
+      "fieldValues": "VISUAL,AUDITORY,HANDS_ONE,SOCIAL,VERBAL,LOGICAL"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PreferredLearningStyle",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "educatorPreference",
+      "otherEntityRelationshipName": "preferredLearningStyles",
+      "relationshipName": "educatorPreference",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

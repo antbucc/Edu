@@ -1,0 +1,25 @@
+{
+  "eduApp": {
+    "preferredModality": {
+      "home": {
+        "title": "Preferred Modalities",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Preferred Modality",
+        "createOrEditLabel": "Create or edit a Preferred Modality",
+        "notFound": "No Preferred Modalities found"
+      },
+      "created": "A new Preferred Modality is created with identifier {{ param }}",
+      "updated": "A Preferred Modality is updated with identifier {{ param }}",
+      "deleted": "A Preferred Modality is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Preferred Modality {{ id }}?"
+      },
+      "detail": {
+        "title": "Preferred Modality"
+      },
+      "id": "ID",
+      "modality": "Modality",
+      "educatorPreference": "Educator Preference"
+    }
+  }
+}

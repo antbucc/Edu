@@ -24,6 +24,13 @@
   "name": "LearningDisability",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "learner",
+      "otherEntityRelationshipName": "disabilities",
+      "relationshipName": "learnarDisabilities",
+      "relationshipType": "many-to-one"
+    }
+  ],
   "service": "serviceImpl"
 }

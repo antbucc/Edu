@@ -25,6 +25,11 @@
         "sequenceFragment": "Sequence Fragment",
         "module": "Module",
         "learningDisability": "Learning Disability",
+        "educatorPreference": "Educator Preference",
+        "preferredTopic": "Preferred Topic",
+        "preferredActivity": "Preferred Activity",
+        "preferredModality": "Preferred Modality",
+        "preferredLearningStyle": "Preferred Learning Style",
         "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
       },
       "account": {

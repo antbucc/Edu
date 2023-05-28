@@ -1,0 +1,26 @@
+{
+  "eduApp": {
+    "preferredTopic": {
+      "home": {
+        "title": "Preferred Topics",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Preferred Topic",
+        "createOrEditLabel": "Create or edit a Preferred Topic",
+        "notFound": "No Preferred Topics found"
+      },
+      "created": "A new Preferred Topic is created with identifier {{ param }}",
+      "updated": "A Preferred Topic is updated with identifier {{ param }}",
+      "deleted": "A Preferred Topic is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Preferred Topic {{ id }}?"
+      },
+      "detail": {
+        "title": "Preferred Topic"
+      },
+      "id": "ID",
+      "topicId": "Topic Id",
+      "topic": "Topic",
+      "educatorPreference": "Educator Preference"
+    }
+  }
+}

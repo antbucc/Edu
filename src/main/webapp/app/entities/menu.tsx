@@ -62,6 +62,21 @@ const EntitiesMenu = () => {
       <MenuItem icon="asterisk" to="/learning-disability">
         <Translate contentKey="global.menu.entities.learningDisability" />
       </MenuItem>
+      <MenuItem icon="asterisk" to="/educator-preference">
+        <Translate contentKey="global.menu.entities.educatorPreference" />
+      </MenuItem>
+      <MenuItem icon="asterisk" to="/preferred-topic">
+        <Translate contentKey="global.menu.entities.preferredTopic" />
+      </MenuItem>
+      <MenuItem icon="asterisk" to="/preferred-activity">
+        <Translate contentKey="global.menu.entities.preferredActivity" />
+      </MenuItem>
+      <MenuItem icon="asterisk" to="/preferred-modality">
+        <Translate contentKey="global.menu.entities.preferredModality" />
+      </MenuItem>
+      <MenuItem icon="asterisk" to="/preferred-learning-style">
+        <Translate contentKey="global.menu.entities.preferredLearningStyle" />
+      </MenuItem>
       {/* jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here */}
     </>
   );

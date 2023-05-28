@@ -1,0 +1,10 @@
+{
+  "eduApp": {
+    "ModalityType": {
+      "null": "",
+      "ONLINE": "ONLINE",
+      "IN_PERSON": "IN_PERSON",
+      "BLENDED": "BLENDED"
+    }
+  }
+}
