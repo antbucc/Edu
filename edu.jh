@@ -126,7 +126,7 @@ difficulty Difficulty
 }
 
 relationship ManyToMany {
-  EducatorPreference{preferredActivities} to PreferredActivity{preferences}
+  EducatorPreference{ PreferredActivity(title) } to PreferredActivity{preferences}
   }
 
 
