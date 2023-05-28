@@ -48,7 +48,7 @@ public class Scenario implements Serializable {
 
     @DBRef
     @Field("learners")
-    @JsonIgnoreProperties(value = { "learningDisabilities", "scenarios" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "learningDisability", "scenarios" }, allowSetters = true)
     private Set<Learner> learners = new HashSet<>();
 
     @DBRef

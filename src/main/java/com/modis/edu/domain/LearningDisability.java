@@ -3,6 +3,8 @@ package com.modis.edu.domain;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.modis.edu.domain.enumeration.DisabilityType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -31,8 +33,8 @@ public class LearningDisability implements Serializable {
 
     @DBRef
     @Field("learner")
-    @JsonIgnoreProperties(value = { "learningDisabilities", "scenarios" }, allowSetters = true)
-    private Learner learner;
+    @JsonIgnoreProperties(value = { "learningDisability", "scenarios" }, allowSetters = true)
+    private Set<Learner> learners = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -88,16 +90,34 @@ public class LearningDisability implements Serializable {
         this.disabilityType = disabilityType;
     }
 
-    public Learner getLearner() {
-        return this.learner;
+    public Set<Learner> getLearners() {
+        return this.learners;
     }
 
-    public void setLearner(Learner learner) {
-        this.learner = learner;
+    public void setLearners(Set<Learner> learners) {
+        if (this.learners != null) {
+            this.learners.forEach(i -> i.setLearningDisability(null));
+        }
+        if (learners != null) {
+            learners.forEach(i -> i.setLearningDisability(this));
+        }
+        this.learners = learners;
     }
 
-    public LearningDisability learner(Learner learner) {
-        this.setLearner(learner);
+    public LearningDisability learners(Set<Learner> learners) {
+        this.setLearners(learners);
+        return this;
+    }
+
+    public LearningDisability addLearner(Learner learner) {
+        this.learners.add(learner);
+        learner.setLearningDisability(this);
+        return this;
+    }
+
+    public LearningDisability removeLearner(Learner learner) {
+        this.learners.remove(learner);
+        learner.setLearningDisability(null);
         return this;
     }
 

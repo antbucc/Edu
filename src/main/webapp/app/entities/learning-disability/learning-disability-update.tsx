@@ -8,8 +8,6 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { ILearner } from 'app/shared/model/learner.model';
-import { getEntities as getLearners } from 'app/entities/learner/learner.reducer';
 import { ILearningDisability } from 'app/shared/model/learning-disability.model';
 import { DisabilityType } from 'app/shared/model/enumerations/disability-type.model';
 import { getEntity, updateEntity, createEntity, reset } from './learning-disability.reducer';
@@ -22,7 +20,6 @@ export const LearningDisabilityUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const learners = useAppSelector(state => state.learner.entities);
   const learningDisabilityEntity = useAppSelector(state => state.learningDisability.entity);
   const loading = useAppSelector(state => state.learningDisability.loading);
   const updating = useAppSelector(state => state.learningDisability.updating);
@@ -39,8 +36,6 @@ export const LearningDisabilityUpdate = () => {
     } else {
       dispatch(getEntity(id));
     }
-
-    dispatch(getLearners({}));
   }, []);
 
   useEffect(() => {
@@ -53,7 +48,6 @@ export const LearningDisabilityUpdate = () => {
     const entity = {
       ...learningDisabilityEntity,
       ...values,
-      learner: learners.find(it => it.id.toString() === values.learner.toString()),
     };
 
     if (isNew) {
@@ -69,7 +63,6 @@ export const LearningDisabilityUpdate = () => {
       : {
           disabilityType: 'DYSLEXIA',
           ...learningDisabilityEntity,
-          learner: learningDisabilityEntity?.learner?.id,
         };
 
   return (
@@ -123,22 +116,6 @@ export const LearningDisabilityUpdate = () => {
                     {translate('eduApp.DisabilityType.' + disabilityType)}
                   </option>
                 ))}
-              </ValidatedField>
-              <ValidatedField
-                id="learning-disability-learner"
-                name="learner"
-                data-cy="learner"
-                label={translate('eduApp.learningDisability.learner')}
-                type="select"
-              >
-                <option value="" key="0" />
-                {learners
-                  ? learners.map(otherEntity => (
-                      <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
-                      </option>
-                    ))
-                  : null}
               </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/learning-disability" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
