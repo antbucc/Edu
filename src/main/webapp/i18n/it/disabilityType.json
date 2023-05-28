@@ -1,0 +1,14 @@
+{
+  "eduApp": {
+    "DisabilityType": {
+      "null": "",
+      "DYSLEXIA": "DYSLEXIA",
+      "DYSCALCULIA": "DYSCALCULIA",
+      "DYSGRAPHIA": "DYSGRAPHIA",
+      "ADHD": "ADHD",
+      "APD": "APD",
+      "VISUAL_PROCESSING": "VISUAL_PROCESSING",
+      "LANGUAGE_PROCESSING": "LANGUAGE_PROCESSING"
+    }
+  }
+}

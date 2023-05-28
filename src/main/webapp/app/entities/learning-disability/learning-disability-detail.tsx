@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { APP_DATE_FORMAT, APP_LOCAL_DATE_FORMAT } from 'app/config/constants';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { getEntity } from './learner.reducer';
+import { getEntity } from './learning-disability.reducer';
 
-export const LearnerDetail = () => {
+export const LearningDisabilityDetail = () => {
   const dispatch = useAppDispatch();
 
   const { id } = useParams<'id'>();
@@ -18,12 +18,12 @@ export const LearnerDetail = () => {
     dispatch(getEntity(id));
   }, []);
 
-  const learnerEntity = useAppSelector(state => state.learner.entity);
+  const learningDisabilityEntity = useAppSelector(state => state.learningDisability.entity);
   return (
     <Row>
       <Col md="8">
-        <h2 data-cy="learnerDetailsHeading">
-          <Translate contentKey="eduApp.learner.detail.title">Learner</Translate>
+        <h2 data-cy="learningDisabilityDetailsHeading">
+          <Translate contentKey="eduApp.learningDisability.detail.title">LearningDisability</Translate>
         </h2>
         <dl className="jh-entity-details">
           <dt>
@@ -31,46 +31,38 @@ export const LearnerDetail = () => {
               <Translate contentKey="global.field.id">ID</Translate>
             </span>
           </dt>
-          <dd>{learnerEntity.id}</dd>
+          <dd>{learningDisabilityEntity.id}</dd>
           <dt>
-            <span id="firstName">
-              <Translate contentKey="eduApp.learner.firstName">First Name</Translate>
+            <span id="name">
+              <Translate contentKey="eduApp.learningDisability.name">Name</Translate>
             </span>
           </dt>
-          <dd>{learnerEntity.firstName}</dd>
+          <dd>{learningDisabilityEntity.name}</dd>
           <dt>
-            <span id="lastName">
-              <Translate contentKey="eduApp.learner.lastName">Last Name</Translate>
+            <span id="description">
+              <Translate contentKey="eduApp.learningDisability.description">Description</Translate>
             </span>
           </dt>
-          <dd>{learnerEntity.lastName}</dd>
+          <dd>{learningDisabilityEntity.description}</dd>
           <dt>
-            <span id="email">
-              <Translate contentKey="eduApp.learner.email">Email</Translate>
+            <span id="disabilityType">
+              <Translate contentKey="eduApp.learningDisability.disabilityType">Disability Type</Translate>
             </span>
           </dt>
-          <dd>{learnerEntity.email}</dd>
+          <dd>{learningDisabilityEntity.disabilityType}</dd>
           <dt>
-            <span id="phoneNumber">
-              <Translate contentKey="eduApp.learner.phoneNumber">Phone Number</Translate>
-            </span>
+            <Translate contentKey="eduApp.learningDisability.learner">Learner</Translate>
           </dt>
-          <dd>{learnerEntity.phoneNumber}</dd>
-          <dt>
-            <span id="gender">
-              <Translate contentKey="eduApp.learner.gender">Gender</Translate>
-            </span>
-          </dt>
-          <dd>{learnerEntity.gender}</dd>
+          <dd>{learningDisabilityEntity.learner ? learningDisabilityEntity.learner.id : ''}</dd>
         </dl>
-        <Button tag={Link} to="/learner" replace color="info" data-cy="entityDetailsBackButton">
+        <Button tag={Link} to="/learning-disability" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.back">Back</Translate>
           </span>
         </Button>
         &nbsp;
-        <Button tag={Link} to={`/learner/${learnerEntity.id}/edit`} replace color="primary">
+        <Button tag={Link} to={`/learning-disability/${learningDisabilityEntity.id}/edit`} replace color="primary">
           <FontAwesomeIcon icon="pencil-alt" />{' '}
           <span className="d-none d-md-inline">
             <Translate contentKey="entity.action.edit">Edit</Translate>
@@ -81,4 +73,4 @@ export const LearnerDetail = () => {
   );
 };
 
-export default LearnerDetail;
+export default LearningDisabilityDetail;

@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from 'app/config/store';
 import { IScenario } from 'app/shared/model/scenario.model';
 import { getEntities as getScenarios } from 'app/entities/scenario/scenario.reducer';
 import { ILearner } from 'app/shared/model/learner.model';
+import { GenderType } from 'app/shared/model/enumerations/gender-type.model';
 import { getEntity, updateEntity, createEntity, reset } from './learner.reducer';
 
 export const LearnerUpdate = () => {
@@ -26,6 +27,7 @@ export const LearnerUpdate = () => {
   const loading = useAppSelector(state => state.learner.loading);
   const updating = useAppSelector(state => state.learner.updating);
   const updateSuccess = useAppSelector(state => state.learner.updateSuccess);
+  const genderTypeValues = Object.keys(GenderType);
 
   const handleClose = () => {
     navigate('/learner');
@@ -62,6 +64,7 @@ export const LearnerUpdate = () => {
     isNew
       ? {}
       : {
+          gender: 'MALE',
           ...learnerEntity,
         };
 
@@ -112,6 +115,13 @@ export const LearnerUpdate = () => {
                 data-cy="phoneNumber"
                 type="text"
               />
+              <ValidatedField label={translate('eduApp.learner.gender')} id="learner-gender" name="gender" data-cy="gender" type="select">
+                {genderTypeValues.map(genderType => (
+                  <option value={genderType} key={genderType}>
+                    {translate('eduApp.GenderType.' + genderType)}
+                  </option>
+                ))}
+              </ValidatedField>
               <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/learner" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;

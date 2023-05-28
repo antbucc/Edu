@@ -1,6 +1,7 @@
 package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.modis.edu.domain.enumeration.GenderType;
 import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
@@ -32,6 +33,14 @@ public class Learner implements Serializable {
 
     @Field("phone_number")
     private String phoneNumber;
+
+    @Field("gender")
+    private GenderType gender;
+
+    @DBRef
+    @Field("learningDisability")
+    @JsonIgnoreProperties(value = { "learner" }, allowSetters = true)
+    private Set<LearningDisability> learningDisabilities = new HashSet<>();
 
     @DBRef
     @Field("scenarios")
@@ -105,6 +114,50 @@ public class Learner implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
+    public GenderType getGender() {
+        return this.gender;
+    }
+
+    public Learner gender(GenderType gender) {
+        this.setGender(gender);
+        return this;
+    }
+
+    public void setGender(GenderType gender) {
+        this.gender = gender;
+    }
+
+    public Set<LearningDisability> getLearningDisabilities() {
+        return this.learningDisabilities;
+    }
+
+    public void setLearningDisabilities(Set<LearningDisability> learningDisabilities) {
+        if (this.learningDisabilities != null) {
+            this.learningDisabilities.forEach(i -> i.setLearner(null));
+        }
+        if (learningDisabilities != null) {
+            learningDisabilities.forEach(i -> i.setLearner(this));
+        }
+        this.learningDisabilities = learningDisabilities;
+    }
+
+    public Learner learningDisabilities(Set<LearningDisability> learningDisabilities) {
+        this.setLearningDisabilities(learningDisabilities);
+        return this;
+    }
+
+    public Learner addLearningDisability(LearningDisability learningDisability) {
+        this.learningDisabilities.add(learningDisability);
+        learningDisability.setLearner(this);
+        return this;
+    }
+
+    public Learner removeLearningDisability(LearningDisability learningDisability) {
+        this.learningDisabilities.remove(learningDisability);
+        learningDisability.setLearner(null);
+        return this;
+    }
+
     public Set<Scenario> getScenarios() {
         return this.scenarios;
     }
@@ -164,6 +217,7 @@ public class Learner implements Serializable {
             ", lastName='" + getLastName() + "'" +
             ", email='" + getEmail() + "'" +
             ", phoneNumber='" + getPhoneNumber() + "'" +
+            ", gender='" + getGender() + "'" +
             "}";
     }
 }

@@ -1,0 +1,27 @@
+{
+  "eduApp": {
+    "learningDisability": {
+      "home": {
+        "title": "LearningDisabilities",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Learning Disability",
+        "createOrEditLabel": "Genera o modifica un Learning Disability",
+        "notFound": "No Learning Disabilities found"
+      },
+      "created": "&Egrave; stato generato un nuovo Learning Disability con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Learning Disability identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Learning Disability con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Learning Disability {{ id }}?"
+      },
+      "detail": {
+        "title": "Learning Disability"
+      },
+      "id": "ID",
+      "name": "Name",
+      "description": "Description",
+      "disabilityType": "Disability Type",
+      "learner": "Learner"
+    }
+  }
+}

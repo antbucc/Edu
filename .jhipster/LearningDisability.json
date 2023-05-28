@@ -1,0 +1,36 @@
+{
+  "applications": "*",
+  "changelogDate": "20230528082443",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "learning_disability",
+  "fields": [
+    {
+      "fieldName": "name",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "disabilityType",
+      "fieldType": "DisabilityType",
+      "fieldValues": "DYSLEXIA,DYSCALCULIA,DYSGRAPHIA,ADHD,APD,VISUAL_PROCESSING,LANGUAGE_PROCESSING"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "LearningDisability",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "learner",
+      "otherEntityRelationshipName": "learningDisability",
+      "relationshipName": "learner",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}
