@@ -192,12 +192,12 @@ enum LearningStyleType {
 
 
 relationship OneToMany {
-  Educator { EducatorPreference(title) } to  EducatorPreference { Educator(surname) } 
+  Educator { EducatorPreference(title) } to  EducatorPreference { Educator(lastName) } 
 }
 
 
 relationship OneToMany {
-  Learner { LearnerPreference(title) } to  LearnerPreference { Learner(surname) } 
+  Learner { LearnerPreference(title) } to  LearnerPreference { Learner(lastName) } 
 }
 
 

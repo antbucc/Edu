@@ -32,7 +32,7 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityField": "surname",
+      "otherEntityField": "lastName",
       "otherEntityName": "educator",
       "otherEntityRelationshipName": "educatorPreference",
       "relationshipName": "educator",

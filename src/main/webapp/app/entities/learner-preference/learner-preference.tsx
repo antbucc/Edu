@@ -100,7 +100,7 @@ export const LearnerPreference = () => {
                   </td>
                   <td>
                     {learnerPreference.learner ? (
-                      <Link to={`/learner/${learnerPreference.learner.id}`}>{learnerPreference.learner.surname}</Link>
+                      <Link to={`/learner/${learnerPreference.learner.id}`}>{learnerPreference.learner.lastName}</Link>
                     ) : (
                       ''
                     )}

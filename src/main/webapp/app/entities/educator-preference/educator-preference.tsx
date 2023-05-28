@@ -94,7 +94,7 @@ export const EducatorPreference = () => {
                   </td>
                   <td>
                     {educatorPreference.educator ? (
-                      <Link to={`/educator/${educatorPreference.educator.id}`}>{educatorPreference.educator.surname}</Link>
+                      <Link to={`/educator/${educatorPreference.educator.id}`}>{educatorPreference.educator.lastName}</Link>
                     ) : (
                       ''
                     )}
