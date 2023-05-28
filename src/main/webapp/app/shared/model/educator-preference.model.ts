@@ -10,7 +10,7 @@ export interface IEducatorPreference {
   style?: LearningStyleType | null;
   modality?: ModalityType | null;
   difficulty?: Difficulty | null;
-  preferredActivities?: IPreferredActivity | null;
+  preferredActivities?: IPreferredActivity[] | null;
   educator?: IEducator | null;
 }
 

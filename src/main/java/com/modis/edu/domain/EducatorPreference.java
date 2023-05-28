@@ -5,6 +5,8 @@ import com.modis.edu.domain.enumeration.Difficulty;
 import com.modis.edu.domain.enumeration.LearningStyleType;
 import com.modis.edu.domain.enumeration.ModalityType;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -36,7 +38,8 @@ public class EducatorPreference implements Serializable {
 
     @DBRef
     @Field("preferredActivities")
-    private PreferredActivity preferredActivities;
+    @JsonIgnoreProperties(value = { "preferences" }, allowSetters = true)
+    private Set<PreferredActivity> preferredActivities = new HashSet<>();
 
     @DBRef
     @Field("educator")
@@ -110,16 +113,28 @@ public class EducatorPreference implements Serializable {
         this.difficulty = difficulty;
     }
 
-    public PreferredActivity getPreferredActivities() {
+    public Set<PreferredActivity> getPreferredActivities() {
         return this.preferredActivities;
     }
 
-    public void setPreferredActivities(PreferredActivity preferredActivity) {
-        this.preferredActivities = preferredActivity;
+    public void setPreferredActivities(Set<PreferredActivity> preferredActivities) {
+        this.preferredActivities = preferredActivities;
     }
 
-    public EducatorPreference preferredActivities(PreferredActivity preferredActivity) {
-        this.setPreferredActivities(preferredActivity);
+    public EducatorPreference preferredActivities(Set<PreferredActivity> preferredActivities) {
+        this.setPreferredActivities(preferredActivities);
+        return this;
+    }
+
+    public EducatorPreference addPreferredActivities(PreferredActivity preferredActivity) {
+        this.preferredActivities.add(preferredActivity);
+        preferredActivity.getPreferences().add(this);
+        return this;
+    }
+
+    public EducatorPreference removePreferredActivities(PreferredActivity preferredActivity) {
+        this.preferredActivities.remove(preferredActivity);
+        preferredActivity.getPreferences().remove(this);
         return this;
     }
 

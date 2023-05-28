@@ -1,3 +1,4 @@
+import { IEducatorPreference } from 'app/shared/model/educator-preference.model';
 import { ActivityType } from 'app/shared/model/enumerations/activity-type.model';
 import { Tool } from 'app/shared/model/enumerations/tool.model';
 import { Difficulty } from 'app/shared/model/enumerations/difficulty.model';
@@ -9,6 +10,7 @@ export interface IPreferredActivity {
   type?: ActivityType | null;
   tool?: Tool | null;
   difficulty?: Difficulty | null;
+  preferences?: IEducatorPreference[] | null;
 }
 
 export const defaultValue: Readonly<IPreferredActivity> = {};

@@ -1,10 +1,14 @@
 package com.modis.edu.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.modis.edu.domain.enumeration.ActivityType;
 import com.modis.edu.domain.enumeration.Difficulty;
 import com.modis.edu.domain.enumeration.Tool;
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -34,6 +38,11 @@ public class PreferredActivity implements Serializable {
 
     @Field("difficulty")
     private Difficulty difficulty;
+
+    @DBRef
+    @Field("preferences")
+    @JsonIgnoreProperties(value = { "preferredActivities", "educator" }, allowSetters = true)
+    private Set<EducatorPreference> preferences = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -113,6 +122,37 @@ public class PreferredActivity implements Serializable {
 
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public Set<EducatorPreference> getPreferences() {
+        return this.preferences;
+    }
+
+    public void setPreferences(Set<EducatorPreference> educatorPreferences) {
+        if (this.preferences != null) {
+            this.preferences.forEach(i -> i.removePreferredActivities(this));
+        }
+        if (educatorPreferences != null) {
+            educatorPreferences.forEach(i -> i.addPreferredActivities(this));
+        }
+        this.preferences = educatorPreferences;
+    }
+
+    public PreferredActivity preferences(Set<EducatorPreference> educatorPreferences) {
+        this.setPreferences(educatorPreferences);
+        return this;
+    }
+
+    public PreferredActivity addPreferences(EducatorPreference educatorPreference) {
+        this.preferences.add(educatorPreference);
+        educatorPreference.getPreferredActivities().add(this);
+        return this;
+    }
+
+    public PreferredActivity removePreferences(EducatorPreference educatorPreference) {
+        this.preferences.remove(educatorPreference);
+        educatorPreference.getPreferredActivities().remove(this);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

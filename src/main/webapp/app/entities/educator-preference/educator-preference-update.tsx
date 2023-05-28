@@ -61,7 +61,7 @@ export const EducatorPreferenceUpdate = () => {
     const entity = {
       ...educatorPreferenceEntity,
       ...values,
-      preferredActivities: preferredActivities.find(it => it.id.toString() === values.preferredActivities.toString()),
+      preferredActivities: mapIdList(values.preferredActivities),
       educator: educators.find(it => it.id.toString() === values.educator.toString()),
     };
 
@@ -80,7 +80,7 @@ export const EducatorPreferenceUpdate = () => {
           modality: 'ONLINE',
           difficulty: 'LOW',
           ...educatorPreferenceEntity,
-          preferredActivities: educatorPreferenceEntity?.preferredActivities?.id,
+          preferredActivities: educatorPreferenceEntity?.preferredActivities?.map(e => e.id.toString()),
           educator: educatorPreferenceEntity?.educator?.id,
         };
 
@@ -156,11 +156,12 @@ export const EducatorPreferenceUpdate = () => {
                 ))}
               </ValidatedField>
               <ValidatedField
-                id="educator-preference-preferredActivities"
-                name="preferredActivities"
-                data-cy="preferredActivities"
                 label={translate('eduApp.educatorPreference.preferredActivities')}
+                id="educator-preference-preferredActivities"
+                data-cy="preferredActivities"
                 type="select"
+                multiple
+                name="preferredActivities"
               >
                 <option value="" key="0" />
                 {preferredActivities

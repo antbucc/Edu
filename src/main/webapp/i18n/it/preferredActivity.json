@@ -22,7 +22,8 @@
       "description": "Description",
       "type": "Type",
       "tool": "Tool",
-      "difficulty": "Difficulty"
+      "difficulty": "Difficulty",
+      "preferences": "Preferences"
     }
   }
 }
