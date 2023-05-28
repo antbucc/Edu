@@ -71,7 +71,11 @@ class PreferredActivityGatlingTest extends Simulation {
             .post("/api/preferred-activities")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
-                "activity":"INDIVIDUAL"
+                "title":"SAMPLE_TEXT"
+                , "description":"SAMPLE_TEXT"
+                , "type":"INDIVIDUAL"
+                , "tool":"COMPUTER"
+                , "difficulty":"LOW"
                 }""")).asJson
             .check(status.is(201))
             .check(headerRegex("Location", "(.*)").saveAs("new_preferredActivity_url"))).exitHereIfFailed

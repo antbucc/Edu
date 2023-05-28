@@ -42,8 +42,20 @@ public class PreferredActivityServiceImpl implements PreferredActivityService {
         return preferredActivityRepository
             .findById(preferredActivity.getId())
             .map(existingPreferredActivity -> {
-                if (preferredActivity.getActivity() != null) {
-                    existingPreferredActivity.setActivity(preferredActivity.getActivity());
+                if (preferredActivity.getTitle() != null) {
+                    existingPreferredActivity.setTitle(preferredActivity.getTitle());
+                }
+                if (preferredActivity.getDescription() != null) {
+                    existingPreferredActivity.setDescription(preferredActivity.getDescription());
+                }
+                if (preferredActivity.getType() != null) {
+                    existingPreferredActivity.setType(preferredActivity.getType());
+                }
+                if (preferredActivity.getTool() != null) {
+                    existingPreferredActivity.setTool(preferredActivity.getTool());
+                }
+                if (preferredActivity.getDifficulty() != null) {
+                    existingPreferredActivity.setDifficulty(preferredActivity.getDifficulty());
                 }
 
                 return existingPreferredActivity;

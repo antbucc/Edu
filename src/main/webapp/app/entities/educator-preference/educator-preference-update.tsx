@@ -8,6 +8,8 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
+import { IPreferredActivity } from 'app/shared/model/preferred-activity.model';
+import { getEntities as getPreferredActivities } from 'app/entities/preferred-activity/preferred-activity.reducer';
 import { IEducator } from 'app/shared/model/educator.model';
 import { getEntities as getEducators } from 'app/entities/educator/educator.reducer';
 import { IEducatorPreference } from 'app/shared/model/educator-preference.model';
@@ -24,6 +26,7 @@ export const EducatorPreferenceUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
+  const preferredActivities = useAppSelector(state => state.preferredActivity.entities);
   const educators = useAppSelector(state => state.educator.entities);
   const educatorPreferenceEntity = useAppSelector(state => state.educatorPreference.entity);
   const loading = useAppSelector(state => state.educatorPreference.loading);
@@ -44,6 +47,7 @@ export const EducatorPreferenceUpdate = () => {
       dispatch(getEntity(id));
     }
 
+    dispatch(getPreferredActivities({}));
     dispatch(getEducators({}));
   }, []);
 
@@ -57,6 +61,7 @@ export const EducatorPreferenceUpdate = () => {
     const entity = {
       ...educatorPreferenceEntity,
       ...values,
+      preferredActivities: preferredActivities.find(it => it.id.toString() === values.preferredActivities.toString()),
       educator: educators.find(it => it.id.toString() === values.educator.toString()),
     };
 
@@ -75,6 +80,7 @@ export const EducatorPreferenceUpdate = () => {
           modality: 'ONLINE',
           difficulty: 'LOW',
           ...educatorPreferenceEntity,
+          preferredActivities: educatorPreferenceEntity?.preferredActivities?.id,
           educator: educatorPreferenceEntity?.educator?.id,
         };
 
@@ -148,6 +154,22 @@ export const EducatorPreferenceUpdate = () => {
                     {translate('eduApp.Difficulty.' + difficulty)}
                   </option>
                 ))}
+              </ValidatedField>
+              <ValidatedField
+                id="educator-preference-preferredActivities"
+                name="preferredActivities"
+                data-cy="preferredActivities"
+                label={translate('eduApp.educatorPreference.preferredActivities')}
+                type="select"
+              >
+                <option value="" key="0" />
+                {preferredActivities
+                  ? preferredActivities.map(otherEntity => (
+                      <option value={otherEntity.id} key={otherEntity.id}>
+                        {otherEntity.id}
+                      </option>
+                    ))
+                  : null}
               </ValidatedField>
               <ValidatedField
                 id="educator-preference-educator"

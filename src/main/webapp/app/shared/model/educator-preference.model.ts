@@ -1,3 +1,4 @@
+import { IPreferredActivity } from 'app/shared/model/preferred-activity.model';
 import { IEducator } from 'app/shared/model/educator.model';
 import { LearningStyleType } from 'app/shared/model/enumerations/learning-style-type.model';
 import { ModalityType } from 'app/shared/model/enumerations/modality-type.model';
@@ -9,6 +10,7 @@ export interface IEducatorPreference {
   style?: LearningStyleType | null;
   modality?: ModalityType | null;
   difficulty?: Difficulty | null;
+  preferredActivities?: IPreferredActivity | null;
   educator?: IEducator | null;
 }
 

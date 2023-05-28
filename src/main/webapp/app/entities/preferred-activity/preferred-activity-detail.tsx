@@ -33,15 +33,35 @@ export const PreferredActivityDetail = () => {
           </dt>
           <dd>{preferredActivityEntity.id}</dd>
           <dt>
-            <span id="activity">
-              <Translate contentKey="eduApp.preferredActivity.activity">Activity</Translate>
+            <span id="title">
+              <Translate contentKey="eduApp.preferredActivity.title">Title</Translate>
             </span>
           </dt>
-          <dd>{preferredActivityEntity.activity}</dd>
+          <dd>{preferredActivityEntity.title}</dd>
           <dt>
-            <Translate contentKey="eduApp.preferredActivity.educatorPreference">Educator Preference</Translate>
+            <span id="description">
+              <Translate contentKey="eduApp.preferredActivity.description">Description</Translate>
+            </span>
           </dt>
-          <dd>{preferredActivityEntity.educatorPreference ? preferredActivityEntity.educatorPreference.id : ''}</dd>
+          <dd>{preferredActivityEntity.description}</dd>
+          <dt>
+            <span id="type">
+              <Translate contentKey="eduApp.preferredActivity.type">Type</Translate>
+            </span>
+          </dt>
+          <dd>{preferredActivityEntity.type}</dd>
+          <dt>
+            <span id="tool">
+              <Translate contentKey="eduApp.preferredActivity.tool">Tool</Translate>
+            </span>
+          </dt>
+          <dd>{preferredActivityEntity.tool}</dd>
+          <dt>
+            <span id="difficulty">
+              <Translate contentKey="eduApp.preferredActivity.difficulty">Difficulty</Translate>
+            </span>
+          </dt>
+          <dd>{preferredActivityEntity.difficulty}</dd>
         </dl>
         <Button tag={Link} to="/preferred-activity" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

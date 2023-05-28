@@ -57,10 +57,19 @@ export const PreferredActivity = () => {
                   <Translate contentKey="eduApp.preferredActivity.id">ID</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.preferredActivity.activity">Activity</Translate>
+                  <Translate contentKey="eduApp.preferredActivity.title">Title</Translate>
                 </th>
                 <th>
-                  <Translate contentKey="eduApp.preferredActivity.educatorPreference">Educator Preference</Translate>
+                  <Translate contentKey="eduApp.preferredActivity.description">Description</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="eduApp.preferredActivity.type">Type</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="eduApp.preferredActivity.tool">Tool</Translate>
+                </th>
+                <th>
+                  <Translate contentKey="eduApp.preferredActivity.difficulty">Difficulty</Translate>
                 </th>
                 <th />
               </tr>
@@ -73,17 +82,16 @@ export const PreferredActivity = () => {
                       {preferredActivity.id}
                     </Button>
                   </td>
+                  <td>{preferredActivity.title}</td>
+                  <td>{preferredActivity.description}</td>
                   <td>
-                    <Translate contentKey={`eduApp.ActivityType.${preferredActivity.activity}`} />
+                    <Translate contentKey={`eduApp.ActivityType.${preferredActivity.type}`} />
                   </td>
                   <td>
-                    {preferredActivity.educatorPreference ? (
-                      <Link to={`/educator-preference/${preferredActivity.educatorPreference.id}`}>
-                        {preferredActivity.educatorPreference.id}
-                      </Link>
-                    ) : (
-                      ''
-                    )}
+                    <Translate contentKey={`eduApp.Tool.${preferredActivity.tool}`} />
+                  </td>
+                  <td>
+                    <Translate contentKey={`eduApp.Difficulty.${preferredActivity.difficulty}`} />
                   </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

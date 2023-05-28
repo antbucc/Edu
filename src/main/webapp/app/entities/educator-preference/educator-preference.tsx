@@ -69,6 +69,9 @@ export const EducatorPreference = () => {
                   <Translate contentKey="eduApp.educatorPreference.difficulty">Difficulty</Translate>
                 </th>
                 <th>
+                  <Translate contentKey="eduApp.educatorPreference.preferredActivities">Preferred Activities</Translate>
+                </th>
+                <th>
                   <Translate contentKey="eduApp.educatorPreference.educator">Educator</Translate>
                 </th>
                 <th />
@@ -91,6 +94,15 @@ export const EducatorPreference = () => {
                   </td>
                   <td>
                     <Translate contentKey={`eduApp.Difficulty.${educatorPreference.difficulty}`} />
+                  </td>
+                  <td>
+                    {educatorPreference.preferredActivities ? (
+                      <Link to={`/preferred-activity/${educatorPreference.preferredActivities.id}`}>
+                        {educatorPreference.preferredActivities.id}
+                      </Link>
+                    ) : (
+                      ''
+                    )}
                   </td>
                   <td>
                     {educatorPreference.educator ? (

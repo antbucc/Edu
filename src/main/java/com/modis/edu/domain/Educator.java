@@ -32,13 +32,8 @@ public class Educator implements Serializable {
 
     @DBRef
     @Field("educatorPreference")
-    @JsonIgnoreProperties(value = { "educator" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "preferredActivities", "educator" }, allowSetters = true)
     private Set<EducatorPreference> educatorPreferences = new HashSet<>();
-
-    @DBRef
-    @Field("activity")
-    @JsonIgnoreProperties(value = { "concepts", "preconditions", "effects", "fragment", "preferred" }, allowSetters = true)
-    private Set<Activity> activities = new HashSet<>();
 
     @DBRef
     @Field("scenarios")
@@ -127,37 +122,6 @@ public class Educator implements Serializable {
     public Educator removeEducatorPreference(EducatorPreference educatorPreference) {
         this.educatorPreferences.remove(educatorPreference);
         educatorPreference.setEducator(null);
-        return this;
-    }
-
-    public Set<Activity> getActivities() {
-        return this.activities;
-    }
-
-    public void setActivities(Set<Activity> activities) {
-        if (this.activities != null) {
-            this.activities.forEach(i -> i.setPreferred(null));
-        }
-        if (activities != null) {
-            activities.forEach(i -> i.setPreferred(this));
-        }
-        this.activities = activities;
-    }
-
-    public Educator activities(Set<Activity> activities) {
-        this.setActivities(activities);
-        return this;
-    }
-
-    public Educator addActivity(Activity activity) {
-        this.activities.add(activity);
-        activity.setPreferred(this);
-        return this;
-    }
-
-    public Educator removeActivity(Activity activity) {
-        this.activities.remove(activity);
-        activity.setPreferred(null);
         return this;
     }
 

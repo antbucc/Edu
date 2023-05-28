@@ -18,8 +18,11 @@
         "title": "Preferred Activity"
       },
       "id": "ID",
-      "activity": "Activity",
-      "educatorPreference": "Educator Preference"
+      "title": "Title",
+      "description": "Description",
+      "type": "Type",
+      "tool": "Tool",
+      "difficulty": "Difficulty"
     }
   }
 }

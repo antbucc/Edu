@@ -35,8 +35,12 @@ public class EducatorPreference implements Serializable {
     private Difficulty difficulty;
 
     @DBRef
+    @Field("preferredActivities")
+    private PreferredActivity preferredActivities;
+
+    @DBRef
     @Field("educator")
-    @JsonIgnoreProperties(value = { "educatorPreferences", "activities", "scenarios" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "educatorPreferences", "scenarios" }, allowSetters = true)
     private Educator educator;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -104,6 +108,19 @@ public class EducatorPreference implements Serializable {
 
     public void setDifficulty(Difficulty difficulty) {
         this.difficulty = difficulty;
+    }
+
+    public PreferredActivity getPreferredActivities() {
+        return this.preferredActivities;
+    }
+
+    public void setPreferredActivities(PreferredActivity preferredActivity) {
+        this.preferredActivities = preferredActivity;
+    }
+
+    public EducatorPreference preferredActivities(PreferredActivity preferredActivity) {
+        this.setPreferredActivities(preferredActivity);
+        return this;
     }
 
     public Educator getEducator() {

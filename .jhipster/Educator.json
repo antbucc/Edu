@@ -32,12 +32,6 @@
       "relationshipType": "one-to-many"
     },
     {
-      "otherEntityName": "activity",
-      "otherEntityRelationshipName": "preferred",
-      "relationshipName": "activity",
-      "relationshipType": "one-to-many"
-    },
-    {
       "otherEntityField": "title",
       "otherEntityName": "scenario",
       "otherEntityRelationshipName": "educator",
