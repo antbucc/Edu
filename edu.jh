@@ -117,6 +117,9 @@ difficulty Difficulty
 disability DisabilityType
 }
 
+entity PreferredActivity {
+ activity Activity
+}
 
 
 
@@ -194,6 +197,18 @@ enum LearningStyleType {
 relationship OneToMany {
   Educator { EducatorPreference(title) } to  EducatorPreference { Educator(lastName) } 
 }
+
+
+relationship OneToOne {
+ PreferredActivity { Activity(title) } to  Activity { PreferredActivity } 
+}
+
+relationship OneToMany {
+ Educator to  PreferredActivity
+}
+
+
+
 
 
 relationship OneToMany {
