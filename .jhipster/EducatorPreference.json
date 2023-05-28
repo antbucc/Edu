@@ -33,8 +33,10 @@
   "relationships": [
     {
       "otherEntityName": "preferredActivity",
+      "otherEntityRelationshipName": "preferences",
+      "ownerSide": true,
       "relationshipName": "preferredActivities",
-      "relationshipType": "many-to-one"
+      "relationshipType": "many-to-many"
     },
     {
       "otherEntityField": "lastName",

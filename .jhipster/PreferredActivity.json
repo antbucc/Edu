@@ -34,6 +34,14 @@
   "name": "PreferredActivity",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "educatorPreference",
+      "otherEntityRelationshipName": "preferredActivities",
+      "ownerSide": false,
+      "relationshipName": "preferences",
+      "relationshipType": "many-to-many"
+    }
+  ],
   "service": "serviceImpl"
 }

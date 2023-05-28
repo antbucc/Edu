@@ -96,13 +96,14 @@ export const EducatorPreference = () => {
                     <Translate contentKey={`eduApp.Difficulty.${educatorPreference.difficulty}`} />
                   </td>
                   <td>
-                    {educatorPreference.preferredActivities ? (
-                      <Link to={`/preferred-activity/${educatorPreference.preferredActivities.id}`}>
-                        {educatorPreference.preferredActivities.id}
-                      </Link>
-                    ) : (
-                      ''
-                    )}
+                    {educatorPreference.preferredActivities
+                      ? educatorPreference.preferredActivities.map((val, j) => (
+                          <span key={j}>
+                            <Link to={`/preferred-activity/${val.id}`}>{val.id}</Link>
+                            {j === educatorPreference.preferredActivities.length - 1 ? '' : ', '}
+                          </span>
+                        ))
+                      : null}
                   </td>
                   <td>
                     {educatorPreference.educator ? (
