@@ -59,7 +59,7 @@ export const EducatorPreferenceDetail = () => {
           <dt>
             <Translate contentKey="eduApp.educatorPreference.educator">Educator</Translate>
           </dt>
-          <dd>{educatorPreferenceEntity.educator ? educatorPreferenceEntity.educator.surname : ''}</dd>
+          <dd>{educatorPreferenceEntity.educator ? educatorPreferenceEntity.educator.lastName : ''}</dd>
         </dl>
         <Button tag={Link} to="/educator-preference" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

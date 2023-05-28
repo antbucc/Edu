@@ -65,7 +65,7 @@ export const LearnerPreferenceDetail = () => {
           <dt>
             <Translate contentKey="eduApp.learnerPreference.learner">Learner</Translate>
           </dt>
-          <dd>{learnerPreferenceEntity.learner ? learnerPreferenceEntity.learner.surname : ''}</dd>
+          <dd>{learnerPreferenceEntity.learner ? learnerPreferenceEntity.learner.lastName : ''}</dd>
         </dl>
         <Button tag={Link} to="/learner-preference" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

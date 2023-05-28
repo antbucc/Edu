@@ -160,7 +160,7 @@ export const EducatorPreferenceUpdate = () => {
                 {educators
                   ? educators.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.surname}
+                        {otherEntity.lastName}
                       </option>
                     ))
                   : null}

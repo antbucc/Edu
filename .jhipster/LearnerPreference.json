@@ -37,7 +37,7 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityField": "surname",
+      "otherEntityField": "lastName",
       "otherEntityName": "learner",
       "otherEntityRelationshipName": "learnerPreference",
       "relationshipName": "learner",
