@@ -70,14 +70,10 @@ public class LearnerServiceImpl implements LearnerService {
         return learnerRepository.findAll(pageable);
     }
 
-    public Page<Learner> findAllWithEagerRelationships(Pageable pageable) {
-        return learnerRepository.findAllWithEagerRelationships(pageable);
-    }
-
     @Override
     public Optional<Learner> findOne(String id) {
         log.debug("Request to get Learner : {}", id);
-        return learnerRepository.findOneWithEagerRelationships(id);
+        return learnerRepository.findById(id);
     }
 
     @Override

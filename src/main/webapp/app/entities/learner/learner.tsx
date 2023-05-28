@@ -140,10 +140,6 @@ export const Learner = () => {
                   <th className="hand" onClick={sort('gender')}>
                     <Translate contentKey="eduApp.learner.gender">Gender</Translate> <FontAwesomeIcon icon="sort" />
                   </th>
-                  <th>
-                    <Translate contentKey="eduApp.learner.learningDisability">Learning Disability</Translate>{' '}
-                    <FontAwesomeIcon icon="sort" />
-                  </th>
                   <th />
                 </tr>
               </thead>
@@ -161,15 +157,6 @@ export const Learner = () => {
                     <td>{learner.phoneNumber}</td>
                     <td>
                       <Translate contentKey={`eduApp.GenderType.${learner.gender}`} />
-                    </td>
-                    <td>
-                      {learner.learningDisability ? (
-                        <Link to={`/learning-disability/${learner.learningDisability.id}`}>
-                          {learner.learningDisability.disabilityType}
-                        </Link>
-                      ) : (
-                        ''
-                      )}
                     </td>
                     <td className="text-end">
                       <div className="btn-group flex-btn-group-container">

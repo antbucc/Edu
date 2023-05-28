@@ -38,11 +38,6 @@ public class Learner implements Serializable {
     private GenderType gender;
 
     @DBRef
-    @Field("learningDisability")
-    @JsonIgnoreProperties(value = { "learners" }, allowSetters = true)
-    private LearningDisability learningDisability;
-
-    @DBRef
     @Field("scenarios")
     @JsonIgnoreProperties(value = { "modules", "educators", "competences", "learners", "domain" }, allowSetters = true)
     private Set<Scenario> scenarios = new HashSet<>();
@@ -125,19 +120,6 @@ public class Learner implements Serializable {
 
     public void setGender(GenderType gender) {
         this.gender = gender;
-    }
-
-    public LearningDisability getLearningDisability() {
-        return this.learningDisability;
-    }
-
-    public void setLearningDisability(LearningDisability learningDisability) {
-        this.learningDisability = learningDisability;
-    }
-
-    public Learner learningDisability(LearningDisability learningDisability) {
-        this.setLearningDisability(learningDisability);
-        return this;
     }
 
     public Set<Scenario> getScenarios() {

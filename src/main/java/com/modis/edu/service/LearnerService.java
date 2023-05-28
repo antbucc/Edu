@@ -42,14 +42,6 @@ public interface LearnerService {
     Page<Learner> findAll(Pageable pageable);
 
     /**
-     * Get all the learners with eager load of many-to-many relationships.
-     *
-     * @param pageable the pagination information.
-     * @return the list of entities.
-     */
-    Page<Learner> findAllWithEagerRelationships(Pageable pageable);
-
-    /**
      * Get the "id" learner.
      *
      * @param id the id of the entity.
