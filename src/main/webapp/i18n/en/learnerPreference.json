@@ -1,0 +1,29 @@
+{
+  "eduApp": {
+    "learnerPreference": {
+      "home": {
+        "title": "Learner Preferences",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Learner Preference",
+        "createOrEditLabel": "Create or edit a Learner Preference",
+        "notFound": "No Learner Preferences found"
+      },
+      "created": "A new Learner Preference is created with identifier {{ param }}",
+      "updated": "A Learner Preference is updated with identifier {{ param }}",
+      "deleted": "A Learner Preference is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Learner Preference {{ id }}?"
+      },
+      "detail": {
+        "title": "Learner Preference"
+      },
+      "id": "ID",
+      "title": "Title",
+      "style": "Style",
+      "modality": "Modality",
+      "difficulty": "Difficulty",
+      "disability": "Disability",
+      "learner": "Learner"
+    }
+  }
+}

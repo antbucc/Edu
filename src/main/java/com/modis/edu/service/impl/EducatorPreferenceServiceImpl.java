@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 /**
@@ -42,8 +44,14 @@ public class EducatorPreferenceServiceImpl implements EducatorPreferenceService 
         return educatorPreferenceRepository
             .findById(educatorPreference.getId())
             .map(existingEducatorPreference -> {
-                if (educatorPreference.getSubject() != null) {
-                    existingEducatorPreference.setSubject(educatorPreference.getSubject());
+                if (educatorPreference.getTitle() != null) {
+                    existingEducatorPreference.setTitle(educatorPreference.getTitle());
+                }
+                if (educatorPreference.getStyle() != null) {
+                    existingEducatorPreference.setStyle(educatorPreference.getStyle());
+                }
+                if (educatorPreference.getModality() != null) {
+                    existingEducatorPreference.setModality(educatorPreference.getModality());
                 }
                 if (educatorPreference.getDifficulty() != null) {
                     existingEducatorPreference.setDifficulty(educatorPreference.getDifficulty());
@@ -60,10 +68,14 @@ public class EducatorPreferenceServiceImpl implements EducatorPreferenceService 
         return educatorPreferenceRepository.findAll();
     }
 
+    public Page<EducatorPreference> findAllWithEagerRelationships(Pageable pageable) {
+        return educatorPreferenceRepository.findAllWithEagerRelationships(pageable);
+    }
+
     @Override
     public Optional<EducatorPreference> findOne(String id) {
         log.debug("Request to get EducatorPreference : {}", id);
-        return educatorPreferenceRepository.findById(id);
+        return educatorPreferenceRepository.findOneWithEagerRelationships(id);
     }
 
     @Override

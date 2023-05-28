@@ -21,7 +21,7 @@
       "firstName": "First Name",
       "lastName": "Last Name",
       "email": "Email",
-      "preferences": "Preferences",
+      "educatorPreference": "Educator Preference",
       "scenario": "Scenario"
     }
   }

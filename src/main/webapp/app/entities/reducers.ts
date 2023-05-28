@@ -21,6 +21,7 @@ import preferredTopic from 'app/entities/preferred-topic/preferred-topic.reducer
 import preferredActivity from 'app/entities/preferred-activity/preferred-activity.reducer';
 import preferredModality from 'app/entities/preferred-modality/preferred-modality.reducer';
 import preferredLearningStyle from 'app/entities/preferred-learning-style/preferred-learning-style.reducer';
+import learnerPreference from 'app/entities/learner-preference/learner-preference.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const entitiesReducers = {
@@ -47,6 +48,7 @@ const entitiesReducers = {
   preferredActivity,
   preferredModality,
   preferredLearningStyle,
+  learnerPreference,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
 };
 

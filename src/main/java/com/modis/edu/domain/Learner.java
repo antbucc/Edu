@@ -38,9 +38,9 @@ public class Learner implements Serializable {
     private GenderType gender;
 
     @DBRef
-    @Field("disabilities")
-    @JsonIgnoreProperties(value = { "learnarDisabilities" }, allowSetters = true)
-    private Set<LearningDisability> disabilities = new HashSet<>();
+    @Field("learnerPreference")
+    @JsonIgnoreProperties(value = { "learner" }, allowSetters = true)
+    private Set<LearnerPreference> learnerPreferences = new HashSet<>();
 
     @DBRef
     @Field("scenarios")
@@ -127,34 +127,34 @@ public class Learner implements Serializable {
         this.gender = gender;
     }
 
-    public Set<LearningDisability> getDisabilities() {
-        return this.disabilities;
+    public Set<LearnerPreference> getLearnerPreferences() {
+        return this.learnerPreferences;
     }
 
-    public void setDisabilities(Set<LearningDisability> learningDisabilities) {
-        if (this.disabilities != null) {
-            this.disabilities.forEach(i -> i.setLearnarDisabilities(null));
+    public void setLearnerPreferences(Set<LearnerPreference> learnerPreferences) {
+        if (this.learnerPreferences != null) {
+            this.learnerPreferences.forEach(i -> i.setLearner(null));
         }
-        if (learningDisabilities != null) {
-            learningDisabilities.forEach(i -> i.setLearnarDisabilities(this));
+        if (learnerPreferences != null) {
+            learnerPreferences.forEach(i -> i.setLearner(this));
         }
-        this.disabilities = learningDisabilities;
+        this.learnerPreferences = learnerPreferences;
     }
 
-    public Learner disabilities(Set<LearningDisability> learningDisabilities) {
-        this.setDisabilities(learningDisabilities);
+    public Learner learnerPreferences(Set<LearnerPreference> learnerPreferences) {
+        this.setLearnerPreferences(learnerPreferences);
         return this;
     }
 
-    public Learner addDisabilities(LearningDisability learningDisability) {
-        this.disabilities.add(learningDisability);
-        learningDisability.setLearnarDisabilities(this);
+    public Learner addLearnerPreference(LearnerPreference learnerPreference) {
+        this.learnerPreferences.add(learnerPreference);
+        learnerPreference.setLearner(this);
         return this;
     }
 
-    public Learner removeDisabilities(LearningDisability learningDisability) {
-        this.disabilities.remove(learningDisability);
-        learningDisability.setLearnarDisabilities(null);
+    public Learner removeLearnerPreference(LearnerPreference learnerPreference) {
+        this.learnerPreferences.remove(learnerPreference);
+        learnerPreference.setLearner(null);
         return this;
     }
 

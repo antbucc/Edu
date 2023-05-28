@@ -31,12 +31,9 @@ public class Educator implements Serializable {
     private String email;
 
     @DBRef
-    @Field("preferences")
-    @JsonIgnoreProperties(
-        value = { "preferredTopics", "preferredActivities", "preferredModalities", "preferredLearningStyles", "eductarPreferences" },
-        allowSetters = true
-    )
-    private Set<EducatorPreference> preferences = new HashSet<>();
+    @Field("educatorPreference")
+    @JsonIgnoreProperties(value = { "educator" }, allowSetters = true)
+    private Set<EducatorPreference> educatorPreferences = new HashSet<>();
 
     @DBRef
     @Field("scenarios")
@@ -97,34 +94,34 @@ public class Educator implements Serializable {
         this.email = email;
     }
 
-    public Set<EducatorPreference> getPreferences() {
-        return this.preferences;
+    public Set<EducatorPreference> getEducatorPreferences() {
+        return this.educatorPreferences;
     }
 
-    public void setPreferences(Set<EducatorPreference> educatorPreferences) {
-        if (this.preferences != null) {
-            this.preferences.forEach(i -> i.setEductarPreferences(null));
+    public void setEducatorPreferences(Set<EducatorPreference> educatorPreferences) {
+        if (this.educatorPreferences != null) {
+            this.educatorPreferences.forEach(i -> i.setEducator(null));
         }
         if (educatorPreferences != null) {
-            educatorPreferences.forEach(i -> i.setEductarPreferences(this));
+            educatorPreferences.forEach(i -> i.setEducator(this));
         }
-        this.preferences = educatorPreferences;
+        this.educatorPreferences = educatorPreferences;
     }
 
-    public Educator preferences(Set<EducatorPreference> educatorPreferences) {
-        this.setPreferences(educatorPreferences);
+    public Educator educatorPreferences(Set<EducatorPreference> educatorPreferences) {
+        this.setEducatorPreferences(educatorPreferences);
         return this;
     }
 
-    public Educator addPreferences(EducatorPreference educatorPreference) {
-        this.preferences.add(educatorPreference);
-        educatorPreference.setEductarPreferences(this);
+    public Educator addEducatorPreference(EducatorPreference educatorPreference) {
+        this.educatorPreferences.add(educatorPreference);
+        educatorPreference.setEducator(this);
         return this;
     }
 
-    public Educator removePreferences(EducatorPreference educatorPreference) {
-        this.preferences.remove(educatorPreference);
-        educatorPreference.setEductarPreferences(null);
+    public Educator removeEducatorPreference(EducatorPreference educatorPreference) {
+        this.educatorPreferences.remove(educatorPreference);
+        educatorPreference.setEducator(null);
         return this;
     }
 

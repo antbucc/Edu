@@ -2,19 +2,30 @@ package com.modis.edu.web.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import com.modis.edu.IntegrationTest;
 import com.modis.edu.domain.EducatorPreference;
 import com.modis.edu.domain.enumeration.Difficulty;
+import com.modis.edu.domain.enumeration.LearningStyleType;
+import com.modis.edu.domain.enumeration.ModalityType;
 import com.modis.edu.repository.EducatorPreferenceRepository;
+import com.modis.edu.service.EducatorPreferenceService;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,12 +34,19 @@ import org.springframework.test.web.servlet.MockMvc;
  * Integration tests for the {@link EducatorPreferenceResource} REST controller.
  */
 @IntegrationTest
+@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class EducatorPreferenceResourceIT {
 
-    private static final String DEFAULT_SUBJECT = "AAAAAAAAAA";
-    private static final String UPDATED_SUBJECT = "BBBBBBBBBB";
+    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
+    private static final String UPDATED_TITLE = "BBBBBBBBBB";
+
+    private static final LearningStyleType DEFAULT_STYLE = LearningStyleType.VISUAL;
+    private static final LearningStyleType UPDATED_STYLE = LearningStyleType.AUDITORY;
+
+    private static final ModalityType DEFAULT_MODALITY = ModalityType.ONLINE;
+    private static final ModalityType UPDATED_MODALITY = ModalityType.IN_PERSON;
 
     private static final Difficulty DEFAULT_DIFFICULTY = Difficulty.LOW;
     private static final Difficulty UPDATED_DIFFICULTY = Difficulty.MODERATE;
@@ -38,6 +56,12 @@ class EducatorPreferenceResourceIT {
 
     @Autowired
     private EducatorPreferenceRepository educatorPreferenceRepository;
+
+    @Mock
+    private EducatorPreferenceRepository educatorPreferenceRepositoryMock;
+
+    @Mock
+    private EducatorPreferenceService educatorPreferenceServiceMock;
 
     @Autowired
     private MockMvc restEducatorPreferenceMockMvc;
@@ -51,7 +75,11 @@ class EducatorPreferenceResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static EducatorPreference createEntity() {
-        EducatorPreference educatorPreference = new EducatorPreference().subject(DEFAULT_SUBJECT).difficulty(DEFAULT_DIFFICULTY);
+        EducatorPreference educatorPreference = new EducatorPreference()
+            .title(DEFAULT_TITLE)
+            .style(DEFAULT_STYLE)
+            .modality(DEFAULT_MODALITY)
+            .difficulty(DEFAULT_DIFFICULTY);
         return educatorPreference;
     }
 
@@ -62,7 +90,11 @@ class EducatorPreferenceResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static EducatorPreference createUpdatedEntity() {
-        EducatorPreference educatorPreference = new EducatorPreference().subject(UPDATED_SUBJECT).difficulty(UPDATED_DIFFICULTY);
+        EducatorPreference educatorPreference = new EducatorPreference()
+            .title(UPDATED_TITLE)
+            .style(UPDATED_STYLE)
+            .modality(UPDATED_MODALITY)
+            .difficulty(UPDATED_DIFFICULTY);
         return educatorPreference;
     }
 
@@ -86,7 +118,9 @@ class EducatorPreferenceResourceIT {
         List<EducatorPreference> educatorPreferenceList = educatorPreferenceRepository.findAll();
         assertThat(educatorPreferenceList).hasSize(databaseSizeBeforeCreate + 1);
         EducatorPreference testEducatorPreference = educatorPreferenceList.get(educatorPreferenceList.size() - 1);
-        assertThat(testEducatorPreference.getSubject()).isEqualTo(DEFAULT_SUBJECT);
+        assertThat(testEducatorPreference.getTitle()).isEqualTo(DEFAULT_TITLE);
+        assertThat(testEducatorPreference.getStyle()).isEqualTo(DEFAULT_STYLE);
+        assertThat(testEducatorPreference.getModality()).isEqualTo(DEFAULT_MODALITY);
         assertThat(testEducatorPreference.getDifficulty()).isEqualTo(DEFAULT_DIFFICULTY);
     }
 
@@ -120,8 +154,27 @@ class EducatorPreferenceResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(educatorPreference.getId())))
-            .andExpect(jsonPath("$.[*].subject").value(hasItem(DEFAULT_SUBJECT)))
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
+            .andExpect(jsonPath("$.[*].style").value(hasItem(DEFAULT_STYLE.toString())))
+            .andExpect(jsonPath("$.[*].modality").value(hasItem(DEFAULT_MODALITY.toString())))
             .andExpect(jsonPath("$.[*].difficulty").value(hasItem(DEFAULT_DIFFICULTY.toString())));
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllEducatorPreferencesWithEagerRelationshipsIsEnabled() throws Exception {
+        when(educatorPreferenceServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restEducatorPreferenceMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
+
+        verify(educatorPreferenceServiceMock, times(1)).findAllWithEagerRelationships(any());
+    }
+
+    @SuppressWarnings({ "unchecked" })
+    void getAllEducatorPreferencesWithEagerRelationshipsIsNotEnabled() throws Exception {
+        when(educatorPreferenceServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
+
+        restEducatorPreferenceMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
+        verify(educatorPreferenceRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test
@@ -135,7 +188,9 @@ class EducatorPreferenceResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(educatorPreference.getId()))
-            .andExpect(jsonPath("$.subject").value(DEFAULT_SUBJECT))
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
+            .andExpect(jsonPath("$.style").value(DEFAULT_STYLE.toString()))
+            .andExpect(jsonPath("$.modality").value(DEFAULT_MODALITY.toString()))
             .andExpect(jsonPath("$.difficulty").value(DEFAULT_DIFFICULTY.toString()));
     }
 
@@ -154,7 +209,7 @@ class EducatorPreferenceResourceIT {
 
         // Update the educatorPreference
         EducatorPreference updatedEducatorPreference = educatorPreferenceRepository.findById(educatorPreference.getId()).get();
-        updatedEducatorPreference.subject(UPDATED_SUBJECT).difficulty(UPDATED_DIFFICULTY);
+        updatedEducatorPreference.title(UPDATED_TITLE).style(UPDATED_STYLE).modality(UPDATED_MODALITY).difficulty(UPDATED_DIFFICULTY);
 
         restEducatorPreferenceMockMvc
             .perform(
@@ -168,7 +223,9 @@ class EducatorPreferenceResourceIT {
         List<EducatorPreference> educatorPreferenceList = educatorPreferenceRepository.findAll();
         assertThat(educatorPreferenceList).hasSize(databaseSizeBeforeUpdate);
         EducatorPreference testEducatorPreference = educatorPreferenceList.get(educatorPreferenceList.size() - 1);
-        assertThat(testEducatorPreference.getSubject()).isEqualTo(UPDATED_SUBJECT);
+        assertThat(testEducatorPreference.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testEducatorPreference.getStyle()).isEqualTo(UPDATED_STYLE);
+        assertThat(testEducatorPreference.getModality()).isEqualTo(UPDATED_MODALITY);
         assertThat(testEducatorPreference.getDifficulty()).isEqualTo(UPDATED_DIFFICULTY);
     }
 
@@ -238,6 +295,8 @@ class EducatorPreferenceResourceIT {
         EducatorPreference partialUpdatedEducatorPreference = new EducatorPreference();
         partialUpdatedEducatorPreference.setId(educatorPreference.getId());
 
+        partialUpdatedEducatorPreference.modality(UPDATED_MODALITY).difficulty(UPDATED_DIFFICULTY);
+
         restEducatorPreferenceMockMvc
             .perform(
                 patch(ENTITY_API_URL_ID, partialUpdatedEducatorPreference.getId())
@@ -250,8 +309,10 @@ class EducatorPreferenceResourceIT {
         List<EducatorPreference> educatorPreferenceList = educatorPreferenceRepository.findAll();
         assertThat(educatorPreferenceList).hasSize(databaseSizeBeforeUpdate);
         EducatorPreference testEducatorPreference = educatorPreferenceList.get(educatorPreferenceList.size() - 1);
-        assertThat(testEducatorPreference.getSubject()).isEqualTo(DEFAULT_SUBJECT);
-        assertThat(testEducatorPreference.getDifficulty()).isEqualTo(DEFAULT_DIFFICULTY);
+        assertThat(testEducatorPreference.getTitle()).isEqualTo(DEFAULT_TITLE);
+        assertThat(testEducatorPreference.getStyle()).isEqualTo(DEFAULT_STYLE);
+        assertThat(testEducatorPreference.getModality()).isEqualTo(UPDATED_MODALITY);
+        assertThat(testEducatorPreference.getDifficulty()).isEqualTo(UPDATED_DIFFICULTY);
     }
 
     @Test
@@ -265,7 +326,11 @@ class EducatorPreferenceResourceIT {
         EducatorPreference partialUpdatedEducatorPreference = new EducatorPreference();
         partialUpdatedEducatorPreference.setId(educatorPreference.getId());
 
-        partialUpdatedEducatorPreference.subject(UPDATED_SUBJECT).difficulty(UPDATED_DIFFICULTY);
+        partialUpdatedEducatorPreference
+            .title(UPDATED_TITLE)
+            .style(UPDATED_STYLE)
+            .modality(UPDATED_MODALITY)
+            .difficulty(UPDATED_DIFFICULTY);
 
         restEducatorPreferenceMockMvc
             .perform(
@@ -279,7 +344,9 @@ class EducatorPreferenceResourceIT {
         List<EducatorPreference> educatorPreferenceList = educatorPreferenceRepository.findAll();
         assertThat(educatorPreferenceList).hasSize(databaseSizeBeforeUpdate);
         EducatorPreference testEducatorPreference = educatorPreferenceList.get(educatorPreferenceList.size() - 1);
-        assertThat(testEducatorPreference.getSubject()).isEqualTo(UPDATED_SUBJECT);
+        assertThat(testEducatorPreference.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testEducatorPreference.getStyle()).isEqualTo(UPDATED_STYLE);
+        assertThat(testEducatorPreference.getModality()).isEqualTo(UPDATED_MODALITY);
         assertThat(testEducatorPreference.getDifficulty()).isEqualTo(UPDATED_DIFFICULTY);
     }
 

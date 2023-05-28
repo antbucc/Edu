@@ -18,13 +18,11 @@
         "title": "Educator Preference"
       },
       "id": "ID",
-      "subject": "Subject",
+      "title": "Title",
+      "style": "Style",
+      "modality": "Modality",
       "difficulty": "Difficulty",
-      "preferredTopics": "Preferred Topics",
-      "preferredActivities": "Preferred Activities",
-      "preferredModalities": "Preferred Modalities",
-      "preferredLearningStyles": "Preferred Learning Styles",
-      "eductarPreferences": "Eductar Preferences"
+      "educator": "Educator"
     }
   }
 }

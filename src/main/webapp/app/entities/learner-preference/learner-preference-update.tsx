@@ -8,15 +8,16 @@ import { convertDateTimeFromServer, convertDateTimeToServer, displayDefaultDateT
 import { mapIdList } from 'app/shared/util/entity-utils';
 import { useAppDispatch, useAppSelector } from 'app/config/store';
 
-import { IEducator } from 'app/shared/model/educator.model';
-import { getEntities as getEducators } from 'app/entities/educator/educator.reducer';
-import { IEducatorPreference } from 'app/shared/model/educator-preference.model';
+import { ILearner } from 'app/shared/model/learner.model';
+import { getEntities as getLearners } from 'app/entities/learner/learner.reducer';
+import { ILearnerPreference } from 'app/shared/model/learner-preference.model';
 import { LearningStyleType } from 'app/shared/model/enumerations/learning-style-type.model';
 import { ModalityType } from 'app/shared/model/enumerations/modality-type.model';
 import { Difficulty } from 'app/shared/model/enumerations/difficulty.model';
-import { getEntity, updateEntity, createEntity, reset } from './educator-preference.reducer';
+import { DisabilityType } from 'app/shared/model/enumerations/disability-type.model';
+import { getEntity, updateEntity, createEntity, reset } from './learner-preference.reducer';
 
-export const EducatorPreferenceUpdate = () => {
+export const LearnerPreferenceUpdate = () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
@@ -24,17 +25,18 @@ export const EducatorPreferenceUpdate = () => {
   const { id } = useParams<'id'>();
   const isNew = id === undefined;
 
-  const educators = useAppSelector(state => state.educator.entities);
-  const educatorPreferenceEntity = useAppSelector(state => state.educatorPreference.entity);
-  const loading = useAppSelector(state => state.educatorPreference.loading);
-  const updating = useAppSelector(state => state.educatorPreference.updating);
-  const updateSuccess = useAppSelector(state => state.educatorPreference.updateSuccess);
+  const learners = useAppSelector(state => state.learner.entities);
+  const learnerPreferenceEntity = useAppSelector(state => state.learnerPreference.entity);
+  const loading = useAppSelector(state => state.learnerPreference.loading);
+  const updating = useAppSelector(state => state.learnerPreference.updating);
+  const updateSuccess = useAppSelector(state => state.learnerPreference.updateSuccess);
   const learningStyleTypeValues = Object.keys(LearningStyleType);
   const modalityTypeValues = Object.keys(ModalityType);
   const difficultyValues = Object.keys(Difficulty);
+  const disabilityTypeValues = Object.keys(DisabilityType);
 
   const handleClose = () => {
-    navigate('/educator-preference');
+    navigate('/learner-preference');
   };
 
   useEffect(() => {
@@ -44,7 +46,7 @@ export const EducatorPreferenceUpdate = () => {
       dispatch(getEntity(id));
     }
 
-    dispatch(getEducators({}));
+    dispatch(getLearners({}));
   }, []);
 
   useEffect(() => {
@@ -55,9 +57,9 @@ export const EducatorPreferenceUpdate = () => {
 
   const saveEntity = values => {
     const entity = {
-      ...educatorPreferenceEntity,
+      ...learnerPreferenceEntity,
       ...values,
-      educator: educators.find(it => it.id.toString() === values.educator.toString()),
+      learner: learners.find(it => it.id.toString() === values.learner.toString()),
     };
 
     if (isNew) {
@@ -74,16 +76,17 @@ export const EducatorPreferenceUpdate = () => {
           style: 'VISUAL',
           modality: 'ONLINE',
           difficulty: 'LOW',
-          ...educatorPreferenceEntity,
-          educator: educatorPreferenceEntity?.educator?.id,
+          disability: 'DYSLEXIA',
+          ...learnerPreferenceEntity,
+          learner: learnerPreferenceEntity?.learner?.id,
         };
 
   return (
     <div>
       <Row className="justify-content-center">
         <Col md="8">
-          <h2 id="eduApp.educatorPreference.home.createOrEditLabel" data-cy="EducatorPreferenceCreateUpdateHeading">
-            <Translate contentKey="eduApp.educatorPreference.home.createOrEditLabel">Create or edit a EducatorPreference</Translate>
+          <h2 id="eduApp.learnerPreference.home.createOrEditLabel" data-cy="LearnerPreferenceCreateUpdateHeading">
+            <Translate contentKey="eduApp.learnerPreference.home.createOrEditLabel">Create or edit a LearnerPreference</Translate>
           </h2>
         </Col>
       </Row>
@@ -98,21 +101,21 @@ export const EducatorPreferenceUpdate = () => {
                   name="id"
                   required
                   readOnly
-                  id="educator-preference-id"
+                  id="learner-preference-id"
                   label={translate('global.field.id')}
                   validate={{ required: true }}
                 />
               ) : null}
               <ValidatedField
-                label={translate('eduApp.educatorPreference.title')}
-                id="educator-preference-title"
+                label={translate('eduApp.learnerPreference.title')}
+                id="learner-preference-title"
                 name="title"
                 data-cy="title"
                 type="text"
               />
               <ValidatedField
-                label={translate('eduApp.educatorPreference.style')}
-                id="educator-preference-style"
+                label={translate('eduApp.learnerPreference.style')}
+                id="learner-preference-style"
                 name="style"
                 data-cy="style"
                 type="select"
@@ -124,8 +127,8 @@ export const EducatorPreferenceUpdate = () => {
                 ))}
               </ValidatedField>
               <ValidatedField
-                label={translate('eduApp.educatorPreference.modality')}
-                id="educator-preference-modality"
+                label={translate('eduApp.learnerPreference.modality')}
+                id="learner-preference-modality"
                 name="modality"
                 data-cy="modality"
                 type="select"
@@ -137,8 +140,8 @@ export const EducatorPreferenceUpdate = () => {
                 ))}
               </ValidatedField>
               <ValidatedField
-                label={translate('eduApp.educatorPreference.difficulty')}
-                id="educator-preference-difficulty"
+                label={translate('eduApp.learnerPreference.difficulty')}
+                id="learner-preference-difficulty"
                 name="difficulty"
                 data-cy="difficulty"
                 type="select"
@@ -150,22 +153,35 @@ export const EducatorPreferenceUpdate = () => {
                 ))}
               </ValidatedField>
               <ValidatedField
-                id="educator-preference-educator"
-                name="educator"
-                data-cy="educator"
-                label={translate('eduApp.educatorPreference.educator')}
+                label={translate('eduApp.learnerPreference.disability')}
+                id="learner-preference-disability"
+                name="disability"
+                data-cy="disability"
+                type="select"
+              >
+                {disabilityTypeValues.map(disabilityType => (
+                  <option value={disabilityType} key={disabilityType}>
+                    {translate('eduApp.DisabilityType.' + disabilityType)}
+                  </option>
+                ))}
+              </ValidatedField>
+              <ValidatedField
+                id="learner-preference-learner"
+                name="learner"
+                data-cy="learner"
+                label={translate('eduApp.learnerPreference.learner')}
                 type="select"
               >
                 <option value="" key="0" />
-                {educators
-                  ? educators.map(otherEntity => (
+                {learners
+                  ? learners.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
                         {otherEntity.surname}
                       </option>
                     ))
                   : null}
               </ValidatedField>
-              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/educator-preference" replace color="info">
+              <Button tag={Link} id="cancel-save" data-cy="entityCreateCancelButton" to="/learner-preference" replace color="info">
                 <FontAwesomeIcon icon="arrow-left" />
                 &nbsp;
                 <span className="d-none d-md-inline">
@@ -186,4 +202,4 @@ export const EducatorPreferenceUpdate = () => {
   );
 };
 
-export default EducatorPreferenceUpdate;
+export default LearnerPreferenceUpdate;
