@@ -22,6 +22,8 @@
       "lastName": "Last Name",
       "email": "Email",
       "phoneNumber": "Phone Number",
+      "gender": "Gender",
+      "learningDisability": "Learning Disability",
       "scenario": "Scenario"
     }
   }

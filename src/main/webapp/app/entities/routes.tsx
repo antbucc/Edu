@@ -20,6 +20,7 @@ import Order from './order';
 import SetOf from './set-of';
 import SequenceFragment from './sequence-fragment';
 import Module from './module';
+import LearningDisability from './learning-disability';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -44,6 +45,7 @@ export default () => {
         <Route path="set-of/*" element={<SetOf />} />
         <Route path="sequence-fragment/*" element={<SequenceFragment />} />
         <Route path="module/*" element={<Module />} />
+        <Route path="learning-disability/*" element={<LearningDisability />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

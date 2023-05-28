@@ -7,6 +7,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import com.modis.edu.IntegrationTest;
 import com.modis.edu.domain.Learner;
+import com.modis.edu.domain.enumeration.GenderType;
 import com.modis.edu.repository.LearnerRepository;
 import java.util.List;
 import java.util.UUID;
@@ -38,6 +39,9 @@ class LearnerResourceIT {
     private static final String DEFAULT_PHONE_NUMBER = "AAAAAAAAAA";
     private static final String UPDATED_PHONE_NUMBER = "BBBBBBBBBB";
 
+    private static final GenderType DEFAULT_GENDER = GenderType.MALE;
+    private static final GenderType UPDATED_GENDER = GenderType.FEMALE;
+
     private static final String ENTITY_API_URL = "/api/learners";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
 
@@ -60,7 +64,8 @@ class LearnerResourceIT {
             .firstName(DEFAULT_FIRST_NAME)
             .lastName(DEFAULT_LAST_NAME)
             .email(DEFAULT_EMAIL)
-            .phoneNumber(DEFAULT_PHONE_NUMBER);
+            .phoneNumber(DEFAULT_PHONE_NUMBER)
+            .gender(DEFAULT_GENDER);
         return learner;
     }
 
@@ -75,7 +80,8 @@ class LearnerResourceIT {
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
-            .phoneNumber(UPDATED_PHONE_NUMBER);
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .gender(UPDATED_GENDER);
         return learner;
     }
 
@@ -101,6 +107,7 @@ class LearnerResourceIT {
         assertThat(testLearner.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testLearner.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testLearner.getPhoneNumber()).isEqualTo(DEFAULT_PHONE_NUMBER);
+        assertThat(testLearner.getGender()).isEqualTo(DEFAULT_GENDER);
     }
 
     @Test
@@ -134,7 +141,8 @@ class LearnerResourceIT {
             .andExpect(jsonPath("$.[*].firstName").value(hasItem(DEFAULT_FIRST_NAME)))
             .andExpect(jsonPath("$.[*].lastName").value(hasItem(DEFAULT_LAST_NAME)))
             .andExpect(jsonPath("$.[*].email").value(hasItem(DEFAULT_EMAIL)))
-            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)));
+            .andExpect(jsonPath("$.[*].phoneNumber").value(hasItem(DEFAULT_PHONE_NUMBER)))
+            .andExpect(jsonPath("$.[*].gender").value(hasItem(DEFAULT_GENDER.toString())));
     }
 
     @Test
@@ -151,7 +159,8 @@ class LearnerResourceIT {
             .andExpect(jsonPath("$.firstName").value(DEFAULT_FIRST_NAME))
             .andExpect(jsonPath("$.lastName").value(DEFAULT_LAST_NAME))
             .andExpect(jsonPath("$.email").value(DEFAULT_EMAIL))
-            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER));
+            .andExpect(jsonPath("$.phoneNumber").value(DEFAULT_PHONE_NUMBER))
+            .andExpect(jsonPath("$.gender").value(DEFAULT_GENDER.toString()));
     }
 
     @Test
@@ -169,7 +178,12 @@ class LearnerResourceIT {
 
         // Update the learner
         Learner updatedLearner = learnerRepository.findById(learner.getId()).get();
-        updatedLearner.firstName(UPDATED_FIRST_NAME).lastName(UPDATED_LAST_NAME).email(UPDATED_EMAIL).phoneNumber(UPDATED_PHONE_NUMBER);
+        updatedLearner
+            .firstName(UPDATED_FIRST_NAME)
+            .lastName(UPDATED_LAST_NAME)
+            .email(UPDATED_EMAIL)
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .gender(UPDATED_GENDER);
 
         restLearnerMockMvc
             .perform(
@@ -187,6 +201,7 @@ class LearnerResourceIT {
         assertThat(testLearner.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testLearner.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testLearner.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
+        assertThat(testLearner.getGender()).isEqualTo(UPDATED_GENDER);
     }
 
     @Test
@@ -253,7 +268,7 @@ class LearnerResourceIT {
         Learner partialUpdatedLearner = new Learner();
         partialUpdatedLearner.setId(learner.getId());
 
-        partialUpdatedLearner.phoneNumber(UPDATED_PHONE_NUMBER);
+        partialUpdatedLearner.phoneNumber(UPDATED_PHONE_NUMBER).gender(UPDATED_GENDER);
 
         restLearnerMockMvc
             .perform(
@@ -271,6 +286,7 @@ class LearnerResourceIT {
         assertThat(testLearner.getLastName()).isEqualTo(DEFAULT_LAST_NAME);
         assertThat(testLearner.getEmail()).isEqualTo(DEFAULT_EMAIL);
         assertThat(testLearner.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
+        assertThat(testLearner.getGender()).isEqualTo(UPDATED_GENDER);
     }
 
     @Test
@@ -288,7 +304,8 @@ class LearnerResourceIT {
             .firstName(UPDATED_FIRST_NAME)
             .lastName(UPDATED_LAST_NAME)
             .email(UPDATED_EMAIL)
-            .phoneNumber(UPDATED_PHONE_NUMBER);
+            .phoneNumber(UPDATED_PHONE_NUMBER)
+            .gender(UPDATED_GENDER);
 
         restLearnerMockMvc
             .perform(
@@ -306,6 +323,7 @@ class LearnerResourceIT {
         assertThat(testLearner.getLastName()).isEqualTo(UPDATED_LAST_NAME);
         assertThat(testLearner.getEmail()).isEqualTo(UPDATED_EMAIL);
         assertThat(testLearner.getPhoneNumber()).isEqualTo(UPDATED_PHONE_NUMBER);
+        assertThat(testLearner.getGender()).isEqualTo(UPDATED_GENDER);
     }
 
     @Test

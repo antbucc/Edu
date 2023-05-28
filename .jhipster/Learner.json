@@ -20,6 +20,11 @@
     {
       "fieldName": "phoneNumber",
       "fieldType": "String"
+    },
+    {
+      "fieldName": "gender",
+      "fieldType": "GenderType",
+      "fieldValues": "MALE,FEMALE,OTHER"
     }
   ],
   "fluentMethods": true,
@@ -28,6 +33,13 @@
   "pagination": "infinite-scroll",
   "readOnly": false,
   "relationships": [
+    {
+      "otherEntityField": "disabilityType",
+      "otherEntityName": "learningDisability",
+      "otherEntityRelationshipName": "learner",
+      "relationshipName": "learningDisability",
+      "relationshipType": "one-to-many"
+    },
     {
       "otherEntityField": "title",
       "otherEntityName": "scenario",

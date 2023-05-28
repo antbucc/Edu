@@ -55,6 +55,9 @@ public class LearnerServiceImpl implements LearnerService {
                 if (learner.getPhoneNumber() != null) {
                     existingLearner.setPhoneNumber(learner.getPhoneNumber());
                 }
+                if (learner.getGender() != null) {
+                    existingLearner.setGender(learner.getGender());
+                }
 
                 return existingLearner;
             })

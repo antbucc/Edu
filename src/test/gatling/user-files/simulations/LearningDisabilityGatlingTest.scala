@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the Learner entity.
+ * Performance test for the LearningDisability entity.
  */
-class LearnerGatlingTest extends Simulation {
+class LearningDisabilityGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -43,7 +43,7 @@ class LearnerGatlingTest extends Simulation {
         "Authorization" -> "${access_token}"
     )
 
-    val scn = scenario("Test the Learner entity")
+    val scn = scenario("Test the LearningDisability entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -62,32 +62,30 @@ class LearnerGatlingTest extends Simulation {
         .check(status.is(200)))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all learners")
-            .get("/api/learners")
+            exec(http("Get all learningDisabilities")
+            .get("/api/learning-disabilities")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new learner")
-            .post("/api/learners")
+            .exec(http("Create new learningDisability")
+            .post("/api/learning-disabilities")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
-                "firstName":"SAMPLE_TEXT"
-                , "lastName":"SAMPLE_TEXT"
-                , "email":"SAMPLE_TEXT"
-                , "phoneNumber":"SAMPLE_TEXT"
-                , "gender":"MALE"
+                "name":"SAMPLE_TEXT"
+                , "description":"SAMPLE_TEXT"
+                , "disabilityType":"DYSLEXIA"
                 }""")).asJson
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_learner_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_learningDisability_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created learner")
-                .get("${new_learner_url}")
+                exec(http("Get created learningDisability")
+                .get("${new_learningDisability_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created learner")
-            .delete("${new_learner_url}")
+            .exec(http("Delete created learningDisability")
+            .delete("${new_learningDisability_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }
