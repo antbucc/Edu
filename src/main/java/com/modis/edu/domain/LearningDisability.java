@@ -1,8 +1,10 @@
 package com.modis.edu.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.modis.edu.domain.enumeration.DisabilityType;
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -26,6 +28,11 @@ public class LearningDisability implements Serializable {
 
     @Field("disability_type")
     private DisabilityType disabilityType;
+
+    @DBRef
+    @Field("learnarDisabilities")
+    @JsonIgnoreProperties(value = { "disabilities", "scenarios" }, allowSetters = true)
+    private Learner learnarDisabilities;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -79,6 +86,19 @@ public class LearningDisability implements Serializable {
 
     public void setDisabilityType(DisabilityType disabilityType) {
         this.disabilityType = disabilityType;
+    }
+
+    public Learner getLearnarDisabilities() {
+        return this.learnarDisabilities;
+    }
+
+    public void setLearnarDisabilities(Learner learner) {
+        this.learnarDisabilities = learner;
+    }
+
+    public LearningDisability learnarDisabilities(Learner learner) {
+        this.setLearnarDisabilities(learner);
+        return this;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here

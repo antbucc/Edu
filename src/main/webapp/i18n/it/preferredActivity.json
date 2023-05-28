@@ -1,0 +1,25 @@
+{
+  "eduApp": {
+    "preferredActivity": {
+      "home": {
+        "title": "PreferredActivities",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Preferred Activity",
+        "createOrEditLabel": "Genera o modifica un Preferred Activity",
+        "notFound": "No Preferred Activities found"
+      },
+      "created": "&Egrave; stato generato un nuovo Preferred Activity con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Preferred Activity identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Preferred Activity con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Preferred Activity {{ id }}?"
+      },
+      "detail": {
+        "title": "Preferred Activity"
+      },
+      "id": "ID",
+      "activity": "Activity",
+      "educatorPreference": "Educator Preference"
+    }
+  }
+}

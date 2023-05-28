@@ -65,6 +65,9 @@ export const LearningDisability = () => {
                 <th>
                   <Translate contentKey="eduApp.learningDisability.disabilityType">Disability Type</Translate>
                 </th>
+                <th>
+                  <Translate contentKey="eduApp.learningDisability.learnarDisabilities">Learnar Disabilities</Translate>
+                </th>
                 <th />
               </tr>
             </thead>
@@ -80,6 +83,13 @@ export const LearningDisability = () => {
                   <td>{learningDisability.description}</td>
                   <td>
                     <Translate contentKey={`eduApp.DisabilityType.${learningDisability.disabilityType}`} />
+                  </td>
+                  <td>
+                    {learningDisability.learnarDisabilities ? (
+                      <Link to={`/learner/${learningDisability.learnarDisabilities.id}`}>{learningDisability.learnarDisabilities.id}</Link>
+                    ) : (
+                      ''
+                    )}
                   </td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">

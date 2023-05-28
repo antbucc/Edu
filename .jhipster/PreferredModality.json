@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20230528090726",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "preferred_modality",
+  "fields": [
+    {
+      "fieldName": "modality",
+      "fieldType": "ModalityType",
+      "fieldValues": "ONLINE,IN_PERSON,BLENDED"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PreferredModality",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "educatorPreference",
+      "otherEntityRelationshipName": "preferredModalities",
+      "relationshipName": "educatorPreference",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

@@ -1,0 +1,26 @@
+{
+  "eduApp": {
+    "preferredTopic": {
+      "home": {
+        "title": "PreferredTopics",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Preferred Topic",
+        "createOrEditLabel": "Genera o modifica un Preferred Topic",
+        "notFound": "No Preferred Topics found"
+      },
+      "created": "&Egrave; stato generato un nuovo Preferred Topic con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Preferred Topic identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Preferred Topic con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Preferred Topic {{ id }}?"
+      },
+      "detail": {
+        "title": "Preferred Topic"
+      },
+      "id": "ID",
+      "topicId": "Topic Id",
+      "topic": "Topic",
+      "educatorPreference": "Educator Preference"
+    }
+  }
+}

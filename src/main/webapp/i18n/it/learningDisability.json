@@ -20,7 +20,8 @@
       "id": "ID",
       "name": "Name",
       "description": "Description",
-      "disabilityType": "Disability Type"
+      "disabilityType": "Disability Type",
+      "learnarDisabilities": "Learnar Disabilities"
     }
   }
 }

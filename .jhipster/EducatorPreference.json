@@ -1,0 +1,56 @@
+{
+  "applications": "*",
+  "changelogDate": "20230528090723",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "educator_preference",
+  "fields": [
+    {
+      "fieldName": "subject",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "difficulty",
+      "fieldType": "Difficulty",
+      "fieldValues": "LOW,MODERATE,INTERMEDIATE,HIGH,ADVANCED,PERSONALIZED"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "EducatorPreference",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "preferredTopic",
+      "otherEntityRelationshipName": "educatorPreference",
+      "relationshipName": "preferredTopics",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "preferredActivity",
+      "otherEntityRelationshipName": "educatorPreference",
+      "relationshipName": "preferredActivities",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "preferredModality",
+      "otherEntityRelationshipName": "educatorPreference",
+      "relationshipName": "preferredModalities",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "preferredLearningStyle",
+      "otherEntityRelationshipName": "educatorPreference",
+      "relationshipName": "preferredLearningStyles",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "educator",
+      "otherEntityRelationshipName": "preferences",
+      "relationshipName": "eductarPreferences",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

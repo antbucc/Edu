@@ -1,0 +1,28 @@
+{
+  "applications": "*",
+  "changelogDate": "20230528090725",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "preferred_activity",
+  "fields": [
+    {
+      "fieldName": "activity",
+      "fieldType": "ActivityType",
+      "fieldValues": "INDIVIDUAL,GROUP"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PreferredActivity",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "educatorPreference",
+      "otherEntityRelationshipName": "preferredActivities",
+      "relationshipName": "educatorPreference",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

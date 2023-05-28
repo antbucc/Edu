@@ -25,6 +25,12 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "educatorPreference",
+      "otherEntityRelationshipName": "eductarPreferences",
+      "relationshipName": "preferences",
+      "relationshipType": "one-to-many"
+    },
+    {
       "otherEntityField": "title",
       "otherEntityName": "scenario",
       "otherEntityRelationshipName": "educator",

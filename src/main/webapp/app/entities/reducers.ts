@@ -16,6 +16,11 @@ import setOf from 'app/entities/set-of/set-of.reducer';
 import sequenceFragment from 'app/entities/sequence-fragment/sequence-fragment.reducer';
 import module from 'app/entities/module/module.reducer';
 import learningDisability from 'app/entities/learning-disability/learning-disability.reducer';
+import educatorPreference from 'app/entities/educator-preference/educator-preference.reducer';
+import preferredTopic from 'app/entities/preferred-topic/preferred-topic.reducer';
+import preferredActivity from 'app/entities/preferred-activity/preferred-activity.reducer';
+import preferredModality from 'app/entities/preferred-modality/preferred-modality.reducer';
+import preferredLearningStyle from 'app/entities/preferred-learning-style/preferred-learning-style.reducer';
 /* jhipster-needle-add-reducer-import - JHipster will add reducer here */
 
 const entitiesReducers = {
@@ -37,6 +42,11 @@ const entitiesReducers = {
   sequenceFragment,
   module,
   learningDisability,
+  educatorPreference,
+  preferredTopic,
+  preferredActivity,
+  preferredModality,
+  preferredLearningStyle,
   /* jhipster-needle-add-reducer-combine - JHipster will add reducer here */
 };
 

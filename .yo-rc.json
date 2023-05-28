@@ -37,7 +37,12 @@
       "Order",
       "SetOf",
       "Module",
-      "LearningDisability"
+      "LearningDisability",
+      "EducatorPreference",
+      "PreferredTopic",
+      "PreferredActivity",
+      "PreferredModality",
+      "PreferredLearningStyle"
     ],
     "entitySuffix": "",
     "gitCompany": "",
@@ -48,7 +53,7 @@
     "jhipsterVersion": "7.9.3",
     "jwtSecretKey": "NWZlYWI1MWFjZGY0YzFiNjhlNDgwZjM1M2U0N2E5MGFmM2NhY2EwZTRjMzQ4NDA0YWZlZWNlNTQ5YmI3MDgwOTE4OGZlNWM5Nzg5M2M2ZjI2ODczMzU4ZDFiNjMxYzI2NmM2OTMxZjAwNTYwNWNkOGZhYzRmMGY3YzhiNDY5OWI=",
     "languages": ["en", "it"],
-    "lastLiquibaseTimestamp": 1685262283000,
+    "lastLiquibaseTimestamp": 1685264847000,
     "messageBroker": false,
     "nativeLanguage": "en",
     "otherModules": [],

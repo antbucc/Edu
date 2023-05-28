@@ -1,0 +1,31 @@
+{
+  "applications": "*",
+  "changelogDate": "20230528090724",
+  "dto": "no",
+  "embedded": false,
+  "entityTableName": "preferred_topic",
+  "fields": [
+    {
+      "fieldName": "topicId",
+      "fieldType": "Long"
+    },
+    {
+      "fieldName": "topic",
+      "fieldType": "String"
+    }
+  ],
+  "fluentMethods": true,
+  "jpaMetamodelFiltering": false,
+  "name": "PreferredTopic",
+  "pagination": "no",
+  "readOnly": false,
+  "relationships": [
+    {
+      "otherEntityName": "educatorPreference",
+      "otherEntityRelationshipName": "preferredTopics",
+      "relationshipName": "educatorPreference",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "service": "serviceImpl"
+}

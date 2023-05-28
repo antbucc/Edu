@@ -1,0 +1,25 @@
+{
+  "eduApp": {
+    "preferredLearningStyle": {
+      "home": {
+        "title": "PreferredLearningStyles",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Genera un nuovo Preferred Learning Style",
+        "createOrEditLabel": "Genera o modifica un Preferred Learning Style",
+        "notFound": "No Preferred Learning Styles found"
+      },
+      "created": "&Egrave; stato generato un nuovo Preferred Learning Style con identificatore {{ param }}",
+      "updated": "&Egrave; stato aggiornato Preferred Learning Style identificato da {{ param }}",
+      "deleted": "&Egrave; stato eliminato Preferred Learning Style con identificatore {{ param }}",
+      "delete": {
+        "question": "Sei sicuro di volere eliminare Preferred Learning Style {{ id }}?"
+      },
+      "detail": {
+        "title": "Preferred Learning Style"
+      },
+      "id": "ID",
+      "style": "Style",
+      "educatorPreference": "Educator Preference"
+    }
+  }
+}
