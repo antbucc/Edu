@@ -75,6 +75,9 @@ export const Activity = () => {
                 <th>
                   <Translate contentKey="eduApp.activity.effect">Effect</Translate>
                 </th>
+                <th>
+                  <Translate contentKey="eduApp.activity.preferred">Preferred</Translate>
+                </th>
                 <th />
               </tr>
             </thead>
@@ -127,6 +130,7 @@ export const Activity = () => {
                         ))
                       : null}
                   </td>
+                  <td>{activity.preferred ? <Link to={`/educator/${activity.preferred.id}`}>{activity.preferred.id}</Link> : ''}</td>
                   <td className="text-end">
                     <div className="btn-group flex-btn-group-container">
                       <Button tag={Link} to={`/activity/${activity.id}`} color="info" size="sm" data-cy="entityDetailsButton">
