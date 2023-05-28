@@ -130,10 +130,10 @@ public class PreferredActivity implements Serializable {
 
     public void setPreferences(Set<EducatorPreference> educatorPreferences) {
         if (this.preferences != null) {
-            this.preferences.forEach(i -> i.removePreferredActivities(this));
+            this.preferences.forEach(i -> i.removePreferredActivity(this));
         }
         if (educatorPreferences != null) {
-            educatorPreferences.forEach(i -> i.addPreferredActivities(this));
+            educatorPreferences.forEach(i -> i.addPreferredActivity(this));
         }
         this.preferences = educatorPreferences;
     }

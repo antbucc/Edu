@@ -126,13 +126,13 @@ public class EducatorPreference implements Serializable {
         return this;
     }
 
-    public EducatorPreference addPreferredActivities(PreferredActivity preferredActivity) {
+    public EducatorPreference addPreferredActivity(PreferredActivity preferredActivity) {
         this.preferredActivities.add(preferredActivity);
         preferredActivity.getPreferences().add(this);
         return this;
     }
 
-    public EducatorPreference removePreferredActivities(PreferredActivity preferredActivity) {
+    public EducatorPreference removePreferredActivity(PreferredActivity preferredActivity) {
         this.preferredActivities.remove(preferredActivity);
         preferredActivity.getPreferences().remove(this);
         return this;

@@ -156,9 +156,9 @@ export const EducatorPreferenceUpdate = () => {
                 ))}
               </ValidatedField>
               <ValidatedField
-                label={translate('eduApp.educatorPreference.preferredActivities')}
-                id="educator-preference-preferredActivities"
-                data-cy="preferredActivities"
+                label={translate('eduApp.educatorPreference.preferredActivity')}
+                id="educator-preference-preferredActivity"
+                data-cy="preferredActivity"
                 type="select"
                 multiple
                 name="preferredActivities"
@@ -167,7 +167,7 @@ export const EducatorPreferenceUpdate = () => {
                 {preferredActivities
                   ? preferredActivities.map(otherEntity => (
                       <option value={otherEntity.id} key={otherEntity.id}>
-                        {otherEntity.id}
+                        {otherEntity.title}
                       </option>
                     ))
                   : null}
