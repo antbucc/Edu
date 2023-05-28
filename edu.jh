@@ -125,8 +125,8 @@ tool Tool
 difficulty Difficulty
 }
 
-relationship ManyToOne {
-  EducatorPreference{preferredActivities} to PreferredActivity
+relationship ManyToMany {
+  EducatorPreference{preferredActivities} to PreferredActivity{preferences}
   }
 
 
