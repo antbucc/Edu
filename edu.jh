@@ -196,6 +196,18 @@ relationship OneToMany {
 }
 
 
+relationship OneToOne {
+ PreferredActivity { Activity(title) } to  Activity { PreferredActivity } 
+}
+
+relationship OneToMany {
+ Educator to  PreferredActivity
+}
+
+
+
+
+
 relationship OneToMany {
   Learner { LearnerPreference(title) } to  LearnerPreference { Learner(lastName) } 
 }
