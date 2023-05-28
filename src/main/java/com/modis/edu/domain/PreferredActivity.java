@@ -1,10 +1,10 @@
 package com.modis.edu.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.modis.edu.domain.enumeration.ActivityType;
+import com.modis.edu.domain.enumeration.Difficulty;
+import com.modis.edu.domain.enumeration.Tool;
 import java.io.Serializable;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -20,13 +20,20 @@ public class PreferredActivity implements Serializable {
     @Id
     private String id;
 
-    @Field("activity")
-    private ActivityType activity;
+    @Field("title")
+    private String title;
 
-    @DBRef
-    @Field("educatorPreference")
-    @JsonIgnoreProperties(value = { "educator" }, allowSetters = true)
-    private EducatorPreference educatorPreference;
+    @Field("description")
+    private String description;
+
+    @Field("type")
+    private ActivityType type;
+
+    @Field("tool")
+    private Tool tool;
+
+    @Field("difficulty")
+    private Difficulty difficulty;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -43,30 +50,69 @@ public class PreferredActivity implements Serializable {
         this.id = id;
     }
 
-    public ActivityType getActivity() {
-        return this.activity;
+    public String getTitle() {
+        return this.title;
     }
 
-    public PreferredActivity activity(ActivityType activity) {
-        this.setActivity(activity);
+    public PreferredActivity title(String title) {
+        this.setTitle(title);
         return this;
     }
 
-    public void setActivity(ActivityType activity) {
-        this.activity = activity;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
-    public EducatorPreference getEducatorPreference() {
-        return this.educatorPreference;
+    public String getDescription() {
+        return this.description;
     }
 
-    public void setEducatorPreference(EducatorPreference educatorPreference) {
-        this.educatorPreference = educatorPreference;
-    }
-
-    public PreferredActivity educatorPreference(EducatorPreference educatorPreference) {
-        this.setEducatorPreference(educatorPreference);
+    public PreferredActivity description(String description) {
+        this.setDescription(description);
         return this;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public ActivityType getType() {
+        return this.type;
+    }
+
+    public PreferredActivity type(ActivityType type) {
+        this.setType(type);
+        return this;
+    }
+
+    public void setType(ActivityType type) {
+        this.type = type;
+    }
+
+    public Tool getTool() {
+        return this.tool;
+    }
+
+    public PreferredActivity tool(Tool tool) {
+        this.setTool(tool);
+        return this;
+    }
+
+    public void setTool(Tool tool) {
+        this.tool = tool;
+    }
+
+    public Difficulty getDifficulty() {
+        return this.difficulty;
+    }
+
+    public PreferredActivity difficulty(Difficulty difficulty) {
+        this.setDifficulty(difficulty);
+        return this;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
     }
 
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
@@ -93,7 +139,11 @@ public class PreferredActivity implements Serializable {
     public String toString() {
         return "PreferredActivity{" +
             "id=" + getId() +
-            ", activity='" + getActivity() + "'" +
+            ", title='" + getTitle() + "'" +
+            ", description='" + getDescription() + "'" +
+            ", type='" + getType() + "'" +
+            ", tool='" + getTool() + "'" +
+            ", difficulty='" + getDifficulty() + "'" +
             "}";
     }
 }

@@ -8,6 +8,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import com.modis.edu.IntegrationTest;
 import com.modis.edu.domain.PreferredActivity;
 import com.modis.edu.domain.enumeration.ActivityType;
+import com.modis.edu.domain.enumeration.Difficulty;
+import com.modis.edu.domain.enumeration.Tool;
 import com.modis.edu.repository.PreferredActivityRepository;
 import java.util.List;
 import java.util.UUID;
@@ -27,8 +29,20 @@ import org.springframework.test.web.servlet.MockMvc;
 @WithMockUser
 class PreferredActivityResourceIT {
 
-    private static final ActivityType DEFAULT_ACTIVITY = ActivityType.INDIVIDUAL;
-    private static final ActivityType UPDATED_ACTIVITY = ActivityType.GROUP;
+    private static final String DEFAULT_TITLE = "AAAAAAAAAA";
+    private static final String UPDATED_TITLE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_DESCRIPTION = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRIPTION = "BBBBBBBBBB";
+
+    private static final ActivityType DEFAULT_TYPE = ActivityType.INDIVIDUAL;
+    private static final ActivityType UPDATED_TYPE = ActivityType.GROUP;
+
+    private static final Tool DEFAULT_TOOL = Tool.COMPUTER;
+    private static final Tool UPDATED_TOOL = Tool.MOBILE;
+
+    private static final Difficulty DEFAULT_DIFFICULTY = Difficulty.LOW;
+    private static final Difficulty UPDATED_DIFFICULTY = Difficulty.MODERATE;
 
     private static final String ENTITY_API_URL = "/api/preferred-activities";
     private static final String ENTITY_API_URL_ID = ENTITY_API_URL + "/{id}";
@@ -48,7 +62,12 @@ class PreferredActivityResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static PreferredActivity createEntity() {
-        PreferredActivity preferredActivity = new PreferredActivity().activity(DEFAULT_ACTIVITY);
+        PreferredActivity preferredActivity = new PreferredActivity()
+            .title(DEFAULT_TITLE)
+            .description(DEFAULT_DESCRIPTION)
+            .type(DEFAULT_TYPE)
+            .tool(DEFAULT_TOOL)
+            .difficulty(DEFAULT_DIFFICULTY);
         return preferredActivity;
     }
 
@@ -59,7 +78,12 @@ class PreferredActivityResourceIT {
      * if they test an entity which requires the current entity.
      */
     public static PreferredActivity createUpdatedEntity() {
-        PreferredActivity preferredActivity = new PreferredActivity().activity(UPDATED_ACTIVITY);
+        PreferredActivity preferredActivity = new PreferredActivity()
+            .title(UPDATED_TITLE)
+            .description(UPDATED_DESCRIPTION)
+            .type(UPDATED_TYPE)
+            .tool(UPDATED_TOOL)
+            .difficulty(UPDATED_DIFFICULTY);
         return preferredActivity;
     }
 
@@ -83,7 +107,11 @@ class PreferredActivityResourceIT {
         List<PreferredActivity> preferredActivityList = preferredActivityRepository.findAll();
         assertThat(preferredActivityList).hasSize(databaseSizeBeforeCreate + 1);
         PreferredActivity testPreferredActivity = preferredActivityList.get(preferredActivityList.size() - 1);
-        assertThat(testPreferredActivity.getActivity()).isEqualTo(DEFAULT_ACTIVITY);
+        assertThat(testPreferredActivity.getTitle()).isEqualTo(DEFAULT_TITLE);
+        assertThat(testPreferredActivity.getDescription()).isEqualTo(DEFAULT_DESCRIPTION);
+        assertThat(testPreferredActivity.getType()).isEqualTo(DEFAULT_TYPE);
+        assertThat(testPreferredActivity.getTool()).isEqualTo(DEFAULT_TOOL);
+        assertThat(testPreferredActivity.getDifficulty()).isEqualTo(DEFAULT_DIFFICULTY);
     }
 
     @Test
@@ -116,7 +144,11 @@ class PreferredActivityResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(preferredActivity.getId())))
-            .andExpect(jsonPath("$.[*].activity").value(hasItem(DEFAULT_ACTIVITY.toString())));
+            .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE)))
+            .andExpect(jsonPath("$.[*].description").value(hasItem(DEFAULT_DESCRIPTION)))
+            .andExpect(jsonPath("$.[*].type").value(hasItem(DEFAULT_TYPE.toString())))
+            .andExpect(jsonPath("$.[*].tool").value(hasItem(DEFAULT_TOOL.toString())))
+            .andExpect(jsonPath("$.[*].difficulty").value(hasItem(DEFAULT_DIFFICULTY.toString())));
     }
 
     @Test
@@ -130,7 +162,11 @@ class PreferredActivityResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_VALUE))
             .andExpect(jsonPath("$.id").value(preferredActivity.getId()))
-            .andExpect(jsonPath("$.activity").value(DEFAULT_ACTIVITY.toString()));
+            .andExpect(jsonPath("$.title").value(DEFAULT_TITLE))
+            .andExpect(jsonPath("$.description").value(DEFAULT_DESCRIPTION))
+            .andExpect(jsonPath("$.type").value(DEFAULT_TYPE.toString()))
+            .andExpect(jsonPath("$.tool").value(DEFAULT_TOOL.toString()))
+            .andExpect(jsonPath("$.difficulty").value(DEFAULT_DIFFICULTY.toString()));
     }
 
     @Test
@@ -148,7 +184,12 @@ class PreferredActivityResourceIT {
 
         // Update the preferredActivity
         PreferredActivity updatedPreferredActivity = preferredActivityRepository.findById(preferredActivity.getId()).get();
-        updatedPreferredActivity.activity(UPDATED_ACTIVITY);
+        updatedPreferredActivity
+            .title(UPDATED_TITLE)
+            .description(UPDATED_DESCRIPTION)
+            .type(UPDATED_TYPE)
+            .tool(UPDATED_TOOL)
+            .difficulty(UPDATED_DIFFICULTY);
 
         restPreferredActivityMockMvc
             .perform(
@@ -162,7 +203,11 @@ class PreferredActivityResourceIT {
         List<PreferredActivity> preferredActivityList = preferredActivityRepository.findAll();
         assertThat(preferredActivityList).hasSize(databaseSizeBeforeUpdate);
         PreferredActivity testPreferredActivity = preferredActivityList.get(preferredActivityList.size() - 1);
-        assertThat(testPreferredActivity.getActivity()).isEqualTo(UPDATED_ACTIVITY);
+        assertThat(testPreferredActivity.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testPreferredActivity.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testPreferredActivity.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testPreferredActivity.getTool()).isEqualTo(UPDATED_TOOL);
+        assertThat(testPreferredActivity.getDifficulty()).isEqualTo(UPDATED_DIFFICULTY);
     }
 
     @Test
@@ -231,7 +276,11 @@ class PreferredActivityResourceIT {
         PreferredActivity partialUpdatedPreferredActivity = new PreferredActivity();
         partialUpdatedPreferredActivity.setId(preferredActivity.getId());
 
-        partialUpdatedPreferredActivity.activity(UPDATED_ACTIVITY);
+        partialUpdatedPreferredActivity
+            .title(UPDATED_TITLE)
+            .description(UPDATED_DESCRIPTION)
+            .type(UPDATED_TYPE)
+            .difficulty(UPDATED_DIFFICULTY);
 
         restPreferredActivityMockMvc
             .perform(
@@ -245,7 +294,11 @@ class PreferredActivityResourceIT {
         List<PreferredActivity> preferredActivityList = preferredActivityRepository.findAll();
         assertThat(preferredActivityList).hasSize(databaseSizeBeforeUpdate);
         PreferredActivity testPreferredActivity = preferredActivityList.get(preferredActivityList.size() - 1);
-        assertThat(testPreferredActivity.getActivity()).isEqualTo(UPDATED_ACTIVITY);
+        assertThat(testPreferredActivity.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testPreferredActivity.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testPreferredActivity.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testPreferredActivity.getTool()).isEqualTo(DEFAULT_TOOL);
+        assertThat(testPreferredActivity.getDifficulty()).isEqualTo(UPDATED_DIFFICULTY);
     }
 
     @Test
@@ -259,7 +312,12 @@ class PreferredActivityResourceIT {
         PreferredActivity partialUpdatedPreferredActivity = new PreferredActivity();
         partialUpdatedPreferredActivity.setId(preferredActivity.getId());
 
-        partialUpdatedPreferredActivity.activity(UPDATED_ACTIVITY);
+        partialUpdatedPreferredActivity
+            .title(UPDATED_TITLE)
+            .description(UPDATED_DESCRIPTION)
+            .type(UPDATED_TYPE)
+            .tool(UPDATED_TOOL)
+            .difficulty(UPDATED_DIFFICULTY);
 
         restPreferredActivityMockMvc
             .perform(
@@ -273,7 +331,11 @@ class PreferredActivityResourceIT {
         List<PreferredActivity> preferredActivityList = preferredActivityRepository.findAll();
         assertThat(preferredActivityList).hasSize(databaseSizeBeforeUpdate);
         PreferredActivity testPreferredActivity = preferredActivityList.get(preferredActivityList.size() - 1);
-        assertThat(testPreferredActivity.getActivity()).isEqualTo(UPDATED_ACTIVITY);
+        assertThat(testPreferredActivity.getTitle()).isEqualTo(UPDATED_TITLE);
+        assertThat(testPreferredActivity.getDescription()).isEqualTo(UPDATED_DESCRIPTION);
+        assertThat(testPreferredActivity.getType()).isEqualTo(UPDATED_TYPE);
+        assertThat(testPreferredActivity.getTool()).isEqualTo(UPDATED_TOOL);
+        assertThat(testPreferredActivity.getDifficulty()).isEqualTo(UPDATED_DIFFICULTY);
     }
 
     @Test

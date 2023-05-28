@@ -60,11 +60,6 @@ public class Activity implements Serializable {
     @DBRef
     private Fragment fragment;
 
-    @DBRef
-    @Field("preferred")
-    @JsonIgnoreProperties(value = { "educatorPreferences", "activities", "scenarios" }, allowSetters = true)
-    private Educator preferred;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
     public String getId() {
@@ -236,19 +231,6 @@ public class Activity implements Serializable {
 
     public Activity fragment(Fragment fragment) {
         this.setFragment(fragment);
-        return this;
-    }
-
-    public Educator getPreferred() {
-        return this.preferred;
-    }
-
-    public void setPreferred(Educator educator) {
-        this.preferred = educator;
-    }
-
-    public Activity preferred(Educator educator) {
-        this.setPreferred(educator);
         return this;
     }
 

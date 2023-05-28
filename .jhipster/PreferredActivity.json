@@ -6,9 +6,27 @@
   "entityTableName": "preferred_activity",
   "fields": [
     {
-      "fieldName": "activity",
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "type",
       "fieldType": "ActivityType",
       "fieldValues": "INDIVIDUAL,GROUP"
+    },
+    {
+      "fieldName": "tool",
+      "fieldType": "Tool",
+      "fieldValues": "COMPUTER,MOBILE"
+    },
+    {
+      "fieldName": "difficulty",
+      "fieldType": "Difficulty",
+      "fieldValues": "LOW,MODERATE,INTERMEDIATE,HIGH,ADVANCED,PERSONALIZED"
     }
   ],
   "fluentMethods": true,
@@ -16,13 +34,6 @@
   "name": "PreferredActivity",
   "pagination": "no",
   "readOnly": false,
-  "relationships": [
-    {
-      "otherEntityName": "educatorPreference",
-      "otherEntityRelationshipName": "preferredActivities",
-      "relationshipName": "educatorPreference",
-      "relationshipType": "many-to-one"
-    }
-  ],
+  "relationships": [],
   "service": "serviceImpl"
 }

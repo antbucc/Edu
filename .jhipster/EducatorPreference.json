@@ -32,6 +32,11 @@
   "readOnly": false,
   "relationships": [
     {
+      "otherEntityName": "preferredActivity",
+      "relationshipName": "preferredActivities",
+      "relationshipType": "many-to-one"
+    },
+    {
       "otherEntityField": "lastName",
       "otherEntityName": "educator",
       "otherEntityRelationshipName": "educatorPreference",

@@ -101,10 +101,6 @@ export const ActivityDetail = () => {
                 ))
               : null}
           </dd>
-          <dt>
-            <Translate contentKey="eduApp.activity.preferred">Preferred</Translate>
-          </dt>
-          <dd>{activityEntity.preferred ? activityEntity.preferred.id : ''}</dd>
         </dl>
         <Button tag={Link} to="/activity" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}
