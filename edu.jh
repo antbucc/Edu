@@ -106,6 +106,43 @@ entity AbstractActivity {
 
 
 
+entity EducatorPreference {
+  subject String
+  difficulty Difficulty
+}
+
+entity PreferredTopic {
+  topicId Long,
+  topic String,
+}
+
+entity PreferredActivity {
+  activity ActivityType,
+}
+
+entity PreferredModality {
+  modality ModalityType,
+}
+
+entity PreferredLearningStyle {
+  style LearningStyleType,
+}
+
+enum ActivityType {
+  LECTURE
+  DISCUSSION
+  HANDS_ON
+  EXERCISES
+  PROJECT
+}
+
+enum ModalityType {
+  ONLINE
+  IN_PERSON
+  BLENDED
+}
+
+
 enum Tool {
  COMPUTER, MOBILE
 }
@@ -156,12 +193,16 @@ enum ModalityType {
   BLENDED
 }
 
-enum LearningStyle {
+enum LearningStyleType {
   VISUAL
   AUDITORY
-  KINESTHETIC
-  READ_WRITE
+  HANDS_ONE
+  SOCIAL
+  VERBAL
+  LOGICAL
 }
+
+
 
 
 
@@ -269,6 +310,16 @@ relationship ManyToOne {
 
 relationship OneToMany {
   Sequence{ Order(order) } to Order{ Sequence(title) }
+}
+
+
+relationship OneToMany {
+  Learner{disabilities} to LearningDisability{learnarDisabilities}
+  Educator{preferences} to EducatorPreference{eductarPreferences}
+  EducatorPreference{preferredTopics} to PreferredTopic{educatorPreference}
+  EducatorPreference{preferredActivities} to PreferredActivity{educatorPreference}
+  EducatorPreference{preferredModalities} to PreferredModality{educatorPreference}
+  EducatorPreference{preferredLearningStyles} to PreferredLearningStyle{educatorPreference}
 }
 
 
