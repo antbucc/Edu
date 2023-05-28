@@ -33,11 +33,23 @@ export const EducatorPreferenceDetail = () => {
           </dt>
           <dd>{educatorPreferenceEntity.id}</dd>
           <dt>
-            <span id="subject">
-              <Translate contentKey="eduApp.educatorPreference.subject">Subject</Translate>
+            <span id="title">
+              <Translate contentKey="eduApp.educatorPreference.title">Title</Translate>
             </span>
           </dt>
-          <dd>{educatorPreferenceEntity.subject}</dd>
+          <dd>{educatorPreferenceEntity.title}</dd>
+          <dt>
+            <span id="style">
+              <Translate contentKey="eduApp.educatorPreference.style">Style</Translate>
+            </span>
+          </dt>
+          <dd>{educatorPreferenceEntity.style}</dd>
+          <dt>
+            <span id="modality">
+              <Translate contentKey="eduApp.educatorPreference.modality">Modality</Translate>
+            </span>
+          </dt>
+          <dd>{educatorPreferenceEntity.modality}</dd>
           <dt>
             <span id="difficulty">
               <Translate contentKey="eduApp.educatorPreference.difficulty">Difficulty</Translate>
@@ -45,9 +57,9 @@ export const EducatorPreferenceDetail = () => {
           </dt>
           <dd>{educatorPreferenceEntity.difficulty}</dd>
           <dt>
-            <Translate contentKey="eduApp.educatorPreference.eductarPreferences">Eductar Preferences</Translate>
+            <Translate contentKey="eduApp.educatorPreference.educator">Educator</Translate>
           </dt>
-          <dd>{educatorPreferenceEntity.eductarPreferences ? educatorPreferenceEntity.eductarPreferences.id : ''}</dd>
+          <dd>{educatorPreferenceEntity.educator ? educatorPreferenceEntity.educator.surname : ''}</dd>
         </dl>
         <Button tag={Link} to="/educator-preference" replace color="info" data-cy="entityDetailsBackButton">
           <FontAwesomeIcon icon="arrow-left" />{' '}

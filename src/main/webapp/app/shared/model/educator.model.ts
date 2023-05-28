@@ -6,7 +6,7 @@ export interface IEducator {
   firstName?: string | null;
   lastName?: string | null;
   email?: string | null;
-  preferences?: IEducatorPreference[] | null;
+  educatorPreferences?: IEducatorPreference[] | null;
   scenarios?: IScenario[] | null;
 }
 

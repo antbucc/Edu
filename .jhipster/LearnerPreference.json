@@ -1,9 +1,9 @@
 {
   "applications": "*",
-  "changelogDate": "20230528090723",
+  "changelogDate": "20230528091829",
   "dto": "no",
   "embedded": false,
-  "entityTableName": "educator_preference",
+  "entityTableName": "learner_preference",
   "fields": [
     {
       "fieldName": "title",
@@ -23,19 +23,24 @@
       "fieldName": "difficulty",
       "fieldType": "Difficulty",
       "fieldValues": "LOW,MODERATE,INTERMEDIATE,HIGH,ADVANCED,PERSONALIZED"
+    },
+    {
+      "fieldName": "disability",
+      "fieldType": "DisabilityType",
+      "fieldValues": "DYSLEXIA,DYSCALCULIA,DYSGRAPHIA,ADHD,APD,VISUAL_PROCESSING,LANGUAGE_PROCESSING"
     }
   ],
   "fluentMethods": true,
   "jpaMetamodelFiltering": false,
-  "name": "EducatorPreference",
+  "name": "LearnerPreference",
   "pagination": "no",
   "readOnly": false,
   "relationships": [
     {
       "otherEntityField": "surname",
-      "otherEntityName": "educator",
-      "otherEntityRelationshipName": "educatorPreference",
-      "relationshipName": "educator",
+      "otherEntityName": "learner",
+      "otherEntityRelationshipName": "learnerPreference",
+      "relationshipName": "learner",
       "relationshipType": "many-to-one"
     }
   ],

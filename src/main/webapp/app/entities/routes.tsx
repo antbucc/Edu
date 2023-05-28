@@ -26,6 +26,7 @@ import PreferredTopic from './preferred-topic';
 import PreferredActivity from './preferred-activity';
 import PreferredModality from './preferred-modality';
 import PreferredLearningStyle from './preferred-learning-style';
+import LearnerPreference from './learner-preference';
 /* jhipster-needle-add-route-import - JHipster will add routes here */
 
 export default () => {
@@ -56,6 +57,7 @@ export default () => {
         <Route path="preferred-activity/*" element={<PreferredActivity />} />
         <Route path="preferred-modality/*" element={<PreferredModality />} />
         <Route path="preferred-learning-style/*" element={<PreferredLearningStyle />} />
+        <Route path="learner-preference/*" element={<LearnerPreference />} />
         {/* jhipster-needle-add-route-path - JHipster will add routes here */}
       </ErrorBoundaryRoutes>
     </div>

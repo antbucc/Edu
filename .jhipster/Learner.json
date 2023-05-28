@@ -34,9 +34,10 @@
   "readOnly": false,
   "relationships": [
     {
-      "otherEntityName": "learningDisability",
-      "otherEntityRelationshipName": "learnarDisabilities",
-      "relationshipName": "disabilities",
+      "otherEntityField": "title",
+      "otherEntityName": "learnerPreference",
+      "otherEntityRelationshipName": "learner",
+      "relationshipName": "learnerPreference",
       "relationshipType": "one-to-many"
     },
     {

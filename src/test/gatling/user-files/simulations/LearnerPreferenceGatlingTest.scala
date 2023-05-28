@@ -7,9 +7,9 @@ import org.slf4j.LoggerFactory
 import scala.concurrent.duration._
 
 /**
- * Performance test for the EducatorPreference entity.
+ * Performance test for the LearnerPreference entity.
  */
-class EducatorPreferenceGatlingTest extends Simulation {
+class LearnerPreferenceGatlingTest extends Simulation {
 
     val context: LoggerContext = LoggerFactory.getILoggerFactory.asInstanceOf[LoggerContext]
     // Log all HTTP requests
@@ -43,7 +43,7 @@ class EducatorPreferenceGatlingTest extends Simulation {
         "Authorization" -> "${access_token}"
     )
 
-    val scn = scenario("Test the EducatorPreference entity")
+    val scn = scenario("Test the LearnerPreference entity")
         .exec(http("First unauthenticated request")
         .get("/api/account")
         .headers(headers_http)
@@ -62,31 +62,32 @@ class EducatorPreferenceGatlingTest extends Simulation {
         .check(status.is(200)))
         .pause(10)
         .repeat(2) {
-            exec(http("Get all educatorPreferences")
-            .get("/api/educator-preferences")
+            exec(http("Get all learnerPreferences")
+            .get("/api/learner-preferences")
             .headers(headers_http_authenticated)
             .check(status.is(200)))
             .pause(10 seconds, 20 seconds)
-            .exec(http("Create new educatorPreference")
-            .post("/api/educator-preferences")
+            .exec(http("Create new learnerPreference")
+            .post("/api/learner-preferences")
             .headers(headers_http_authenticated)
             .body(StringBody("""{
                 "title":"SAMPLE_TEXT"
                 , "style":"VISUAL"
                 , "modality":"ONLINE"
                 , "difficulty":"LOW"
+                , "disability":"DYSLEXIA"
                 }""")).asJson
             .check(status.is(201))
-            .check(headerRegex("Location", "(.*)").saveAs("new_educatorPreference_url"))).exitHereIfFailed
+            .check(headerRegex("Location", "(.*)").saveAs("new_learnerPreference_url"))).exitHereIfFailed
             .pause(10)
             .repeat(5) {
-                exec(http("Get created educatorPreference")
-                .get("${new_educatorPreference_url}")
+                exec(http("Get created learnerPreference")
+                .get("${new_learnerPreference_url}")
                 .headers(headers_http_authenticated))
                 .pause(10)
             }
-            .exec(http("Delete created educatorPreference")
-            .delete("${new_educatorPreference_url}")
+            .exec(http("Delete created learnerPreference")
+            .delete("${new_learnerPreference_url}")
             .headers(headers_http_authenticated))
             .pause(10)
         }

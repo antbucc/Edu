@@ -1,4 +1,4 @@
-import { ILearningDisability } from 'app/shared/model/learning-disability.model';
+import { ILearnerPreference } from 'app/shared/model/learner-preference.model';
 import { IScenario } from 'app/shared/model/scenario.model';
 import { GenderType } from 'app/shared/model/enumerations/gender-type.model';
 
@@ -9,7 +9,7 @@ export interface ILearner {
   email?: string | null;
   phoneNumber?: string | null;
   gender?: GenderType | null;
-  disabilities?: ILearningDisability[] | null;
+  learnerPreferences?: ILearnerPreference[] | null;
   scenarios?: IScenario[] | null;
 }
 

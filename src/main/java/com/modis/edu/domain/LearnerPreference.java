@@ -2,6 +2,7 @@ package com.modis.edu.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.modis.edu.domain.enumeration.Difficulty;
+import com.modis.edu.domain.enumeration.DisabilityType;
 import com.modis.edu.domain.enumeration.LearningStyleType;
 import com.modis.edu.domain.enumeration.ModalityType;
 import java.io.Serializable;
@@ -11,11 +12,11 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * A EducatorPreference.
+ * A LearnerPreference.
  */
-@Document(collection = "educator_preference")
+@Document(collection = "learner_preference")
 @SuppressWarnings("common-java:DuplicatedBlocks")
-public class EducatorPreference implements Serializable {
+public class LearnerPreference implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -34,10 +35,13 @@ public class EducatorPreference implements Serializable {
     @Field("difficulty")
     private Difficulty difficulty;
 
+    @Field("disability")
+    private DisabilityType disability;
+
     @DBRef
-    @Field("educator")
-    @JsonIgnoreProperties(value = { "educatorPreferences", "scenarios" }, allowSetters = true)
-    private Educator educator;
+    @Field("learner")
+    @JsonIgnoreProperties(value = { "learnerPreferences", "scenarios" }, allowSetters = true)
+    private Learner learner;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -45,7 +49,7 @@ public class EducatorPreference implements Serializable {
         return this.id;
     }
 
-    public EducatorPreference id(String id) {
+    public LearnerPreference id(String id) {
         this.setId(id);
         return this;
     }
@@ -58,7 +62,7 @@ public class EducatorPreference implements Serializable {
         return this.title;
     }
 
-    public EducatorPreference title(String title) {
+    public LearnerPreference title(String title) {
         this.setTitle(title);
         return this;
     }
@@ -71,7 +75,7 @@ public class EducatorPreference implements Serializable {
         return this.style;
     }
 
-    public EducatorPreference style(LearningStyleType style) {
+    public LearnerPreference style(LearningStyleType style) {
         this.setStyle(style);
         return this;
     }
@@ -84,7 +88,7 @@ public class EducatorPreference implements Serializable {
         return this.modality;
     }
 
-    public EducatorPreference modality(ModalityType modality) {
+    public LearnerPreference modality(ModalityType modality) {
         this.setModality(modality);
         return this;
     }
@@ -97,7 +101,7 @@ public class EducatorPreference implements Serializable {
         return this.difficulty;
     }
 
-    public EducatorPreference difficulty(Difficulty difficulty) {
+    public LearnerPreference difficulty(Difficulty difficulty) {
         this.setDifficulty(difficulty);
         return this;
     }
@@ -106,16 +110,29 @@ public class EducatorPreference implements Serializable {
         this.difficulty = difficulty;
     }
 
-    public Educator getEducator() {
-        return this.educator;
+    public DisabilityType getDisability() {
+        return this.disability;
     }
 
-    public void setEducator(Educator educator) {
-        this.educator = educator;
+    public LearnerPreference disability(DisabilityType disability) {
+        this.setDisability(disability);
+        return this;
     }
 
-    public EducatorPreference educator(Educator educator) {
-        this.setEducator(educator);
+    public void setDisability(DisabilityType disability) {
+        this.disability = disability;
+    }
+
+    public Learner getLearner() {
+        return this.learner;
+    }
+
+    public void setLearner(Learner learner) {
+        this.learner = learner;
+    }
+
+    public LearnerPreference learner(Learner learner) {
+        this.setLearner(learner);
         return this;
     }
 
@@ -126,10 +143,10 @@ public class EducatorPreference implements Serializable {
         if (this == o) {
             return true;
         }
-        if (!(o instanceof EducatorPreference)) {
+        if (!(o instanceof LearnerPreference)) {
             return false;
         }
-        return id != null && id.equals(((EducatorPreference) o).id);
+        return id != null && id.equals(((LearnerPreference) o).id);
     }
 
     @Override
@@ -141,12 +158,13 @@ public class EducatorPreference implements Serializable {
     // prettier-ignore
     @Override
     public String toString() {
-        return "EducatorPreference{" +
+        return "LearnerPreference{" +
             "id=" + getId() +
             ", title='" + getTitle() + "'" +
             ", style='" + getStyle() + "'" +
             ", modality='" + getModality() + "'" +
             ", difficulty='" + getDifficulty() + "'" +
+            ", disability='" + getDisability() + "'" +
             "}";
     }
 }

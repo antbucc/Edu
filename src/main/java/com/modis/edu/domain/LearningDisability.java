@@ -31,7 +31,7 @@ public class LearningDisability implements Serializable {
 
     @DBRef
     @Field("learnarDisabilities")
-    @JsonIgnoreProperties(value = { "disabilities", "scenarios" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "learnerPreferences", "scenarios" }, allowSetters = true)
     private Learner learnarDisabilities;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
