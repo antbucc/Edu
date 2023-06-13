@@ -38,6 +38,7 @@ public class Effect implements Serializable {
     private Set<Activity> activities = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
+    // new comment for testing
 
     public String getId() {
         return this.id;
@@ -121,7 +122,8 @@ public class Effect implements Serializable {
         return this;
     }
 
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and
+    // setters here
 
     @Override
     public boolean equals(Object o) {
@@ -136,7 +138,8 @@ public class Effect implements Serializable {
 
     @Override
     public int hashCode() {
-        // see https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
+        // see
+        // https://vladmihalcea.com/how-to-implement-equals-and-hashcode-using-the-jpa-entity-identifier/
         return getClass().hashCode();
     }
 
@@ -144,8 +147,8 @@ public class Effect implements Serializable {
     @Override
     public String toString() {
         return "Effect{" +
-            "id=" + getId() +
-            ", title='" + getTitle() + "'" +
-            "}";
+                "id=" + getId() +
+                ", title='" + getTitle() + "'" +
+                "}";
     }
 }
