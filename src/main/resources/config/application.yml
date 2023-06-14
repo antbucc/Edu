@@ -78,7 +78,7 @@ management:
       enabled: false # When using the MailService, configure an SMTP server and set this to true
   metrics:
     export:
-      # Prometheus is the default metrics backend
+      # Prometheus is the default metrics backendm
       prometheus:
         enabled: true
         step: 60

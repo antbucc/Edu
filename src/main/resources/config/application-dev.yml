@@ -49,8 +49,10 @@ spring:
   data:
     mongodb:
       #uri: mongodb://localhost:27017
-      uri: mongodb+srv://bucchiarone:Edu202324@cluster0.byuz8uh.mongodb.net/?retryWrites=true&w=majority
-      database: Edu
+      #uri: mongodb+srv://bucchiarone:Edu202324@cluster0.byuz8uh.mongodb.net/?retryWrites=true&w=majority
+      #database: Edu
+      uri: mongodb+srv://bucchiarone:quest202324@cluster0.zje6drd.mongodb.net/?retryWrites=true&w=majority
+      database: sample_training
   mail:
     host: localhost
     port: 25
